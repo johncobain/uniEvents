@@ -10,6 +10,8 @@ public abstract class Menu implements IMenu {
   protected String title;
   protected String color;
 
+  protected static final Scanner scanner = new Scanner(System.in);
+
   public Menu(String title){
     this.title = title;
   }
@@ -20,37 +22,35 @@ public abstract class Menu implements IMenu {
   }
 
   protected int menuResponse(List<String> options){
-    try (Scanner scanner = new Scanner(System.in)) {
-      do { 
-        System.out.println(Lines.doubleLine());
-        if(color != null) System.out.println(Lines.titleLine(title, color));
-        else System.out.println(Lines.titleLine(title));
-        System.out.println(Lines.doubleLine());
+    do { 
+      System.out.println(Lines.doubleLine());
+      if(color != null) System.out.println(Lines.titleLine(title, color));
+      else System.out.println(Lines.titleLine(title));
+      System.out.println(Lines.doubleLine());
 
-        for(int i = 0; i < options.size(); i++){
-          System.out.println(Lines.leftText("" + i + " - " + options.get(i)));
-        }
-        System.out.println(Lines.doubleLine());
-        System.out.print(">> ");
-        String choice = scanner.nextLine();
-        int response = processOption(choice);
+      for(int i = 0; i < options.size(); i++){
+        System.out.println(Lines.leftText("" + i + " - " + options.get(i)));
+      }
+      System.out.println(Lines.doubleLine());
+      System.out.print(">> ");
+      String choice = scanner.nextLine();
+      int response = processOption(choice);
 
-        if(response == -1){
+      if(response == -1){
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine("Invalid input!"));
+        System.out.println(Lines.straightLine());
+      }else if(response >= 0 && response <= options.size() - 1){
+          System.out.println(Lines.clear());
+          return response;
+      }else{
           System.out.println(Lines.clear());
           System.out.println(Lines.straightLine());
-          System.out.println(Lines.errorLine("Invalid input!"));
+          System.out.println(Lines.errorLine("Invalid option!"));
           System.out.println(Lines.straightLine());
-        }else if(response >= 0 && response <= options.size() - 1){
-            System.out.println(Lines.clear());
-            return response;
-        }else{
-            System.out.println(Lines.clear());
-            System.out.println(Lines.straightLine());
-            System.out.println(Lines.errorLine("Invalid option!"));
-            System.out.println(Lines.straightLine());
-        } 
-      } while (true);
-    }
+      } 
+    } while (true);
   }
 
   @Override

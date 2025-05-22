@@ -25,9 +25,9 @@ public class MainMenu extends Menu{
       if(response == 0){
         System.out.println("Goodbye!");
         break;
+      } else {
+        System.out.println("Response: " + options.get(response));
       }
     } while (true);
-
-    System.out.println("Response: " + options.get(response));
   }
 }
