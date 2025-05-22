@@ -3,6 +3,9 @@ package br.edu.ifba.inf0008.uniEvents.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventsMenu;
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantsMenu;
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class MainMenu extends Menu{
@@ -11,22 +14,35 @@ public class MainMenu extends Menu{
   public MainMenu(){
     super("Main Menu", Colors.PURPLE_BOLD);
     options.add("Exit");
-    options.add("Events Management");
     options.add("Participants Management");
+    options.add("Events Management");
     options.add("See Reports");
   }
   
   @Override
   public void show() {
     int response;
+    Menu submenu;
     do { 
-        
       response = super.menuResponse(options);
-      if(response == 0){
-        System.out.println("Goodbye!");
-        break;
-      } else {
-        System.out.println("Response: " + options.get(response));
+
+      switch (response) {
+          case 0 -> {
+              return;
+          }
+          case 1 -> {
+            submenu = new ParticipantsMenu();
+            submenu.show();
+          }
+          case 2 -> {
+            submenu = new EventsMenu();
+            submenu.show();
+          }
+          case 3 -> {
+            submenu = new ReportsMenu();
+            submenu.show();
+          }
+          default -> throw new AssertionError();
       }
     } while (true);
   }

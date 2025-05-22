@@ -1,16 +1,14 @@
 package br.edu.ifba.inf0008.uniEvents.menu;
 
 import java.util.List;
-import java.util.Scanner;
 
 import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
+import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public abstract class Menu implements IMenu {
   protected String title;
   protected String color;
-
-  protected static final Scanner scanner = new Scanner(System.in);
 
   public Menu(String title){
     this.title = title;
@@ -33,7 +31,7 @@ public abstract class Menu implements IMenu {
       }
       System.out.println(Lines.doubleLine());
       System.out.print(">> ");
-      String choice = scanner.nextLine();
+      String choice = Utils.scanner.nextLine();
       int response = processOption(choice);
 
       if(response == -1){

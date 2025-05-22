@@ -11,6 +11,9 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 public class App {
     
     public static void main(String[] args) {
+        // fetch data
+
+        // open menu
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.titleLine("Welcome to UniEvents!", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());
@@ -19,5 +22,7 @@ public class App {
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.titleLine("Exiting UniEvents...", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());
+
+        // save data
     }
 }
