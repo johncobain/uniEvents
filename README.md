@@ -15,28 +15,85 @@ Each event has specific features, but they all share common elements, such as ti
 
 The project simulates the management of events in a university, with the following requirements:
 
+### Functional Requirements
+
+- [ ] Create Events (Lectures, Workshops, Short Courses, Academic Fairs)
+- [ ] Create Participants (Students, Professors, Externals)
+  - Courses can only have students as participants
+- [ ] Register Participants in Events (with capacity control)
+- [ ] Generate Certificates (text)
+- [ ] Generate Reports by Event Type and Date
+- [ ] Add support for online, in-person and hybrid events
+
+### Technical Requirements
+
+- Basic Concepts
+
+  - [ ] Classes, Objects and References
+  - [ ] Attributes, Methods and Visibility (private, protected, public)
+  - [ ] Packages Organized Logically
+  - [ ] JAR Files and Classpath Usage
+  - [ ] Constructor Methods
+
+- Inheritance and Polymorphism
+
+  - [ ] Create an hierarchy of classes for events and other entities
+  - [ ] Use interfaces or abstract classes to define generic behavior
+  - [ ] Use dynamic linking
+
+- Collections
+
+  - [ ] Utilize a collection more appropriate for each situation
+  - [ ] Demonstrate safe casting and correct usage of hierarchy collections
+
+- Other Requirements
+  - [ ] Attributes and methods static
+  - [ ] Method overloading
+  - [ ] Structured project with at least one external library
+  - [ ] Command Line Interface (not necessary graphical interface)
+
 ## Library
 
 - [Gson](https://mvnrepository.com/artifact/com.google.code.gson/gson)
 
+## Build Tool
+
+- [Maven](https://maven.apache.org/)
+
 ## Steps to run the project
 
-```bash
-mvn package
-```
+1. If you are on GitHub, clone the repository:
 
-```bash
-mvn exec:java
-```
+   ```bash
+   git clone https://github.com/johncobain/uniEvents.git
+   ```
 
-3. Requisitos Funcionais
-   O sistema deve permitir:
-4. Cadastro de eventos de diferentes tipos (palestras, cursos, workshops, feiras).
-5. Associação de participantes a eventos (com controle de vagas disponíveis).
-6. Geração de certificados (texto) com dados do evento e do participante.
-7. Participantes podem ser alunos, professores ou externos, com dados específicos para cada
-   categoria. Os participantes dos cursos devem ser exclusivamente alunos (não podem ser
-   professores ou externos).
-8. Suporte a eventos híbridos (presenciais ou online), com comportamentos diferentes para o
-   processo de inscrição.
-9. Relatório de eventos por tipo e data.
+   - Then, navigate to the project directory:
+
+   ```bash
+   cd uniEvents
+   ```
+
+2. If you have the project on a tar.gz file, extract it:
+
+   ```bash
+   tar -xvzf uniEvents.tar.gz
+   ```
+
+   - Then, navigate to the project directory:
+
+   ```bash
+   cd uniEvents
+   ```
+
+3. Run the project:
+
+   - Inside the project directory, run the following command to compile and run the project:
+
+   ```bash
+   mvn package
+   ```
+
+   ```bash
+   mvn exec:java
+   ```
