@@ -18,7 +18,15 @@ public class MainMenu extends Menu{
   
   @Override
   public void show() {
-    int response = super.menuResponse(options);
+    int response;
+    do { 
+        
+      response = super.menuResponse(options);
+      if(response == 0){
+        System.out.println("Goodbye!");
+        break;
+      }
+    } while (true);
 
     System.out.println("Response: " + options.get(response));
   }
