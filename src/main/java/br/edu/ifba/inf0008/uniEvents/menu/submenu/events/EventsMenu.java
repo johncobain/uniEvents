@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
+import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class EventsMenu extends Menu {
@@ -23,7 +24,7 @@ public class EventsMenu extends Menu {
   @Override
   public void show() {
     int response;
-    // Menu submenu;
+    // IMenu submenu;
     do { 
       response = super.menuResponse(options);
 
