@@ -15,8 +15,6 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
  * Hello world!
  */
 public class App {
-    
-    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args) {
 
         EventRepository eventRepository = new EventRepository();

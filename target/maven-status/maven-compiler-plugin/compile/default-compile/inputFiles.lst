@@ -11,7 +11,10 @@
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/events/Modality.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/events/ShortCourse.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/events/Workshop.java
+/home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/participants/External.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/participants/Participant.java
+/home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/participants/Student.java
+/home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/model/participants/Teacher.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/repository/EventRepository.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/repository/ParticipantRepository.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/services/EventManager.java

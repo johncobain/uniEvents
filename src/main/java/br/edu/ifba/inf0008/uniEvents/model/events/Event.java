@@ -26,7 +26,7 @@ public abstract class Event {
     this.participants = new ArrayList<>();
   }
 
-  public Event(){} //Gson
+  protected  Event(){} //Gson
 
   public String getName() {
     return name;
