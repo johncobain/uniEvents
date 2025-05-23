@@ -3,9 +3,14 @@ package br.edu.ifba.inf0008.uniEvents.model.events;
 import java.time.LocalDate;
 
 public class AcademicFair extends Event {
+  private final String eventTypeJson = "AcademicFair";
 
   public AcademicFair(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code) {
-    super("AcademicFair", name, description, location, date, capacity, modality, code);
+    super( name, description, location, date, capacity, modality, code);
   }
+
+  public AcademicFair() {
+    super();
+  } //Gson
   
 }

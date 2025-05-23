@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 
 public abstract class Event {
-  private final String eventTypeJson;
-
   private String name;
   private String description;
   private String location;
@@ -17,9 +15,7 @@ public abstract class Event {
   private ArrayList<Participant> participants;
   private String code;
   
-  public Event(String eventType,String name, String description, String location, LocalDate date, int capacity, Modality modality, String code) {
-    this.eventTypeJson = eventType;
-    
+  public Event(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code) {
     this.name = name;
     this.description = description;
     this.location = location;
@@ -29,6 +25,8 @@ public abstract class Event {
     this.code = code;
     this.participants = new ArrayList<>();
   }
+
+  public Event(){} //Gson
 
   public String getName() {
     return name;
