@@ -150,6 +150,57 @@ public class EventMenuController {
   }
 
   public Boolean update(){
+    System.out.println("Enter event code >> ");
+    String code = Utils.scanner.nextLine();
+    Event event = eventManager.getEvent(code);
+    if (event == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.errorLine("Event not found!"));
+      System.out.println(Lines.straightLine());
+      return false;
+    }
+    System.out.print("Enter event name >> ");
+    String name = Utils.scanner.nextLine();
+    System.out.print("Enter event location >> ");
+    String location = Utils.scanner.nextLine();
+    System.out.print("Enter event description >> ");
+    String description = Utils.scanner.nextLine();
+    System.out.print("Enter event date (dd/MM/yyyy) >> ");
+    String date = Utils.scanner.nextLine();
+    int capacity;
+    do { 
+      System.out.print("Enter event capacity >> ");
+      String capacityStr = Utils.scanner.nextLine();
+      try {
+        capacity = Integer.parseInt(capacityStr);
+        if (capacity <= 0) {
+          throw new Exception("Capacity must be greater than 0!");
+        }
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine(e.getMessage()));
+        System.out.println(Lines.straightLine());
+      }
+    } while (true);
+    ArrayList<String> modalities = new ArrayList<>();
+    modalities.add(Modality.INPERSON.toString());
+    modalities.add(Modality.ONLINE.toString());
+    modalities.add(Modality.HYBRID.toString());
+    baseMenu = new BaseMenu("Select event modality", modalities);
+    int modalityResponse = baseMenu.getResponse();
+    Modality modality;
+    switch (modalityResponse) {
+      case 0 -> modality = Modality.INPERSON;
+      case 1 -> modality = Modality.ONLINE;
+      case 2 -> modality = Modality.HYBRID;
+      default -> modality = Modality.INPERSON;
+    }
+    
+    eventManager.updateEvent(event, name, location, description, Utils.stringToDate(date), capacity, modality);
+
     return true;
   }
 

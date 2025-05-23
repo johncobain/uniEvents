@@ -13,6 +13,7 @@ public class ParticipantManager {
   
   public ParticipantManager(ParticipantRepository participantRepository) {
     this.participantRepository = participantRepository;
+    participants = participantRepository.getParticipants();
   }
 
   public void addParticipant(Participant participant){

@@ -44,14 +44,6 @@ public class EventRepository {
 
     gsonBuilder.registerTypeAdapterFactory(eventAdapterFactory);
 
-    // RuntimeTypeAdapterFactory<Participant> participantAdapterFactory = RuntimeTypeAdapterFactory
-    // .of(Participant.class, "participantTypeJson")
-    // .registerSubtype(Student.class, "Student")
-    // .registerSubtype(Teacher.class, "Teacher")
-    // .registerSubtype(External.class, "External");
-
-    // gsonBuilder.registerTypeAdapterFactory(participantAdapterFactory);
-
     this.gson = gsonBuilder.create();
     this.eventsSaved = loadEvents();
 
@@ -76,10 +68,8 @@ public class EventRepository {
     }
 
     if(this.participantRepository != null){
-      if(eventsSaved != null){
-        for (Event event : eventsSaved){
-          event.populateParticipants(this.participantRepository);
-        }
+      for (Event event : events){
+        event.populateParticipants(this.participantRepository);
       }
     }
     return events;
@@ -128,7 +118,7 @@ public class EventRepository {
     saveEvents();
   }
 
-  public List<Event> getEvents(){
+  public ArrayList<Event> getEvents(){
     return new ArrayList<>(eventsSaved);
   }
 

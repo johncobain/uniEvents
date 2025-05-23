@@ -1,11 +1,14 @@
 package br.edu.ifba.inf0008.uniEvents.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
+
 
 public class EventManager {
   private final EventRepository eventRepository;
@@ -16,6 +19,7 @@ public class EventManager {
   public EventManager(EventRepository eventRepository, ParticipantRepository participantRepository) {
     this.eventRepository = eventRepository;
     this.participantRepository = participantRepository;
+    events = eventRepository.getEvents();
   }
 
   public void addEvent(Event event){
@@ -45,7 +49,14 @@ public class EventManager {
     eventRepository.removeEvent(event);
   }
 
-  public void updateEvent(Event event){
+  public void updateEvent(Event event, String name, String location, String description, LocalDate date, int capacity, Modality
+  modality) {
+    event.setName(name);
+    event.setLocation(location);
+    event.setDescription(description);
+    event.setDate(date);
+    event.setCapacity(capacity);
+    event.setModality(modality);
     eventRepository.updateEvent(event, event.getCode());
   }
 

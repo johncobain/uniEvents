@@ -67,7 +67,6 @@ public class EventsMenu extends Menu {
               System.out.println(Lines.successLine("Event updated!"));
               System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.clear());
               System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error updating event!"));
               System.out.println(Lines.straightLine());
