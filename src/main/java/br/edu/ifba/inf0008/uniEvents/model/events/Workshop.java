@@ -12,5 +12,9 @@ public class Workshop extends Event {
   public Workshop() {
     super();
   } //Gson
-  
+
+  public String getEventTypeJson() {
+    return eventTypeJson;
+  }
+
 }

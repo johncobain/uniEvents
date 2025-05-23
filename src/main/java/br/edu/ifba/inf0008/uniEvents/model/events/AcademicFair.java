@@ -12,5 +12,9 @@ public class AcademicFair extends Event {
   public AcademicFair() {
     super();
   } //Gson
+
+  public String getEventTypeJson() {
+    return eventTypeJson;
+  }
   
 }

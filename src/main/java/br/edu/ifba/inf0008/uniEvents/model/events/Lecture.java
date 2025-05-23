@@ -12,5 +12,9 @@ public class Lecture extends Event{
   public Lecture() {
     super();
   } //Gson
+
+  public String getEventTypeJson() {
+    return eventTypeJson;
+  }
   
 }

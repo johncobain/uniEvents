@@ -12,5 +12,9 @@ public class ShortCourse extends Event {
   public ShortCourse() {
     super();
   } //Gson
+
+  public String getEventTypeJson() {
+    return eventTypeJson;
+  }
   
 }
