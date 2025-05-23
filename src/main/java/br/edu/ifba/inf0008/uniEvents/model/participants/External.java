@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class External extends Participant {
   private final String participanTypeJson = "External";
 
-  public External(String name, String cpf, String email, String phone, LocalDate birthDate, String gender) {
-    super(name, cpf, email, phone, birthDate, gender);
+  public External(String name, String cpf, String email, String phone, LocalDate birthDate) {
+    super(name, cpf, email, phone, birthDate);
   }
   
   public External() {
@@ -15,7 +15,7 @@ public class External extends Participant {
 
 
   @Override
-  public String getParticipantType() {
+  public String getType() {
     return participanTypeJson;
   }
 }

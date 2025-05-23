@@ -3,12 +3,8 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
-import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
-import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
-import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -102,31 +98,21 @@ public class EventMenuController {
       }
       break;
     } while (true);
-    Event event = null;
     switch (selectedType) {
-      case "Lecture" -> {
-        event = new Lecture(name, description, location, Utils.stringToDate(date), capacity, modality, code);
-        eventManager.addEvent(event);
-      }
-      case "Workshop" -> {
-        event = new Workshop(name, description, location, Utils.stringToDate(date), capacity, modality, code);
-        eventManager.addEvent(event);
-      }
-      case "Short Course" -> {
-        event = new ShortCourse(name, description, location, Utils.stringToDate(date), capacity, modality, code);
-        eventManager.addEvent(event);
-      }
-      case "Academic Fair" -> {
-        event = new AcademicFair(name, description, location, Utils.stringToDate(date), capacity, modality, code);
-      }
+      case "Lecture" -> eventManager.createLecture(name, description, location, Utils.stringToDate(date), capacity, modality, code);
+      case "Workshop" -> eventManager.createWorkshop(name, description, location, Utils.stringToDate(date), capacity, modality, code);
+
+      case "Short Course" -> eventManager.createShortCourse(name, description, location, Utils.stringToDate(date), capacity, modality, code);
+
+      case "Academic Fair" -> eventManager.createAcademicFair(name, description, location, Utils.stringToDate(date), capacity, modality, code);
+
     }
-    if(event == null)return false;
-    eventManager.addEvent(event);
+
     return true;
   }
 
   public Boolean remove(){
-    System.out.println("Enter event code >> ");
+    System.out.print("Enter event code >> ");
     String code = Utils.scanner.nextLine();
     Event event = eventManager.getEvent(code);
     if (event == null) {
@@ -150,7 +136,7 @@ public class EventMenuController {
   }
 
   public Boolean update(){
-    System.out.println("Enter event code >> ");
+    System.out.print("Enter event code >> ");
     String code = Utils.scanner.nextLine();
     Event event = eventManager.getEvent(code);
     if (event == null) {
@@ -257,7 +243,7 @@ public class EventMenuController {
     }
   }
 
-  public void showEventParticipants(){
+  public void showParticipants(){
     System.out.print("Enter event code >> ");
     String code = Utils.scanner.nextLine();
     Event event = eventManager.getEvent(code);
@@ -290,14 +276,13 @@ public class EventMenuController {
       System.out.println(Lines.leftText(String.format("    Email: %s", participant.getEmail())));
       System.out.println(Lines.leftText(String.format("    Phone: %s", participant.getPhone())));
       System.out.println(Lines.leftText(String.format("    Birthdate: %s", participant.getBirthDate())));
-      System.out.println(Lines.leftText(String.format("    Gender: %s", participant.getGender())));
       System.out.println(Lines.straightLine());
     }
   }
 
   public Boolean clearAll(){
     try {
-     eventManager.clearAllEvents();
+      eventManager.clearAllEvents();
       return true;   
     } catch (Exception e) {
       return false;

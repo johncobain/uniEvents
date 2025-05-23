@@ -41,7 +41,7 @@ public class MainMenu extends Menu{
               return;
           }
           case 1 -> {
-            submenu = new ParticipantsMenu();
+            submenu = new ParticipantsMenu(participantManager, eventManager);
             submenu.show();
           }
           case 2 -> {

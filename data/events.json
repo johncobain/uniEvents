@@ -7,7 +7,9 @@
     "date": "15/10/2023",
     "capacity": 50,
     "modality": "INPERSON",
-    "participantsCpfs": ["123.456.789-00"],
+    "participantsCpfs": [
+      "123.456.789-00"
+    ],
     "code": "W001"
   },
   {
@@ -18,18 +20,10 @@
     "date": "20/10/2023",
     "capacity": 100,
     "modality": "ONLINE",
-    "participantsCpfs": ["987.654.321-00", "111.222.333-44"],
+    "participantsCpfs": [
+      "987.654.321-00",
+      "111.222.333-44"
+    ],
     "code": "L001"
-  },
-  {
-    "eventTypeJson": "Workshop",
-    "name": "teset",
-    "description": "fe",
-    "location": "sfes",
-    "date": "20/02/2020",
-    "capacity": 49,
-    "modality": "ONLINE",
-    "participantsCpfs": [],
-    "code": "teste"
   }
 ]

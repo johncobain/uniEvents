@@ -36,8 +36,7 @@ public class ReportsManager {
             report.append(Lines.leftText(String.format("    CPF: %s", participant.getCpf()))).append("\n");
             report.append(Lines.leftText(String.format("    Email: %s", participant.getEmail()))).append("\n");
             report.append(Lines.leftText(String.format("    Phone: %s", participant.getPhone()))).append("\n");
-            report.append(Lines.leftText(String.format("    Age: %s", participant.getAge()))).append("\n");
-            report.append(Lines.leftText(String.format("    Gender: %s", participant.getGender()))).append("\n");
+            report.append(Lines.leftText(String.format("    Birthdate: %s", participant.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))))).append("\n");
           }
         }
         report.append(Lines.straightLine()).append("\n");

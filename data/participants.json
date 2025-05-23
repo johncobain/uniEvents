@@ -5,8 +5,7 @@
     "cpf": "123.456.789-00",
     "email": "jdoe@me.com",
     "phone": "(11) 1234-5678",
-    "birthDate": "15/05/1990",
-    "gender": "Male"
+    "birthDate": "15/05/1990"
   },
   {
     "participantTypeJson": "Teacher",
@@ -14,16 +13,14 @@
     "cpf": "987.654.321-00",
     "email": "jane@me.com",
     "phone": "(11) 9876-5432",
-    "birthDate": "25/12/1980",
-    "gender": "Female"
+    "birthDate": "25/12/1980"
   },
   {
     "participantTypeJson": "Student",
-    "name": "Alice Smith",
+    "name": "Johnny",
     "cpf": "111.222.333-44",
-    "email": "alice@me.com",
-    "phone": "(11) 1111-2222",
-    "birthDate": "10/08/1995",
-    "gender": "Female"
+    "email": "john@gg",
+    "phone": "(75)999999999",
+    "birthDate": "20/05/2005"
   }
 ]

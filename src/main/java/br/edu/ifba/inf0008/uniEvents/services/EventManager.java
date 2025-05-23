@@ -3,8 +3,12 @@ package br.edu.ifba.inf0008.uniEvents.services;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
+import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
+import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
@@ -85,5 +89,25 @@ public class EventManager {
 
   public ArrayList<Event> getAllEvents() {
     return events;
+  }
+
+  public void createLecture(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
+    Lecture event = new Lecture(name, location, description, date, capacity, modality, code);
+    addEvent(event);
+  }
+
+  public void createWorkshop(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
+    Workshop event = new Workshop(name, location, description, date, capacity, modality, code);
+    addEvent(event);
+  }
+
+  public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
+    ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code);
+    addEvent(event);
+  }
+
+  public void createAcademicFair(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
+    AcademicFair event = new AcademicFair(name, location, description, date, capacity, modality, code);
+    addEvent(event);
   }
 }

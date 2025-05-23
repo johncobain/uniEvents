@@ -79,7 +79,7 @@ public class EventsMenu extends Menu {
             eventMenuController.listByType();
           }
           case 6 -> {
-            eventMenuController.showEventParticipants();
+            eventMenuController.showParticipants();
           }
           case 7 -> {
             Boolean cleared = eventMenuController.clearAll();

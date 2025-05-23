@@ -5,15 +5,15 @@ import java.time.LocalDate;
 public class Student extends Participant{
   private final String participantTypeJson = "Student";
 
-  public Student(String name, String cpf, String email, String phone, LocalDate birthDate, String gender) {
-    super(name, cpf, email, phone, birthDate, gender);
+  public Student(String name, String cpf, String email, String phone, LocalDate birthDate) {
+    super(name, cpf, email, phone, birthDate);
   }
   public Student() {
     super();
   } //Gson
 
   @Override
-  public String getParticipantType() {
+  public String getType() {
     return participantTypeJson;
   }
 }

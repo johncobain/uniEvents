@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Teacher extends Participant{
   private final String participantTypeJson = "Teacher";
 
-  public Teacher(String name, String cpf, String email, String phone, LocalDate birthDate, String gender) {
-    super(name, cpf, email, phone, birthDate, gender);
+  public Teacher(String name, String cpf, String email, String phone, LocalDate birthDate) {
+    super(name, cpf, email, phone, birthDate);
   }
   public Teacher() {
     super();
@@ -14,7 +14,7 @@ public class Teacher extends Participant{
 
 
   @Override
-  public String getParticipantType() {
+  public String getType() {
     return participantTypeJson;
   }
 }
