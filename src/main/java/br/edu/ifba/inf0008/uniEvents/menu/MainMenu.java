@@ -6,13 +6,17 @@ import java.util.List;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventsMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantsMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
+import br.edu.ifba.inf0008.uniEvents.services.EventManager;
+import br.edu.ifba.inf0008.uniEvents.services.FileGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class MainMenu extends Menu{
   private final List<String> options = new ArrayList<>();
   
-  public MainMenu(){
-    super("Main Menu", Colors.PURPLE_BOLD);
+  public MainMenu( EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager, FileGenerator fileGenerator) {
+    super( "Main Menu", Colors.PURPLE_BOLD);
     options.add("Exit");
     options.add("Participants Management");
     options.add("Events Management");
