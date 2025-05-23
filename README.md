@@ -50,11 +50,11 @@ The project simulates the management of events in a university, with the followi
   - [ ] Attributes and methods static
   - [ ] Method overloading
   - [ ] Structured project with at least one external library
-  - [ ] Command Line Interface (not necessary graphical interface)
+  - [x] Command Line Interface (not necessary graphical interface)
 
 ## Library
 
-- [Gson](https://mvnrepository.com/artifact/com.google.code.gson/gson)
+- [Gson](https://central.sonatype.com/artifact/com.google.code.gson/gson)
 
 ## Build Tool
 
