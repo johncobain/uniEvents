@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Student extends Participant{
   private String participantTypeJson = "Student";
 
-  public Student(String name, String cpf, String email, String phone, LocalDate birthDate) {
-    super(name, cpf, email, phone, birthDate);
+  public Student(String name, String cpf, String email, String phone, LocalDate birthDate, String gender) {
+    super(name, cpf, email, phone, birthDate, gender);
   }
   
   

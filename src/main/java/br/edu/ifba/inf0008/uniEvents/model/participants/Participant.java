@@ -8,13 +8,15 @@ public abstract class Participant {
   private String email;
   private String phone;
   private LocalDate birthDate;
+  private String gender;
 
-  public Participant( String name, String cpf, String email, String phone, LocalDate birthDate) {
+  public Participant( String name, String cpf, String email, String phone, LocalDate birthDate, String gender) {
     this.name = name;
     this.cpf = cpf;
     this.email = email;
     this.phone = phone;
     this.birthDate = birthDate;
+    this.gender = gender;
   }
 
   public String getName() {
@@ -47,4 +49,23 @@ public abstract class Participant {
   public void setBirthDate(LocalDate birthDate) {
     this.birthDate = birthDate;
   }
+
+  public String getGender() {
+    return gender;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+  
+
+  public double getAge(){
+    LocalDate today = LocalDate.now();
+    int age = today.getYear() - birthDate.getYear();
+    if (today.getDayOfYear() < birthDate.getDayOfYear()) {
+      age--;
+    }
+    return age;
+  }
+
 }

@@ -84,5 +84,13 @@ public abstract class Event {
     this.code = code;
   }
 
+  public ArrayList<Participant> getParticipants() {
+    return participants;
+  }
+
+  public void setParticipants(ArrayList<Participant> participants) {
+    this.participants = participants;
+  }
+
   
 }
