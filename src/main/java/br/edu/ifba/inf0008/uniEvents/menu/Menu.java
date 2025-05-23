@@ -1,5 +1,6 @@
 package br.edu.ifba.inf0008.uniEvents.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
@@ -10,6 +11,8 @@ public abstract class Menu implements IMenu {
   protected String title;
   protected String color;
 
+  private final List<String> options = new ArrayList<>();
+
   public Menu(String title){
     this.title = title;
   }
@@ -19,7 +22,11 @@ public abstract class Menu implements IMenu {
     this.color = color;
   }
 
-  protected int menuResponse(List<String> options){
+  public void addOption(String option){
+    options.add(option);
+  }
+
+  protected int menuResponse(){
     do { 
       System.out.println(Lines.doubleLine());
       if(color != null) System.out.println(Lines.titleLine(title, color));

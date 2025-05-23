@@ -1,23 +1,19 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
-import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ParticipantsMenu extends Menu {
-  private final List<String> options = new ArrayList<>();
 
   public ParticipantsMenu() {
       super("Participants Management", Colors.BLUE_BOLD);
-      options.add("Exit");
-      options.add("Create Participant");
-      options.add("Remove Participant");
-      options.add("Update Participant");
-      options.add("List All Participants");
-      options.add("List Participants by Type");
-      options.add("Show Participant Details");
+      super.addOption("Exit to Main Menu");
+      super.addOption("Create Participant");
+      super.addOption("Remove Participant");
+      super.addOption("Update Participant");
+      super.addOption("Add Participant to Event");
+      super.addOption("List All Participants");
+      super.addOption("List Participants by Type");
+      super.addOption("Show Participant Details");
   }
 
   @Override
@@ -25,7 +21,7 @@ public class ParticipantsMenu extends Menu {
     int response;
     // IMenu submenu;
     do { 
-      response = super.menuResponse(options);
+      response = super.menuResponse();
 
       switch (response) {
           case 0 -> {

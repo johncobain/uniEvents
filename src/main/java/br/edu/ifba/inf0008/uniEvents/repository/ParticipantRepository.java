@@ -105,4 +105,13 @@ public class ParticipantRepository {
   public List<Participant> getParticipants(){
     return new ArrayList<>(participantsSaved);
   }
+
+  public Participant findByCpf(String cpf) {
+    for (Participant participant : participantsSaved) {
+      if (participant.getCpf().equals(cpf)) {
+        return participant;
+      }
+    }
+    return null;
+  }
 }

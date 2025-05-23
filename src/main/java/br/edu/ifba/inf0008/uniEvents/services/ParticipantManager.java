@@ -48,7 +48,7 @@ public class ParticipantManager {
     return events;
   }
 
-  public void clearEventsByParticipant(Participant participant){
+  public void clearParticipantsInEvents(Participant participant){
     for (Event event : EventManager.events) {
       if (event.getParticipants().contains(participant)) {
         event.removeParticipant(participant);
@@ -57,8 +57,20 @@ public class ParticipantManager {
   }
 
   public void clearAllParticipants() {
+    for(Participant participant : participants){
+      clearParticipantsInEvents(participant);
+    }
     participants.clear();
     participantRepository.clearAllParticipants();
+  }
+
+  public Boolean isCpfAlreadyInUse(String cpf) {
+    for (Participant participant : participants) {
+      if (participant.getCpf().equals(cpf)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public ArrayList<Participant> getAllParticipants() {

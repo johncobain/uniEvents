@@ -25,10 +25,12 @@ import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFac
 
 public class EventRepository {
   private static final String EVENTS_FILE = "data/events.json";
+  private ParticipantRepository participantRepository;
   private List<Event> eventsSaved;
   private Gson gson;
   
-  public EventRepository(){
+  public EventRepository(ParticipantRepository participantRepository) {
+    this.participantRepository = participantRepository;
     GsonBuilder gsonBuilder = new GsonBuilder();
     gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
     gsonBuilder.setPrettyPrinting();
@@ -37,10 +39,18 @@ public class EventRepository {
     .of(Event.class, "eventTypeJson")
     .registerSubtype(Lecture.class, "Lecture")
     .registerSubtype(Workshop.class, "Workshop")
-    .registerSubtype(ShortCourse.class, "ShortCourse")
-    .registerSubtype(AcademicFair.class, "AcademicFair");
+    .registerSubtype(ShortCourse.class, "Short Course")
+    .registerSubtype(AcademicFair.class, "Academic Fair");
 
     gsonBuilder.registerTypeAdapterFactory(eventAdapterFactory);
+
+    // RuntimeTypeAdapterFactory<Participant> participantAdapterFactory = RuntimeTypeAdapterFactory
+    // .of(Participant.class, "participantTypeJson")
+    // .registerSubtype(Student.class, "Student")
+    // .registerSubtype(Teacher.class, "Teacher")
+    // .registerSubtype(External.class, "External");
+
+    // gsonBuilder.registerTypeAdapterFactory(participantAdapterFactory);
 
     this.gson = gsonBuilder.create();
     this.eventsSaved = loadEvents();
@@ -53,14 +63,26 @@ public class EventRepository {
   }
 
   private List<Event> loadEvents(){
+    List<Event> events;
     try (FileReader reader = new FileReader(EVENTS_FILE)){
       Type eventListType = new TypeToken<ArrayList<Event>>(){}.getType();
-      List<Event> events = gson.fromJson(reader, eventListType);
-      return events != null ? events: new ArrayList<>();
+      events = gson.fromJson(reader, eventListType);
+      if (events == null) {
+        events = new ArrayList<>();
+      }
     } catch (IOException e) {
       System.err.println("Events file not found, creating a new one: " + e.getMessage());
-      return new ArrayList<>();
+      events = new ArrayList<>();
     }
+
+    if(this.participantRepository != null){
+      if(eventsSaved != null){
+        for (Event event : eventsSaved){
+          event.populateParticipants(this.participantRepository);
+        }
+      }
+    }
+    return events;
   }
 
   public void saveEvents(){
@@ -78,6 +100,11 @@ public class EventRepository {
   }
   public void removeEvent(Event event){
     eventsSaved.remove(event);
+    saveEvents();
+  }
+
+  public void clearAllEvents(){
+    eventsSaved.clear();
     saveEvents();
   }
 

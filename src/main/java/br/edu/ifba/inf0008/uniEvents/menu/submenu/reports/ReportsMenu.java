@@ -1,20 +1,15 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.reports;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
-import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ReportsMenu extends Menu {
-  private final List<String> options = new ArrayList<>();
 
   public ReportsMenu() {
     super("Reports Management", Colors.RED_BOLD);
-    options.add("Exit");
-    options.add("Generate Report by Type");
-    options.add("Generate Report by Date");
-    options.add("Generate Report by Location");    
+    super.addOption("Exit to Main Menu");
+    super.addOption("Generate Report by Type");
+    super.addOption("Generate Report by Date");
+    super.addOption("Generate Report by Location");    
   }
 
   @Override
@@ -22,7 +17,7 @@ public class ReportsMenu extends Menu {
     int response;
     // IMenu submenu;
     do { 
-      response = super.menuResponse(options);
+      response = super.menuResponse();
 
       switch (response) {
           case 0 -> {

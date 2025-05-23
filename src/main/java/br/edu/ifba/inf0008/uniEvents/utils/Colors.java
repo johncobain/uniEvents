@@ -15,3 +15,4 @@ public class Colors {
   public static final String BLUE_BOLD = "\033[1;34m";   
   public static final String PURPLE_BOLD = "\033[1;35m";  
 }
+

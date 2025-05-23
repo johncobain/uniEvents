@@ -1,5 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.model.events;
 
+import java.util.ArrayList;
+
 public enum Modality {
   INPERSON("In Person"){
     @Override
@@ -27,7 +29,14 @@ public enum Modality {
   }
 
   public abstract String getInstructions();
-  //public abstract void processRegistration();
+  
+  public static ArrayList<String> getAllModalities() {
+    ArrayList<String> modalities = new ArrayList<>();
+    for (Modality modality : Modality.values()) {
+      modalities.add(modality.toString());
+    }
+    return modalities;
+  }
   @Override
   public String toString() {
     return description;

@@ -23,19 +23,11 @@ public class ReportsManager {
     report.append(Lines.titleLine("Events List")).append("\n");
     report.append(Lines.doubleLine()).append("\n");
     if(events.isEmpty()){
-      report.append("No events found for this report.\n");
+      report.append(Lines.leftText("No events found for this report.")).append("\n");
     } else {
       for (Event event : events) {
         report.append(Lines.straightLine()).append("\n");
-        report.append(Lines.leftText(String.format("Event: %s", event.getEventType()))).append("\n");
-        report.append(Lines.leftText(String.format("Title: %s", event.getName()))).append("\n");
-        report.append(Lines.leftText(String.format("Description: %s", event.getDescription()))).append("\n");
-        report.append(Lines.leftText(String.format("Modality: %s", event.getModality()))).append("\n");
-        report.append(Lines.leftText(String.format("Location: %s", event.getLocation()))).append("\n");
-        report.append(Lines.leftText(String.format("Date: %s", event.getDate().format(DATE_FORMATTER)))).append("\n");
-        report.append(Lines.leftText(String.format("Capacity: %d", event.getCapacity()))).append("\n");
-        report.append(Lines.leftText(String.format("Code: %s", event.getCode()))).append("\n");
-        report.append(Lines.leftText(String.format("Participants: %d", event.getParticipants().size()))).append("\n");
+        report.append(event.toString());
         if(isDetailed && !event.getParticipants().isEmpty()){
           report.append(Lines.leftText("")).append("\n");
           report.append(Lines.leftText("Participant Details:")).append("\n");
