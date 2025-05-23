@@ -92,5 +92,21 @@ public abstract class Event {
     this.participants = participants;
   }
 
+  public void addParticipant(Participant participant) {
+    this.participants.add(participant);
+  }
+  public void removeParticipant(Participant participant) {
+    this.participants.remove(participant);
+  }
+
+  public boolean isFull() {
+    return participants.size() >= capacity;
+  }
+  public boolean isParticipantRegistered(Participant participant) {
+    return participants.contains(participant);
+  }
+
+  public abstract String getEventType();
+
   
 }
