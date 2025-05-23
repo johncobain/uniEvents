@@ -9,6 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
@@ -41,7 +42,6 @@ public class EventMenuController {
 
     String selectedType = eventTypes.get(response);
 
-    System.out.println(Lines.doubleLine());
     System.out.print("Enter event name >> ");
     String name = Utils.scanner.nextLine();
     System.out.print("Enter event location >> ");
@@ -126,7 +126,27 @@ public class EventMenuController {
   }
 
   public Boolean remove(){
-    return true;
+    System.out.println("Enter event code >> ");
+    String code = Utils.scanner.nextLine();
+    Event event = eventManager.getEvent(code);
+    if (event == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.errorLine("Event not found!"));
+      System.out.println(Lines.straightLine());
+      return false;
+    }
+    try {
+      eventManager.removeEvent(event);
+      return true;
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.errorLine(e.getMessage()));
+      System.out.println(Lines.straightLine());
+      return false;
+    }
+
   }
 
   public Boolean update(){
@@ -186,8 +206,42 @@ public class EventMenuController {
     }
   }
 
-  public void showEventDetails(){
-    return;
+  public void showEventParticipants(){
+    System.out.print("Enter event code >> ");
+    String code = Utils.scanner.nextLine();
+    Event event = eventManager.getEvent(code);
+    if (event == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.errorLine("Event not found!"));
+      System.out.println(Lines.straightLine());
+      return;
+    }
+    ArrayList<Participant> participants = event.getParticipants();
+    if (participants.isEmpty()) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.errorLine("No participants found!"));
+      System.out.println(Lines.straightLine());
+      return;
+    }
+    System.out.println(Lines.doubleLine());
+    System.out.println(Lines.titleLine("Event", Colors.YELLOW_BOLD));
+    System.out.println(Lines.doubleLine());
+    System.out.println(event.toString());
+    System.out.println(Lines.doubleLine());
+    System.out.println(Lines.titleLine("Participants", Colors.YELLOW_BOLD));
+    System.out.println(Lines.doubleLine());
+    for (Participant participant : participants) {
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.leftText(String.format("    Participant: %s", participant.getName())));
+      System.out.println(Lines.leftText(String.format("    CPF: %s", participant.getCpf())));
+      System.out.println(Lines.leftText(String.format("    Email: %s", participant.getEmail())));
+      System.out.println(Lines.leftText(String.format("    Phone: %s", participant.getPhone())));
+      System.out.println(Lines.leftText(String.format("    Birthdate: %s", participant.getBirthDate())));
+      System.out.println(Lines.leftText(String.format("    Gender: %s", participant.getGender())));
+      System.out.println(Lines.straightLine());
+    }
   }
 
   public Boolean clearAll(){

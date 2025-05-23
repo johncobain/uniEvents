@@ -16,7 +16,7 @@ public class EventsMenu extends Menu {
       super.addOption("Update Event");
       super.addOption("List All Events");
       super.addOption("List Events by Type");
-      super.addOption("Show Event Details");
+      super.addOption("Show Event Participants");
       super.addOption("Clear All Events");
 
       eventMenuController.setEventManager(eventManager);
@@ -54,7 +54,6 @@ public class EventsMenu extends Menu {
               System.out.println(Lines.successLine("Event removed!"));
               System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.clear());
               System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error removing event!"));
               System.out.println(Lines.straightLine());
@@ -81,7 +80,7 @@ public class EventsMenu extends Menu {
             eventMenuController.listByType();
           }
           case 6 -> {
-            eventMenuController.showEventDetails();
+            eventMenuController.showEventParticipants();
           }
           case 7 -> {
             Boolean cleared = eventMenuController.clearAll();

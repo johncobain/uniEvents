@@ -11,7 +11,6 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class ReportsManager {
   private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-  private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
   public String generateReport(List<Event> events, String reportTitle, Boolean isDetailed) {
     StringBuilder report = new StringBuilder();
@@ -34,6 +33,7 @@ public class ReportsManager {
           for(Participant participant: event.getParticipants()){
             report.append(Lines.mixedLines()).append("\n");
             report.append(Lines.leftText(String.format("    Participant: %s", participant.getName()))).append("\n");
+            report.append(Lines.leftText(String.format("    CPF: %s", participant.getCpf()))).append("\n");
             report.append(Lines.leftText(String.format("    Email: %s", participant.getEmail()))).append("\n");
             report.append(Lines.leftText(String.format("    Phone: %s", participant.getPhone()))).append("\n");
             report.append(Lines.leftText(String.format("    Age: %s", participant.getAge()))).append("\n");
