@@ -29,11 +29,11 @@ The project simulates the management of events in a university, with the followi
 
 - Basic Concepts
 
-  - [ ] Classes, Objects and References
-  - [ ] Attributes, Methods and Visibility (private, protected, public)
-  - [ ] Packages Organized Logically
-  - [ ] JAR Files and Classpath Usage
-  - [ ] Constructor Methods
+  - [x] Classes, Objects and References
+  - [x] Attributes, Methods and Visibility (private, protected, public)
+  - [x] Packages Organized Logically
+  - [x] JAR Files and Classpath Usage
+  - [x] Constructor Methods
 
 - Inheritance and Polymorphism
 
