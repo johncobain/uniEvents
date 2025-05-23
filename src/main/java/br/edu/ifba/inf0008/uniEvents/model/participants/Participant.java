@@ -19,6 +19,8 @@ public abstract class Participant {
     this.gender = gender;
   }
 
+  protected Participant(){} //Gson
+
   public String getName() {
     return name;
   }
@@ -68,4 +70,6 @@ public abstract class Participant {
     return age;
   }
 
+
+  public abstract String getParticipantType();
 }
