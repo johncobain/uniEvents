@@ -13,7 +13,8 @@ public class ShortCourse extends Event {
     super();
   } //Gson
 
-  public String getEventTypeJson() {
+  @Override
+  public String getEventType() {
     return eventTypeJson;
   }
   
