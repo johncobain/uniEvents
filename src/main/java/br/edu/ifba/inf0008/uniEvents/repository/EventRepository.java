@@ -19,6 +19,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
 
@@ -84,6 +85,16 @@ public class EventRepository {
     for (int i = 0; i < eventsSaved.size(); i++){
       if (eventsSaved.get(i).getCode().equals(code)){
         eventsSaved.set(i, event);
+        break;
+      }
+    }
+    saveEvents();
+  }
+
+  public void addParticipantToEvent(Event event, Participant participant){
+    for (Event e: eventsSaved){
+      if(e.getCode().equals(event.getCode())){
+        e.addParticipant(participant);
         break;
       }
     }

@@ -78,6 +78,11 @@ public class ParticipantRepository {
     saveParticipants();
   }
 
+  public void clearAllParticipants(){
+    participantsSaved.clear();
+    saveParticipants();
+  }
+
   public void updateParticipant(Participant participant, String cpf){
     for (int i = 0; i < participantsSaved.size(); i++){
       if (participantsSaved.get(i).getCpf().equals(cpf)){
@@ -86,6 +91,15 @@ public class ParticipantRepository {
       }
     }
     saveParticipants();
+  }
+
+  public Participant getParticipant(String cpf){
+    for (Participant participant : participantsSaved) {
+      if (participant.getCpf().equals(cpf)) {
+        return participant;
+      }
+    }
+    return null;
   }
 
   public List<Participant> getParticipants(){
