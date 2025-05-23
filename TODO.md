@@ -1,6 +1,7 @@
 # TODO
 
 - use dynamic linking for Participants
+- FIXME: Gson not working right
 
 1. Gerando o Conteúdo do Relatório (String):
    Primeiro, você precisa de um método que gere o conteúdo do seu relatório como uma String.
