@@ -35,13 +35,5 @@ public class App {
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.titleLine("Exiting UniEvents...", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());
-
-
-        // Example of generating a report
-        String detailedReport = reportsManager.generateReport(eventManager.getAllEvents(), "Detailed Report", true);
-        System.out.println(detailedReport);
-        System.out.println(Lines.mixedLines());
-        String summaryReport = reportsManager.generateReport(eventManager.getAllEvents(), "Summary Report", false);
-        System.out.println(summaryReport);
     }
 }

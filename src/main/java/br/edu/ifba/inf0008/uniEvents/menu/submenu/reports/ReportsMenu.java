@@ -7,13 +7,20 @@ import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ReportsMenu extends Menu {
+  private final EventManager eventManager;
+  private final ReportsManager reportsManager;
 
   public ReportsMenu(EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager, FileGenerator fileGenerator) {
     super("Reports Management", Colors.RED_BOLD);
     super.addOption("Exit to Main Menu");
     super.addOption("Generate Report by Type");
     super.addOption("Generate Report by Date");
-    super.addOption("Generate Report by Location");    
+    super.addOption("Generate Report by Location");
+    super.addOption("Generate Detailed Report");
+    super.addOption("Generate Summary Report");    
+
+    this.eventManager = eventManager;
+    this.reportsManager = reportsManager;
   }
 
   @Override
@@ -41,6 +48,14 @@ public class ReportsMenu extends Menu {
             // submenu = new GenerateReportByLocationMenu();
             // submenu.show();
             System.out.println("Generate Report by Location Menu");
+          }
+          case 4 -> {
+            String detailedReport = reportsManager.generateReport(eventManager.getAllEvents(), "Detailed Report", true);
+            System.out.println(detailedReport);
+          }
+          case 5 -> {
+            String summaryReport = reportsManager.generateReport(eventManager.getAllEvents(), "Summary Report", false);
+            System.out.println(summaryReport);
           }
           default -> throw new AssertionError();
       }
