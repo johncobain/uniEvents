@@ -14,4 +14,11 @@ public class Utils {
         int year = Integer.parseInt(parts[2]);
         return LocalDate.of(year, month, day);
     }
+
+    public static String formatCpf(String cpf) {
+        if(cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+            return cpf;
+        }
+        return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
+    }
 }

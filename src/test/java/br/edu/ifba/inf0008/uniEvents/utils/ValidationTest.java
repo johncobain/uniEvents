@@ -47,6 +47,7 @@ public class ValidationTest {
     assertDoesNotThrow(() -> Validation.validateCpf("332.528.680-16"));
     assertDoesNotThrow(() -> Validation.validateCpf("397.441.930-69"));
     assertDoesNotThrow(() -> Validation.validateCpf("747.856.730-44"));
+    assertDoesNotThrow(() -> Validation.validateCpf("33252868016"));
 
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validateCpf("111.111.111-11");
@@ -60,11 +61,6 @@ public class ValidationTest {
       Validation.validateCpf("123.456.789-00");
     });
     assertEquals("Not a valid CPF!", exception.getMessage());
-
-    exception = assertThrows(IllegalArgumentException.class, () -> {
-      Validation.validateCpf("33252868016");
-    });
-    assertEquals("CPF must be in the format XXX.XXX.XXX-XX!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validateCpf("332.528.680-1A");
     });
@@ -72,11 +68,11 @@ public class ValidationTest {
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validateCpf("332.528.680-1");
     });
-    assertEquals("CPF must be in the format XXX.XXX.XXX-XX!", exception.getMessage());
+    assertEquals("CPF must be in the format XXX.XXX.XXX-XX or XXXXXXXXXXX!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validateCpf("332.528.680-161");
     });
-    assertEquals("CPF must be in the format XXX.XXX.XXX-XX!", exception.getMessage());
+    assertEquals("CPF must be in the format XXX.XXX.XXX-XX or XXXXXXXXXXX!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validateCpf("");
     });

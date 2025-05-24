@@ -3,7 +3,7 @@ package br.edu.ifba.inf0008.uniEvents.model.participants;
 import java.time.LocalDate;
 
 public class External extends Participant {
-  private final String participanTypeJson = "External";
+  private final String participantTypeJson = "External";
 
   public External(String name, String cpf, String email, String phone, LocalDate birthDate) {
     super(name, cpf, email, phone, birthDate);
@@ -16,6 +16,6 @@ public class External extends Participant {
 
   @Override
   public String getType() {
-    return participanTypeJson;
+    return participantTypeJson;
   }
 }

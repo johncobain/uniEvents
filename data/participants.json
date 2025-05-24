@@ -6,5 +6,21 @@
     "email": "John@j",
     "phone": "12345",
     "birthDate": "20/08/2005"
+  },
+  {
+    "participantTypeJson": "Teacher",
+    "name": "Allan",
+    "cpf": "537.532.870-40",
+    "email": "allan@ifba.edu",
+    "phone": "75 999999999",
+    "birthDate": "20/01/1970"
+  },
+  {
+    "participantTypeJson": "External",
+    "name": "Josh",
+    "cpf": "948.332.120-48",
+    "email": "ohmy@josh.com",
+    "phone": "9999999999",
+    "birthDate": "20/02/1999"
   }
 ]

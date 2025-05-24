@@ -2,7 +2,6 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 
 import java.util.ArrayList;
 
-import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
@@ -10,20 +9,10 @@ import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
-import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class ParticipantMenuController {
   private ParticipantManager participantManager;
   private EventManager eventManager;
-
-  BaseMenu baseMenu;
-  ArrayList<String> participantTypes = new ArrayList<>();
-  {
-    participantTypes.add("Cancel");
-    participantTypes.add("Student");
-    participantTypes.add("Teacher");
-    participantTypes.add("External");
-  }
 
   public void setParticipantManager(ParticipantManager participantManager) {
     this.participantManager = participantManager;
@@ -34,46 +23,22 @@ public class ParticipantMenuController {
   }
 
   public void create(){
-    baseMenu = new BaseMenu("Select participant type",  participantTypes);
-    int response = baseMenu.getResponse();
+    String selectedType = ParticipantForms.getType();
+    if (selectedType.equalsIgnoreCase("cancel")) return;
 
-    if (response == 0) return;
+    String name = ParticipantForms.getName();
+    if(name.equalsIgnoreCase("cancel")) return;
 
-    String selectedType = participantTypes.get(response);
+    String cpf = ParticipantForms.getCpf(participantManager);
+    if(cpf.equalsIgnoreCase("cancel")) return;
 
-    String name;
-    while(true) {
-      System.out.print("Enter participant name (\"cancel\" to exit)>> ");
-      name = Utils.scanner.nextLine();
-      if(name.equalsIgnoreCase("cancel")) return;
-      if (!name.isEmpty() || !name.isBlank()) break;
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Name cannot be empty!"));
-    }
-
-    String cpf;
-    while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX) (\"cancel\" to exit)>> ");
-      cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return;
-      try {
-        Validation.validateCpf(cpf);
-        if(participantManager.isCpfAlreadyInUse(cpf)) throw new Exception("CPF already in use! Please try again.");
-        break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
-
-    System.out.print("Enter participant email (\"cancel\" to exit)>> ");
-    String email = Utils.scanner.nextLine();
+    String email = ParticipantForms.getEmail();
     if (email.equals("cancel")) return;
-    System.out.print("Enter participant phone (\"cancel\" to exit)>> ");
-    String phone = Utils.scanner.nextLine();
+
+    String phone = ParticipantForms.getPhone();
     if (phone.equals("cancel")) return;
-    System.out.print("Enter participant birth date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
-    String birthDateString = Utils.scanner.nextLine();
+
+    String birthDateString = ParticipantForms.getBirthDate();
     if (birthDateString.equals("cancel")) return;
 
     switch (selectedType) {
@@ -87,19 +52,8 @@ public class ParticipantMenuController {
   }
 
   public void remove(){
-    String cpf;
-    while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX) (\"cancel\" to exit)>> ");
-      cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return;
-      try {
-          Validation.validateCpf(cpf);
-          break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
+    String cpf = ParticipantForms.getCpf(participantManager);
+    if(cpf.equalsIgnoreCase("cancel")) return;
 
     Participant participant = participantManager.getParticipant(cpf);
     if (participant == null) {
@@ -118,19 +72,8 @@ public class ParticipantMenuController {
   }
 
   public void update(){
-    String cpf;
-    while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX) (\"cancel\" to exit)>> ");
-      cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return;
-      try {
-          Validation.validateCpf(cpf);
-          break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
+    String cpf = ParticipantForms.getCpf(participantManager);
+    if(cpf.equalsIgnoreCase("cancel")) return;
 
     Participant participant = participantManager.getParticipant(cpf);
     if (participant == null) {
@@ -138,18 +81,19 @@ public class ParticipantMenuController {
       System.out.println(Lines.errorLine("Participant not found!"));
       return;
     }
-    System.out.print("Enter participant name (\"cancel\" to exit)>> ");
-    String name = Utils.scanner.nextLine();
-    if (name.equals("cancel")) return;
-    System.out.print("Enter participant email (\"cancel\" to exit)>> ");
-    String email = Utils.scanner.nextLine();
+
+    String name = ParticipantForms.getName();
+    if(name.equalsIgnoreCase("cancel")) return;
+
+    String email = ParticipantForms.getEmail();
     if (email.equals("cancel")) return;
-    System.out.print("Enter participant phone (\"cancel\" to exit)>> ");
-    String phone = Utils.scanner.nextLine();
+
+    String phone = ParticipantForms.getPhone();
     if (phone.equals("cancel")) return;
-    System.out.print("Enter participant birth date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
-    String birthDateString = Utils.scanner.nextLine();
+
+    String birthDateString = ParticipantForms.getBirthDate();
     if (birthDateString.equals("cancel")) return;
+
     try {
       participantManager.updateParticipant(participant, name, email, phone, Utils.stringToDate(birthDateString));
       System.out.println(Lines.clear());
@@ -180,14 +124,9 @@ public class ParticipantMenuController {
   }
 
   public void listByType(){
-    baseMenu = new BaseMenu("Select participant type",  participantTypes);
-    int response = baseMenu.getResponse();
-    
-    if (response == 0) {
-      return;
-    }
+    String selectedType = ParticipantForms.getType();
+    if(selectedType.equalsIgnoreCase("cancel")) return;
 
-    String selectedType = participantTypes.get(response);
     ArrayList<Participant> participants = participantManager.getAllParticipants();
     ArrayList<Participant> filteredParticipants = new ArrayList<>();
     for (Participant participant : participants) {
@@ -211,19 +150,8 @@ public class ParticipantMenuController {
   }
 
   public void showEvents(){
-    String cpf;
-    while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX) (\"cancel\" to exit)>> ");
-      cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return;
-      try {
-          Validation.validateCpf(cpf);
-          break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
+    String cpf = ParticipantForms.getCpf(participantManager);
+    if(cpf.equalsIgnoreCase("cancel")) return;
 
     Participant participant = participantManager.getParticipant(cpf);
     if (participant == null) {
@@ -256,83 +184,65 @@ public class ParticipantMenuController {
     }
   }
   
-    public void addToEvent(){
-      String cpf;
-    while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX) (\"cancel\" to exit)>> ");
-      cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return;
-      try {
-          Validation.validateCpf(cpf);
-          break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
+  public void addToEvent(){
+    String cpf = ParticipantForms.getCpf(participantManager);
+    if(cpf.equalsIgnoreCase("cancel")) return;
+
+    Participant participant = participantManager.getParticipant(cpf);
+    if (participant == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant not found!"));
+      return;
     }
 
-      Participant participant = participantManager.getParticipant(cpf);
-      if (participant == null) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Participant not found!"));
-        return;
-      }
-      System.out.print("Enter event code (\"cancel\" to exit)>> ");
-      String code = Utils.scanner.nextLine();
-      if (code.equals("cancel")) return;
-      Event event = eventManager.getEvent(code);
-      if (event == null) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Event not found!"));
-        return;
-      }
-      try {
-        eventManager.addParticipant(event.getCode(), participant.getCpf());
-        System.out.println(Lines.clear());
-        System.out.println(Lines.successLine("Participant added to event!"));
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
+    System.out.print("Enter event code (\"cancel\" to exit)>> ");
+    String code = Utils.scanner.nextLine();
+    if (code.equals("cancel")) return;
+
+    Event event = eventManager.getEvent(code);
+    if (event == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Event not found!"));
+      return;
+    }
+    try {
+      eventManager.addParticipant(event.getCode(), participant.getCpf());
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Participant added to event!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
+    }
+  }
+
+  public void removeFromEvent(){
+    String cpf = ParticipantForms.getCpf(participantManager);
+    if(cpf.equalsIgnoreCase("cancel")) return;
+
+    Participant participant = participantManager.getParticipant(cpf);
+    if (participant == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant not found!"));
+      return;
     }
 
-    public void removeFromEvent(){
-      String cpf;
-    while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX) (\"cancel\" to exit)>> ");
-      cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return;
-      try {
-          Validation.validateCpf(cpf);
-          break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
+    System.out.print("Enter event code (\"cancel\" to exit)>> ");
+    String code = Utils.scanner.nextLine();
+    if (code.equals("cancel")) return;
 
-      Participant participant = participantManager.getParticipant(cpf);
-      if (participant == null) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Participant not found!"));
-        return;
-      }
-      System.out.print("Enter event code (\"cancel\" to exit)>> ");
-      String code = Utils.scanner.nextLine();
-      if (code.equals("cancel")) return;
-      Event event = eventManager.getEvent(code);
-      if (event == null) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Event not found!"));
-        return;
-      }
-      try {
-        eventManager.removeParticipant(event.getCode(), participant.getCpf());
-        System.out.println(Lines.clear());
-        System.out.println(Lines.successLine("Participant removed from event!"));
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
+    Event event = eventManager.getEvent(code);
+    if (event == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Event not found!"));
+      return;
     }
+    try {
+      eventManager.removeParticipant(event.getCode(), participant.getCpf());
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Participant removed from event!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
+    }
+  }
 }

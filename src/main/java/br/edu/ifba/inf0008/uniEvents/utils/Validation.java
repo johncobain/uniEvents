@@ -8,13 +8,12 @@ public class Validation {
     if(cpf.matches(".*[a-zA-Z].*")) {
       throw new IllegalArgumentException("CPF cannot have letters!");
     }
-    if(!cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
-      throw new IllegalArgumentException("CPF must be in the format XXX.XXX.XXX-XX!");
+    if(!cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}") && !cpf.matches("\\d{11}")) {
+      throw new IllegalArgumentException("CPF must be in the format XXX.XXX.XXX-XX or XXXXXXXXXXX!");
     }
 
-    String[] parts = cpf.split("\\.");
-    String digits = parts[0] + parts[1] + parts[2].substring(0, 3) + parts[2].substring(4);
-    String checkDigits = parts[2].substring(4);
+    String digits = cpf.replaceAll("[^\\d]", "");
+    String checkDigits = digits.substring(digits.length() - 2);
     
     if(digits.equals("0000000000000") || digits.equals("11111111111") || 
     digits.equals("22222222222") || digits.equals("33333333333") || 
@@ -49,7 +48,6 @@ public class Validation {
         throw new IllegalArgumentException("Not a valid CPF!");
     }
   }
-
 
   public static void validateEmail(String email){}
 
