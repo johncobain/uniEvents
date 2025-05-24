@@ -6,6 +6,7 @@ import java.util.List;
 import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
+import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public abstract class Menu implements IMenu {
   protected String title;
@@ -27,7 +28,7 @@ public abstract class Menu implements IMenu {
   }
 
   protected int menuResponse(){
-    do { 
+    while(true) { 
       System.out.println(Lines.doubleLine());
       if(color != null) System.out.println(Lines.titleLine(title, color));
       else System.out.println(Lines.titleLine(title));
@@ -39,19 +40,19 @@ public abstract class Menu implements IMenu {
       System.out.println(Lines.doubleLine());
       System.out.print(">> ");
       String choice = Utils.scanner.nextLine();
-      int response = processOption(choice);
-
-      if(response == -1){
+      int response;
+      try {
+        response = Validation.isInteger(choice);
+        if(response < 0 || response >= options.size()){
+          throw new Exception("Invalid option! Please try again.");
+        }
         System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Invalid input!"));
-      }else if(response >= 0 && response <= options.size() - 1){
-          System.out.println(Lines.clear());
-          return response;
-      }else{
-          System.out.println(Lines.clear());
-          System.out.println(Lines.errorLine("Invalid option!"));
-      } 
-    } while (true);
+        return response;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
   }
 
   @Override

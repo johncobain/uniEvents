@@ -10,6 +10,7 @@ import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
+import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class EventMenuController {
   private EventManager eventManager;
@@ -38,20 +39,25 @@ public class EventMenuController {
 
     String selectedType = eventTypes.get(response);
 
-    System.out.print("Enter event name >> ");
+    System.out.print("Enter event name (\"cancel\" to exit)>> ");
     String name = Utils.scanner.nextLine();
-    System.out.print("Enter event location >> ");
+    if (name.equals("cancel")) return false;
+    System.out.print("Enter event location (\"cancel\" to exit)>> ");
     String location = Utils.scanner.nextLine();
-    System.out.print("Enter event description >> ");
+    if (location.equals("cancel")) return false;
+    System.out.print("Enter event description (\"cancel\" to exit)>> ");
     String description = Utils.scanner.nextLine();
-    System.out.print("Enter event date (dd/MM/yyyy) >> ");
+    if (description.equals("cancel")) return false;
+    System.out.print("Enter event date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
     String date = Utils.scanner.nextLine();
+    if (date.equals("cancel")) return false;
     int capacity;
-    do { 
-      System.out.print("Enter event capacity >> ");
+    while(true) { 
+      System.out.print("Enter event capacity (\"cancel\" to exit)>> ");
       String capacityStr = Utils.scanner.nextLine();
+      if (capacityStr.equals("cancel")) return false;
       try {
-        capacity = Integer.parseInt(capacityStr);
+        capacity = Validation.isInteger(capacityStr);
         if (capacity <= 0) {
           throw new Exception("Capacity must be greater than 0!");
         }
@@ -60,7 +66,7 @@ public class EventMenuController {
         System.out.println(Lines.clear());
         System.out.println(Lines.errorLine(e.getMessage()));
       }
-    } while (true);
+    }
     ArrayList<String> modalities = new ArrayList<>();
     modalities.add(Modality.INPERSON.toString());
     modalities.add(Modality.ONLINE.toString());
@@ -78,8 +84,9 @@ public class EventMenuController {
     
     String code;
     do { 
-      System.out.print("Enter event code >> ");
+      System.out.print("Enter event code (\"cancel\" to exit)>> ");
       code = Utils.scanner.nextLine();
+      if (code.equals("cancel")) return false;
       if(eventManager.isCodeAlreadyInUse(code)){
         System.out.println(Lines.clear());
         System.out.println(Lines.errorLine("Code '"+code+"' already in use!"));
@@ -106,8 +113,9 @@ public class EventMenuController {
   }
 
   public Boolean remove(){
-    System.out.print("Enter event code >> ");
+    System.out.print("Enter event code (\"cancel\" to exit)>> ");
     String code = Utils.scanner.nextLine();
+    if (code.equals("cancel")) return false;
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
@@ -126,26 +134,32 @@ public class EventMenuController {
   }
 
   public Boolean update(){
-    System.out.print("Enter event code >> ");
+    System.out.print("Enter event code (\"cancel\" to exit)>> ");
     String code = Utils.scanner.nextLine();
+    if (code.equals("cancel")) return false;
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
       return false;
     }
-    System.out.print("Enter event name >> ");
+    System.out.print("Enter event name (\"cancel\" to exit)>> ");
     String name = Utils.scanner.nextLine();
-    System.out.print("Enter event location >> ");
+    if (name.equals("cancel")) return false;
+    System.out.print("Enter event location (\"cancel\" to exit)>> ");
     String location = Utils.scanner.nextLine();
-    System.out.print("Enter event description >> ");
+    if (location.equals("cancel")) return false;
+    System.out.print("Enter event description (\"cancel\" to exit)>> ");
     String description = Utils.scanner.nextLine();
-    System.out.print("Enter event date (dd/MM/yyyy) >> ");
+    if (description.equals("cancel")) return false;
+    System.out.print("Enter event date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
     String date = Utils.scanner.nextLine();
+    if (date.equals("cancel")) return false;
     int capacity;
     do { 
-      System.out.print("Enter event capacity >> ");
+      System.out.print("Enter event capacity (\"cancel\" to exit)>> ");
       String capacityStr = Utils.scanner.nextLine();
+      if (capacityStr.equals("cancel")) return false;
       try {
         capacity = Integer.parseInt(capacityStr);
         if (capacity <= 0) {
@@ -226,8 +240,9 @@ public class EventMenuController {
   }
 
   public void showParticipants(){
-    System.out.print("Enter event code >> ");
+    System.out.print("Enter event code (\"cancel\" to exit)>> ");
     String code = Utils.scanner.nextLine();
+    if (code.equals("cancel")) return;
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
