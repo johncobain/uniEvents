@@ -17,10 +17,10 @@ The project simulates the management of events in a university, with the followi
 
 ### Functional Requirements
 
-- [ ] Create Events (Lectures, Workshops, Short Courses, Academic Fairs)
-- [ ] Create Participants (Students, Professors, Externals)
+- [x] Create Events (Lectures, Workshops, Short Courses, Academic Fairs)
+- [x] Create Participants (Students, Professors, Externals)
+- [x] Register Participants in Events (with capacity control)
   - Courses can only have students as participants
-- [ ] Register Participants in Events (with capacity control)
 - [ ] Generate Certificates (text)
 - [ ] Generate Reports by Event Type and Date
 - [ ] Add support for online, in-person and hybrid events
@@ -37,8 +37,8 @@ The project simulates the management of events in a university, with the followi
 
 - Inheritance and Polymorphism
 
-  - [ ] Create an hierarchy of classes for events and other entities
-  - [ ] Use interfaces or abstract classes to define generic behavior
+  - [x] Create an hierarchy of classes for events and other entities
+  - [x] Use interfaces or abstract classes to define generic behavior
   - [ ] Use dynamic linking
 
 - Collections
@@ -47,9 +47,9 @@ The project simulates the management of events in a university, with the followi
   - [ ] Demonstrate safe casting and correct usage of hierarchy collections
 
 - Other Requirements
-  - [ ] Attributes and methods static
+  - [x] Attributes and methods static
   - [ ] Method overloading
-  - [ ] Structured project with at least one external library
+  - [x] Structured project with at least one external library
   - [x] Command Line Interface (not necessary graphical interface)
 
 ## Library
