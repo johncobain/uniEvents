@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class ValidationTest {
   @Test
   void testIsInteger() {
-    IllegalArgumentException exception;
+    Exception exception;
     // Test cases for isInteger
     assertDoesNotThrow(() -> Validation.isInteger("123"));
     assertDoesNotThrow(() -> Validation.isInteger("0"));
@@ -43,7 +43,52 @@ public class ValidationTest {
 
   @Test
   void testValidateCpf() {
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.validateCpf("332.528.680-16"));
+    assertDoesNotThrow(() -> Validation.validateCpf("397.441.930-69"));
+    assertDoesNotThrow(() -> Validation.validateCpf("747.856.730-44"));
 
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("111.111.111-11");
+    });
+    assertEquals("Not a valid CPF!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("222.222.222-22");
+    });
+    assertEquals("Not a valid CPF!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("123.456.789-00");
+    });
+    assertEquals("Not a valid CPF!", exception.getMessage());
+
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("33252868016");
+    });
+    assertEquals("CPF must be in the format XXX.XXX.XXX-XX!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("332.528.680-1A");
+    });
+    assertEquals("CPF cannot have letters!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("332.528.680-1");
+    });
+    assertEquals("CPF must be in the format XXX.XXX.XXX-XX!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("332.528.680-161");
+    });
+    assertEquals("CPF must be in the format XXX.XXX.XXX-XX!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf("");
+    });
+    assertEquals("CPF cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf(" ");
+    });
+    assertEquals("CPF cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateCpf(null);
+    });
+    assertEquals("CPF cannot be empty!", exception.getMessage());
   }
 
   @Test
