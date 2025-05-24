@@ -1,5 +1,9 @@
 package br.edu.ifba.inf0008.uniEvents.utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+
 public class Validation {
   public static void validateCpf(String cpf){
     if(cpf == null || cpf.isEmpty() || cpf.isBlank()) {
@@ -57,12 +61,37 @@ public class Validation {
     if(!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
       throw new IllegalArgumentException("Not a valid email!");
     }
-    
+
   }
 
   public static void validatePhone(String phone){}
 
-  public static void validateDate(String date){}
+  public static void validateDate(String date){
+    if(date == null || date.isEmpty() || date.isBlank()) {
+      throw new IllegalArgumentException("Date cannot be empty!");
+    }
+
+    if(
+      !date.matches("\\d{2}/\\d{2}/\\d{4}") && 
+      !date.matches("\\d{8}")) {
+      throw new IllegalArgumentException("Not a valid date!");
+    }
+
+    if(date.matches("\\d{2}/\\d{2}/\\d{4}")) {
+      try {
+        LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT));
+      } catch (Exception e) {
+        throw new IllegalArgumentException("Not a valid date!");
+      }
+    }else{
+      try {
+        LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(ResolverStyle.STRICT));
+      } catch (Exception e) {
+        throw new IllegalArgumentException("Not a valid date!");
+      }
+    }
+
+  }
 
   public static int isInteger(String value){
     if (value == null || value.isEmpty() || value.isBlank()) {

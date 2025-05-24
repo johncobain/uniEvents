@@ -21,6 +21,7 @@ public class App {
         ReportsManager reportsManager = new ReportsManager();
         FileGenerator fileGenerator = new FileGenerator();
 
+        System.out.println(Lines.clear());
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.titleLine("Welcome to UniEvents!", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());

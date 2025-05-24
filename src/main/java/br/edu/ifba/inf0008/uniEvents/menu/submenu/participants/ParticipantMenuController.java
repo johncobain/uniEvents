@@ -29,7 +29,12 @@ public class ParticipantMenuController {
     String name = ParticipantForms.getName();
     if(name.equalsIgnoreCase("cancel")) return;
 
-    String cpf = ParticipantForms.getCpf(participantManager);
+    String cpf;
+    while(true){
+      cpf = ParticipantForms.getCpf(participantManager);
+      if(participantManager.isCpfAlreadyInUse(cpf)) System.out.println(Lines.errorLine("CPF already in use! Please try again."));
+      break;
+    }
     if(cpf.equalsIgnoreCase("cancel")) return;
 
     String email = ParticipantForms.getEmail();

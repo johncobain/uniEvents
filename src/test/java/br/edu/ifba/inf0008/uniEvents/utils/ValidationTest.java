@@ -89,7 +89,59 @@ public class ValidationTest {
 
   @Test
   void testValidateDate() {
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.validateDate("20/08/2005"));
+    assertDoesNotThrow(() -> Validation.validateDate("28/02/2005"));
+    assertDoesNotThrow(() -> Validation.validateDate("03052008"));
 
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("2/3/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("20/3/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("2/12/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("32/08/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("2/13/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("29/02/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("2/13/2005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("2182005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("32082005");
+    });
+    assertEquals("Not a valid date!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("");
+    });
+    assertEquals("Date cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate(" ");
+    });
+    assertEquals("Date cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate(null);
+    });
+    assertEquals("Date cannot be empty!", exception.getMessage());
   }
 
   @Test

@@ -50,7 +50,6 @@ public class ParticipantForms {
       try {
         Validation.validateCpf(cpf);
         cpf = Utils.formatCpf(cpf);
-        if(participantManager.isCpfAlreadyInUse(cpf)) throw new Exception("CPF already in use! Please try again.");
         break;
       } catch (Exception e) {
         System.out.println(Lines.clear());
@@ -89,8 +88,22 @@ public class ParticipantForms {
     return phone;
   }
   protected static String getBirthDate(){
-    System.out.print("Enter participant birth date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
-    String birthDateString = Utils.scanner.nextLine();
+    String birthDateString;
+    while(true){
+      System.out.print("Enter participant birth date (dd/MM/yyyy or ddMMyyyy) (\"cancel\" to exit)>> ");
+      birthDateString = Utils.scanner.nextLine();
+      if(birthDateString.equalsIgnoreCase("cancel")){
+        System.out.println(Lines.clear());
+        return "cancel";
+      }
+      try {
+        Validation.validateDate(birthDateString);
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
 
     System.out.println(Lines.clear());
     return birthDateString;

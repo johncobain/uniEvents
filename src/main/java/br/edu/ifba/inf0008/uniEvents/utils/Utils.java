@@ -7,12 +7,20 @@ public class Utils {
     public static final Scanner scanner = new Scanner(System.in);
 
     public static LocalDate stringToDate(String dateString) {
-        // (dd/MM/yyyy)
-        String[] parts = dateString.split("/");
-        int day = Integer.parseInt(parts[0]);
-        int month = Integer.parseInt(parts[1]);
-        int year = Integer.parseInt(parts[2]);
-        return LocalDate.of(year, month, day);
+        if(dateString.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            // (dd/MM/yyyy)
+            String[] parts = dateString.split("/");
+            int day = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]);
+            int year = Integer.parseInt(parts[2]);
+            return LocalDate.of(year, month, day);
+        }else{
+            // (ddMMyyyy)
+            int day = Integer.parseInt(dateString.substring(0, 2));
+            int month = Integer.parseInt(dateString.substring(2, 4));
+            int year = Integer.parseInt(dateString.substring(4));
+            return LocalDate.of(year, month, day);
+        }
     }
 
     public static String formatCpf(String cpf) {
