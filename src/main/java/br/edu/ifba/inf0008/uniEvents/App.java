@@ -13,18 +13,14 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class App {
     public static void main(String[] args) {
-
-        // Initialize repositories
         ParticipantRepository participantRepository = new ParticipantRepository();
         EventRepository eventRepository = new EventRepository(participantRepository);
 
-        // Initialize services
         ParticipantManager participantManager = new ParticipantManager(participantRepository);
         EventManager eventManager = new EventManager(eventRepository, participantRepository);
         ReportsManager reportsManager = new ReportsManager();
         FileGenerator fileGenerator = new FileGenerator();
 
-        // Initialize menu
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.titleLine("Welcome to UniEvents!", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());
