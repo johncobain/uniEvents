@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "participantTypeJson": "Student",
+    "name": "John",
+    "cpf": "000.111.222-33",
+    "email": "john@gmail.com",
+    "phone": "75 991516313",
+    "birthDate": "20/05/2005"
+  }
+]

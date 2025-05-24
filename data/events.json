@@ -1,13 +1,13 @@
 [
   {
     "eventTypeJson": "Short Course",
-    "name": "Teste Short Course",
-    "description": "Teste",
+    "name": "Javinha",
+    "description": "Javivis",
     "location": "Lab1",
-    "date": "05/05/2025",
-    "capacity": 3,
-    "modality": "INPERSON",
+    "date": "20/05/2005",
+    "capacity": 5,
+    "modality": "ONLINE",
     "participantsCpfs": [],
-    "code": "L1"
+    "code": "J1"
   }
 ]
