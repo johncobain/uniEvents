@@ -56,6 +56,10 @@ The project simulates the management of events in a university, with the followi
 
 - [Gson](https://central.sonatype.com/artifact/com.google.code.gson/gson)
 
+## Tests
+
+- [JUnit](https://junit.org/junit5/)
+
 ## Build Tool
 
 - [Maven](https://maven.apache.org/)
