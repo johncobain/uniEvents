@@ -96,7 +96,7 @@ public class EventManager {
 
   public Event getEvent(String code){
     for (Event event : events) {
-      if (event.getCode().equals(code)) {
+      if (event.getCode().equalsIgnoreCase(code)) {
         return event;
       }
     }
@@ -120,7 +120,7 @@ public class EventManager {
 
   public Boolean isCodeAlreadyInUse(String code) {
     for (Event event : events) {
-      if (event.getCode().equals(code)) {
+      if (event.getCode().equalsIgnoreCase(code)) {
         return true;
       }
     }

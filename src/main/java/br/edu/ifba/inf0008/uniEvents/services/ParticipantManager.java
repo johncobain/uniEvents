@@ -40,7 +40,7 @@ public class ParticipantManager {
 
   public Participant getParticipant(String cpf){
     for (Participant participant : participants) {
-      if (participant.getCpf().equals(cpf)) {
+      if (participant.getCpf().equalsIgnoreCase(cpf)) {
         return participant;
       }
     }
@@ -75,7 +75,7 @@ public class ParticipantManager {
 
   public Boolean isCpfAlreadyInUse(String cpf) {
     for (Participant participant : participants) {
-      if (participant.getCpf().equals(cpf)) {
+      if (participant.getCpf().equalsIgnoreCase(cpf)) {
         return true;
       }
     }
