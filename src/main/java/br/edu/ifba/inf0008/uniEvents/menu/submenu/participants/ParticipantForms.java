@@ -34,6 +34,7 @@ public class ParticipantForms {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Name cannot be empty!"));
     }
+    System.out.println(Lines.clear());
     return name;
   }
   
@@ -42,7 +43,10 @@ public class ParticipantForms {
     while (true) { 
       System.out.print("Enter participant CPF (XXX.XXX.XXX-XX or XXXXXXXXXXX) (\"cancel\" to exit)>> ");
       cpf = Utils.scanner.nextLine();
-      if (cpf.equalsIgnoreCase("cancel")) return "cancel";
+      if (cpf.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return "cancel";
+      }
       try {
         Validation.validateCpf(cpf);
         cpf = Utils.formatCpf(cpf);
@@ -53,25 +57,42 @@ public class ParticipantForms {
         System.out.println(Lines.errorLine(e.getMessage()));
       }
     }
+    System.out.println(Lines.clear());
     return cpf;
   }
 
   protected static String getEmail(){
-    System.out.print("Enter participant email (\"cancel\" to exit)>> ");
-    String email = Utils.scanner.nextLine();
-
+    String email;
+    while (true) { 
+      System.out.print("Enter participant email (\"cancel\" to exit)>> ");
+      email = Utils.scanner.nextLine();
+      if(email.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return "cancel";
+      }
+      try {
+        Validation.validateEmail(email);
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
     return email;
   }
   protected static String getPhone(){
     System.out.print("Enter participant phone (\"cancel\" to exit)>> ");
     String phone = Utils.scanner.nextLine();
 
+    System.out.println(Lines.clear());
     return phone;
   }
   protected static String getBirthDate(){
     System.out.print("Enter participant birth date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
     String birthDateString = Utils.scanner.nextLine();
 
+    System.out.println(Lines.clear());
     return birthDateString;
   }
 

@@ -94,7 +94,39 @@ public class ValidationTest {
 
   @Test
   void testValidateEmail() {
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.validateEmail("valid@example.com"));
+    assertDoesNotThrow(() -> Validation.validateEmail("valid@example.com.br"));
+    assertDoesNotThrow(() -> Validation.validateEmail("valid@example.edu.info.br"));
 
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail("notValid@example");
+    });
+    assertEquals("Not a valid email!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail("notValid@example.");
+    });
+    assertEquals("Not a valid email!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail("notValid@example.com.");
+    });
+    assertEquals("Not a valid email!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail("notValid@example.com.toManyLetters");
+    });
+    assertEquals("Not a valid email!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail("");
+    });
+    assertEquals("Email cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail(" ");
+    });
+    assertEquals("Email cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateEmail(null);
+    });
+    assertEquals("Email cannot be empty!", exception.getMessage());
   }
 
   @Test

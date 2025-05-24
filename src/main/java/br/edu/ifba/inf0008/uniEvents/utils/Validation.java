@@ -49,7 +49,16 @@ public class Validation {
     }
   }
 
-  public static void validateEmail(String email){}
+  public static void validateEmail(String email){
+    if(email == null || email.isEmpty() || email.isBlank()) {
+      throw new IllegalArgumentException("Email cannot be empty!");
+    }
+
+    if(!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
+      throw new IllegalArgumentException("Not a valid email!");
+    }
+    
+  }
 
   public static void validatePhone(String phone){}
 

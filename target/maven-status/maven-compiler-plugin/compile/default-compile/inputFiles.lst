@@ -5,6 +5,7 @@
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/BaseMenu.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/events/EventMenuController.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/events/EventsMenu.java
+/home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/participants/ParticipantForms.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/participants/ParticipantMenuController.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/participants/ParticipantsMenu.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/reports/ReportsMenu.java
