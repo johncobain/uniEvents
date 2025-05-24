@@ -222,7 +222,7 @@ public class EventMenuController {
     ArrayList<Event> events = eventManager.getAllEvents();
     ArrayList<Event> filteredEvents = new ArrayList<>();
     for (Event event : events) {
-      if (event.getEventType().equals(selectedType)) {
+      if (event.getType().equals(selectedType)) {
         filteredEvents.add(event);
       }
     }

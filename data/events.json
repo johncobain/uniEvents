@@ -1,29 +1,13 @@
 [
   {
-    "eventTypeJson": "Workshop",
-    "name": "Workshop de Java",
-    "description": "Aprenda Java do zero",
-    "location": "Auditório 1",
-    "date": "15/10/2023",
-    "capacity": 50,
+    "eventTypeJson": "Short Course",
+    "name": "Teste Short Course",
+    "description": "Teste",
+    "location": "Lab1",
+    "date": "05/05/2025",
+    "capacity": 3,
     "modality": "INPERSON",
-    "participantsCpfs": [
-      "123.456.789-00"
-    ],
-    "code": "W001"
-  },
-  {
-    "eventTypeJson": "Lecture",
-    "name": "Palestra de Python",
-    "description": "Aprenda Python do zero",
-    "location": "Auditório 2",
-    "date": "20/10/2023",
-    "capacity": 100,
-    "modality": "ONLINE",
-    "participantsCpfs": [
-      "987.654.321-00",
-      "111.222.333-44"
-    ],
-    "code": "L001"
+    "participantsCpfs": [],
+    "code": "L1"
   }
 ]

@@ -57,17 +57,17 @@ public class ParticipantManager {
     return events;
   }
 
-  public void clearParticipantsInEvents(Participant participant){
+  public void clearParticipantsInEvents(Participant participant, EventManager eventManager) {
     for (Event event : EventManager.events) {
       if (event.getParticipants().contains(participant)) {
-        event.removeParticipant(participant);
+        eventManager.removeParticipant(event.getCode(), participant.getCpf());
       }
     }
   }
 
-  public void clearAllParticipants() {
+  public void clearAllParticipants(EventManager eventManager) {
     for(Participant participant : participants){
-      clearParticipantsInEvents(participant);
+      clearParticipantsInEvents(participant, eventManager);
     }
     participants.clear();
     participantRepository.clearAllParticipants();

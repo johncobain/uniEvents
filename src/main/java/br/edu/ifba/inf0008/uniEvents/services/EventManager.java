@@ -31,20 +31,50 @@ public class EventManager {
     eventRepository.addEvent(event);
   }
 
-  public Boolean addParticipantToEvent(String eventCode, String participantCpf){
+  public void addParticipant(String eventCode, String participantCpf){
     Event event = getEvent(eventCode);
     if (event == null) {
-      return false;
+      throw new IllegalArgumentException("Event not found");
     }
     Participant participant = participantRepository.getParticipant(participantCpf);
     if (participant == null) {
-      return false;
+      throw new IllegalArgumentException("Participant not found");
+    }
+
+    if(event.getType().equals("Short Course") && !participant.getType().equals( "Student")){
+      throw new IllegalArgumentException("Only students can participate in short courses");
+    }
+
+    if(event.isFull()){
+      throw new IllegalArgumentException("Event is full");
+    }
+
+    if(event.isParticipantRegistered(participant)){
+      throw new IllegalArgumentException("Participant is already registered in this event");
     }
 
     event.addParticipantCpf(participant.getCpf());
-    event.populateParticipants(participantRepository);
+    event.addParticipant(participant);
     eventRepository.saveEvents();
-    return true;
+  }
+
+  public void removeParticipant(String eventCode, String participantCpf){
+    Event event = getEvent(eventCode);
+    if (event == null) {
+      throw new IllegalArgumentException("Event not found");
+    }
+    Participant participant = participantRepository.getParticipant(participantCpf);
+    if (participant == null) {
+      throw new IllegalArgumentException("Participant not found");
+    }
+
+    if(!event.isParticipantRegistered(participant)){
+      throw new IllegalArgumentException("Participant is not registered in this event");
+    }
+
+    event.removeParticipantCpf(participant.getCpf());
+    event.removeParticipant(participant);
+    eventRepository.saveEvents();
   }
     
 
@@ -71,6 +101,16 @@ public class EventManager {
       }
     }
     return null;
+  }
+
+  public ArrayList<Event> getEventsByParticipant(Participant participant) {
+    ArrayList<Event> participantEvents = new ArrayList<>();
+    for (Event event : events) {
+      if (event.getParticipants().contains(participant)) {
+        participantEvents.add(event);
+      }
+    }
+    return participantEvents;
   }
 
    public void clearAllEvents() {

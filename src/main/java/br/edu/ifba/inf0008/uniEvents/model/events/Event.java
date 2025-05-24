@@ -103,7 +103,15 @@ public abstract class Event {
     this.participantsCpfs.add(cpf);
   }
   public void removeParticipantCpf(String cpf) {
+    Participant participant = null;
+    for (Participant p : this.participants) {
+      if (p.getCpf().equals(cpf)) {
+        participant = p;
+        break;
+      }
+    }
     this.participantsCpfs.remove(cpf);
+    this.removeParticipant(participant);
   }
   public void clearParticipantsCpfs() {
     this.participantsCpfs.clear();
@@ -144,12 +152,12 @@ public abstract class Event {
 
   
 
-  public abstract String getEventType();
+  public abstract String getType();
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Lines.leftText(String.format("Event: %s", getEventType()))).append("\n");
+        sb.append(Lines.leftText(String.format("Event: %s", getType()))).append("\n");
         sb.append(Lines.leftText(String.format("Title: %s", name))).append("\n");
         sb.append(Lines.leftText(String.format("Description: %s", description))).append("\n");
         sb.append(Lines.leftText(String.format("Modality: %s", modality))).append("\n");

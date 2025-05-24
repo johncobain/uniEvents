@@ -3,6 +3,7 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
+import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
@@ -169,11 +170,34 @@ public class ParticipantMenuController {
     }
   }
 
-  public void showEvents(){}
+  public void showEvents(){
+    System.out.print("Enter participant CPF >> ");
+    String cpf = Utils.scanner.nextLine();
+    Participant participant = participantManager.getParticipant(cpf);
+    if (participant == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.straightLine());
+      System.out.println(Lines.errorLine("Participant not found!"));
+      System.out.println(Lines.straightLine());
+      return;
+    }
+    System.out.println(Lines.doubleLine());
+    System.out.println(Lines.titleLine("Events with participant " + participantManager.getParticipant(cpf).getName(), Colors.BLUE_BOLD));
+    System.out.println(Lines.doubleLine());
+    ArrayList<Event> events = eventManager.getEventsByParticipant(participant);
+    if(events.isEmpty()){
+      System.out.println(Lines.leftText(participant.getName() + " has no events!"));
+    }
+    for (Event event : events) {
+      System.out.println(Lines.straightLine());
+      System.out.print(event.toString());
+      System.out.println(Lines.straightLine());
+    }
+  }
 
   public Boolean clearAll(){
     try {
-      participantManager.clearAllParticipants();
+      participantManager.clearAllParticipants(eventManager);
       return true;
     } catch (Exception e) {
       return false;
@@ -181,6 +205,68 @@ public class ParticipantMenuController {
   }
   
     public Boolean addToEvent(){
+      System.out.print("Enter participant CPF >> ");
+      String cpf = Utils.scanner.nextLine();
+      Participant participant = participantManager.getParticipant(cpf);
+      if (participant == null) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine("Participant not found!"));
+        System.out.println(Lines.straightLine());
+        return false;
+      }
+      System.out.print("Enter event code >> ");
+      String code = Utils.scanner.nextLine();
+      Event event = eventManager.getEvent(code);
+      if (event == null) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine("Event not found!"));
+        System.out.println(Lines.straightLine());
+        return false;
+      }
+      try {
+        eventManager.addParticipant(event.getCode(), participant.getCpf());
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine(e.getMessage()));
+        System.out.println(Lines.straightLine());
+        return false;
+      }    
       return true;
+    }
+
+    public Boolean removeFromEvent(){
+      System.out.print("Enter participant CPF >> ");
+      String cpf = Utils.scanner.nextLine();
+      Participant participant = participantManager.getParticipant(cpf);
+      if (participant == null) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine("Participant not found!"));
+        System.out.println(Lines.straightLine());
+        return false;
+      }
+      System.out.print("Enter event code >> ");
+      String code = Utils.scanner.nextLine();
+      Event event = eventManager.getEvent(code);
+      if (event == null) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine("Event not found!"));
+        System.out.println(Lines.straightLine());
+        return false;
+      }
+      try {
+        eventManager.removeParticipant(event.getCode(), participant.getCpf());
+        return true;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.straightLine());
+        System.out.println(Lines.errorLine(e.getMessage()));
+        System.out.println(Lines.straightLine());
+        return false;
+      }
     }
 }

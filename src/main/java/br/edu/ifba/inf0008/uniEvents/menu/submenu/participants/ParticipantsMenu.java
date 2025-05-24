@@ -19,6 +19,7 @@ public class ParticipantsMenu extends Menu {
       super.addOption("Show Participant Events");
       super.addOption("Clear All Participants");
       super.addOption("Add Participant to Event");
+      super.addOption("Remove Participant from Event");
 
       participantMenuController.setParticipantManager(participantManager);
       participantMenuController.setEventManager(eventManager);
@@ -108,9 +109,21 @@ public class ParticipantsMenu extends Menu {
               System.out.println(Lines.successLine("Participant added to event!"));
               System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.clear());
               System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error adding participant to event!"));
+              System.out.println(Lines.straightLine());
+            }
+          }
+          case 9 -> {
+            Boolean removed = participantMenuController.removeFromEvent();
+            if (removed) {
+              System.out.println(Lines.clear());
+              System.out.println(Lines.straightLine());
+              System.out.println(Lines.successLine("Participant removed from event!"));
+              System.out.println(Lines.straightLine());
+            }else{
+              System.out.println(Lines.straightLine());
+              System.out.println(Lines.errorLine("Error removing participant from event!"));
               System.out.println(Lines.straightLine());
             }
           }

@@ -14,7 +14,7 @@ public class AcademicFair extends Event {
   } //Gson
 
   @Override
-  public String getEventType() {
+  public String getType() {
     return eventTypeJson;
   }
   

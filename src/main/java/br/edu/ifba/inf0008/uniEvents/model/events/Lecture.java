@@ -14,7 +14,7 @@ public class Lecture extends Event{
   } //Gson
 
   @Override
-  public String getEventType() {
+  public String getType() {
     return eventTypeJson;
   }
   
