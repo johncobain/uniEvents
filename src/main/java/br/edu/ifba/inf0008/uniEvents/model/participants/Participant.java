@@ -1,9 +1,9 @@
 package br.edu.ifba.inf0008.uniEvents.model.participants;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
+import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
 public abstract class Participant {
   private String name;
@@ -73,7 +73,7 @@ public abstract class Participant {
     sb.append(Lines.leftText(String.format("CPF: %s", cpf))).append("\n");
     sb.append(Lines.leftText(String.format("Email: %s", email))).append("\n");
     sb.append(Lines.leftText(String.format("Phone: %s", phone))).append("\n");
-    sb.append(Lines.leftText(String.format("Birthdate: %s", birthDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))))).append("\n");
+    sb.append(Lines.leftText(String.format("Birthdate: %s", birthDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
     return sb.toString();
   }
 }

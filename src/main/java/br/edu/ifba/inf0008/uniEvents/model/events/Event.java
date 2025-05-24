@@ -1,12 +1,12 @@
 package br.edu.ifba.inf0008.uniEvents.model.events;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
+import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
 public abstract class Event {
   private String name;
@@ -162,7 +162,7 @@ public abstract class Event {
         sb.append(Lines.leftText(String.format("Description: %s", description))).append("\n");
         sb.append(Lines.leftText(String.format("Modality: %s", modality))).append("\n");
         sb.append(Lines.leftText(String.format("Location: %s", location))).append("\n");
-        sb.append(Lines.leftText(String.format("Date: %s", this.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))))).append("\n");
+        sb.append(Lines.leftText(String.format("Date: %s", this.getDate().format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
         sb.append(Lines.leftText(String.format("Capacity: %d", capacity))).append("\n");
         sb.append(Lines.leftText(String.format("Code: %s", code))).append("\n");
         sb.append(Lines.leftText(String.format("Participants: %d", participants.size()))).append("\n");
