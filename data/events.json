@@ -1,13 +1,15 @@
 [
   {
-    "eventTypeJson": "Short Course",
-    "name": "Javinha",
-    "description": "Javivis",
-    "location": "Lab1",
-    "date": "20/05/2005",
-    "capacity": 5,
-    "modality": "ONLINE",
-    "participantsCpfs": [],
-    "code": "J1"
+    "eventTypeJson": "Academic Fair",
+    "name": "Amostra de Estágio",
+    "description": "Amostra de Estágio",
+    "location": "Salão Nobre",
+    "date": "29/05/2025",
+    "capacity": 20,
+    "modality": "INPERSON",
+    "participantsCpfs": [
+      "000.111.222-33"
+    ],
+    "code": "A0"
   }
 ]
