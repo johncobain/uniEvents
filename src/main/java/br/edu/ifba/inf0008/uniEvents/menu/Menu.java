@@ -43,17 +43,13 @@ public abstract class Menu implements IMenu {
 
       if(response == -1){
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Invalid input!"));
-        System.out.println(Lines.straightLine());
       }else if(response >= 0 && response <= options.size() - 1){
           System.out.println(Lines.clear());
           return response;
       }else{
           System.out.println(Lines.clear());
-          System.out.println(Lines.straightLine());
           System.out.println(Lines.errorLine("Invalid option!"));
-          System.out.println(Lines.straightLine());
       } 
     } while (true);
   }

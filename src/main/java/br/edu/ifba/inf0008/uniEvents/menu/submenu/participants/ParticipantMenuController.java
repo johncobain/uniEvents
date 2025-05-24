@@ -68,9 +68,7 @@ public class ParticipantMenuController {
     Participant participant = participantManager.getParticipant(cpf);
     if (participant == null) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("Participant not found!"));
-      System.out.println(Lines.straightLine());
       return false;
     }
     try {
@@ -78,9 +76,7 @@ public class ParticipantMenuController {
         return true;
     } catch (Exception e) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine(e.getMessage()));
-      System.out.println(Lines.straightLine());
       return false;
     }
   }
@@ -91,9 +87,7 @@ public class ParticipantMenuController {
     Participant participant = participantManager.getParticipant(cpf);
     if (participant == null) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("Participant not found!"));
-      System.out.println(Lines.straightLine());
       return false;
     }
     System.out.print("Enter participant name >> ");
@@ -109,9 +103,7 @@ public class ParticipantMenuController {
       return true;
     } catch (Exception e) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine(e.getMessage()));
-      System.out.println(Lines.straightLine());
       return false;
     }
   }
@@ -121,9 +113,7 @@ public class ParticipantMenuController {
 
     if(participants.isEmpty()){
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("No participants found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     System.out.println(Lines.doubleLine());
@@ -155,9 +145,7 @@ public class ParticipantMenuController {
     }
     if(filteredParticipants.isEmpty()){
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("No participants found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     System.out.println(Lines.doubleLine());
@@ -176,9 +164,7 @@ public class ParticipantMenuController {
     Participant participant = participantManager.getParticipant(cpf);
     if (participant == null) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("Participant not found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     System.out.println(Lines.doubleLine());
@@ -210,9 +196,7 @@ public class ParticipantMenuController {
       Participant participant = participantManager.getParticipant(cpf);
       if (participant == null) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Participant not found!"));
-        System.out.println(Lines.straightLine());
         return false;
       }
       System.out.print("Enter event code >> ");
@@ -220,18 +204,14 @@ public class ParticipantMenuController {
       Event event = eventManager.getEvent(code);
       if (event == null) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Event not found!"));
-        System.out.println(Lines.straightLine());
         return false;
       }
       try {
         eventManager.addParticipant(event.getCode(), participant.getCpf());
       } catch (Exception e) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine(e.getMessage()));
-        System.out.println(Lines.straightLine());
         return false;
       }    
       return true;
@@ -243,9 +223,7 @@ public class ParticipantMenuController {
       Participant participant = participantManager.getParticipant(cpf);
       if (participant == null) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Participant not found!"));
-        System.out.println(Lines.straightLine());
         return false;
       }
       System.out.print("Enter event code >> ");
@@ -253,9 +231,7 @@ public class ParticipantMenuController {
       Event event = eventManager.getEvent(code);
       if (event == null) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Event not found!"));
-        System.out.println(Lines.straightLine());
         return false;
       }
       try {
@@ -263,9 +239,7 @@ public class ParticipantMenuController {
         return true;
       } catch (Exception e) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine(e.getMessage()));
-        System.out.println(Lines.straightLine());
         return false;
       }
     }

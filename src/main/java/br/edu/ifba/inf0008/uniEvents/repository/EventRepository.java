@@ -20,6 +20,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
+import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
 
@@ -50,7 +51,7 @@ public class EventRepository {
     try {
         Files.createDirectories(Paths.get("data"));
     } catch (IOException e) {
-      System.err.println("Error creating data directory: " + e.getMessage());
+      System.err.println(Lines.errorLine("Error creating data directory: " + e.getMessage()));
     }
   }
 
@@ -63,7 +64,7 @@ public class EventRepository {
         events = new ArrayList<>();
       }
     } catch (IOException e) {
-      System.err.println("Events file not found, creating a new one: " + e.getMessage());
+      System.err.println(Lines.warningLine("Events file not found, creating a new one: " + e.getMessage()));
       events = new ArrayList<>();
     }
 
@@ -78,9 +79,9 @@ public class EventRepository {
   public void saveEvents(){
     try (FileWriter writer = new FileWriter(EVENTS_FILE)){
       gson.toJson(eventsSaved, writer);
-      System.out.println("Events saved in " + EVENTS_FILE);
+      System.out.println(Lines.leftText("Events saved in " + EVENTS_FILE));
     } catch (IOException e) {
-      System.err.println("Error saving events: " + e.getMessage());
+      System.err.println(Lines.errorLine("Error saving events: " + e.getMessage()));
     }
   }
 

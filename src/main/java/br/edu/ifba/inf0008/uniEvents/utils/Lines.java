@@ -73,7 +73,8 @@ public class Lines {
     int totalLenght = 62 - text.length();
     int leftPadding = totalLenght/2;
     int rightPadding = totalLenght - leftPadding;
-    String finalLine = "|";
+    String finalLine = straightLine();
+    finalLine= finalLine + "\n|";
     for(int i =0; i<leftPadding; i++){
       finalLine = finalLine + " ";
     }
@@ -81,7 +82,8 @@ public class Lines {
     for(int i =0; i<rightPadding; i++){
       finalLine = finalLine + " ";
     }
-    finalLine = finalLine + "|";
+    finalLine = finalLine + "|\n";
+    finalLine = finalLine + straightLine();
     return finalLine;
   }
 
@@ -89,7 +91,8 @@ public class Lines {
     int totalLenght = 62 - text.length();
     int leftPadding = totalLenght/2;
     int rightPadding = totalLenght - leftPadding;
-    String finalLine = "|";
+    String finalLine = straightLine();
+    finalLine = finalLine + "\n|";
     for(int i =0; i<leftPadding; i++){
       finalLine = finalLine + " ";
     }
@@ -97,7 +100,8 @@ public class Lines {
     for(int i =0; i<rightPadding; i++){
       finalLine = finalLine + " ";
     }
-    finalLine = finalLine + "|";
+    finalLine = finalLine + "|\n";
+    finalLine = finalLine + straightLine();
     return finalLine;
   }
 
@@ -105,7 +109,8 @@ public class Lines {
     int totalLenght = 62 - text.length();
     int leftPadding = totalLenght/2;
     int rightPadding = totalLenght - leftPadding;
-    String finalLine = "|";
+    String finalLine = straightLine();
+    finalLine = finalLine + "\n|";
     for(int i =0; i<leftPadding; i++){
       finalLine = finalLine + " ";
     }
@@ -113,7 +118,8 @@ public class Lines {
     for(int i =0; i<rightPadding; i++){
       finalLine = finalLine + " ";
     }
-    finalLine = finalLine + "|";
+    finalLine = finalLine + "|\n";
+    finalLine = finalLine + straightLine();
     return finalLine;
   }
 }

@@ -58,9 +58,7 @@ public class EventMenuController {
         break;
       } catch (Exception e) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine(e.getMessage()));
-        System.out.println(Lines.straightLine());
       }
     } while (true);
     ArrayList<String> modalities = new ArrayList<>();
@@ -84,16 +82,12 @@ public class EventMenuController {
       code = Utils.scanner.nextLine();
       if(eventManager.isCodeAlreadyInUse(code)){
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Code '"+code+"' already in use!"));
-        System.out.println(Lines.straightLine());
         continue;
       }
       if (code.isEmpty()) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine("Code cannot be empty!"));
-        System.out.println(Lines.straightLine());
         continue;
       }
       break;
@@ -117,9 +111,7 @@ public class EventMenuController {
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("Event not found!"));
-      System.out.println(Lines.straightLine());
       return false;
     }
     try {
@@ -127,9 +119,7 @@ public class EventMenuController {
       return true;
     } catch (Exception e) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine(e.getMessage()));
-      System.out.println(Lines.straightLine());
       return false;
     }
 
@@ -141,9 +131,7 @@ public class EventMenuController {
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("Event not found!"));
-      System.out.println(Lines.straightLine());
       return false;
     }
     System.out.print("Enter event name >> ");
@@ -166,9 +154,7 @@ public class EventMenuController {
         break;
       } catch (Exception e) {
         System.out.println(Lines.clear());
-        System.out.println(Lines.straightLine());
         System.out.println(Lines.errorLine(e.getMessage()));
-        System.out.println(Lines.straightLine());
       }
     } while (true);
     ArrayList<String> modalities = new ArrayList<>();
@@ -195,9 +181,7 @@ public class EventMenuController {
 
     if (events.isEmpty()) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("No events found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     System.out.println(Lines.doubleLine());
@@ -228,9 +212,7 @@ public class EventMenuController {
     }
     if(filteredEvents.isEmpty()){
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("No events in " + selectedType + " found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     System.out.println(Lines.doubleLine());
@@ -249,17 +231,13 @@ public class EventMenuController {
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("Event not found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     ArrayList<Participant> participants = event.getParticipants();
     if (participants.isEmpty()) {
       System.out.println(Lines.clear());
-      System.out.println(Lines.straightLine());
       System.out.println(Lines.errorLine("No participants found!"));
-      System.out.println(Lines.straightLine());
       return;
     }
     System.out.println(Lines.doubleLine());

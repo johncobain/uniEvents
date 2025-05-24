@@ -18,6 +18,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
+import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
 
@@ -45,7 +46,7 @@ public class ParticipantRepository {
     try {
         Files.createDirectories(Paths.get("data"));
     } catch (IOException e) {
-      System.err.println("Error creating data directory: " + e.getMessage());
+      System.err.println(Lines.errorLine("Error creating data directory: " + e.getMessage()));
     }
   }
 
@@ -55,7 +56,7 @@ public class ParticipantRepository {
       List<Participant> participants = gson.fromJson(reader, participantListType);
       return participants != null ? participants: new ArrayList<>();
     } catch (IOException e) {
-      System.err.println("Participants file not found, creating a new one: " + e.getMessage());
+      System.err.println(Lines.warningLine("Participants file not found, creating a new one: " + e.getMessage()));
       return new ArrayList<>();
     }
   }
@@ -63,9 +64,9 @@ public class ParticipantRepository {
   public void saveParticipants(){
     try (FileWriter writer = new FileWriter(PARTICIPANT_FILE)){
       gson.toJson(participantsSaved, writer);
-      System.out.println("Participants saved in " + PARTICIPANT_FILE);
+      System.out.println(Lines.leftText("Participants saved in " + PARTICIPANT_FILE));
     } catch (IOException e) {
-      System.err.println("Error saving participants: " + e.getMessage());
+      System.err.println(Lines.errorLine("Error saving participants: " + e.getMessage()));
     }
   }
 

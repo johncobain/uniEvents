@@ -36,40 +36,28 @@ public class EventsMenu extends Menu {
             Boolean created = eventMenuController.create();
             if (created) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Event created!"));
-              System.out.println(Lines.straightLine());
             }else{
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error creating event!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 2 -> {
             Boolean removed = eventMenuController.remove();
             if (removed) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Event removed!"));
-              System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error removing event!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 3 -> {
             Boolean updated = eventMenuController.update();
             if (updated) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Event updated!"));
-              System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error updating event!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 4 -> {
@@ -85,14 +73,10 @@ public class EventsMenu extends Menu {
             Boolean cleared = eventMenuController.clearAll();
             if (cleared) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("All events cleared!"));
-              System.out.println(Lines.straightLine());
             }else{
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error clearing events!"));
-              System.out.println(Lines.straightLine());
             }
           }
           default -> throw new AssertionError();

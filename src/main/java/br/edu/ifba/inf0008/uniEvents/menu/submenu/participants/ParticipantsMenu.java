@@ -40,42 +40,30 @@ public class ParticipantsMenu extends Menu {
             Boolean created = participantMenuController.create();
             if (created) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Participant created!"));
-              System.out.println(Lines.straightLine());
             }else{
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error creating participant!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 2 -> {
             Boolean removed = participantMenuController.remove();
             if (removed) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Participant removed!"));
-              System.out.println(Lines.straightLine());
             }else{
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error removing participant!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 3 -> {
             Boolean updated = participantMenuController.update();
             if (updated) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Participant updated!"));
-              System.out.println(Lines.straightLine());
             }else{
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error updating participant!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 4 -> {
@@ -91,40 +79,28 @@ public class ParticipantsMenu extends Menu {
             Boolean cleared = participantMenuController.clearAll();
             if (cleared) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("All participants cleared!"));
-              System.out.println(Lines.straightLine());
             }else{
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error clearing participants!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 8 -> {
             Boolean added = participantMenuController.addToEvent();
             if (added) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Participant added to event!"));
-              System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error adding participant to event!"));
-              System.out.println(Lines.straightLine());
             }
           }
           case 9 -> {
             Boolean removed = participantMenuController.removeFromEvent();
             if (removed) {
               System.out.println(Lines.clear());
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.successLine("Participant removed from event!"));
-              System.out.println(Lines.straightLine());
             }else{
-              System.out.println(Lines.straightLine());
               System.out.println(Lines.errorLine("Error removing participant from event!"));
-              System.out.println(Lines.straightLine());
             }
           }
           default -> throw new AssertionError();
