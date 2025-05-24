@@ -49,7 +49,7 @@ public class MainMenu extends Menu{
             submenu.show();
           }
           case 3 -> {
-            submenu = new ReportsMenu();
+            submenu = new ReportsMenu(eventManager, participantManager, reportsManager, fileGenerator);
             submenu.show();
           }
           default -> throw new AssertionError();
