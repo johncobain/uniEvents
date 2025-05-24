@@ -56,7 +56,7 @@ public class ParticipantRepository {
       List<Participant> participants = gson.fromJson(reader, participantListType);
       return participants != null ? participants: new ArrayList<>();
     } catch (IOException e) {
-      System.err.println(Lines.warningLine("Participants file not found, creating a new one: " + e.getMessage()));
+      System.err.println(Lines.warningLine("Participants file not found, creating a new one"));
       return new ArrayList<>();
     }
   }
@@ -64,7 +64,7 @@ public class ParticipantRepository {
   public void saveParticipants(){
     try (FileWriter writer = new FileWriter(PARTICIPANT_FILE)){
       gson.toJson(participantsSaved, writer);
-      System.out.println(Lines.leftText("Participants saved in " + PARTICIPANT_FILE));
+      System.out.println("Participants saved in " + PARTICIPANT_FILE);
     } catch (IOException e) {
       System.err.println(Lines.errorLine("Error saving participants: " + e.getMessage()));
     }

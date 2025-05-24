@@ -64,7 +64,7 @@ public class EventRepository {
         events = new ArrayList<>();
       }
     } catch (IOException e) {
-      System.err.println(Lines.warningLine("Events file not found, creating a new one: " + e.getMessage()));
+      System.err.println(Lines.warningLine("Events file not found, creating a new one"));
       events = new ArrayList<>();
     }
 
@@ -79,7 +79,7 @@ public class EventRepository {
   public void saveEvents(){
     try (FileWriter writer = new FileWriter(EVENTS_FILE)){
       gson.toJson(eventsSaved, writer);
-      System.out.println(Lines.leftText("Events saved in " + EVENTS_FILE));
+      System.out.println("Events saved in " + EVENTS_FILE);
     } catch (IOException e) {
       System.err.println(Lines.errorLine("Error saving events: " + e.getMessage()));
     }
