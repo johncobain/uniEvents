@@ -11,9 +11,6 @@ import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
-/**
- * Hello world!
- */
 public class App {
     public static void main(String[] args) {
 
