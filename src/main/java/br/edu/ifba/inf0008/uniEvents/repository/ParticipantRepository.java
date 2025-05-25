@@ -85,8 +85,8 @@ public class ParticipantRepository {
     participantsSaved.put(participant.getCpf(), participant);
     saveParticipants();
   }
-  public void removeParticipant(Participant participant){
-    participantsSaved.remove(participant.getCpf());
+  public void removeParticipant(String cpf){
+    participantsSaved.remove(cpf);
     saveParticipants();
   }
 

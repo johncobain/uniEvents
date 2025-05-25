@@ -1,7 +1,6 @@
 package br.edu.ifba.inf0008.uniEvents.services;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
@@ -26,9 +25,9 @@ public class ParticipantManager {
     participantRepository.addParticipant(participant);
   }
 
-  public void removeParticipant(Participant participant){
-    participants.remove(participant.getCpf());
-    participantRepository.removeParticipant(participant);
+  public void removeParticipant(String cpf){
+    participants.remove(cpf);
+    participantRepository.removeParticipant(cpf);
   }
 
   public void updateParticipant(Participant participant, Participant updatedParticipant) {
@@ -43,27 +42,17 @@ public class ParticipantManager {
     return participants.get(cpf);
   }
 
-  public ArrayList<Event> getEventsByParticipant(Participant participant){
-    ArrayList<Event> events = new ArrayList<>();
-    for (Event event : EventManager.events) {
-      if (event.getParticipants().contains(participant)) {
-        events.add(event);
-      }
-    }
-    return events;
-  }
-
-  public void clearParticipantsInEvents(Participant participant, EventManager eventManager) {
-    for (Event event : EventManager.events) {
-      if (event.getParticipants().contains(participant)) {
-        eventManager.removeParticipant(event.getCode(), participant.getCpf());
+  public void clearParticipantsInEvents(String cpf, EventManager eventManager) {
+    for (Event event : EventManager.events.values()) {
+      if (event.getParticipants().containsKey(cpf)) {
+        eventManager.removeParticipant(event.getCode(), cpf);
       }
     }
   }
 
   public void clearAllParticipants(EventManager eventManager) {
-    for (Participant participant : participants.values()) {
-      clearParticipantsInEvents(participant, eventManager);
+    for (String cpf : participants.keySet()) {
+      clearParticipantsInEvents(cpf, eventManager);
     }
     participants.clear();
     participantRepository.clearAllParticipants();

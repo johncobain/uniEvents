@@ -2,7 +2,7 @@ package br.edu.ifba.inf0008.uniEvents.services;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
@@ -12,7 +12,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 public class ReportsManager {
   private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-  public String generateReport(List<Event> events, String reportTitle, Boolean isDetailed) {
+  public String generateReport(LinkedHashMap<String, Event> events, String reportTitle, Boolean isDetailed) {
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.titleLine(String.format("Report: %s", reportTitle))).append("\n");
@@ -24,13 +24,13 @@ public class ReportsManager {
     if(events.isEmpty()){
       report.append(Lines.leftText("No events found for this report.")).append("\n");
     } else {
-      for (Event event : events) {
+      for (Event event : events.values()) {
         report.append(Lines.straightLine()).append("\n");
         report.append(event.toString());
         if(isDetailed && !event.getParticipants().isEmpty()){
           report.append(Lines.leftText("")).append("\n");
           report.append(Lines.leftText("Participant Details:")).append("\n");
-          for(Participant participant: event.getParticipants()){
+          for(Participant participant: event.getParticipants().values()){
             report.append(Lines.mixedLines()).append("\n");
             report.append(Lines.leftText(String.format("    Participant: %s", participant.getName()))).append("\n");
             report.append(Lines.leftText(String.format("    CPF: %s", participant.getCpf()))).append("\n");

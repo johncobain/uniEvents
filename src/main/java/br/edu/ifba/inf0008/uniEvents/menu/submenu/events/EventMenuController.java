@@ -1,9 +1,14 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
+import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
+import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
+import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -131,14 +136,27 @@ public class EventMenuController {
       default -> modality = Modality.INPERSON;
     }
     
-    eventManager.updateEvent(event, name, location, description, Utils.stringToDate(date), capacity, modality);
+    Event updatedEvent = null;
+    switch (event.getType()) {
+      case "Lecture" -> updatedEvent = new Lecture(name, description, location, Utils.stringToDate(date), capacity, modality, event.getCode());
+      case "Workshop" -> updatedEvent = new Workshop(name, description, location, Utils.stringToDate(date), capacity, modality, event.getCode());
+      case "Short Course" -> updatedEvent = new ShortCourse(name, description, location, Utils.stringToDate(date), capacity, modality, event.getCode());
+      case "Academic Fair" -> updatedEvent = new AcademicFair(name, description, location, Utils.stringToDate(date), capacity, modality, event.getCode());
+    }
 
-    System.out.println(Lines.clear());
-    System.out.println(Lines.successLine("Event updated!"));
+    try {
+      eventManager.updateEvent(event, updatedEvent);
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Event updated!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Error updating event"));
+    }
+
   }
 
   public void listAll(){
-    ArrayList<Event> events = eventManager.getAllEvents();
+    LinkedHashMap<String, Event> events = eventManager.getAllEvents();
 
     if (events.isEmpty()) {
       System.out.println(Lines.clear());
@@ -148,7 +166,7 @@ public class EventMenuController {
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine("All Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
-    for (Event event : events) {
+    for (Event event : events.values()) {
       System.out.println(Lines.straightLine());
       System.out.print(event.toString());
       System.out.println(Lines.straightLine());
@@ -159,9 +177,9 @@ public class EventMenuController {
     String selectedType = EventForms.getType();
     if (selectedType.equalsIgnoreCase("cancel")) return;
 
-    ArrayList<Event> events = eventManager.getAllEvents();
+    LinkedHashMap<String, Event> events = eventManager.getAllEvents();
     ArrayList<Event> filteredEvents = new ArrayList<>();
-    for (Event event : events) {
+    for (Event event : events.values()) {
       if (event.getType().equals(selectedType)) {
         filteredEvents.add(event);
       }
@@ -191,7 +209,7 @@ public class EventMenuController {
       System.out.println(Lines.errorLine("Event not found!"));
       return;
     }
-    ArrayList<Participant> participants = event.getParticipants();
+    LinkedHashMap<String, Participant> participants = event.getParticipants();
     if (participants.isEmpty()) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("No participants found!"));
@@ -204,7 +222,7 @@ public class EventMenuController {
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine("Participants", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
-    for (Participant participant : participants) {
+    for (Participant participant : participants.values()) {
       System.out.println(Lines.straightLine());
       System.out.println(Lines.leftText(String.format("    Participant: %s", participant.getName())));
       System.out.println(Lines.leftText(String.format("    CPF: %s", participant.getCpf())));

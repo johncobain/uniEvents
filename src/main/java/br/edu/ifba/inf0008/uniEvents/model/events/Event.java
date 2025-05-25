@@ -2,6 +2,7 @@ package br.edu.ifba.inf0008.uniEvents.model.events;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
@@ -16,7 +17,7 @@ public abstract class Event {
   private int capacity;
   private Modality modality;
   private ArrayList<String> participantsCpfs;
-  private transient ArrayList<Participant> participants;
+  private transient LinkedHashMap<String, Participant> participants;
   private String code;
   
   protected Event(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code) {
@@ -28,12 +29,12 @@ public abstract class Event {
     this.modality = modality;
     this.code = code;
     this.participantsCpfs = new ArrayList<>();
-    this.participants = new ArrayList<>();
+    this.participants = new LinkedHashMap<>();
   }
 
   protected  Event(){
     this.participantsCpfs = new ArrayList<>();
-    this.participants = new ArrayList<>();
+    this.participants = new LinkedHashMap<>();
   } //Gson
 
   public String getName() {
@@ -103,15 +104,9 @@ public abstract class Event {
     this.participantsCpfs.add(cpf);
   }
   public void removeParticipantCpf(String cpf) {
-    Participant participant = null;
-    for (Participant p : this.participants) {
-      if (p.getCpf().equals(cpf)) {
-        participant = p;
-        break;
-      }
-    }
+    if(!this.participantsCpfs.contains(cpf)) return;
     this.participantsCpfs.remove(cpf);
-    this.removeParticipant(participant);
+    this.removeParticipant(cpf);
   }
   public void clearParticipantsCpfs() {
     this.participantsCpfs.clear();
@@ -122,32 +117,32 @@ public abstract class Event {
       for (String cpf : this.participantsCpfs) {
         Participant participant = participantRepository.getParticipant(cpf);
         if (participant != null) {
-          this.participants.add(participant);
+          this.participants.put(cpf, participant);
         }
       }
     }
   }
 
-  public ArrayList<Participant> getParticipants() {
+  public LinkedHashMap<String, Participant> getParticipants() {
     return participants;
   }
 
-  public void setParticipants(ArrayList<Participant> participants) {
+  public void setParticipants(LinkedHashMap<String, Participant> participants) {
     this.participants = participants;
   }
 
   public void addParticipant(Participant participant) {
-    this.participants.add(participant);
+    this.participants.put(participant.getCpf(), participant);
   }
-  public void removeParticipant(Participant participant) {
-    this.participants.remove(participant);
+  public void removeParticipant(String cpf) {
+    this.participants.remove(cpf);
   }
 
   public boolean isFull() {
     return participants.size() >= capacity;
   }
-  public boolean isParticipantRegistered(Participant participant) {
-    return participants.contains(participant);
+  public boolean isParticipantRegistered(String cpf) {
+    return participants.containsKey(cpf);
   }
 
   
