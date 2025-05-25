@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.model.events;
+package br.edu.ifba.inf0008.uniEvents.model.events.enums;
 
 import java.util.ArrayList;
 

@@ -2,6 +2,8 @@ package br.edu.ifba.inf0008.uniEvents.model.events;
 
 import java.time.LocalDate;
 
+import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
+
 public class Lecture extends Event{
   private final String eventTypeJson = "Lecture";
 

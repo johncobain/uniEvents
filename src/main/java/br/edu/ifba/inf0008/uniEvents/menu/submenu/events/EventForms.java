@@ -3,7 +3,7 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
-import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
+import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.Validation;
