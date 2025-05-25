@@ -30,3 +30,5 @@ List<Student> students = participantsMap.values().stream()  // 1. Pega um Stream
 - student must have a required gpa for course
 
 - maybe another submenu for Participant menu?
+
+- change Teacher to Professor

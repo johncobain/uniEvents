@@ -96,6 +96,10 @@ public class Student extends Participant{
     // TODO: see if student is eligible for course by gpa
     return true;
   }
+
+  public void showStudentAcademicInfo(){
+    // TODO: show student academic info (studentID, course, current semester, academic status, gpa, campus, enrollment date)
+  }
   
   @Override
   public String getType() {
