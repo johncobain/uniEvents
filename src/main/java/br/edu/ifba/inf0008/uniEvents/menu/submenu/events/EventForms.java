@@ -107,6 +107,6 @@ public class EventForms {
       break;
     }
     System.out.println(Lines.clear());
-    return code;
+    return code.toUpperCase();
   }
 }

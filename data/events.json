@@ -35,5 +35,16 @@
       "068.390.215-64"
     ],
     "code": "J1"
+  },
+  {
+    "eventTypeJson": "Academic Fair",
+    "name": "Amostra de Estágio",
+    "description": "Estágios",
+    "location": "Salão Nobre",
+    "date": "30/05/2025",
+    "capacity": 50,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "A1"
   }
 ]
