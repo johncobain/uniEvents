@@ -49,11 +49,11 @@ public class ReportsMenu extends Menu {
             System.out.println("Generate Report by Location Menu");
           }
           case 4 -> {
-            String detailedReport = reportsManager.generateReport(eventManager.getAllEvents(), "Detailed Report", true);
+            String detailedReport = reportsManager.generateReport(eventManager.getAll(), "Detailed Report", true);
             System.out.println(detailedReport);
           }
           case 5 -> {
-            String summaryReport = reportsManager.generateReport(eventManager.getAllEvents(), "Summary Report", false);
+            String summaryReport = reportsManager.generateReport(eventManager.getAll(), "Summary Report", false);
             System.out.println(summaryReport);
           }
           default -> throw new AssertionError();

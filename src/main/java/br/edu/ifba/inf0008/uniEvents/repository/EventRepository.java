@@ -47,7 +47,7 @@ public class EventRepository {
     gsonBuilder.registerTypeAdapterFactory(eventAdapterFactory);
 
     this.gson = gsonBuilder.create();
-    this.eventsSaved = loadEvents();
+    this.eventsSaved = load();
 
     try {
         Files.createDirectories(Paths.get("data"));
@@ -56,7 +56,7 @@ public class EventRepository {
     }
   }
 
-  private LinkedHashMap<String, Event> loadEvents(){
+  private LinkedHashMap<String, Event> load(){
     LinkedHashMap<String, Event> loadedEvents;
     try (FileReader reader = new FileReader(EVENTS_FILE)){
       Type eventListType = new TypeToken<ArrayList<Event>>(){}.getType();
@@ -82,7 +82,7 @@ public class EventRepository {
     return loadedEvents;
   }
 
-  public void saveEvents(){
+  public void save(){
     List<Event> eventsList = new ArrayList<>(eventsSaved.values());
     try (FileWriter writer = new FileWriter(EVENTS_FILE)){
       gson.toJson(eventsList, writer);
@@ -92,38 +92,38 @@ public class EventRepository {
     }
   }
 
-  public void addEvent(Event event){
+  public void add(Event event){
     eventsSaved.put(event.getCode(), event);
-    saveEvents();
+    save();
   }
-  public void removeEvent(Event event){
-    eventsSaved.remove(event.getCode());
-    saveEvents();
+  public void remove(String code){
+    eventsSaved.remove(code);
+    save();
   }
 
-  public void clearAllEvents(){
+  public void clear(){
     eventsSaved.clear();
-    saveEvents();
+    save();
   }
 
-  public void updateEvent(Event event, String code){
+  public void update(Event event, String code){
     if(eventsSaved.get(code) == null){
       System.out.println(Lines.errorLine("Event with code " + code + " not found!"));
     }
     eventsSaved.put(code, event);
-    saveEvents();
+    save();
   }
 
   public void addParticipantToEvent(Event event, Participant participant){
     eventsSaved.get(event.getCode()).addParticipant(participant);
-    saveEvents();
+    save();
   }
 
-  public Event getEvent(String code){
+  public Event get(String code){
     return eventsSaved.get(code);
   }
 
-  public LinkedHashMap<String, Event> getEvents(){
+  public LinkedHashMap<String, Event> getAll(){
     if(eventsSaved == null){
       return new LinkedHashMap<>();
     }

@@ -23,69 +23,69 @@ public class EventManager {
   public EventManager(EventRepository eventRepository, ParticipantRepository participantRepository) {
     this.eventRepository = eventRepository;
     this.participantRepository = participantRepository;
-    events = eventRepository.getEvents();
+    events = eventRepository.getAll();
   }
 
-  public void addEvent(Event event){
+  public void add(Event event){
     events.put(event.getCode(), event);
-    eventRepository.addEvent(event);
+    eventRepository.add(event);
   }    
 
-  public void removeEvent(Event event){
-    events.remove(event.getCode());
-    eventRepository.removeEvent(event);
+  public void remove(String code){
+    events.remove(code);
+    eventRepository.remove(code);
   }
 
-  public void updateEvent(Event event, Event updatedEvent) {
+  public void update(Event event, Event updatedEvent) {
     events.put(event.getCode(), updatedEvent);
-    eventRepository.updateEvent(event, event.getCode());
+    eventRepository.update(event, event.getCode());
   }
 
-  public Event getEvent(String code){
+  public Event get(String code){
     return events.get(code);
   }
 
   public void addParticipant(String code, String cpf){
-    if (getEvent(code) == null) {
+    if (get(code) == null) {
       throw new IllegalArgumentException("Event not found");
     }
 
-    if (participantRepository.getParticipant(cpf) == null) {
+    if (participantRepository.get(cpf) == null) {
       throw new IllegalArgumentException("Participant not found");
     }
 
-    if(getEvent(code) instanceof ShortCourse && !(participantRepository.getParticipant(cpf) instanceof Student)){
+    if(get(code) instanceof ShortCourse && !(participantRepository.get(cpf) instanceof Student)){
       throw new IllegalArgumentException("Only students can participate in short courses");
     }
 
-    if(getEvent(code).isFull()){
+    if(get(code).isFull()){
       throw new IllegalArgumentException("Event is full");
     }
 
-    if(getEvent(code).isParticipantRegistered(cpf)){
+    if(get(code).isParticipantRegistered(cpf)){
       throw new IllegalArgumentException("Participant is already registered in this event");
     }
 
-    getEvent(code).addParticipantCpf(cpf);
-    getEvent(code).addParticipant(participantRepository.getParticipant(cpf));
-    eventRepository.saveEvents();
+    get(code).addParticipantCpf(cpf);
+    get(code).addParticipant(participantRepository.get(cpf));
+    eventRepository.save();
   }
 
   public void removeParticipant(String code, String cpf){
-    if (getEvent(code) == null) {
+    if (get(code) == null) {
       throw new IllegalArgumentException("Event not found");
     }
-    if (participantRepository.getParticipant(cpf) == null) {
+    if (participantRepository.get(cpf) == null) {
       throw new IllegalArgumentException("Participant not found");
     }
 
-    if(!getEvent(code).isParticipantRegistered(cpf)){
+    if(!get(code).isParticipantRegistered(cpf)){
       throw new IllegalArgumentException("Participant is not registered in this event");
     }
 
-    getEvent(code).removeParticipantCpf(cpf);
-    getEvent(code).removeParticipant(cpf);
-    eventRepository.saveEvents();
+    get(code).removeParticipantCpf(cpf);
+    get(code).removeParticipant(cpf);
+    eventRepository.save();
   }
 
   public LinkedHashMap<String, Event> getEventsByParticipant(String cpf) {
@@ -98,36 +98,36 @@ public class EventManager {
     return participantEvents;
   }
 
-   public void clearAllEvents() {
+   public void clear() {
     events.clear();
-    eventRepository.clearAllEvents();
+    eventRepository.clear();
   }
 
   public Boolean isCodeAlreadyInUse(String code) {
     return events.get(code) != null;
   }
 
-  public LinkedHashMap<String, Event> getAllEvents() {
+  public LinkedHashMap<String, Event> getAll() {
     return events;
   }
 
   public void createLecture(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
     Lecture event = new Lecture(name, location, description, date, capacity, modality, code);
-    addEvent(event);
+    add(event);
   }
 
   public void createWorkshop(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
     Workshop event = new Workshop(name, location, description, date, capacity, modality, code);
-    addEvent(event);
+    add(event);
   }
 
   public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
     ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code);
-    addEvent(event);
+    add(event);
   }
 
   public void createAcademicFair(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
     AcademicFair event = new AcademicFair(name, location, description, date, capacity, modality, code);
-    addEvent(event);
+    add(event);
   }
 }

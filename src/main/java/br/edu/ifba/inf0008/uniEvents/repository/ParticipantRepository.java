@@ -42,7 +42,7 @@ public class ParticipantRepository {
     gsonBuilder.registerTypeAdapterFactory(participantAdapterFactory);
 
     this.gson = gsonBuilder.create();
-    this.participantsSaved = loadParticipants();
+    this.participantsSaved = load();
 
     try {
         Files.createDirectories(Paths.get("data"));
@@ -51,7 +51,7 @@ public class ParticipantRepository {
     }
   }
 
-  private LinkedHashMap<String, Participant> loadParticipants(){
+  private LinkedHashMap<String, Participant> load(){
     LinkedHashMap<String, Participant> loadedParticipants;
     try (FileReader reader = new FileReader(PARTICIPANT_FILE)){
       Type participantListType = new TypeToken<ArrayList<Participant>>(){}.getType();
@@ -71,7 +71,7 @@ public class ParticipantRepository {
     }
   }
 
-  public void saveParticipants(){
+  public void save(){
     List<Participant> participantsList = new ArrayList<>(participantsSaved.values());
     try (FileWriter writer = new FileWriter(PARTICIPANT_FILE)){
       gson.toJson(participantsList, writer);
@@ -81,34 +81,34 @@ public class ParticipantRepository {
     }
   }
 
-  public void addParticipant(Participant participant){
+  public void add(Participant participant){
     participantsSaved.put(participant.getCpf(), participant);
-    saveParticipants();
+    save();
   }
-  public void removeParticipant(String cpf){
+  public void remove(String cpf){
     participantsSaved.remove(cpf);
-    saveParticipants();
+    save();
   }
 
-  public void clearAllParticipants(){
-    participantsSaved.clear();
-    saveParticipants();
-  }
-
-  public void updateParticipant(Participant participant, String cpf){
+  public void update(Participant participant, String cpf){
     if (participantsSaved.get(cpf) == null) {
       System.err.println(Lines.errorLine("Participant with CPF " + cpf + " not found."));
       return;
     }
     participantsSaved.put(cpf, participant);
-    saveParticipants();
+    save();
   }
-
-  public Participant getParticipant(String cpf){
+  
+  public Participant get(String cpf){
     return participantsSaved.get(cpf);
   }
 
-  public LinkedHashMap<String, Participant> getParticipants(){
+  public void clear(){
+    participantsSaved.clear();
+    save();
+  }
+
+  public LinkedHashMap<String, Participant> getAll(){
     if (participantsSaved == null) {
       return new LinkedHashMap<>();
     }

@@ -17,25 +17,25 @@ public class ParticipantManager {
   
   public ParticipantManager(ParticipantRepository participantRepository) {
     this.participantRepository = participantRepository;
-    participants = participantRepository.getParticipants();
+    participants = participantRepository.getAll();
   }
 
-  public void addParticipant(Participant participant){
+  public void add(Participant participant){
     participants.put(participant.getCpf(), participant);
-    participantRepository.addParticipant(participant);
+    participantRepository.add(participant);
   }
 
-  public void removeParticipant(String cpf){
+  public void remove(String cpf){
     participants.remove(cpf);
-    participantRepository.removeParticipant(cpf);
+    participantRepository.remove(cpf);
   }
 
-  public void updateParticipant(Participant participant, Participant updatedParticipant) {
+  public void update(Participant participant, Participant updatedParticipant) {
     participants.put(participant.getCpf(), updatedParticipant);
-    participantRepository.updateParticipant(participant, participant.getCpf());
+    participantRepository.update(participant, participant.getCpf());
   }
 
-  public Participant getParticipant(String cpf){
+  public Participant get(String cpf){
     if(participants.get(cpf) == null) {
       return null;
     }
@@ -50,35 +50,35 @@ public class ParticipantManager {
     }
   }
 
-  public void clearAllParticipants(EventManager eventManager) {
+  public void clear(EventManager eventManager) {
     for (String cpf : participants.keySet()) {
       clearParticipantsInEvents(cpf, eventManager);
     }
     participants.clear();
-    participantRepository.clearAllParticipants();
+    participantRepository.clear();
   }
 
   public Boolean isCpfAlreadyInUse(String cpf) {
     return participants.get(cpf) != null;
   }
 
-  public LinkedHashMap<String, Participant> getAllParticipants() {
+  public LinkedHashMap<String, Participant> getAll() {
     return participants;
   }
 
   public void createStudent(String name, String cpf, String email, String phone, LocalDate birthDate) {
     Student student = new Student(name, cpf, email, phone, birthDate);
-    addParticipant(student);
+    add(student);
   }
 
   public void createTeacher(String name, String cpf, String email, String phone, LocalDate birthDate) {
     Teacher teacher = new Teacher(name, cpf, email, phone, birthDate);
-    addParticipant(teacher);
+    add(teacher);
   }
 
   public void createExternal(String name, String cpf, String email, String phone, LocalDate birthDate) {
     External external = new External(name, cpf, email, phone, birthDate);
-    addParticipant(external);
+    add(external);
   }
 
 }

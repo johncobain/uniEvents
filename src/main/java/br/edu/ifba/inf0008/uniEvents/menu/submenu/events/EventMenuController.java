@@ -82,14 +82,13 @@ public class EventMenuController {
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
-    Event event = eventManager.getEvent(code);
-    if (event == null) {
+    if (eventManager.get(code) == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
       return;
     }
     try {
-      eventManager.removeEvent(event);
+      eventManager.remove(code);
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Event removed!"));
     } catch (Exception e) {
@@ -103,7 +102,7 @@ public class EventMenuController {
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
-    Event event = eventManager.getEvent(code);
+    Event event = eventManager.get(code);
     if (event == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
@@ -145,7 +144,7 @@ public class EventMenuController {
     }
 
     try {
-      eventManager.updateEvent(event, updatedEvent);
+      eventManager.update(event, updatedEvent);
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Event updated!"));
     } catch (Exception e) {
@@ -156,7 +155,7 @@ public class EventMenuController {
   }
 
   public void listAll(){
-    LinkedHashMap<String, Event> events = eventManager.getAllEvents();
+    LinkedHashMap<String, Event> events = eventManager.getAll();
 
     if (events.isEmpty()) {
       System.out.println(Lines.clear());
@@ -177,7 +176,7 @@ public class EventMenuController {
     String selectedType = EventForms.getType();
     if (selectedType.equalsIgnoreCase("cancel")) return;
 
-    LinkedHashMap<String, Event> events = eventManager.getAllEvents();
+    LinkedHashMap<String, Event> events = eventManager.getAll();
     ArrayList<Event> filteredEvents = new ArrayList<>();
     for (Event event : events.values()) {
       if (event.getType().equals(selectedType)) {
@@ -203,7 +202,7 @@ public class EventMenuController {
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
-    Event event = eventManager.getEvent(code);
+    Event event = eventManager.get(code);
     if (event == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
@@ -235,7 +234,7 @@ public class EventMenuController {
 
   public void clearAll(){
     try {
-      eventManager.clearAllEvents();
+      eventManager.clear();
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("All events removed!")); 
     } catch (Exception e) {

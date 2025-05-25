@@ -115,7 +115,7 @@ public abstract class Event {
   public void populateParticipants(ParticipantRepository participantRepository) {
     if(this.participantsCpfs != null && participantRepository != null){
       for (String cpf : this.participantsCpfs) {
-        Participant participant = participantRepository.getParticipant(cpf);
+        Participant participant = participantRepository.get(cpf);
         if (participant != null) {
           this.participants.put(cpf, participant);
         }

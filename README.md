@@ -43,7 +43,7 @@ The project simulates the management of events in a university, with the followi
 
 - Collections
 
-  - [ ] Utilize a collection more appropriate for each situation
+  - [x] Utilize a collection more appropriate for each situation
   - [ ] Demonstrate safe casting and correct usage of hierarchy collections
 
 - Other Requirements
@@ -101,3 +101,20 @@ The project simulates the management of events in a university, with the followi
    ```bash
    mvn exec:java
    ```
+
+4. Run the tests:
+
+   ```bash
+   mvn package
+   ```
+
+   ```bash
+   mvn test
+   ```
+
+### Sugestion
+
+The system requires a **valid CPF** to register a participant, if you want to generate one, you can use one of this websites:
+
+- [CPF Generator](https://www.cpfgenerator.net/).
+- [Validador de CPF - 4Devs](https://www.4devs.com.br/validador_cpf).
