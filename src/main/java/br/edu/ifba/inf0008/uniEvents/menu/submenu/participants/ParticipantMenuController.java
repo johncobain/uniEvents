@@ -1,10 +1,14 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -104,8 +108,15 @@ public class ParticipantMenuController {
     String birthDateString = ParticipantForms.getBirthDate();
     if (birthDateString.equals("cancel")) return;
 
+    Participant updatedParticipant = null;
+    switch (participant.getType()) {
+      case "Student" -> updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      case "Teacher" -> updatedParticipant = new Teacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      case "External" -> updatedParticipant = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+    }
+
     try {
-      participantManager.updateParticipant(participant, name, email, phone, Utils.stringToDate(birthDateString));
+      participantManager.updateParticipant(participant, updatedParticipant);
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Participant updated!"));
     } catch (Exception e) {
@@ -115,7 +126,7 @@ public class ParticipantMenuController {
   }
   
   public void listAll(){
-    ArrayList<Participant> participants = participantManager.getAllParticipants();
+    LinkedHashMap<String, Participant> participants = participantManager.getAllParticipants();
 
     if(participants.isEmpty()){
       System.out.println(Lines.clear());
@@ -125,7 +136,7 @@ public class ParticipantMenuController {
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine("All Participants", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
-    for(Participant participant : participants){
+    for(Participant participant : participants.values()){
       System.out.println(Lines.straightLine());
       System.out.print(participant.toString());
       System.out.println(Lines.straightLine());
@@ -137,9 +148,10 @@ public class ParticipantMenuController {
     String selectedType = ParticipantForms.getType();
     if(selectedType.equalsIgnoreCase("cancel")) return;
 
-    ArrayList<Participant> participants = participantManager.getAllParticipants();
+    LinkedHashMap<String, Participant> participants = participantManager.getAllParticipants();
+
     ArrayList<Participant> filteredParticipants = new ArrayList<>();
-    for (Participant participant : participants) {
+    for (Participant participant : participants.values()) {
       if (participant.getType().equals(selectedType)) {
         filteredParticipants.add(participant);
       }
