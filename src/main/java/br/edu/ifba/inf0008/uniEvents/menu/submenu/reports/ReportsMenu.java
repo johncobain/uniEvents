@@ -26,8 +26,7 @@ public class ReportsMenu extends Menu {
   @Override
   public void show() {
     int response;
-    // IMenu submenu;
-    do { 
+    while(true){
       response = super.menuResponse();
 
       switch (response) {
@@ -59,6 +58,6 @@ public class ReportsMenu extends Menu {
           }
           default -> throw new AssertionError();
       }
-    } while (true);
+    }
   }  
 }

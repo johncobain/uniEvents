@@ -24,7 +24,7 @@ public class EventsMenu extends Menu {
   @Override
   public void show() {
     int response;
-    do { 
+    while(true){
       response = super.menuResponse();
 
       switch (response) {
@@ -54,6 +54,6 @@ public class EventsMenu extends Menu {
           }
           default -> throw new AssertionError();
       }
-    } while (true);
+    }
   }
 }

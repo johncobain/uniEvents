@@ -33,7 +33,7 @@ public class MainMenu extends Menu{
   public void show() {
     int response;
     IMenu submenu;
-    do { 
+    while(true){
       response = super.menuResponse();
 
       switch (response) {
@@ -54,6 +54,6 @@ public class MainMenu extends Menu{
           }
           default -> throw new AssertionError();
       }
-    } while (true);
+    }
   }
 }
