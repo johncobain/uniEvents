@@ -5,23 +5,21 @@ import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
-public class StudentMenu extends Menu{
+public class TeacherMenu extends Menu{
   private final ParticipantMenuController participantMenuController = new ParticipantMenuController();
 
-  public StudentMenu(ParticipantManager participantManager, EventManager eventManager) {
-    super("Student Management", Colors.BLUE_BOLD);
+  public TeacherMenu(ParticipantManager participantManager, EventManager eventManager) {
+    super("Teacher Management", Colors.BLUE_BOLD);
     super.addOption("Exit to Participant Menu");
-    super.addOption("Create Student");
-    super.addOption("Remove Student");
-    super.addOption("Update Student");
-    super.addOption("List All Students");
-    super.addOption("Show Student");
-    super.addOption("Show Student Events");
-    super.addOption("Clear All Students");
-    super.addOption("Add Student to Event");
-    super.addOption("Remove Student from Event");
-    super.addOption("Add Student Interest");
-    super.addOption("Remove Student Interest");
+    super.addOption("Create Teacher");
+    super.addOption("Remove Teacher");
+    super.addOption("Update Teacher");
+    super.addOption("List All Teachers");
+    super.addOption("Show Teacher");
+    super.addOption("Show Teacher Events");
+    super.addOption("Clear All Teachers");
+    super.addOption("Add Teacher to Event");
+    super.addOption("Remove Teacher from Event");
     
     participantMenuController.setParticipantManager(participantManager);
     participantMenuController.setEventManager(eventManager);
@@ -38,16 +36,16 @@ public class StudentMenu extends Menu{
             return;
           }
           case 1 -> {
-            participantMenuController.create("Student");
+            participantMenuController.create("Teacher");
           }
           case 2 -> {
             participantMenuController.remove();
           }
           case 3 -> {
-            participantMenuController.update("Student");
+            participantMenuController.update("Teacher");
           }
           case 4 -> {
-            participantMenuController.listType("Student");
+            participantMenuController.listType("Teacher");
           }
           case 5 -> {
             participantMenuController.get();
@@ -63,12 +61,6 @@ public class StudentMenu extends Menu{
           }
           case 9 -> {
             participantMenuController.removeFromEvent();
-          }
-          case 10 -> {
-            participantMenuController.addInterest();
-          }
-          case 11 -> {
-            participantMenuController.removeInterest();
           }
           default -> throw new AssertionError();
       }

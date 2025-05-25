@@ -1,7 +1,8 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
@@ -59,7 +60,7 @@ public class ParticipantMenuController {
 
     switch (selectedType) {
       // TODO: implement create student
-      case "Student" -> participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), "Computer Science", 1, AcademicStatus.ACTIVE, 9.5, "IFBA", Utils.stringToDate("2022-01-01"));
+      case "Student" -> participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), "Computer Science", 1, AcademicStatus.ACTIVE, 9.5, "IFBA", Utils.stringToDate("01012002"));
       case "Teacher" -> participantManager.createTeacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> participantManager.createExternal(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
@@ -147,27 +148,21 @@ public class ParticipantMenuController {
 
   }
 
-  public void listByType(){
-    String selectedType = ParticipantForms.getType();
-    if(selectedType.equalsIgnoreCase("cancel")) return;
+  public void listType(String type){
+    List<Participant> participants = participantManager.getAll().values()
+    .stream()
+    .filter(p -> p.getType().equals(type))
+    .collect(Collectors.toList()); 
 
-    LinkedHashMap<String, Participant> participants = participantManager.getAll();
-
-    ArrayList<Participant> filteredParticipants = new ArrayList<>();
-    for (Participant participant : participants.values()) {
-      if (participant.getType().equals(selectedType)) {
-        filteredParticipants.add(participant);
-      }
-    }
-    if(filteredParticipants.isEmpty()){
+    if(participants.isEmpty()){
       System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("No participants found!"));
+      System.out.println(Lines.errorLine("No " + type + "s found!"));
       return;
     }
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine(selectedType+" Participants", Colors.BLUE_BOLD));
+    System.out.println(Lines.titleLine(type+"s", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
-    for (Participant participant : filteredParticipants) {
+    for (Participant participant : participants) {
       System.out.println(Lines.straightLine());
       System.out.print(participant.toString());
       System.out.println(Lines.straightLine());
