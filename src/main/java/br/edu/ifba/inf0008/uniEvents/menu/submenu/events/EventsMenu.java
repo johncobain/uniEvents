@@ -15,7 +15,7 @@ public class EventsMenu extends Menu {
       super.addOption("Update Event");
       super.addOption("List All Events");
       super.addOption("List Events by Type");
-      super.addOption("Show Event Participants");
+      super.addOption("Show Event");
       super.addOption("Clear All Events");
 
       eventMenuController.setEventManager(eventManager);
@@ -47,7 +47,7 @@ public class EventsMenu extends Menu {
             eventMenuController.listByType();
           }
           case 6 -> {
-            eventMenuController.showParticipants();
+            eventMenuController.show();
           }
           case 7 -> {
             eventMenuController.clearAll();

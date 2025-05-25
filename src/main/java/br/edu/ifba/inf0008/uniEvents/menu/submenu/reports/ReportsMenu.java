@@ -1,5 +1,8 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.reports;
+import java.util.ArrayList;
+
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
+import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.FileGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
@@ -49,11 +52,13 @@ public class ReportsMenu extends Menu {
             System.out.println("Generate Report by Location Menu");
           }
           case 4 -> {
-            String detailedReport = reportsManager.generateReport(eventManager.getAll(), "Detailed Report", true);
+            ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
+            String detailedReport = reportsManager.generateReport(events, "Detailed Report", true);
             System.out.println(detailedReport);
           }
           case 5 -> {
-            String summaryReport = reportsManager.generateReport(eventManager.getAll(), "Summary Report", false);
+            ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
+            String summaryReport = reportsManager.generateReport(events, "Summary Report", false);
             System.out.println(summaryReport);
           }
           default -> throw new AssertionError();

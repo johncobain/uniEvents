@@ -11,6 +11,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
+import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
@@ -155,7 +156,7 @@ public class EventMenuController {
   }
 
   public void listAll(){
-    LinkedHashMap<String, Event> events = eventManager.getAll();
+    ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
 
     if (events.isEmpty()) {
       System.out.println(Lines.clear());
@@ -165,10 +166,8 @@ public class EventMenuController {
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine("All Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
-    for (Event event : events.values()) {
-      System.out.println(Lines.straightLine());
-      System.out.print(event.toString());
-      System.out.println(Lines.straightLine());
+    for(Event event : events){
+      System.out.print(ReportsManager.summary(event, false));
     }
   }
 
@@ -198,7 +197,7 @@ public class EventMenuController {
     }
   }
 
-  public void showParticipants(){
+  public void show(){
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
