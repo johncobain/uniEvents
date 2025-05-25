@@ -2,7 +2,7 @@ package br.edu.ifba.inf0008.uniEvents.menu;
 
 import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventsMenu;
-import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantsMenu;
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.FileGenerator;
@@ -41,7 +41,7 @@ public class MainMenu extends Menu{
               return;
           }
           case 1 -> {
-            submenu = new ParticipantsMenu(participantManager, eventManager);
+            submenu = new ParticipantMenu(participantManager, eventManager);
             submenu.show();
           }
           case 2 -> {

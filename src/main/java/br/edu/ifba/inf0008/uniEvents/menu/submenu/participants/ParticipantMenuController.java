@@ -9,6 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
+import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -27,7 +28,8 @@ public class ParticipantMenuController {
     this.eventManager = eventManager;
   }
 
-  public void create(){
+  public void create(String type){
+    //TODO: implement automatically set type
     String selectedType = ParticipantForms.getType();
     if (selectedType.equalsIgnoreCase("cancel")) return;
 
@@ -56,7 +58,8 @@ public class ParticipantMenuController {
     if (birthDateString.equals("cancel")) return;
 
     switch (selectedType) {
-      case "Student" -> participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      // TODO: implement create student
+      case "Student" -> participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), "Computer Science", 1, AcademicStatus.ACTIVE, 9.5, "IFBA", Utils.stringToDate("2022-01-01"));
       case "Teacher" -> participantManager.createTeacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> participantManager.createExternal(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
@@ -84,7 +87,7 @@ public class ParticipantMenuController {
     }
   }
 
-  public void update(){
+  public void update(String type){
     String cpf = ParticipantForms.getCpf(participantManager);
     if(cpf.equalsIgnoreCase("cancel")) return;
 
@@ -109,7 +112,8 @@ public class ParticipantMenuController {
 
     Participant updatedParticipant = null;
     switch (participant.getType()) {
-      case "Student" -> updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      // TODO: implement update student
+      case "Student" -> updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), "Computer Science", 1, AcademicStatus.ACTIVE, 9.5, "IFBA", Utils.stringToDate("2022-01-01"));
       case "Teacher" -> updatedParticipant = new Teacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> updatedParticipant = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
@@ -168,6 +172,10 @@ public class ParticipantMenuController {
       System.out.print(participant.toString());
       System.out.println(Lines.straightLine());
     }
+  }
+
+  public void get(){
+    //TODO: implement get Participant
   }
 
   public void showEvents(){
@@ -261,5 +269,13 @@ public class ParticipantMenuController {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }
+  }
+
+  public void addInterest(){
+    //TODO: implement add interest
+  }
+
+  public void removeInterest(){
+    //TODO: implement remove interest
   }
 }

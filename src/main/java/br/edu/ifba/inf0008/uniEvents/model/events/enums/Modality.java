@@ -30,7 +30,7 @@ public enum Modality {
 
   public abstract String getInstructions();
   
-  public static ArrayList<String> getAllModalities() {
+  public static ArrayList<String> getAll() {
     ArrayList<String> modalities = new ArrayList<>();
     for (Modality modality : Modality.values()) {
       modalities.add(modality.toString());

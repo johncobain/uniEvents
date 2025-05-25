@@ -24,3 +24,9 @@ List<Student> students = participantsMap.values().stream()  // 1. Pega um Stream
     // OU: .map(Student.class::cast)
     .collect(Collectors.toList());        // 4. Coleta: junta os resultados em uma nova List
 ```
+
+- add `addInterest` to Participant menu (for Student)
+
+- student must have a required gpa for course
+
+- maybe another submenu for Participant menu?

@@ -8,6 +8,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
+import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 
 public class ParticipantManager {
@@ -66,8 +67,8 @@ public class ParticipantManager {
     return participants;
   }
 
-  public void createStudent(String name, String cpf, String email, String phone, LocalDate birthDate) {
-    Student student = new Student(name, cpf, email, phone, birthDate);
+  public void createStudent(String name, String cpf, String email, String phone, LocalDate birthDate, String course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
+    Student student = new Student(name, cpf, email, phone, birthDate, course, currentSemester, academicStatus, gpa, campus, enrollmentDate);
     add(student);
   }
 
