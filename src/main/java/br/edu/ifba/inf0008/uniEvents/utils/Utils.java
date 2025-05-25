@@ -29,4 +29,21 @@ public class Utils {
         }
         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9);
     }
+
+    public static String formatPhone(String phone) {
+        if(phone.matches("\\d{2}\\ \\d{4,5}-\\d{4}")) {
+            return phone;
+        }
+        if(phone.matches("\\d{2} \\d{8,9}")){
+            if(phone.length() == 11) {
+                return phone.substring(0, 2) + " " + phone.substring(3, 7) + "-" + phone.substring(7);
+            }
+            return phone.substring(0, 2) + " " + phone.substring(3, 8) + "-" + phone.substring(8);
+        }
+
+        if(phone.length() == 10) {
+            return phone.substring(0, 2) + " " + phone.substring(2, 6) + "-" + phone.substring(6);
+        }
+        return phone.substring(0, 2) + " " + phone.substring(2, 7) + "-" + phone.substring(7);
+    }
 }

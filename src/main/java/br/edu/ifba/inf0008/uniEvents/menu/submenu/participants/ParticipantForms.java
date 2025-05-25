@@ -81,8 +81,23 @@ public class ParticipantForms {
     return email;
   }
   protected static String getPhone(){
-    System.out.print("Enter participant phone (\"cancel\" to exit)>> ");
-    String phone = Utils.scanner.nextLine();
+    String phone;
+    while (true) { 
+      System.out.print("Enter participant phone (\"cancel\" to exit)>> ");
+      phone = Utils.scanner.nextLine();
+      if(phone.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return "cancel";
+      }
+      try {
+        Validation.validatePhone(phone);
+        phone = Utils.formatPhone(phone);
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
 
     System.out.println(Lines.clear());
     return phone;

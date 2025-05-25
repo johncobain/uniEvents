@@ -64,7 +64,17 @@ public class Validation {
 
   }
 
-  public static void validatePhone(String phone){}
+  public static void validatePhone(String phone){
+    if(phone == null || phone.isEmpty() || phone.isBlank()) {
+      throw new IllegalArgumentException("Phone cannot be empty!");
+    }
+
+    if(!phone.matches("\\d{2} \\d{4,5}-\\d{4}") &&
+      !phone.matches("\\d{2} \\d{8,9}") &&
+       !phone.matches("\\d{10,11}")) {
+      throw new IllegalArgumentException("Not a valid phone number!");
+    }
+  }
 
   public static void validateDate(String date){
     if(date == null || date.isEmpty() || date.isBlank()) {

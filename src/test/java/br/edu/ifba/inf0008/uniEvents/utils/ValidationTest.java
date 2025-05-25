@@ -183,6 +183,38 @@ public class ValidationTest {
 
   @Test
   void testValidatePhone() {
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.validatePhone("75988888888"));
+    assertDoesNotThrow(() -> Validation.validatePhone("7588888888"));
+    assertDoesNotThrow(() -> Validation.validatePhone("75 988888888"));
+    assertDoesNotThrow(() -> Validation.validatePhone("75 88888888"));
+    assertDoesNotThrow(() -> Validation.validatePhone("75 98888-8888"));
+    assertDoesNotThrow(() -> Validation.validatePhone("75 8888-8888"));
 
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone("75 9888888888");
+    });
+    assertEquals("Not a valid phone number!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone("75 98888-888");
+    });
+    assertEquals("Not a valid phone number!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone("75 98888-88888");
+    });
+    assertEquals("Not a valid phone number!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone("");
+    });
+    assertEquals("Phone cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone(" ");
+    });
+    assertEquals("Phone cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone(null);
+    });
+    assertEquals("Phone cannot be empty!", exception.getMessage());
+    
   }
 }
