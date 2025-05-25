@@ -9,7 +9,6 @@ public class ValidationTest {
   @Test
   void testIsInteger() {
     Exception exception;
-    // Test cases for isInteger
     assertDoesNotThrow(() -> Validation.isInteger("123"));
     assertDoesNotThrow(() -> Validation.isInteger("0"));
     assertDoesNotThrow(() -> Validation.isInteger("-123"));
@@ -37,6 +36,37 @@ public class ValidationTest {
     assertEquals("Input cannot be empty!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.isInteger(null);
+    });
+    assertEquals("Input cannot be empty!", exception.getMessage());
+  }
+
+  @Test
+  void testIsDouble(){
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.isDouble("123.0"));
+    assertDoesNotThrow(() -> Validation.isDouble("0.1"));
+    assertDoesNotThrow(() -> Validation.isDouble("-123.25"));
+    assertDoesNotThrow(() -> Validation.isDouble("20"));
+    assertDoesNotThrow(() -> Validation.isDouble("2147483647"));
+    assertDoesNotThrow(() -> Validation.isDouble("-2147483648"));
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isDouble("notAnInteger");
+    });
+    assertEquals("Invalid input, not a double!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isDouble("123abc");
+    });
+    assertEquals("Invalid input, not a double!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isDouble("");
+    });
+    assertEquals("Input cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isDouble(" ");
+    });
+    assertEquals("Input cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isDouble(null);
     });
     assertEquals("Input cannot be empty!", exception.getMessage());
   }

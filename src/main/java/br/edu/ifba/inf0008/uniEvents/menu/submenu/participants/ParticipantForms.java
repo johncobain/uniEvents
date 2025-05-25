@@ -9,25 +9,10 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class ParticipantForms {
-  
-  protected static String getType(){
-    BaseMenu baseMenu;
-    ArrayList<String> participantTypes = new ArrayList<>();
-    participantTypes.add("Cancel");
-    participantTypes.add("Student");
-    participantTypes.add("Teacher");
-    participantTypes.add("External");
-    
-    baseMenu = new BaseMenu("Select participant type",  participantTypes);
-    int response = baseMenu.getResponse();
-    if (response == 0) return "cancel";
-    return participantTypes.get(response);
-  }
-
-  protected static String getName(){
+  protected static String getName(String type){
     String name;
     while(true) {
-      System.out.print("Enter participant name (\"cancel\" to exit)>> ");
+      System.out.print("Enter " + type.toLowerCase() + " name (\"cancel\" to exit)>> ");
       name = Utils.scanner.nextLine();
       if (!name.isEmpty() || !name.isBlank()) break;
       System.out.println(Lines.clear());
@@ -37,10 +22,10 @@ public class ParticipantForms {
     return name;
   }
   
-  protected static String getCpf(ParticipantManager participantManager){
+  protected static String getCpf(ParticipantManager participantManager) {
     String cpf;
     while (true) { 
-      System.out.print("Enter participant CPF (XXX.XXX.XXX-XX or XXXXXXXXXXX) (\"cancel\" to exit)>> ");
+      System.out.print("Enter CPF (XXX.XXX.XXX-XX or XXXXXXXXXXX) (\"cancel\" to exit)>> ");
       cpf = Utils.scanner.nextLine();
       if (cpf.equalsIgnoreCase("cancel")) {
         System.out.println(Lines.clear());
@@ -62,7 +47,7 @@ public class ParticipantForms {
   protected static String getEmail(){
     String email;
     while (true) { 
-      System.out.print("Enter participant email (\"cancel\" to exit)>> ");
+      System.out.print("Enter email (\"cancel\" to exit)>> ");
       email = Utils.scanner.nextLine();
       if(email.equalsIgnoreCase("cancel")) {
         System.out.println(Lines.clear());
@@ -82,7 +67,7 @@ public class ParticipantForms {
   protected static String getPhone(){
     String phone;
     while (true) { 
-      System.out.print("Enter participant phone (\"cancel\" to exit)>> ");
+      System.out.print("Enter phone (\"cancel\" to exit)>> ");
       phone = Utils.scanner.nextLine();
       if(phone.equalsIgnoreCase("cancel")) {
         System.out.println(Lines.clear());
@@ -101,17 +86,17 @@ public class ParticipantForms {
     System.out.println(Lines.clear());
     return phone;
   }
-  protected static String getBirthDate(){
-    String birthDateString;
+  protected static String getDate(String type) {
+    String dateString;
     while(true){
-      System.out.print("Enter participant birth date (dd/MM/yyyy or ddMMyyyy) (\"cancel\" to exit)>> ");
-      birthDateString = Utils.scanner.nextLine();
-      if(birthDateString.equalsIgnoreCase("cancel")){
+      System.out.print("Enter " + type.toLowerCase() + " (dd/MM/yyyy or ddMMyyyy) (\"cancel\" to exit)>> ");
+      dateString = Utils.scanner.nextLine();
+      if(dateString.equalsIgnoreCase("cancel")){
         System.out.println(Lines.clear());
         return "cancel";
       }
       try {
-        Validation.validateDate(birthDateString);
+        Validation.validateDate(dateString);
         break;
       } catch (Exception e) {
         System.out.println(Lines.clear());
@@ -120,7 +105,56 @@ public class ParticipantForms {
     }
 
     System.out.println(Lines.clear());
-    return birthDateString;
+    return dateString;
   }
 
+  protected static String getEnum(ArrayList<String> options, String title) {
+    BaseMenu baseMenu;
+    baseMenu = new BaseMenu("Select " + title, options);
+    int response = baseMenu.getResponse();
+    if (response == 0) return "cancel";
+    return options.get(response);
+  }
+
+  protected static int getSemester(){
+    String semester;
+    while (true) { 
+      System.out.print("Enter semester (\"cancel\" to exit)>> ");
+      semester = Utils.scanner.nextLine();
+      if(semester.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return 0;
+      }
+      try {
+        Validation.isInteger(semester);
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return Integer.parseInt(semester);
+  }
+
+  protected static double getGpa(){
+    String gpa;
+    while (true) { 
+      System.out.print("Enter GPA (\"cancel\" to exit)>> ");
+      gpa = Utils.scanner.nextLine();
+      if(gpa.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return 0;
+      }
+      try {
+        Validation.isDouble(gpa);
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return Double.parseDouble(gpa);
+  }
 }

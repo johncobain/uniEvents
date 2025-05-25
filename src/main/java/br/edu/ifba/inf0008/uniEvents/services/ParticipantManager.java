@@ -31,9 +31,9 @@ public class ParticipantManager {
     participantRepository.remove(cpf);
   }
 
-  public void update(Participant participant, Participant updatedParticipant) {
-    participants.put(participant.getCpf(), updatedParticipant);
-    participantRepository.update(participant, participant.getCpf());
+  public void update(String cpf, Participant updatedParticipant) {
+    participants.put(cpf, updatedParticipant);
+    participantRepository.update(updatedParticipant, cpf);
   }
 
   public Participant get(String cpf){

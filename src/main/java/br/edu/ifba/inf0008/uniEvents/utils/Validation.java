@@ -120,4 +120,16 @@ public class Validation {
       throw new IllegalArgumentException("Invalid input, not an integer!");
     }
   }
+
+  public static int isDouble(String value){
+    if (value == null || value.isEmpty() || value.isBlank()) {
+      throw new IllegalArgumentException("Input cannot be empty!");
+    }
+    try {
+      double parsedValue = Double.parseDouble(value);
+      return (int) parsedValue;
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("Invalid input, not a double!");
+    }
+  }
 }

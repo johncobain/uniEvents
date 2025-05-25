@@ -15,6 +15,19 @@ public enum AcademicStatus {
     this.description = description;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public static AcademicStatus fromDescription(String desc) {
+    for (AcademicStatus status : AcademicStatus.values()) {
+      if (status.getDescription().equalsIgnoreCase(desc)) {
+        return status;
+      }
+    }
+    throw new IllegalArgumentException("No enum constant with description: " + desc);
+  }
+
   public ArrayList<AcademicStatus> getAll(){
     ArrayList<AcademicStatus> academicStatuses = new ArrayList<>();
     academicStatuses.addAll(Arrays.asList(AcademicStatus.values()));

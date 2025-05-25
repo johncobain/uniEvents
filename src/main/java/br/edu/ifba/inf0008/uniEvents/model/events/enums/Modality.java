@@ -28,6 +28,19 @@ public enum Modality {
     this.description = description;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public static Modality fromDescription(String desc) {
+    for (Modality status : Modality.values()) {
+      if (status.getDescription().equalsIgnoreCase(desc)) {
+        return status;
+      }
+    }
+    throw new IllegalArgumentException("No enum constant with description: " + desc);
+  }
+
   public abstract String getInstructions();
   
   public static ArrayList<String> getAll() {
