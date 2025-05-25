@@ -13,12 +13,11 @@ public class ParticipantForms {
   protected static String getType(){
     BaseMenu baseMenu;
     ArrayList<String> participantTypes = new ArrayList<>();
-    {
-      participantTypes.add("Cancel");
-      participantTypes.add("Student");
-      participantTypes.add("Teacher");
-      participantTypes.add("External");
-    }
+    participantTypes.add("Cancel");
+    participantTypes.add("Student");
+    participantTypes.add("Teacher");
+    participantTypes.add("External");
+    
     baseMenu = new BaseMenu("Select participant type",  participantTypes);
     int response = baseMenu.getResponse();
     if (response == 0) return "cancel";

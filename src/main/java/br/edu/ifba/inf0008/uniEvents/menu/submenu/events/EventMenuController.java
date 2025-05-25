@@ -2,7 +2,6 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 
 import java.util.ArrayList;
 
-import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
@@ -10,95 +9,56 @@ import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
-import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class EventMenuController {
   private EventManager eventManager;
-
-  BaseMenu baseMenu;
-  ArrayList<String> eventTypes = new ArrayList<>();
-  {
-    eventTypes.add("Cancel");
-    eventTypes.add("Lecture");
-    eventTypes.add("Workshop");
-    eventTypes.add("Short Course");
-    eventTypes.add("Academic Fair");
-  }
   
   public void setEventManager(EventManager eventManager) {
     this.eventManager = eventManager;
   }
   
-  public Boolean create(){
-    baseMenu = new BaseMenu("Select event type", eventTypes);
-    int response = baseMenu.getResponse();
+  public void create(){
+    String selectedType = EventForms.getType();
+    if (selectedType.equalsIgnoreCase("cancel")) return;
 
-    if (response == 0) {
-      return false;
-    }
+    String name = EventForms.getText("Name");
+    if (name.equalsIgnoreCase("cancel")) return;
 
-    String selectedType = eventTypes.get(response);
+    String location = EventForms.getText("Location");
+    if (location.equalsIgnoreCase("cancel")) return;
 
-    System.out.print("Enter event name (\"cancel\" to exit)>> ");
-    String name = Utils.scanner.nextLine();
-    if (name.equals("cancel")) return false;
-    System.out.print("Enter event location (\"cancel\" to exit)>> ");
-    String location = Utils.scanner.nextLine();
-    if (location.equals("cancel")) return false;
-    System.out.print("Enter event description (\"cancel\" to exit)>> ");
-    String description = Utils.scanner.nextLine();
-    if (description.equals("cancel")) return false;
-    System.out.print("Enter event date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
-    String date = Utils.scanner.nextLine();
-    if (date.equals("cancel")) return false;
-    int capacity;
-    while(true) { 
-      System.out.print("Enter event capacity (\"cancel\" to exit)>> ");
-      String capacityStr = Utils.scanner.nextLine();
-      if (capacityStr.equals("cancel")) return false;
-      try {
-        capacity = Validation.isInteger(capacityStr);
-        if (capacity <= 0) {
-          throw new Exception("Capacity must be greater than 0!");
-        }
-        break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
-    ArrayList<String> modalities = new ArrayList<>();
-    modalities.add(Modality.INPERSON.toString());
-    modalities.add(Modality.ONLINE.toString());
-    modalities.add(Modality.HYBRID.toString());
-    baseMenu = new BaseMenu("Select event modality", modalities);
-    int modalityResponse = baseMenu.getResponse();
+    String description = EventForms.getText("Description");
+    if (description.equalsIgnoreCase("cancel")) return;
+
+    String date = EventForms.getDate();
+    if (date.equalsIgnoreCase("cancel")) return;
+
+    int capacity = EventForms.getCapacity();
+    if (capacity == -1) return;
+
+    int modalityResponse = EventForms.getModality();
+    if (modalityResponse == 0) return;
 
     Modality modality;
     switch (modalityResponse) {
-      case 0 -> modality = Modality.INPERSON;
-      case 1 -> modality = Modality.ONLINE;
-      case 2 -> modality = Modality.HYBRID;
+      case 1 -> modality = Modality.INPERSON;
+      case 2 -> modality = Modality.ONLINE;
+      case 3 -> modality = Modality.HYBRID;
       default -> modality = Modality.INPERSON;
     }
     
     String code;
-    do { 
-      System.out.print("Enter event code (\"cancel\" to exit)>> ");
-      code = Utils.scanner.nextLine();
-      if (code.equals("cancel")) return false;
+    while (true) { 
+      code = EventForms.getCode();
       if(eventManager.isCodeAlreadyInUse(code)){
         System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Code '"+code+"' already in use!"));
-        continue;
-      }
-      if (code.isEmpty()) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Code cannot be empty!"));
+        System.out.println(Lines.errorLine("Code '"+code+"' is already in use!"));
         continue;
       }
       break;
-    } while (true);
+    }
+    if(code.equalsIgnoreCase("cancel")) return;
+
     switch (selectedType) {
       case "Lecture" -> eventManager.createLecture(name, description, location, Utils.stringToDate(date), capacity, modality, code);
       case "Workshop" -> eventManager.createWorkshop(name, description, location, Utils.stringToDate(date), capacity, modality, code);
@@ -109,85 +69,72 @@ public class EventMenuController {
 
     }
 
-    return true;
+    System.out.println(Lines.clear());
+    System.out.println(Lines.successLine("Event created!"));
   }
 
-  public Boolean remove(){
-    System.out.print("Enter event code (\"cancel\" to exit)>> ");
-    String code = Utils.scanner.nextLine();
-    if (code.equals("cancel")) return false;
+  public void remove(){
+    String code = EventForms.getCode();
+    if (code.equalsIgnoreCase("cancel")) return;
+
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
-      return false;
+      return;
     }
     try {
       eventManager.removeEvent(event);
-      return true;
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Event removed!"));
     } catch (Exception e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
-      return false;
     }
 
   }
 
-  public Boolean update(){
-    System.out.print("Enter event code (\"cancel\" to exit)>> ");
-    String code = Utils.scanner.nextLine();
-    if (code.equals("cancel")) return false;
+  public void update(){
+    String code = EventForms.getCode();
+    if (code.equalsIgnoreCase("cancel")) return;
+
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
-      return false;
+      return;
     }
-    System.out.print("Enter event name (\"cancel\" to exit)>> ");
-    String name = Utils.scanner.nextLine();
-    if (name.equals("cancel")) return false;
-    System.out.print("Enter event location (\"cancel\" to exit)>> ");
-    String location = Utils.scanner.nextLine();
-    if (location.equals("cancel")) return false;
-    System.out.print("Enter event description (\"cancel\" to exit)>> ");
-    String description = Utils.scanner.nextLine();
-    if (description.equals("cancel")) return false;
-    System.out.print("Enter event date (dd/MM/yyyy) (\"cancel\" to exit)>> ");
-    String date = Utils.scanner.nextLine();
-    if (date.equals("cancel")) return false;
-    int capacity;
-    do { 
-      System.out.print("Enter event capacity (\"cancel\" to exit)>> ");
-      String capacityStr = Utils.scanner.nextLine();
-      if (capacityStr.equals("cancel")) return false;
-      try {
-        capacity = Integer.parseInt(capacityStr);
-        if (capacity <= 0) {
-          throw new Exception("Capacity must be greater than 0!");
-        }
-        break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    } while (true);
-    ArrayList<String> modalities = new ArrayList<>();
-    modalities.add(Modality.INPERSON.toString());
-    modalities.add(Modality.ONLINE.toString());
-    modalities.add(Modality.HYBRID.toString());
-    baseMenu = new BaseMenu("Select event modality", modalities);
-    int modalityResponse = baseMenu.getResponse();
+
+    String name = EventForms.getText("Name");
+    if (name.equalsIgnoreCase("cancel")) return;
+
+    String location = EventForms.getText("Location");
+    if (location.equalsIgnoreCase("cancel")) return;
+
+    String description = EventForms.getText("Description");
+    if (description.equalsIgnoreCase("cancel")) return;
+
+    String date = EventForms.getDate();
+    if (date.equalsIgnoreCase("cancel")) return;
+    
+    int capacity = EventForms.getCapacity();
+    if (capacity == -1) return;
+
+    int modalityResponse = EventForms.getModality();
+    if (modalityResponse == 0) return;
+
     Modality modality;
     switch (modalityResponse) {
-      case 0 -> modality = Modality.INPERSON;
-      case 1 -> modality = Modality.ONLINE;
-      case 2 -> modality = Modality.HYBRID;
+      case 1 -> modality = Modality.INPERSON;
+      case 2 -> modality = Modality.ONLINE;
+      case 3 -> modality = Modality.HYBRID;
       default -> modality = Modality.INPERSON;
     }
     
     eventManager.updateEvent(event, name, location, description, Utils.stringToDate(date), capacity, modality);
 
-    return true;
+    System.out.println(Lines.clear());
+    System.out.println(Lines.successLine("Event updated!"));
   }
 
   public void listAll(){
@@ -209,14 +156,9 @@ public class EventMenuController {
   }
 
   public void listByType(){
-    baseMenu = new BaseMenu("Select event type", eventTypes);
-    int response = baseMenu.getResponse();
+    String selectedType = EventForms.getType();
+    if (selectedType.equalsIgnoreCase("cancel")) return;
 
-    if (response == 0) {
-      return;
-    }
-
-    String selectedType = eventTypes.get(response);
     ArrayList<Event> events = eventManager.getAllEvents();
     ArrayList<Event> filteredEvents = new ArrayList<>();
     for (Event event : events) {
@@ -240,9 +182,9 @@ public class EventMenuController {
   }
 
   public void showParticipants(){
-    System.out.print("Enter event code (\"cancel\" to exit)>> ");
-    String code = Utils.scanner.nextLine();
-    if (code.equals("cancel")) return;
+    String code = EventForms.getCode();
+    if (code.equalsIgnoreCase("cancel")) return;
+
     Event event = eventManager.getEvent(code);
     if (event == null) {
       System.out.println(Lines.clear());
@@ -273,12 +215,14 @@ public class EventMenuController {
     }
   }
 
-  public Boolean clearAll(){
+  public void clearAll(){
     try {
       eventManager.clearAllEvents();
-      return true;   
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("All events removed!")); 
     } catch (Exception e) {
-      return false;
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
     }
   } 
 }

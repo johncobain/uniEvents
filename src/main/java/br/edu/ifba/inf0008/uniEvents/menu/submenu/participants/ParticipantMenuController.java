@@ -2,6 +2,7 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
@@ -32,7 +33,11 @@ public class ParticipantMenuController {
     String cpf;
     while(true){
       cpf = ParticipantForms.getCpf(participantManager);
-      if(participantManager.isCpfAlreadyInUse(cpf)) System.out.println(Lines.errorLine("CPF already in use! Please try again."));
+      if(participantManager.isCpfAlreadyInUse(cpf)){
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine("CPF '" + cpf + "' is already in use! Please try again."));
+        continue;
+      }
       break;
     }
     if(cpf.equalsIgnoreCase("cancel")) return;
@@ -200,9 +205,8 @@ public class ParticipantMenuController {
       return;
     }
 
-    System.out.print("Enter event code (\"cancel\" to exit)>> ");
-    String code = Utils.scanner.nextLine();
-    if (code.equals("cancel")) return;
+    String code = EventForms.getCode();
+    if (code.equalsIgnoreCase("cancel")) return;
 
     Event event = eventManager.getEvent(code);
     if (event == null) {

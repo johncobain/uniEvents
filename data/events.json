@@ -11,5 +11,19 @@
       "068.390.215-64"
     ],
     "code": "A0"
+  },
+  {
+    "eventTypeJson": "Workshop",
+    "name": "Javinha",
+    "description": "Sandrinho vai ensinar Qt",
+    "location": "Lab2",
+    "date": "27/05/2025",
+    "capacity": 5,
+    "modality": "INPERSON",
+    "participantsCpfs": [
+      "166.332.980-05",
+      "948.332.120-48"
+    ],
+    "code": "QT"
   }
 ]

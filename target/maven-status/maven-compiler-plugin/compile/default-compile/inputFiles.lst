@@ -3,6 +3,7 @@
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/Menu.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/menuInterface/IMenu.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/BaseMenu.java
+/home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/events/EventForms.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/events/EventMenuController.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/events/EventsMenu.java
 /home/john/workspace/uniEvents/src/main/java/br/edu/ifba/inf0008/uniEvents/menu/submenu/participants/ParticipantForms.java

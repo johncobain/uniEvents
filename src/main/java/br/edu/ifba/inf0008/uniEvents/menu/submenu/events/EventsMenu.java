@@ -3,7 +3,6 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
-import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class EventsMenu extends Menu {
   private final EventMenuController eventMenuController = new EventMenuController();
@@ -33,32 +32,13 @@ public class EventsMenu extends Menu {
               return;
           }
           case 1 -> {
-            Boolean created = eventMenuController.create();
-            if (created) {
-              System.out.println(Lines.clear());
-              System.out.println(Lines.successLine("Event created!"));
-            }else{
-              System.out.println(Lines.clear());
-              System.out.println(Lines.errorLine("Error creating event!"));
-            }
+            eventMenuController.create();
           }
           case 2 -> {
-            Boolean removed = eventMenuController.remove();
-            if (removed) {
-              System.out.println(Lines.clear());
-              System.out.println(Lines.successLine("Event removed!"));
-            }else{
-              System.out.println(Lines.errorLine("Error removing event!"));
-            }
+            eventMenuController.remove();
           }
           case 3 -> {
-            Boolean updated = eventMenuController.update();
-            if (updated) {
-              System.out.println(Lines.clear());
-              System.out.println(Lines.successLine("Event updated!"));
-            }else{
-              System.out.println(Lines.errorLine("Error updating event!"));
-            }
+            eventMenuController.update();
           }
           case 4 -> {
             eventMenuController.listAll();
@@ -70,14 +50,7 @@ public class EventsMenu extends Menu {
             eventMenuController.showParticipants();
           }
           case 7 -> {
-            Boolean cleared = eventMenuController.clearAll();
-            if (cleared) {
-              System.out.println(Lines.clear());
-              System.out.println(Lines.successLine("All events cleared!"));
-            }else{
-              System.out.println(Lines.clear());
-              System.out.println(Lines.errorLine("Error clearing events!"));
-            }
+            eventMenuController.clearAll();
           }
           default -> throw new AssertionError();
       }
