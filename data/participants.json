@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "participantTypeJson": "Student",
+    "course": "Computer Science",
+    "currentSemester": 1,
+    "academicStatus": "ACTIVE",
+    "gpa": 9.5,
+    "campus": "IFBA",
+    "enrollmentDate": "01/01/2002",
+    "interests": [],
+    "name": "John",
+    "cpf": "068.390.215-64",
+    "email": "john@dee.com",
+    "phone": "75 99151-6313",
+    "birthDate": "20/08/2005",
+    "certificates": []
+  }
+]

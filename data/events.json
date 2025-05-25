@@ -1,1 +1,39 @@
-[]
+[
+  {
+    "eventTypeJson": "Lecture",
+    "name": "QTcom",
+    "description": "aprendendo o que presta",
+    "location": "Praça Vermelha",
+    "date": "20/02/2026",
+    "capacity": 5,
+    "modality": "INPERSON",
+    "participantsCpfs": [
+      "068.390.215-64"
+    ],
+    "code": "QT"
+  },
+  {
+    "eventTypeJson": "Short Course",
+    "name": "Javinha",
+    "description": "Sadrinho ensinando Qt",
+    "location": "Lab2",
+    "date": "22/12/2025",
+    "capacity": 5,
+    "modality": "HYBRID",
+    "participantsCpfs": [
+      "068.390.215-64"
+    ],
+    "code": "JV"
+  },
+  {
+    "eventTypeJson": "Workshop",
+    "name": "C#",
+    "description": "Aprendendo a programar como o C#",
+    "location": "C#.ifba.edu.br",
+    "date": "30/05/2025",
+    "capacity": 100,
+    "modality": "ONLINE",
+    "participantsCpfs": [],
+    "code": "CS"
+  }
+]

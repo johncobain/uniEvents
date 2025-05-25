@@ -131,6 +131,14 @@ public class ValidationTest {
     });
     assertEquals("Not a valid date!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("30/ab/2005");
+    });
+    assertEquals("Date cannot have letters!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateDate("30ab2005");
+    });
+    assertEquals("Date cannot have letters!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validateDate("");
     });
     assertEquals("Date cannot be empty!", exception.getMessage());
@@ -203,6 +211,14 @@ public class ValidationTest {
       Validation.validatePhone("75 98888-88888");
     });
     assertEquals("Not a valid phone number!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone("aa 98888-88888");
+    });
+    assertEquals("Phone cannot have letters!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validatePhone("aabbbbbcccc");
+    });
+    assertEquals("Phone cannot have letters!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.validatePhone("");
     });

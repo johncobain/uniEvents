@@ -69,6 +69,9 @@ public class Validation {
       throw new IllegalArgumentException("Phone cannot be empty!");
     }
 
+    if(phone.matches(".*[a-zA-Z].*")) {
+      throw new IllegalArgumentException("Phone cannot have letters!");
+    }
     if(!phone.matches("\\d{2} \\d{4,5}-\\d{4}") &&
       !phone.matches("\\d{2} \\d{8,9}") &&
        !phone.matches("\\d{10,11}")) {
@@ -81,6 +84,9 @@ public class Validation {
       throw new IllegalArgumentException("Date cannot be empty!");
     }
 
+    if(date.matches(".*[a-zA-Z].*")) {
+      throw new IllegalArgumentException("Date cannot have letters!");
+    }
     if(
       !date.matches("\\d{2}/\\d{2}/\\d{4}") && 
       !date.matches("\\d{8}")) {
