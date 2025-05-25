@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -24,7 +25,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFac
 
 public class ParticipantRepository {
   private static final String PARTICIPANT_FILE = "data/participants.json";
-  private List<Participant> participantsSaved;
+  private LinkedHashMap<String, Participant> participantsSaved;
   private Gson gson;
   
   public ParticipantRepository(){
@@ -50,20 +51,30 @@ public class ParticipantRepository {
     }
   }
 
-  private List<Participant> loadParticipants(){
+  private LinkedHashMap<String, Participant> loadParticipants(){
+    LinkedHashMap<String, Participant> loadedParticipants;
     try (FileReader reader = new FileReader(PARTICIPANT_FILE)){
       Type participantListType = new TypeToken<ArrayList<Participant>>(){}.getType();
       List<Participant> participants = gson.fromJson(reader, participantListType);
-      return participants != null ? participants: new ArrayList<>();
+      if (participants != null) {
+        loadedParticipants = new LinkedHashMap<>();
+        for (Participant participant : participants) {
+          loadedParticipants.put(participant.getCpf(), participant);
+        }
+      } else {
+        loadedParticipants = new LinkedHashMap<>();
+      }
+      return loadedParticipants;
     } catch (IOException e) {
       System.err.println(Lines.warningLine("Participants file not found, creating a new one"));
-      return new ArrayList<>();
+      return new LinkedHashMap<>();
     }
   }
 
   public void saveParticipants(){
+    List<Participant> participantsList = new ArrayList<>(participantsSaved.values());
     try (FileWriter writer = new FileWriter(PARTICIPANT_FILE)){
-      gson.toJson(participantsSaved, writer);
+      gson.toJson(participantsList, writer);
       System.out.println("Participants saved in " + PARTICIPANT_FILE);
     } catch (IOException e) {
       System.err.println(Lines.errorLine("Error saving participants: " + e.getMessage()));
@@ -71,11 +82,11 @@ public class ParticipantRepository {
   }
 
   public void addParticipant(Participant participant){
-    participantsSaved.add(participant);
+    participantsSaved.put(participant.getCpf(), participant);
     saveParticipants();
   }
-  public void removeParticipant(Participant participant){
-    participantsSaved.remove(participant);
+  public void removeParticipant(String cpf){
+    participantsSaved.remove(cpf);
     saveParticipants();
   }
 
@@ -85,25 +96,22 @@ public class ParticipantRepository {
   }
 
   public void updateParticipant(Participant participant, String cpf){
-    for (int i = 0; i < participantsSaved.size(); i++){
-      if (participantsSaved.get(i).getCpf().equals(cpf)){
-        participantsSaved.set(i, participant);
-        break;
-      }
+    if (participantsSaved.get(cpf) == null) {
+      System.err.println(Lines.errorLine("Participant with CPF " + cpf + " not found."));
+      return;
     }
+    participantsSaved.put(cpf, participant);
     saveParticipants();
   }
 
   public Participant getParticipant(String cpf){
-    for (Participant participant : participantsSaved) {
-      if (participant.getCpf().equals(cpf)) {
-        return participant;
-      }
-    }
-    return null;
+    return participantsSaved.get(cpf);
   }
 
-  public ArrayList<Participant> getParticipants(){
-    return new ArrayList<>(participantsSaved);
+  public LinkedHashMap<String, Participant> getParticipants(){
+    if (participantsSaved == null) {
+      return new LinkedHashMap<>();
+    }
+    return participantsSaved;    
   }
 }

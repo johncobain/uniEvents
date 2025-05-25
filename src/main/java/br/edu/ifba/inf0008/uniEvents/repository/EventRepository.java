@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -27,7 +28,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFac
 public class EventRepository {
   private static final String EVENTS_FILE = "data/events.json";
   private ParticipantRepository participantRepository;
-  private List<Event> eventsSaved;
+  private LinkedHashMap<String, Event> eventsSaved;
   private Gson gson;
   
   public EventRepository(ParticipantRepository participantRepository) {
@@ -55,30 +56,36 @@ public class EventRepository {
     }
   }
 
-  private List<Event> loadEvents(){
-    List<Event> events;
+  private LinkedHashMap<String, Event> loadEvents(){
+    LinkedHashMap<String, Event> loadedEvents;
     try (FileReader reader = new FileReader(EVENTS_FILE)){
       Type eventListType = new TypeToken<ArrayList<Event>>(){}.getType();
-      events = gson.fromJson(reader, eventListType);
-      if (events == null) {
-        events = new ArrayList<>();
+      List<Event> events = gson.fromJson(reader, eventListType);
+      if(events != null){
+        loadedEvents = new LinkedHashMap<>();
+        for (Event event : events) {
+          loadedEvents.put(event.getCode(), event);
+        }
+      } else {
+        loadedEvents = new LinkedHashMap<>();
       }
     } catch (IOException e) {
       System.err.println(Lines.warningLine("Events file not found, creating a new one"));
-      events = new ArrayList<>();
+      return new LinkedHashMap<>();
     }
 
     if(this.participantRepository != null){
-      for (Event event : events){
+      for (Event event : loadedEvents.values()){
         event.populateParticipants(this.participantRepository);
       }
     }
-    return events;
+    return loadedEvents;
   }
 
   public void saveEvents(){
+    List<Event> eventsList = new ArrayList<>(eventsSaved.values());
     try (FileWriter writer = new FileWriter(EVENTS_FILE)){
-      gson.toJson(eventsSaved, writer);
+      gson.toJson(eventsList, writer);
       System.out.println("Events saved in " + EVENTS_FILE);
     } catch (IOException e) {
       System.err.println(Lines.errorLine("Error saving events: " + e.getMessage()));
@@ -86,11 +93,11 @@ public class EventRepository {
   }
 
   public void addEvent(Event event){
-    eventsSaved.add(event);
+    eventsSaved.put(event.getCode(), event);
     saveEvents();
   }
   public void removeEvent(Event event){
-    eventsSaved.remove(event);
+    eventsSaved.remove(event.getCode());
     saveEvents();
   }
 
@@ -100,27 +107,27 @@ public class EventRepository {
   }
 
   public void updateEvent(Event event, String code){
-    for (int i = 0; i < eventsSaved.size(); i++){
-      if (eventsSaved.get(i).getCode().equals(code)){
-        eventsSaved.set(i, event);
-        break;
-      }
+    if(eventsSaved.get(code) == null){
+      System.out.println(Lines.errorLine("Event with code " + code + " not found!"));
     }
+    eventsSaved.put(code, event);
     saveEvents();
   }
 
   public void addParticipantToEvent(Event event, Participant participant){
-    for (Event e: eventsSaved){
-      if(e.getCode().equals(event.getCode())){
-        e.addParticipant(participant);
-        break;
-      }
-    }
+    eventsSaved.get(event.getCode()).addParticipant(participant);
     saveEvents();
   }
 
-  public ArrayList<Event> getEvents(){
-    return new ArrayList<>(eventsSaved);
+  public Event getEvent(String code){
+    return eventsSaved.get(code);
+  }
+
+  public LinkedHashMap<String, Event> getEvents(){
+    if(eventsSaved == null){
+      return new LinkedHashMap<>();
+    }
+    return eventsSaved;
   }
 
 }

@@ -7,9 +7,7 @@
     "date": "29/05/2025",
     "capacity": 20,
     "modality": "INPERSON",
-    "participantsCpfs": [
-      "068.390.215-64"
-    ],
+    "participantsCpfs": [],
     "code": "A0"
   },
   {
@@ -21,9 +19,32 @@
     "capacity": 5,
     "modality": "INPERSON",
     "participantsCpfs": [
-      "166.332.980-05",
-      "948.332.120-48"
+      "028.187.230-94"
     ],
     "code": "QT"
+  },
+  {
+    "eventTypeJson": "Short Course",
+    "name": "Javinha",
+    "description": "javissimo",
+    "location": "Lab1",
+    "date": "20/06/2025",
+    "capacity": 3,
+    "modality": "INPERSON",
+    "participantsCpfs": [
+      "068.390.215-64"
+    ],
+    "code": "J1"
+  },
+  {
+    "eventTypeJson": "Academic Fair",
+    "name": "Amostra de Estágio",
+    "description": "Estágios",
+    "location": "Salão Nobre",
+    "date": "30/05/2025",
+    "capacity": 50,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "A1"
   }
 ]

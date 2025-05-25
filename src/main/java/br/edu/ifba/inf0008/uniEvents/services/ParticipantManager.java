@@ -1,7 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.services;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
@@ -13,7 +13,7 @@ import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 public class ParticipantManager {
   private final ParticipantRepository participantRepository;
 
-  public static ArrayList<Participant> participants = new ArrayList<>();
+  public static LinkedHashMap<String, Participant> participants;
   
   public ParticipantManager(ParticipantRepository participantRepository) {
     this.participantRepository = participantRepository;
@@ -21,68 +21,48 @@ public class ParticipantManager {
   }
 
   public void addParticipant(Participant participant){
-    participants.add(participant);
+    participants.put(participant.getCpf(), participant);
     participantRepository.addParticipant(participant);
   }
 
-  public void removeParticipant(Participant participant){
-    participants.remove(participant);
-    participantRepository.removeParticipant(participant);
+  public void removeParticipant(String cpf){
+    participants.remove(cpf);
+    participantRepository.removeParticipant(cpf);
   }
 
-  public void updateParticipant(Participant participant, String name, String email, String phone, LocalDate birthDate) {
-    participant.setName(name);
-    participant.setEmail(email);
-    participant.setPhone(phone);
-    participant.setBirthDate(birthDate);
+  public void updateParticipant(Participant participant, Participant updatedParticipant) {
+    participants.put(participant.getCpf(), updatedParticipant);
     participantRepository.updateParticipant(participant, participant.getCpf());
   }
 
   public Participant getParticipant(String cpf){
-    for (Participant participant : participants) {
-      if (participant.getCpf().equalsIgnoreCase(cpf)) {
-        return participant;
-      }
+    if(participants.get(cpf) == null) {
+      return null;
     }
-    return null;
+    return participants.get(cpf);
   }
 
-  public ArrayList<Event> getEventsByParticipant(Participant participant){
-    ArrayList<Event> events = new ArrayList<>();
-    for (Event event : EventManager.events) {
-      if (event.getParticipants().contains(participant)) {
-        events.add(event);
-      }
-    }
-    return events;
-  }
-
-  public void clearParticipantsInEvents(Participant participant, EventManager eventManager) {
-    for (Event event : EventManager.events) {
-      if (event.getParticipants().contains(participant)) {
-        eventManager.removeParticipant(event.getCode(), participant.getCpf());
+  public void clearParticipantsInEvents(String cpf, EventManager eventManager) {
+    for (Event event : EventManager.events.values()) {
+      if (event.getParticipants().containsKey(cpf)) {
+        eventManager.removeParticipant(event.getCode(), cpf);
       }
     }
   }
 
   public void clearAllParticipants(EventManager eventManager) {
-    for(Participant participant : participants){
-      clearParticipantsInEvents(participant, eventManager);
+    for (String cpf : participants.keySet()) {
+      clearParticipantsInEvents(cpf, eventManager);
     }
     participants.clear();
     participantRepository.clearAllParticipants();
   }
 
   public Boolean isCpfAlreadyInUse(String cpf) {
-    for (Participant participant : participants) {
-      if (participant.getCpf().equalsIgnoreCase(cpf)) {
-        return true;
-      }
-    }
-    return false;
+    return participants.get(cpf) != null;
   }
 
-  public ArrayList<Participant> getAllParticipants() {
+  public LinkedHashMap<String, Participant> getAllParticipants() {
     return participants;
   }
 

@@ -3,32 +3,24 @@
     "participantTypeJson": "Student",
     "name": "John",
     "cpf": "068.390.215-64",
-    "email": "John@j",
+    "email": "john@dee.com",
     "phone": "75 99151-6313",
     "birthDate": "20/08/2005"
   },
   {
     "participantTypeJson": "Teacher",
-    "name": "Allan",
-    "cpf": "537.532.870-40",
-    "email": "allan@ifba.edu",
-    "phone": "75 99999-9999",
-    "birthDate": "20/01/1970"
-  },
-  {
-    "participantTypeJson": "External",
-    "name": "Josh",
-    "cpf": "948.332.120-48",
-    "email": "ohmy@josh.com",
-    "phone": "71 9999-9999",
-    "birthDate": "20/02/1999"
+    "name": "Sandro",
+    "cpf": "660.058.180-82",
+    "email": "sandro@ifba.edu.br",
+    "phone": "71 99192-9394",
+    "birthDate": "20/02/1980"
   },
   {
     "participantTypeJson": "External",
     "name": "Mark",
-    "cpf": "166.332.980-05",
+    "cpf": "028.187.230-94",
     "email": "mark@mork.com",
-    "phone": "75 6364-6364",
-    "birthDate": "20/05/2005"
+    "phone": "71 9999-9999",
+    "birthDate": "11/11/2001"
   }
 ]
