@@ -1,7 +1,9 @@
 package br.edu.ifba.inf0008.uniEvents.model.participants;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.model.events.Certificate;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
@@ -11,6 +13,7 @@ public abstract class Participant {
   private String email;
   private String phone;
   private LocalDate birthDate;
+  private ArrayList<Certificate> certificates = new ArrayList<>();
 
   public Participant( String name, String cpf, String email, String phone, LocalDate birthDate) {
     this.name = name;
@@ -63,7 +66,33 @@ public abstract class Participant {
     return age;
   }
 
+  public ArrayList<Certificate> getCertificates() {
+    return certificates;
+  }
+
+  public void setCertificates(ArrayList<Certificate> certificates) {
+    this.certificates = certificates;
+  }
+
+  public void addCertificate(Certificate certificate) throws Exception {
+    if(certificates.contains(certificate)) throw new Exception("Certificate already exists!");
+    this.certificates.add(certificate);
+  }
+
   public abstract String getType();
+
+  public String certificatesSummary(){
+    StringBuilder sb = new StringBuilder();
+    if(this.getCertificates().isEmpty()){
+      sb.append(Lines.leftText("Certificates: None")).append("\n");
+    }else{
+      sb.append(Lines.leftText("Certificates:")).append("\n");
+      // for (Certificate certificate : this.getCertificates()) {
+        // sb.append(Lines.leftText(String.format("  - %s", certificate.summary()))).append("\n");
+      // }
+    }
+    return sb.toString();
+  }
 
   @Override
   public String toString(){
@@ -76,4 +105,5 @@ public abstract class Participant {
     sb.append(Lines.leftText(String.format("Birthdate: %s", birthDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
     return sb.toString();
   }
+
 }

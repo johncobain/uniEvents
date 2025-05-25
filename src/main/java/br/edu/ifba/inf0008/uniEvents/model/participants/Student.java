@@ -97,7 +97,7 @@ public class Student extends Participant{
     return true;
   }
 
-  public void showStudentAcademicInfo(){
+  public void showAcademicInfo(){
     // TODO: show student academic info (studentID, course, current semester, academic status, gpa, campus, enrollment date)
   }
   
@@ -124,6 +124,7 @@ public class Student extends Participant{
         sb.append(Lines.leftText(String.format("  - %s", interest))).append("\n");
       }
     }
+    sb.append(certificatesSummary());
     return sb.toString();
   }
 }
