@@ -30,6 +30,9 @@ public class ProfessorMenuController {
     String department = ParticipantForms.getOption(options, "Department");
     if (department.equalsIgnoreCase("cancel")) return false;
 
+    String campus = ParticipantForms.getName("Campus");
+    if (campus.equalsIgnoreCase("cancel")) return false;
+
     options = new ArrayList<>();
     options.add("Cancel");
     for (AcademicTitle title : AcademicTitle.getAll()) options.add(title.getDescription());
@@ -39,7 +42,7 @@ public class ProfessorMenuController {
     String specialization = ParticipantForms.getName("specialization");
     if (specialization.equalsIgnoreCase("cancel")) return false;
 
-    participantManager.createProfessor(name, cpf, email, phone, Utils.stringToDate(birthDateString), employeeId, Course.fromDescription(department), AcademicTitle.fromDescription(academicTitle), specialization);
+    participantManager.createProfessor(name, cpf, email, phone, Utils.stringToDate(birthDateString), employeeId, Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
     return true;
   }
   
@@ -57,10 +60,13 @@ public class ProfessorMenuController {
     String academicTitle = ParticipantForms.getOption(options, "Academic Title");
     if (academicTitle.equalsIgnoreCase("cancel")) return null;
 
+    String campus = ParticipantForms.getName("Campus");
+    if (campus.equalsIgnoreCase("cancel")) return null;
+
     String specialization = ParticipantForms.getName("specialization");
     if (specialization.equalsIgnoreCase("cancel")) return null;
 
-    return new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), AcademicTitle.fromDescription(academicTitle), specialization);
+    return new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
   }
 
   public void addResearchArea(ParticipantManager participantManager, String cpf) {

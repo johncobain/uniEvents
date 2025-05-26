@@ -13,15 +13,17 @@ public class Professor extends Participant{
 
   private String employeeId;
   private Course department;
+  public String campus;
   private AcademicTitle academicTitle;
   private String specialization;
   List<String> researchAreas = new ArrayList<>();
   List<String> publications = new ArrayList<>();
 
-  public Professor(String name, String cpf, String email, String phone, LocalDate birthDate, String employeeId, Course department, AcademicTitle academicTitle, String specialization) {
+  public Professor(String name, String cpf, String email, String phone, LocalDate birthDate, String employeeId, Course department, String campus, AcademicTitle academicTitle, String specialization) {
     super(name, cpf, email, phone, birthDate);
     this.employeeId = employeeId;
     this.department = department;
+    this.campus = campus;
     this.academicTitle = academicTitle;
     this.specialization = specialization;
   }
@@ -43,6 +45,12 @@ public class Professor extends Participant{
   }
   public void setDepartment(Course department) {
     this.department = department;
+  }
+  public String getCampus() {
+    return campus;
+  }
+  public void setCampus(String campus) {
+    this.campus = campus;
   }
   public AcademicTitle getAcademicTitle() {
     return academicTitle;
@@ -95,6 +103,7 @@ public class Professor extends Participant{
     sb.append(super.toString());
     sb.append(Lines.leftText(String.format("Employee ID: %s", employeeId))).append("\n");
     sb.append(Lines.leftText(String.format("Department: %s", department.getDescription()))).append("\n");
+    sb.append(Lines.leftText(String.format("Campus: %s", campus))).append("\n");
     sb.append(Lines.leftText(String.format("Academic Title: %s", academicTitle.getDescription()))).append("\n");
     sb.append(Lines.leftText(String.format("Specialization: %s", specialization))).append("\n");
     if(researchAreas.isEmpty()) {

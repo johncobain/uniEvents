@@ -84,8 +84,8 @@ public class ParticipantManager {
     add(student);
   }
 
-  public void createProfessor(String name, String cpf, String email, String phone, LocalDate birthDate, String employeeId, Course department, AcademicTitle academicTitle, String specialization) {
-    Professor professor = new Professor(name, cpf, email, phone, birthDate, employeeId, department, academicTitle, specialization);
+  public void createProfessor(String name, String cpf, String email, String phone, LocalDate birthDate, String employeeId, Course department, String campus, AcademicTitle academicTitle, String specialization) {
+    Professor professor = new Professor(name, cpf, email, phone, birthDate, employeeId, department, campus, academicTitle, specialization);
     add(professor);
   }
 
