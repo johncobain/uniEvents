@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
+import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
@@ -12,7 +13,7 @@ public class Student extends Participant{
   private final String participantTypeJson = "Student";
 
   private Long studentId;
-  private String course;
+  private Course course;
   private int currentSemester;
   AcademicStatus academicStatus;
   private double gpa;
@@ -21,7 +22,7 @@ public class Student extends Participant{
   List<String> interests = new ArrayList<>();
 
 
-  public Student(String name, String cpf, String email, String phone, LocalDate birthDate, String course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
+  public Student(String name, String cpf, String email, String phone, LocalDate birthDate, Course course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
     super(name, cpf, email, phone, birthDate);
     this.course = course;
     this.currentSemester = currentSemester;
@@ -40,10 +41,10 @@ public class Student extends Participant{
   public void setStudentId(Long studentId) {
     this.studentId = studentId;
   }
-  public String getCourse() {
+  public Course getCourse() {
     return course;
   }
-  public void setCourse(String course) {
+  public void setCourse(Course course) {
     this.course = course;
   }
   public int getCurrentSemester() {
@@ -91,11 +92,6 @@ public class Student extends Participant{
   public void removeInterest(String interest) {
     this.interests.remove(interest);
   }
-
-  public Boolean checkEligibility(){
-    // TODO: see if student is eligible for course by gpa
-    return true;
-  }
   
   @Override
   public String getType() {
@@ -107,9 +103,9 @@ public class Student extends Participant{
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
     sb.append(Lines.leftText(String.format("Student ID: %d", studentId))).append("\n");
-    sb.append(Lines.leftText(String.format("Course: %s", course))).append("\n");
+    sb.append(Lines.leftText(String.format("Course: %s", course.getDescription()))).append("\n");
     sb.append(Lines.leftText(String.format("Current Semester: %d", currentSemester))).append("\n");
-    sb.append(Lines.leftText(String.format("Academic Status: %s", academicStatus))).append("\n");
+    sb.append(Lines.leftText(String.format("Academic Status: %s", academicStatus.getDescription()))).append("\n");
     sb.append(Lines.leftText(String.format("GPA: %.2f", gpa))).append("\n");
     sb.append(Lines.leftText(String.format("Campus: %s", campus))).append("\n");
     sb.append(Lines.leftText(String.format("Enrollment Date: %s", enrollmentDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
