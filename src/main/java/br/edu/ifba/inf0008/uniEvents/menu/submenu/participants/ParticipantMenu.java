@@ -13,8 +13,8 @@ public class ParticipantMenu extends Menu {
       super("Participants Management", Colors.BLUE_BOLD);
       super.addOption("Exit to Main Menu");
       super.addOption("Student Management");
-      super.addOption("Teacher Management"); // TODO: implement
-      super.addOption("External Management"); // TODO: implement
+      super.addOption("Teacher Management");
+      super.addOption("External Management");
       super.addOption("Show Participant");
       super.addOption("List All Participants");
       super.addOption("Clear All Participants");

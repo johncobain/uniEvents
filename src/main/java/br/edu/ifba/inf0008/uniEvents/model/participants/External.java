@@ -18,4 +18,13 @@ public class External extends Participant {
   public String getType() {
     return participantTypeJson;
   }
+
+  @Override
+  public String toString(){
+    StringBuilder sb = new StringBuilder();
+    sb.append(super.toString());
+    
+    sb.append(certificatesSummary());
+    return sb.toString();
+  }
 }
