@@ -108,7 +108,7 @@ public class ParticipantForms {
     return dateString;
   }
 
-  protected static String getEnum(ArrayList<String> options, String title) {
+  protected static String getOption(ArrayList<String> options, String title) {
     BaseMenu baseMenu;
     baseMenu = new BaseMenu("Select " + title, options);
     int response = baseMenu.getResponse();

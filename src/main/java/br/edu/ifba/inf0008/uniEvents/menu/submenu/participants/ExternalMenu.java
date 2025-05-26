@@ -12,14 +12,9 @@ public class ExternalMenu extends Menu{
     super("External Management", Colors.BLUE_BOLD);
     super.addOption("Exit to Participant Menu");
     super.addOption("Create External");
-    super.addOption("Remove External");
-    super.addOption("Update External");
-    super.addOption("List All Externals");
     super.addOption("Show External");
-    super.addOption("Show External Events");
+    super.addOption("List All Externals");
     super.addOption("Clear All Externals");
-    super.addOption("Add External to Event");
-    super.addOption("Remove External from Event");
     
     participantMenuController.setParticipantManager(participantManager);
     participantMenuController.setEventManager(eventManager);
@@ -39,28 +34,13 @@ public class ExternalMenu extends Menu{
             participantMenuController.create("External");
           }
           case 2 -> {
-            participantMenuController.remove();
-          }
-          case 3 -> {
-            participantMenuController.update("External");
-          }
-          case 4 -> {
-            participantMenuController.listType("External");
-          }
-          case 5 -> {
             participantMenuController.get();
           }
-          case 6 -> {
-            participantMenuController.showEvents();
+          case 3 -> {
+            participantMenuController.listType("External");
           }
-          case 7 -> {
-            participantMenuController.clearAll();
-          }
-          case 8 -> {
-            participantMenuController.addToEvent();
-          }
-          case 9 -> {
-            participantMenuController.removeFromEvent();
+          case 4 -> {
+            participantMenuController.clearAll("External");
           }
           default -> throw new AssertionError();
       }

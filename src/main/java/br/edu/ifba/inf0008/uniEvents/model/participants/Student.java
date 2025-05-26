@@ -96,10 +96,6 @@ public class Student extends Participant{
     // TODO: see if student is eligible for course by gpa
     return true;
   }
-
-  public void showAcademicInfo(){
-    // TODO: show student academic info (studentID, course, current semester, academic status, gpa, campus, enrollment date)
-  }
   
   @Override
   public String getType() {
@@ -110,6 +106,7 @@ public class Student extends Participant{
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
+    sb.append(Lines.leftText(String.format("Student ID: %d", studentId))).append("\n");
     sb.append(Lines.leftText(String.format("Course: %s", course))).append("\n");
     sb.append(Lines.leftText(String.format("Current Semester: %d", currentSemester))).append("\n");
     sb.append(Lines.leftText(String.format("Academic Status: %s", academicStatus))).append("\n");

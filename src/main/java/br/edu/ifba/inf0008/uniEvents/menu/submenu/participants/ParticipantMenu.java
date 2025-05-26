@@ -15,9 +15,8 @@ public class ParticipantMenu extends Menu {
       super.addOption("Student Management");
       super.addOption("Teacher Management"); // TODO: implement
       super.addOption("External Management"); // TODO: implement
-      super.addOption("List All Participants");
       super.addOption("Show Participant");
-      super.addOption("Show Participant Events");
+      super.addOption("List All Participants");
       super.addOption("Clear All Participants");
 
 
@@ -48,16 +47,13 @@ public class ParticipantMenu extends Menu {
             new ExternalMenu(participantManager, eventManager).show();
           }
           case 4 -> {
-            participantMenuController.listAll();
-          }
-          case 5 -> {
             participantMenuController.get();
           }
-          case 6 -> {
-            participantMenuController.showEvents();
+          case 5 -> {
+            participantMenuController.listAll();
           }
-          case 7 -> {
-            participantMenuController.clearAll();
+          case 6 -> {
+            participantMenuController.clearAll("Participant");
           }
           default -> throw new AssertionError();
       }

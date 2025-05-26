@@ -26,7 +26,8 @@ public class ParticipantManager {
     participantRepository.add(participant);
   }
 
-  public void remove(String cpf){
+  public void remove(String cpf, EventManager eventManager) {
+    clearParticipantsInEvents(cpf, eventManager);
     participants.remove(cpf);
     participantRepository.remove(cpf);
   }

@@ -12,16 +12,9 @@ public class StudentMenu extends Menu{
     super("Student Management", Colors.BLUE_BOLD);
     super.addOption("Exit to Participant Menu");
     super.addOption("Create Student");
-    super.addOption("Remove Student");
-    super.addOption("Update Student");
-    super.addOption("List All Students");
     super.addOption("Show Student");
-    super.addOption("Show Student Events");
+    super.addOption("List All Students");
     super.addOption("Clear All Students");
-    super.addOption("Add Student to Event");
-    super.addOption("Remove Student from Event");
-    super.addOption("Add Student Interest");
-    super.addOption("Remove Student Interest");
     
     participantMenuController.setParticipantManager(participantManager);
     participantMenuController.setEventManager(eventManager);
@@ -41,34 +34,13 @@ public class StudentMenu extends Menu{
             participantMenuController.create("Student");
           }
           case 2 -> {
-            participantMenuController.remove();
-          }
-          case 3 -> {
-            participantMenuController.update("Student");
-          }
-          case 4 -> {
-            participantMenuController.listType("Student");
-          }
-          case 5 -> {
             participantMenuController.get();
           }
-          case 6 -> {
-            participantMenuController.showEvents();
+          case 3 -> {
+            participantMenuController.listType("Student");
           }
-          case 7 -> {
-            participantMenuController.clearAll();
-          }
-          case 8 -> {
-            participantMenuController.addToEvent();
-          }
-          case 9 -> {
-            participantMenuController.removeFromEvent();
-          }
-          case 10 -> {
-            participantMenuController.addInterest();
-          }
-          case 11 -> {
-            participantMenuController.removeInterest();
+          case 4 -> {
+            participantMenuController.clearAll("Student");
           }
           default -> throw new AssertionError();
       }

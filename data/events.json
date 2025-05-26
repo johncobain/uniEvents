@@ -7,9 +7,7 @@
     "date": "20/02/2026",
     "capacity": 5,
     "modality": "INPERSON",
-    "participantsCpfs": [
-      "068.390.215-64"
-    ],
+    "participantsCpfs": [],
     "code": "QT"
   },
   {
@@ -20,9 +18,7 @@
     "date": "22/12/2025",
     "capacity": 5,
     "modality": "HYBRID",
-    "participantsCpfs": [
-      "068.390.215-64"
-    ],
+    "participantsCpfs": [],
     "code": "JV"
   },
   {
