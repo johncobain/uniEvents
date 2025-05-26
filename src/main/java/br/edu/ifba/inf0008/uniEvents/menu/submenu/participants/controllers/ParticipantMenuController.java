@@ -332,6 +332,6 @@ public class ParticipantMenuController {
   }
 
   public void showCertificates(String cpf){
-    //TODO: implement
+    //TODO: implement showCertificates
   }
 }
