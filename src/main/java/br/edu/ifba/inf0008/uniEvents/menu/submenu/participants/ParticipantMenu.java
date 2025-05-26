@@ -39,13 +39,13 @@ public class ParticipantMenu extends Menu {
             return;
           }
           case 1 -> {
-            new StudentMenu(participantManager, eventManager).show();
+            new ParticipantSubMenu(participantManager, eventManager, "Student").show();
           }
           case 2 -> {
-            new ProfessorMenu(participantManager, eventManager).show();
+            new ParticipantSubMenu(participantManager, eventManager, "Professor").show();
           }
           case 3 -> {
-            new ExternalMenu(participantManager, eventManager).show();
+            new ParticipantSubMenu(participantManager, eventManager, "External").show();
           }
           case 4 -> {
             participantMenuController.get("Participant");

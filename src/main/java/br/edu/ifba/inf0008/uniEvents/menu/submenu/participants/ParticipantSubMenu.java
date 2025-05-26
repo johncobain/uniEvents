@@ -6,16 +6,19 @@ import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
-public class ProfessorMenu extends Menu{
+public class ParticipantSubMenu extends Menu{
   private final ParticipantMenuController participantMenuController = new ParticipantMenuController();
+  private final String participantType;
 
-  public ProfessorMenu(ParticipantManager participantManager, EventManager eventManager) {
-    super("Professor Management", Colors.BLUE_BOLD);
+  public ParticipantSubMenu(ParticipantManager participantManager, EventManager eventManager, String participantType) {
+    super(participantType + " Management", Colors.BLUE_BOLD);
     super.addOption("Exit to Participant Menu");
-    super.addOption("Create Professor");
-    super.addOption("Show Professor");
-    super.addOption("List All Professors");
-    super.addOption("Clear All Professors");
+    super.addOption("Create " + participantType);
+    super.addOption("Show " + participantType);
+    super.addOption("List All " + participantType + "s");
+    super.addOption("Clear All " + participantType + "s");
+
+    this.participantType = participantType;
     
     participantMenuController.setParticipantManager(participantManager);
     participantMenuController.setEventManager(eventManager);
@@ -32,16 +35,16 @@ public class ProfessorMenu extends Menu{
             return;
           }
           case 1 -> {
-            participantMenuController.create("Professor");
+            participantMenuController.create(participantType);
           }
           case 2 -> {
-            participantMenuController.get("Professor");
+            participantMenuController.get(participantType);
           }
           case 3 -> {
-            participantMenuController.list("Professor");
+            participantMenuController.list(participantType);
           }
           case 4 -> {
-            participantMenuController.clear("Professor");
+            participantMenuController.clear(participantType);
           }
           default -> throw new AssertionError();
       }
