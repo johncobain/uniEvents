@@ -109,27 +109,48 @@ public class Validation {
 
   }
 
-  public static int isInteger(String value){
+  public static void isInteger(String value){
     if (value == null || value.isEmpty() || value.isBlank()) {
       throw new IllegalArgumentException("Input cannot be empty!");
     }
     try {
-      int parsedValue = Integer.parseInt(value);
-      return parsedValue;
+      Integer.valueOf(value);
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("Invalid input, not an integer!");
     }
   }
 
-  public static int isDouble(String value){
+  public static void isDouble(String value){
     if (value == null || value.isEmpty() || value.isBlank()) {
       throw new IllegalArgumentException("Input cannot be empty!");
     }
     try {
-      double parsedValue = Double.parseDouble(value);
-      return (int) parsedValue;
+      Double.valueOf(value);
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("Invalid input, not a double!");
+    }
+  }
+
+  public static void isLong(String value){
+    if (value == null || value.isEmpty() || value.isBlank()) {
+      throw new IllegalArgumentException("Input cannot be empty!");
+    }
+    try {
+      Long.valueOf(value);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("Invalid input, not a long!");
+    }
+  }
+
+  public static void validateId(String id) {
+    if (id == null || id.isEmpty() || id.isBlank()) {
+      throw new IllegalArgumentException("ID cannot be empty!");
+    }
+    if (id.matches(".*[a-zA-Z].*")) {
+      throw new IllegalArgumentException("ID cannot have letters!");
+    }
+    if (!id.matches("\\d{11}")) {
+      throw new IllegalArgumentException("ID must be 11 digits long!");
     }
   }
 }

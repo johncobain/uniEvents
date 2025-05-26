@@ -48,16 +48,28 @@ public class ParticipantMenuController {
     if(cpf.equalsIgnoreCase("cancel")) return;
 
     String email = ParticipantForms.getEmail();
-    if (email.equals("cancel")) return;
+    if (email.equalsIgnoreCase("cancel")) return;
 
     String phone = ParticipantForms.getPhone();
-    if (phone.equals("cancel")) return;
+    if (phone.equalsIgnoreCase("cancel")) return;
 
     String birthDateString = ParticipantForms.getDate("birth date");
-    if (birthDateString.equals("cancel")) return;
+    if (birthDateString.equalsIgnoreCase("cancel")) return;
 
     switch (type) {
       case "Student" -> {
+        String studentId;
+        while (true) { 
+          studentId = ParticipantForms.getId("student id");
+          if (participantManager.isIdAlreadyInUse(studentId)) {
+            System.out.println(Lines.clear());
+            System.out.println(Lines.errorLine("Student ID '" + studentId + "' is already in use! Please try again."));
+            continue;
+          }
+          break;
+        }
+        if (studentId.equalsIgnoreCase("cancel")) return;
+
         ArrayList<String> options = new ArrayList<>();
         options.add("Cancel");
         for(Course course : Course.getAll())options.add(course.getDescription());
@@ -73,18 +85,18 @@ public class ParticipantMenuController {
         for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
         
         String status = ParticipantForms.getOption(options, "Academic Status");
-        if (status.equals("cancel")) return;
+        if (status.equalsIgnoreCase("cancel")) return;
 
         double gpa = ParticipantForms.getGpa();
         if (gpa == 0) return;
 
         String campus = ParticipantForms.getName("campus");
-        if (campus.equals("cancel")) return;
+        if (campus.equalsIgnoreCase("cancel")) return;
 
         String enrollmentDateString = ParticipantForms.getDate("enrollment date");
-        if (enrollmentDateString.equals("cancel")) return;
+        if (enrollmentDateString.equalsIgnoreCase("cancel")) return;
 
-        participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
+        participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), studentId, Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
     }
       case "Teacher" -> participantManager.createTeacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> participantManager.createExternal(name, cpf, email, phone, Utils.stringToDate(birthDateString));
@@ -121,13 +133,13 @@ public class ParticipantMenuController {
     if(name.equalsIgnoreCase("cancel")) return;
 
     String email = ParticipantForms.getEmail();
-    if (email.equals("cancel")) return;
+    if (email.equalsIgnoreCase("cancel")) return;
 
     String phone = ParticipantForms.getPhone();
-    if (phone.equals("cancel")) return;
+    if (phone.equalsIgnoreCase("cancel")) return;
 
     String birthDateString = ParticipantForms.getDate("birth date");
-    if (birthDateString.equals("cancel")) return;
+    if (birthDateString.equalsIgnoreCase("cancel")) return;
 
     Participant updatedParticipant = null;
     switch (participantManager.get(cpf).getType()) {
@@ -147,18 +159,18 @@ public class ParticipantMenuController {
         for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
 
         String status = ParticipantForms.getOption(options, "Academic Status");
-        if (status.equals("cancel")) return;
+        if (status.equalsIgnoreCase("cancel")) return;
 
         double gpa = ParticipantForms.getGpa();
         if (gpa == 0) return;
 
         String campus = ParticipantForms.getName("campus");
-        if (campus.equals("cancel")) return;
+        if (campus.equalsIgnoreCase("cancel")) return;
 
         String enrollmentDateString = ParticipantForms.getDate("enrollment date");
-        if (enrollmentDateString.equals("cancel")) return;
+        if (enrollmentDateString.equalsIgnoreCase("cancel")) return;
 
-        updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
+        updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Student)participantManager.get(cpf)).getStudentId(), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
       }
       case "Teacher" -> updatedParticipant = new Teacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> updatedParticipant = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString));
@@ -196,7 +208,7 @@ public class ParticipantMenuController {
   public void listType(String type){
     List<Participant> participants = participantManager.getAll().values()
     .stream()
-    .filter(p -> p.getType().equals(type))
+    .filter(p -> p.getType().equalsIgnoreCase(type))
     .collect(Collectors.toList()); 
 
     if(participants.isEmpty()){
@@ -241,7 +253,7 @@ public class ParticipantMenuController {
       }
     }
     String option = ParticipantForms.getOption(options, "What do you want to do?");
-    if (option.equals("go back")) return;
+    if (option.equalsIgnoreCase("go back")) return;
 
     switch (option) {
       case "Update" -> update(type, cpf);
@@ -298,7 +310,7 @@ public class ParticipantMenuController {
         try {
           List<Participant> participantsOfType = participantManager.getAll().values()
           .stream()
-          .filter(p -> p.getType().equals(type))
+          .filter(p -> p.getType().equalsIgnoreCase(type))
           .collect(Collectors.toList());
 
           for (Participant participant : participantsOfType) {
@@ -371,7 +383,7 @@ public class ParticipantMenuController {
 
   public void addInterest(String cpf){
     String interest = ParticipantForms.getName("interest");
-    if (interest.equals("cancel")) return;
+    if (interest.equalsIgnoreCase("cancel")) return;
     try {
       Student student = (Student)participantManager.get(cpf);
       student.addInterest(interest);
@@ -388,7 +400,7 @@ public class ParticipantMenuController {
     options.add("Cancel");
     options.addAll(((Student)participantManager.get(cpf)).getInterests());
     String interest = ParticipantForms.getOption(options, "Interest");
-    if (interest.equals("cancel")) return;
+    if (interest.equalsIgnoreCase("cancel")) return;
     try {
       Student student = (Student)participantManager.get(cpf);
       student.removeInterest(interest);

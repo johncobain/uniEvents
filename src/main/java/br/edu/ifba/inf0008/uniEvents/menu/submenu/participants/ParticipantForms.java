@@ -157,4 +157,25 @@ public class ParticipantForms {
     System.out.println(Lines.clear());
     return Double.parseDouble(gpa);
   }
+
+  protected static String getId(String text) {
+    String id;
+    while (true) { 
+      System.out.print("Enter " + text.toLowerCase() + "(11 digits) (\"cancel\" to exit)>> ");
+      id = Utils.scanner.nextLine();
+      if(id.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return "cancel";
+      }
+      try {
+        Validation.validateId(id);
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return id;
+  }
 }

@@ -42,7 +42,8 @@ public abstract class Menu implements IMenu {
       String choice = Utils.scanner.nextLine();
       int response;
       try {
-        response = Validation.isInteger(choice);
+        Validation.isInteger(choice);
+        response = processOption(choice);
         if(response < 0 || response >= options.size()){
           throw new Exception("Invalid option! Please try again.");
         }

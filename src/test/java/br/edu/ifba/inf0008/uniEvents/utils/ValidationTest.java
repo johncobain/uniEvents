@@ -47,10 +47,10 @@ public class ValidationTest {
     assertDoesNotThrow(() -> Validation.isDouble("0.1"));
     assertDoesNotThrow(() -> Validation.isDouble("-123.25"));
     assertDoesNotThrow(() -> Validation.isDouble("20"));
-    assertDoesNotThrow(() -> Validation.isDouble("2147483647"));
-    assertDoesNotThrow(() -> Validation.isDouble("-2147483648"));
+    assertDoesNotThrow(() -> Validation.isDouble("2147447"));
+    assertDoesNotThrow(() -> Validation.isDouble("-2147488"));
     exception = assertThrows(IllegalArgumentException.class, () -> {
-      Validation.isDouble("notAnInteger");
+      Validation.isDouble("notAnDouble");
     });
     assertEquals("Invalid input, not a double!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -67,6 +67,40 @@ public class ValidationTest {
     assertEquals("Input cannot be empty!", exception.getMessage());
     exception = assertThrows(IllegalArgumentException.class, () -> {
       Validation.isDouble(null);
+    });
+    assertEquals("Input cannot be empty!", exception.getMessage());
+  }
+
+  @Test
+  void testIsLong(){
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.isLong("123"));
+    assertDoesNotThrow(() -> Validation.isLong("0"));
+    assertDoesNotThrow(() -> Validation.isLong("-123"));
+    assertDoesNotThrow(() -> Validation.isLong("2147483647"));
+    assertDoesNotThrow(() -> Validation.isLong("-2147483648"));
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isLong("notAnLong");
+    });
+    assertEquals("Invalid input, not a long!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isLong("123.45");
+    });
+    assertEquals("Invalid input, not a long!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isLong("123abc");
+    });
+    assertEquals("Invalid input, not a long!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isLong("");
+    });
+    assertEquals("Input cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isLong(" ");
+    });
+    assertEquals("Input cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.isLong(null);
     });
     assertEquals("Input cannot be empty!", exception.getMessage());
   }
@@ -262,5 +296,37 @@ public class ValidationTest {
     });
     assertEquals("Phone cannot be empty!", exception.getMessage());
     
+  }
+
+  @Test
+  void testValidateId(){
+    Exception exception;
+    assertDoesNotThrow(() -> Validation.validateId("12345678900"));
+    assertDoesNotThrow(() -> Validation.validateId("00987654321"));
+
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateId("123456789");
+    });
+    assertEquals("ID must be 11 digits long!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateId("123456789010");
+    });
+    assertEquals("ID must be 11 digits long!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateId("12345abcde");
+    });
+    assertEquals("ID cannot have letters!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateId("");
+    });
+    assertEquals("ID cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateId(" ");
+    });
+    assertEquals("ID cannot be empty!", exception.getMessage());
+    exception = assertThrows(IllegalArgumentException.class, () -> {
+      Validation.validateId(null);
+    });
+    assertEquals("ID cannot be empty!", exception.getMessage());
   }
 }

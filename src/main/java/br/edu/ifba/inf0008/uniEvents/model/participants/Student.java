@@ -12,7 +12,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 public class Student extends Participant{
   private final String participantTypeJson = "Student";
 
-  private Long studentId;
+  private String studentId;
   private Course course;
   private int currentSemester;
   AcademicStatus academicStatus;
@@ -22,8 +22,9 @@ public class Student extends Participant{
   List<String> interests = new ArrayList<>();
 
 
-  public Student(String name, String cpf, String email, String phone, LocalDate birthDate, Course course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
+  public Student(String name, String cpf, String email, String phone, LocalDate birthDate, String studentId, Course course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
     super(name, cpf, email, phone, birthDate);
+    this.studentId = studentId;
     this.course = course;
     this.currentSemester = currentSemester;
     this.academicStatus = academicStatus;
@@ -35,10 +36,10 @@ public class Student extends Participant{
     super();
   } //Gson
 
-  public Long getStudentId() {
+  public String getStudentId() {
     return studentId;
   }
-  public void setStudentId(Long studentId) {
+  public void setStudentId(String studentId) {
     this.studentId = studentId;
   }
   public Course getCourse() {
@@ -102,7 +103,7 @@ public class Student extends Participant{
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
-    sb.append(Lines.leftText(String.format("Student ID: %d", studentId))).append("\n");
+    sb.append(Lines.leftText(String.format("Student ID: %s", studentId))).append("\n");
     sb.append(Lines.leftText(String.format("Course: %s", course.getDescription()))).append("\n");
     sb.append(Lines.leftText(String.format("Current Semester: %d", currentSemester))).append("\n");
     sb.append(Lines.leftText(String.format("Academic Status: %s", academicStatus.getDescription()))).append("\n");

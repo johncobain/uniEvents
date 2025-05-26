@@ -65,12 +65,21 @@ public class ParticipantManager {
     return participants.get(cpf) != null;
   }
 
+  public Boolean isIdAlreadyInUse(String id) {
+    for (Participant participant : participants.values()) {
+      if (participant instanceof Student && ((Student) participant).getStudentId().equals(id)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public LinkedHashMap<String, Participant> getAll() {
     return participants;
   }
 
-  public void createStudent(String name, String cpf, String email, String phone, LocalDate birthDate, Course course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
-    Student student = new Student(name, cpf, email, phone, birthDate, course, currentSemester, academicStatus, gpa, campus, enrollmentDate);
+  public void createStudent(String name, String cpf, String email, String phone, LocalDate birthDate, String studentId, Course course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
+    Student student = new Student(name, cpf, email, phone, birthDate, studentId, course, currentSemester, academicStatus, gpa, campus, enrollmentDate);
     add(student);
   }
 
