@@ -89,8 +89,8 @@ public class ParticipantManager {
     add(professor);
   }
 
-  public void createExternal(String name, String cpf, String email, String phone, LocalDate birthDate) {
-    External external = new External(name, cpf, email, phone, birthDate);
+  public void createExternal(String name, String cpf, String email, String phone, LocalDate birthDate, String organization, String jobRole, String bio, Boolean isPresenter) {
+    External external = new External(name, cpf, email, phone, birthDate, organization, jobRole, bio, isPresenter);
     add(external);
   }
 

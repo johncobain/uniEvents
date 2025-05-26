@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
@@ -197,6 +198,11 @@ public class ParticipantMenuController {
         options.add("Add Publication");
         options.add("Remove Publication");
       }
+      case "External" -> {
+        options.add("Show Biography");
+        options.add("Add Expertise Area");
+        options.add("Remove Expertise Area");
+      }
     }
     String option = ParticipantForms.getOption(options, "What do you want to do?");
     if (option.equalsIgnoreCase("go back")) return;
@@ -222,6 +228,13 @@ public class ParticipantMenuController {
               case "Remove Research Area" -> professorMenuController.removeResearchArea(participantManager, cpf);
               case "Add Publication" -> professorMenuController.addPublication(participantManager, cpf);
               case "Remove Publication" -> professorMenuController.removePublication(participantManager, cpf);
+            }
+          }
+          case "External" -> {
+            switch (option) {
+              case "Show Biography" -> System.out.println(((External)participantManager.get(cpf)).getFormatedBio());
+              case "Add Expertise Area" -> externalMenuController.addExpertiseArea(participantManager, cpf);
+              case "Remove Expertise Area" -> externalMenuController.removeExpertiseArea(participantManager, cpf);
             }
           }
       }}

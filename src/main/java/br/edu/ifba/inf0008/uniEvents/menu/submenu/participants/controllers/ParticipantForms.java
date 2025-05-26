@@ -202,4 +202,29 @@ public class ParticipantForms {
     System.out.println(Lines.clear());
     return id;
   }
+
+  protected static String getYN(String text, String defaultValue) {
+  String response;
+  while (true) {
+    System.out.print(text + "? ");
+    if(defaultValue.equalsIgnoreCase("y")) {
+      System.out.print("(Y/n)(\"cancel\" to exit)>> ");
+    } else {
+      System.out.print("(y/N)(\"cancel\" to exit)>> ");
+    }
+    response = Utils.scanner.nextLine().trim().toLowerCase();
+    if (response.equalsIgnoreCase("cancel")) {
+      System.out.println(Lines.clear());
+      return "cancel";
+    }
+    if (response.isEmpty()) {
+      response = defaultValue.toLowerCase();
+      break;
+    } else if (!response.equals("y") && !response.equals("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Invalid input! Please enter 'y' or 'n'."));
+    }
+  }
+    return response;
+  }
 }
