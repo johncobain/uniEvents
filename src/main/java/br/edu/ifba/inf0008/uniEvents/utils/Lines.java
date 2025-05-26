@@ -47,6 +47,31 @@ public class Lines {
     return finalLine;
   }
 
+  public static String multiLineText(String text){
+    String[] words = text.split(" ");
+    StringBuilder finalLine = new StringBuilder("|");
+    int currentLength = 0;
+    for (String word : words) {
+      if (currentLength + word.length() + 1 > 62) {
+        for(int i = 62 - currentLength; i > 0; i--){
+          finalLine.append(" ");
+        }
+        finalLine.append("|\n|");
+        currentLength = 0;
+      } else if (currentLength > 0) {
+        finalLine.append(" ");
+        currentLength++;
+      }
+      finalLine.append(word);
+      currentLength += word.length();
+    }
+    for(int i = 62 - currentLength; i > 0; i--) {
+      finalLine.append(" ");
+    }
+    finalLine.append("|");
+    return finalLine.toString();
+  }
+
   public static String leftText(String text){
     int totalLenght = 62 - text.length();
     String finalLine = "|";
