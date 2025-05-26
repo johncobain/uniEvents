@@ -6,16 +6,16 @@ import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
-public class TeacherMenu extends Menu{
+public class ProfessorMenu extends Menu{
   private final ParticipantMenuController participantMenuController = new ParticipantMenuController();
 
-  public TeacherMenu(ParticipantManager participantManager, EventManager eventManager) {
-    super("Teacher Management", Colors.BLUE_BOLD);
+  public ProfessorMenu(ParticipantManager participantManager, EventManager eventManager) {
+    super("Professor Management", Colors.BLUE_BOLD);
     super.addOption("Exit to Participant Menu");
-    super.addOption("Create Teacher");
-    super.addOption("Show Teacher");
-    super.addOption("List All Teachers");
-    super.addOption("Clear All Teachers");
+    super.addOption("Create Professor");
+    super.addOption("Show Professor");
+    super.addOption("List All Professors");
+    super.addOption("Clear All Professors");
     
     participantMenuController.setParticipantManager(participantManager);
     participantMenuController.setEventManager(eventManager);
@@ -32,16 +32,16 @@ public class TeacherMenu extends Menu{
             return;
           }
           case 1 -> {
-            participantMenuController.create("Teacher");
+            participantMenuController.create("Professor");
           }
           case 2 -> {
             participantMenuController.get();
           }
           case 3 -> {
-            participantMenuController.listType("Teacher");
+            participantMenuController.listType("Professor");
           }
           case 4 -> {
-            participantMenuController.clearAll("Teacher");
+            participantMenuController.clearAll("Professor");
           }
           default -> throw new AssertionError();
       }

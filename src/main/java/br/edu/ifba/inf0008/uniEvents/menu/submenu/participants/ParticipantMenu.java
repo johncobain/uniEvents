@@ -14,7 +14,7 @@ public class ParticipantMenu extends Menu {
       super("Participants Management", Colors.BLUE_BOLD);
       super.addOption("Exit to Main Menu");
       super.addOption("Student Management");
-      super.addOption("Teacher Management");
+      super.addOption("Professor Management");
       super.addOption("External Management");
       super.addOption("Show Participant");
       super.addOption("List All Participants");
@@ -42,7 +42,7 @@ public class ParticipantMenu extends Menu {
             new StudentMenu(participantManager, eventManager).show();
           }
           case 2 -> {
-            new TeacherMenu(participantManager, eventManager).show();
+            new ProfessorMenu(participantManager, eventManager).show();
           }
           case 3 -> {
             new ExternalMenu(participantManager, eventManager).show();

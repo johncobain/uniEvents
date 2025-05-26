@@ -6,8 +6,8 @@ import java.util.LinkedHashMap;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
@@ -83,9 +83,9 @@ public class ParticipantManager {
     add(student);
   }
 
-  public void createTeacher(String name, String cpf, String email, String phone, LocalDate birthDate) {
-    Teacher teacher = new Teacher(name, cpf, email, phone, birthDate);
-    add(teacher);
+  public void createProfessor(String name, String cpf, String email, String phone, LocalDate birthDate) {
+    Professor professor = new Professor(name, cpf, email, phone, birthDate);
+    add(professor);
   }
 
   public void createExternal(String name, String cpf, String email, String phone, LocalDate birthDate) {

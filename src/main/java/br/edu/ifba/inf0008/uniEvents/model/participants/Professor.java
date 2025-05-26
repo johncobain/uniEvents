@@ -2,13 +2,13 @@ package br.edu.ifba.inf0008.uniEvents.model.participants;
 
 import java.time.LocalDate;
 
-public class Teacher extends Participant{
-  private final String participantTypeJson = "Teacher";
+public class Professor extends Participant{
+  private final String participantTypeJson = "Professor";
 
-  public Teacher(String name, String cpf, String email, String phone, LocalDate birthDate) {
+  public Professor(String name, String cpf, String email, String phone, LocalDate birthDate) {
     super(name, cpf, email, phone, birthDate);
   }
-  public Teacher() {
+  public Professor() {
     super();
   } //Gson
 

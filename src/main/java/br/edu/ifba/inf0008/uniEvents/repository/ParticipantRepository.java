@@ -17,8 +17,8 @@ import com.google.gson.reflect.TypeToken;
 
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
@@ -36,7 +36,7 @@ public class ParticipantRepository {
     RuntimeTypeAdapterFactory<Participant> participantAdapterFactory = RuntimeTypeAdapterFactory
     .of(Participant.class, "participantTypeJson")
     .registerSubtype(Student.class, "Student")
-    .registerSubtype(Teacher.class, "Teacher")
+    .registerSubtype(Professor.class, "Professor")
     .registerSubtype(External.class, "External");
 
     gsonBuilder.registerTypeAdapterFactory(participantAdapterFactory);

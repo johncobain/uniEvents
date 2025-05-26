@@ -9,7 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -57,7 +57,7 @@ public class ParticipantMenuController {
     Boolean created = false;
     switch (type) {
       case "Student" -> created = studentMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
-      case "Teacher" -> participantManager.createTeacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      case "Professor" -> participantManager.createProfessor(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> participantManager.createExternal(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
 
@@ -105,7 +105,7 @@ public class ParticipantMenuController {
     Participant updatedParticipant = null;
     switch (participantManager.get(cpf).getType()) {
       case "Student" -> updatedParticipant = studentMenuController.update(participantManager, cpf, name, email, phone, birthDateString);
-      case "Teacher" -> updatedParticipant = new Teacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      case "Professor" -> updatedParticipant = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> updatedParticipant = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
 
