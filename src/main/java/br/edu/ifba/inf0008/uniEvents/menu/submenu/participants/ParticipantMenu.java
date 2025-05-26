@@ -48,7 +48,7 @@ public class ParticipantMenu extends Menu {
             new ExternalMenu(participantManager, eventManager).show();
           }
           case 4 -> {
-            participantMenuController.get();
+            participantMenuController.get("Participant");
           }
           case 5 -> {
             participantMenuController.listAll();

@@ -108,6 +108,30 @@ public class ParticipantForms {
     return dateString;
   }
 
+  public static String getYear(String type) {
+    String year;
+    while (true) { 
+      System.out.print("Enter " + type.toLowerCase() + " (\"cancel\" to exit)>> ");
+      year = Utils.scanner.nextLine();
+      if(year.equalsIgnoreCase("cancel")) {
+        System.out.println(Lines.clear());
+        return "cancel";
+      }
+      try {
+        Validation.isInteger(year);
+        if (year.length() != 4) {
+          throw new Exception("Year must be 4 digits long!");
+        }
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return year;
+  }
+
   protected static String getOption(ArrayList<String> options, String title) {
     BaseMenu baseMenu;
     baseMenu = new BaseMenu("Select " + title, options);

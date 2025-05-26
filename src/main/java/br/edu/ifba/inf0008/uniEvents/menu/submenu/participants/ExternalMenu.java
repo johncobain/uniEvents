@@ -35,7 +35,7 @@ public class ExternalMenu extends Menu{
             participantMenuController.create("External");
           }
           case 2 -> {
-            participantMenuController.get();
+            participantMenuController.get("External");
           }
           case 3 -> {
             participantMenuController.listType("External");

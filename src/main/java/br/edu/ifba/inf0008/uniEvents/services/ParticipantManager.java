@@ -9,6 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
+import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicTitle;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 
@@ -83,8 +84,8 @@ public class ParticipantManager {
     add(student);
   }
 
-  public void createProfessor(String name, String cpf, String email, String phone, LocalDate birthDate) {
-    Professor professor = new Professor(name, cpf, email, phone, birthDate);
+  public void createProfessor(String name, String cpf, String email, String phone, LocalDate birthDate, String employeeId, Course department, AcademicTitle academicTitle, String specialization) {
+    Professor professor = new Professor(name, cpf, email, phone, birthDate, employeeId, department, academicTitle, specialization);
     add(professor);
   }
 

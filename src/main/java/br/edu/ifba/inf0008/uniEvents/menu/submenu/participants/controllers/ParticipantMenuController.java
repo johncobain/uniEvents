@@ -9,7 +9,6 @@ import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -20,6 +19,7 @@ public class ParticipantMenuController {
   private ParticipantManager participantManager;
   private EventManager eventManager;
   private final StudentMenuController studentMenuController = new StudentMenuController();
+  private final ProfessorMenuController professorMenuController = new ProfessorMenuController();
 
   public void setParticipantManager(ParticipantManager participantManager) {
     this.participantManager = participantManager;
@@ -57,7 +57,7 @@ public class ParticipantMenuController {
     Boolean created = false;
     switch (type) {
       case "Student" -> created = studentMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
-      case "Professor" -> participantManager.createProfessor(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      case "Professor" -> created = professorMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
       case "External" -> participantManager.createExternal(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
 
@@ -104,8 +104,8 @@ public class ParticipantMenuController {
 
     Participant updatedParticipant = null;
     switch (participantManager.get(cpf).getType()) {
-      case "Student" -> updatedParticipant = studentMenuController.update(participantManager, cpf, name, email, phone, birthDateString);
-      case "Professor" -> updatedParticipant = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString));
+      case "Student" -> updatedParticipant = studentMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "Professor" -> updatedParticipant = professorMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
       case "External" -> updatedParticipant = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString));
     }
 
@@ -161,7 +161,7 @@ public class ParticipantMenuController {
     }
   }
 
-  public void get(){
+  public void get(String type){
     String cpf = ParticipantForms.getCpf(participantManager);
     if(cpf.equalsIgnoreCase("cancel")) return;
 
@@ -171,7 +171,13 @@ public class ParticipantMenuController {
       return;
     }
 
-    String type = participantManager.get(cpf).getType();
+    if (!type.equalsIgnoreCase("Participant") && !participantManager.get(cpf).getType().equalsIgnoreCase(type)) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(type + " not found!"));
+        return;
+    }
+
+    if(type.equalsIgnoreCase("Participant")) type = participantManager.get(cpf).getType();
     
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine(type, Colors.BLUE_BOLD));
@@ -180,11 +186,17 @@ public class ParticipantMenuController {
     System.out.print(participantManager.get(cpf).toString());
     System.out.println(Lines.straightLine());
 
-    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "Add Event", "Remove Event", "Show Events", "Show Ceritificates"));
+    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "Add To Event", "Remove From Event", "Show Events", "Show Ceritificates"));
     switch (type) {
       case "Student" -> {
         options.add("Add Interest");
         options.add("Remove Interest");
+      }
+      case "Professor" -> {
+        options.add("Add Research Area");
+        options.add("Remove Research Area");
+        options.add("Add Publication");
+        options.add("Remove Publication");
       }
     }
     String option = ParticipantForms.getOption(options, "What do you want to do?");
@@ -193,8 +205,8 @@ public class ParticipantMenuController {
     switch (option) {
       case "Update" -> update(type, cpf);
       case "Remove" -> remove(cpf);
-      case "Add Event" -> addEvent(cpf);
-      case "Remove Event" -> removeEvent(cpf);
+      case "Add To Event" -> addToEvent(cpf);
+      case "Remove From Event" -> removeFromEvent(cpf);
       case "Show Events" -> showEvents(cpf);
       case "Show Certificates" -> showCertificates(cpf);
       default -> {
@@ -203,6 +215,14 @@ public class ParticipantMenuController {
             switch (option) {
               case "Add Interest" -> studentMenuController.addInterest(participantManager, cpf);
               case "Remove Interest" -> studentMenuController.removeInterest(participantManager, cpf);
+            }
+          }
+          case "Professor" -> {
+            switch (option) {
+              case "Add Research Area" -> professorMenuController.addResearchArea(participantManager, cpf);
+              case "Remove Research Area" -> professorMenuController.removeResearchArea(participantManager, cpf);
+              case "Add Publication" -> professorMenuController.addPublication(participantManager, cpf);
+              case "Remove Publication" -> professorMenuController.removePublication(participantManager, cpf);
             }
           }
       }}
@@ -261,7 +281,7 @@ public class ParticipantMenuController {
     }
   }
   
-  public void addEvent(String cpf){
+  public void addToEvent(String cpf){
     if (participantManager.get(cpf) == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Participant not found!"));
@@ -287,7 +307,7 @@ public class ParticipantMenuController {
     }
   }
 
-  public void removeEvent(String cpf){
+  public void removeFromEvent(String cpf){
     if (participantManager.get(cpf) == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Participant not found!"));

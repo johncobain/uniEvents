@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum Course {
+  ADMINISTRATION("Administration"),
+  ARCHITECTURE("Architecture"),
+  ARTS("Arts"),
+  BIOLOGY("Biology"),
+  CHEMISTRY("Chemistry"),
   COMPUTER_SCIENCE("Computer Science"),
   COMPUTER_ENGINEERING("Computer Engineering"),
+  EDUCATION("Education"),
+  ENGINEERING("Engineering"),
   INFORMATION_SYSTEMS("Information Systems"),
   INFORMATION_TECHNOLOGY("Information Technology"),
-  MATH("Math"),
-  PHYSICS("Physics"),
-  CHEMISTRY("Chemistry"),
-  BIOLOGY("Biology"),
-  ENGINEERING("Engineering"),
-  ARCHITECTURE("Architecture"),
-  MEDICINE("Medicine"),
-  PSYCHOLOGY("Psychology"),
-  ARTS("Arts"),
-  EDUCATION("Education"),
   LAW("Law"),
+  MATH("Math"),
+  MEDICINE("Medicine"),
   MUSIC("Music"),
-  ADMINISTRATION("Administration");
+  PHYSICS("Physics"),
+  PSYCHOLOGY("Psychology");
 
   private final String description;
 

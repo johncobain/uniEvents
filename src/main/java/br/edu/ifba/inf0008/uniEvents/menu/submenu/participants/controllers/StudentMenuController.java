@@ -53,7 +53,7 @@ public class StudentMenuController {
     return true;
   }
   
-  public Student update(ParticipantManager participantManager, String cpf, String name, String email, String phone, String birthDateString) {
+  public Student update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
@@ -89,6 +89,7 @@ public class StudentMenuController {
     try {
       Student student = (Student)participantManager.get(cpf);
       student.addInterest(interest);
+      participantManager.update(cpf, student);
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Interest added!"));
     } catch (Exception e) {
@@ -106,6 +107,7 @@ public class StudentMenuController {
     try {
       Student student = (Student)participantManager.get(cpf);
       student.removeInterest(interest);
+      participantManager.update(cpf, student);
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Interest removed!"));
     } catch (Exception e) {

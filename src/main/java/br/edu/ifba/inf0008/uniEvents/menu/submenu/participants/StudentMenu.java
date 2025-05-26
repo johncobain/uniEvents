@@ -35,7 +35,7 @@ public class StudentMenu extends Menu{
             participantMenuController.create("Student");
           }
           case 2 -> {
-            participantMenuController.get();
+            participantMenuController.get("Student");
           }
           case 3 -> {
             participantMenuController.listType("Student");

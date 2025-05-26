@@ -1,8 +1,32 @@
-Ótimo! Vamos pensar em atributos e métodos que podem diferenciar esses tipos de eventos e participantes, mantendo os conceitos de herança em mente.
+TreeMap
+What is it?
+A TreeMap<K, V> is a map implementation that stores key-value pairs in a sorted order according to the natural ordering of its keys (or by a custom Comparator you provide).
 
-Diferenciação dos Tipos de Eventos
+Key features:
 
-Lembre-se que todos herdarão de uma classe base Event com atributos comuns como name (ou title), description, location, date (que pode ser LocalDate ou LocalDateTime), capacity, modality e uma lista de participants.
+Keys are always sorted.
+Operations like get, put, remove are O(log n).
+Useful when you need to iterate keys in order (e.g., alphabetical, numerical, date order).
+Example:
+
+Use case in your project:
+If you want to keep events sorted by their code, name, or date, use a TreeMap<String, Event>.
+
+TreeSet
+What is it?
+A TreeSet<E> is a set implementation that stores unique elements in a sorted order (by natural order or a custom Comparator).
+
+Key features:
+
+No duplicates allowed.
+Elements are always sorted.
+Operations like add, remove, contains are O(log n).
+Example:
+
+Use case in your project:
+If you want a sorted, duplicate-free list of participant names or event titles, use a TreeSet<String>.
+
+---
 
 1. Palestra (Lecture)
 
@@ -110,39 +134,9 @@ Lembre-se que todos herdarão de uma classe base Event com atributos comuns como
 
 ---
 
-1. Aluno (Student)
-
-   Contexto: Membro do corpo discente da universidade.
-
-   Atributos Específicos:
-
-   studentId (String): Número de matrícula.
-
-   courseName (String): Nome do curso em que está matriculado (ex: "Análise e Desenvolvimento de Sistemas", "Engenharia de Software").
-
-   currentSemester (int): Semestre/período atual.
-
-   academicPerformanceIndex (double) (Opcional): IRA ou índice de desempenho.
-
-   Métodos Específicos:
-
-   getStudentAcademicInfo(): Retorna uma string com matrícula, curso e semestre.
-
-   isEligibleForAdvancedWorkshops(): (Exemplo) Poderia verificar o semestre ou IRA para elegibilidade.
-
 2. Professor (Professor/Faculty)
 
    Contexto: Membro do corpo docente da universidade.
-
-   Atributos Específicos:
-
-   employeeId (String): Identificação funcional ou matrícula de servidor.
-
-   department (String): Departamento ao qual o professor está vinculado.
-
-   academicTitle (String): Titulação (ex: "Doutor", "Mestre", "Especialista").
-
-   researchAreas (`List<String>`): Áreas de pesquisa de interesse.
 
    Métodos Específicos:
 

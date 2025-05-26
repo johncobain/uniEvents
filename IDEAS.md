@@ -2,7 +2,7 @@
 
 - use dynamic linking for Participants
 
-- Short Course must have a Teacher as teacher of the event
+- Short Course must have a Professor as Professor of the event
 
 - Press Enter to exit views
 
@@ -31,9 +31,9 @@ List<Student> students = participantsMap.values().stream()  // 1. Pega um Stream
 
 - TODO: maybe another submenu for Participant menu?
 
-- TODO: change Teacher to Professor
-
 - TODO: set new gpa for student
+
+- TODO: advanced workshop must have a required gpa for Student
 
 1. Generate Certificates (text)
    Relevant code:

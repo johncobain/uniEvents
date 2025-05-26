@@ -35,7 +35,7 @@ public class ProfessorMenu extends Menu{
             participantMenuController.create("Professor");
           }
           case 2 -> {
-            participantMenuController.get();
+            participantMenuController.get("Professor");
           }
           case 3 -> {
             participantMenuController.listType("Professor");
