@@ -48,7 +48,7 @@ The project simulates the management of events in a university, with the followi
 
 - Other Requirements
   - [x] Attributes and methods static
-  - [ ] Method overloading
+  - [x] Method overloading
   - [x] Structured project with at least one external library
   - [x] Command Line Interface (not necessary graphical interface)
 

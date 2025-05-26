@@ -120,7 +120,7 @@ public class ParticipantMenuController {
     }
   }
   
-  public void listAll(){
+  public void list(){
     LinkedHashMap<String, Participant> participants = participantManager.getAll();
 
     if(participants.isEmpty()){
@@ -139,7 +139,7 @@ public class ParticipantMenuController {
 
   }
 
-  public void listType(String type){
+  public void list(String type){
     List<Participant> participants = participantManager.getAll().values()
     .stream()
     .filter(p -> p.getType().equalsIgnoreCase(type))
@@ -248,35 +248,32 @@ public class ParticipantMenuController {
     }
   }
 
-  public void clearAll(String type){
-    switch (type) {
-      case "Participant" -> {
-          try {
-            participantManager.clear(eventManager);
-            System.out.println(Lines.clear());
-            System.out.println(Lines.successLine("All participants removed!"));
-          } catch (Exception e) {
-            System.out.println(Lines.clear());
-            System.out.println(Lines.errorLine(e.getMessage()));
-          }
-        }
-      default -> {
-        try {
-          List<Participant> participantsOfType = participantManager.getAll().values()
-          .stream()
-          .filter(p -> p.getType().equalsIgnoreCase(type))
-          .collect(Collectors.toList());
+  public void clear(){
+    try {
+      participantManager.clear(eventManager);
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("All participants removed!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
+    }
+  }
 
-          for (Participant participant : participantsOfType) {
-            participantManager.remove(participant.getCpf(), eventManager);
-          }
-          System.out.println(Lines.clear());
-          System.out.println(Lines.successLine("All " + type + "s removed!"));
-        } catch (Exception e) {
-          System.out.println(Lines.clear());
-          System.out.println(Lines.errorLine(e.getMessage()));
-        }
+  public void clear(String type){
+    try {
+      List<Participant> participantsOfType = participantManager.getAll().values()
+      .stream()
+      .filter(p -> p.getType().equalsIgnoreCase(type))
+      .collect(Collectors.toList());
+
+      for (Participant participant : participantsOfType) {
+        participantManager.remove(participant.getCpf(), eventManager);
       }
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("All " + type + "s removed!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
     }
   }
   

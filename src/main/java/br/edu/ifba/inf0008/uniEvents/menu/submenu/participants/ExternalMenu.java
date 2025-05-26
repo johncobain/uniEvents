@@ -38,10 +38,10 @@ public class ExternalMenu extends Menu{
             participantMenuController.get("External");
           }
           case 3 -> {
-            participantMenuController.listType("External");
+            participantMenuController.list("External");
           }
           case 4 -> {
-            participantMenuController.clearAll("External");
+            participantMenuController.clear("External");
           }
           default -> throw new AssertionError();
       }

@@ -51,10 +51,10 @@ public class ParticipantMenu extends Menu {
             participantMenuController.get("Participant");
           }
           case 5 -> {
-            participantMenuController.listAll();
+            participantMenuController.list();
           }
           case 6 -> {
-            participantMenuController.clearAll("Participant");
+            participantMenuController.clear();
           }
           default -> throw new AssertionError();
       }

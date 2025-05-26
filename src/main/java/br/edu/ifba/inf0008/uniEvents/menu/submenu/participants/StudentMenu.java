@@ -38,10 +38,10 @@ public class StudentMenu extends Menu{
             participantMenuController.get("Student");
           }
           case 3 -> {
-            participantMenuController.listType("Student");
+            participantMenuController.list("Student");
           }
           case 4 -> {
-            participantMenuController.clearAll("Student");
+            participantMenuController.clear("Student");
           }
           default -> throw new AssertionError();
       }
