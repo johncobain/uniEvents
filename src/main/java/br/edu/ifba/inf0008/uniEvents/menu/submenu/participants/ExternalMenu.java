@@ -1,6 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers.ParticipantMenuController;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;

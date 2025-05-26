@@ -67,7 +67,8 @@ public class EventForms {
       String capacityStr = Utils.scanner.nextLine();
       if (capacityStr.equals("cancel")) return -1;
       try {
-        capacity = Validation.isInteger(capacityStr);
+        Validation.isInteger(capacityStr);
+        capacity = Integer.parseInt(capacityStr);
         if (capacity <= 0) {
           throw new Exception("Capacity must be greater than 0!");
         }
