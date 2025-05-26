@@ -39,7 +39,7 @@ The project simulates the management of events in a university, with the followi
 
   - [x] Create an hierarchy of classes for events and other entities
   - [x] Use interfaces or abstract classes to define generic behavior
-  - [ ] Use dynamic linking
+  - [x] Use dynamic linking
 
 - Collections
 

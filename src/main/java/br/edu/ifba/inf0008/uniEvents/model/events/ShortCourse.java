@@ -24,5 +24,12 @@ public class ShortCourse extends Event {
   public String getType() {
     return eventTypeJson;
   }
+
+  @Override
+  public String toString(){
+    StringBuilder sb = new StringBuilder();
+    sb.append(super.toString());
+    return sb.toString();
+  }
   
 }
