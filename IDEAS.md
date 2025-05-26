@@ -27,8 +27,10 @@ List<Student> students = participantsMap.values().stream()  // 1. Pega um Stream
 
 - add `addInterest` to Participant menu (for Student)
 
-- student must have a required gpa for course
+- TODO: student must have a required gpa for course
 
-- maybe another submenu for Participant menu?
+- TODO: maybe another submenu for Participant menu?
 
-- change Teacher to Professor
+- TODO: change Teacher to Professor
+
+- TODO: set new gpa for student
