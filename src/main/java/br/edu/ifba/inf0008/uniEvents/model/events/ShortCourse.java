@@ -15,6 +15,11 @@ public class ShortCourse extends Event {
     super();
   } //Gson
 
+  public Boolean checkEligibility(){
+  // TODO: see if student is eligible for course by gpa (maybe move to ShortCourse?)
+  return true;
+  }
+
   @Override
   public String getType() {
     return eventTypeJson;
