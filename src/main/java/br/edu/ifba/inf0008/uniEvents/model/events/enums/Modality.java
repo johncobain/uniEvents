@@ -33,9 +33,9 @@ public enum Modality {
   }
 
   public static Modality fromDescription(String desc) {
-    for (Modality status : Modality.values()) {
-      if (status.getDescription().equalsIgnoreCase(desc)) {
-        return status;
+    for (Modality modality : Modality.values()) {
+      if (modality.getDescription().equalsIgnoreCase(desc)) {
+        return modality;
       }
     }
     throw new IllegalArgumentException("No enum constant with description: " + desc);
@@ -49,9 +49,5 @@ public enum Modality {
       modalities.add(modality.toString());
     }
     return modalities;
-  }
-  @Override
-  public String toString() {
-    return description;
   }
 }

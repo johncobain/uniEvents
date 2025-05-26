@@ -12,6 +12,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Teacher;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
+import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -57,13 +58,20 @@ public class ParticipantMenuController {
 
     switch (type) {
       case "Student" -> {
-        String course = ParticipantForms.getName("course");
-        if (course.equals("cancel")) return;
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Cancel");
+        for(Course course : Course.getAll())options.add(course.getDescription());
+
+        String course = ParticipantForms.getOption(options, "Course");
+        if (course.equalsIgnoreCase("cancel")) return;
 
         int currentSemester = ParticipantForms.getSemester();
         if (currentSemester == 0) return;
 
-        ArrayList<String> options = new ArrayList<>(List.of("Cancel", "Active", "On Leave", "Graduated", "Dropped Out"));
+        options = new ArrayList<>();
+        options.add("Cancel");
+        for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
+        
         String status = ParticipantForms.getOption(options, "Academic Status");
         if (status.equals("cancel")) return;
 
@@ -76,7 +84,7 @@ public class ParticipantMenuController {
         String enrollmentDateString = ParticipantForms.getDate("enrollment date");
         if (enrollmentDateString.equals("cancel")) return;
 
-        participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), course, currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
+        participantManager.createStudent(name, cpf, email, phone, Utils.stringToDate(birthDateString), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
     }
       case "Teacher" -> participantManager.createTeacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> participantManager.createExternal(name, cpf, email, phone, Utils.stringToDate(birthDateString));
@@ -124,13 +132,20 @@ public class ParticipantMenuController {
     Participant updatedParticipant = null;
     switch (participantManager.get(cpf).getType()) {
       case "Student" -> {
-        String course = ParticipantForms.getName("course");
-        if (course.equals("cancel")) return;
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Cancel");
+        for(Course course : Course.getAll())options.add(course.getDescription());
+
+        String course = ParticipantForms.getOption(options, "Course");
+        if (course.equalsIgnoreCase("cancel")) return;
 
         int currentSemester = ParticipantForms.getSemester();
         if (currentSemester == 0) return;
 
-        ArrayList<String> options = new ArrayList<>(List.of("Cancel", "Active", "On Leave", "Graduated", "Dropped Out"));
+        options = new ArrayList<>();
+        options.add("Cancel");
+        for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
+
         String status = ParticipantForms.getOption(options, "Academic Status");
         if (status.equals("cancel")) return;
 
@@ -143,7 +158,7 @@ public class ParticipantMenuController {
         String enrollmentDateString = ParticipantForms.getDate("enrollment date");
         if (enrollmentDateString.equals("cancel")) return;
 
-        updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), course, currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
+        updatedParticipant = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
       }
       case "Teacher" -> updatedParticipant = new Teacher(name, cpf, email, phone, Utils.stringToDate(birthDateString));
       case "External" -> updatedParticipant = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString));
@@ -218,7 +233,7 @@ public class ParticipantMenuController {
     System.out.print(participantManager.get(cpf).toString());
     System.out.println(Lines.straightLine());
 
-    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "Add Event", "Remove Event", "Show Events"));
+    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "Add Event", "Remove Event", "Show Events", "Show Ceritificates"));
     switch (type) {
       case "Student" -> {
         options.add("Add Interest");
@@ -234,6 +249,7 @@ public class ParticipantMenuController {
       case "Add Event" -> addEvent(cpf);
       case "Remove Event" -> removeEvent(cpf);
       case "Show Events" -> showEvents(cpf);
+      case "Show Certificates" -> showCertificates(cpf);
       default -> {
         switch (type) {
           case "Student" -> {
@@ -347,6 +363,10 @@ public class ParticipantMenuController {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }
+  }
+
+  public void showCertificates(String cpf){
+    //TODO: implement
   }
 
   public void addInterest(String cpf){

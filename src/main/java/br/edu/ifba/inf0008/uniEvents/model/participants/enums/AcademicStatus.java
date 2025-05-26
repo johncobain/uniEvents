@@ -28,14 +28,9 @@ public enum AcademicStatus {
     throw new IllegalArgumentException("No enum constant with description: " + desc);
   }
 
-  public ArrayList<AcademicStatus> getAll(){
+  public static ArrayList<AcademicStatus> getAll(){
     ArrayList<AcademicStatus> academicStatuses = new ArrayList<>();
     academicStatuses.addAll(Arrays.asList(AcademicStatus.values()));
     return academicStatuses;
-  }
-
-  @Override
-  public String toString() {
-    return description;
   }
 }

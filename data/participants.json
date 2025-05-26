@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "participantTypeJson": "Student",
+    "course": "COMPUTER_SCIENCE",
+    "currentSemester": 3,
+    "academicStatus": "ACTIVE",
+    "gpa": 8.9,
+    "campus": "IFBA",
+    "enrollmentDate": "19/02/2024",
+    "interests": [],
+    "name": "John",
+    "cpf": "068.390.215-64",
+    "email": "gomes.andrey.dev@gmail.com",
+    "phone": "75 99151-6313",
+    "birthDate": "20/08/2005",
+    "certificates": []
+  }
+]

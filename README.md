@@ -44,7 +44,7 @@ The project simulates the management of events in a university, with the followi
 - Collections
 
   - [x] Utilize a collection more appropriate for each situation
-  - [ ] Demonstrate safe casting and correct usage of hierarchy collections
+  - [x] Demonstrate safe casting and correct usage of hierarchy collections
 
 - Other Requirements
   - [x] Attributes and methods static
@@ -112,7 +112,9 @@ The project simulates the management of events in a university, with the followi
    mvn test
    ```
 
-### Sugestion
+## Sugestion and Observations
+
+Using **openjdk version "21.0.7" 2025-04-15**
 
 The system requires a **valid CPF** to register a participant, if you want to generate one, you can use one of this websites:
 
