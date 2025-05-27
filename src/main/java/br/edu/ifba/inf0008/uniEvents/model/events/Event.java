@@ -17,7 +17,7 @@ public abstract class Event {
   private LocalDate date;
   private int capacity;
   private Modality modality;
-  private ArrayList<String> participantsCpfs;
+  private final ArrayList<String> participantsCpfs;
   private transient LinkedHashMap<String, Participant> participants;
   private String code;
   
@@ -98,17 +98,6 @@ public abstract class Event {
     return participantsCpfs;
   }
 
-  public void setParticipantsCpfs(ArrayList<String> participantsCpfs) {
-    this.participantsCpfs = participantsCpfs;
-  }
-  public void addParticipantCpf(String cpf) {
-    this.participantsCpfs.add(cpf);
-  }
-  public void removeParticipantCpf(String cpf) {
-    if(!this.participantsCpfs.contains(cpf)) return;
-    this.participantsCpfs.remove(cpf);
-    this.removeParticipant(cpf);
-  }
   public void clearParticipantsCpfs() {
     this.participantsCpfs.clear();
   }
@@ -133,9 +122,12 @@ public abstract class Event {
   }
 
   public void addParticipant(Participant participant) {
+    this.participantsCpfs.add(participant.getCpf());
     this.participants.put(participant.getCpf(), participant);
   }
   public void removeParticipant(String cpf) {
+    if(!this.participantsCpfs.contains(cpf)) return;
+    this.participantsCpfs.remove(cpf);
     this.participants.remove(cpf);
   }
 

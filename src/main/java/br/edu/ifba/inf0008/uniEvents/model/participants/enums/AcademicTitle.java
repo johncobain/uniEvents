@@ -1,6 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.model.participants.enums;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public enum AcademicTitle {
   BACHELOR("Bachelor's Degree"),
@@ -40,6 +41,6 @@ public enum AcademicTitle {
   }
   
   public static ArrayList<AcademicTitle> getAll() {
-      return new ArrayList<>(java.util.Arrays.asList(AcademicTitle.values()));
+      return new ArrayList<>(Arrays.asList(AcademicTitle.values()));
   }
 }

@@ -43,17 +43,17 @@ public class EventForms {
     return date;
   }
 
-  protected static int getCapacity(){
-    int capacity;
+  protected static int getNumber(String text){
+    int number;
     while(true) { 
-      System.out.print("Enter event capacity (\"cancel\" to exit)>> ");
-      String capacityStr = Utils.scanner.nextLine();
-      if (capacityStr.equals("cancel")) return -1;
+      System.out.print("Enter event " + text.toLowerCase() + " (\"cancel\" to exit)>> ");
+      String numberStr = Utils.scanner.nextLine();
+      if (numberStr.equals("cancel")) return -1;
       try {
-        Validation.isInteger(capacityStr);
-        capacity = Integer.parseInt(capacityStr);
-        if (capacity <= 0) {
-          throw new Exception("Capacity must be greater than 0!");
+        Validation.isInteger(numberStr);
+        number = Integer.parseInt(numberStr);
+        if (number <= 0) {
+          throw new Exception(text + " must be greater than 0!");
         }
         break;
       } catch (Exception e) {
@@ -62,7 +62,7 @@ public class EventForms {
       }
     }
     System.out.println(Lines.clear());
-    return capacity;
+    return number;
   }
 
   protected static String getOption(ArrayList<String> options, String title){

@@ -9,6 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
+import br.edu.ifba.inf0008.uniEvents.model.events.enums.SkillLevel;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
@@ -66,7 +67,6 @@ public class EventManager {
       throw new IllegalArgumentException("Participant is already registered in this event");
     }
 
-    get(code).addParticipantCpf(cpf);
     get(code).addParticipant(participantRepository.get(cpf));
     eventRepository.save();
   }
@@ -83,7 +83,6 @@ public class EventManager {
       throw new IllegalArgumentException("Participant is not registered in this event");
     }
 
-    get(code).removeParticipantCpf(cpf);
     get(code).removeParticipant(cpf);
     eventRepository.save();
   }
@@ -94,7 +93,6 @@ public class EventManager {
     }
 
     for (String cpf : get(code).getParticipants().keySet()) {
-      get(code).removeParticipantCpf(cpf);
       get(code).removeParticipant(cpf);
     }
     eventRepository.save();
@@ -133,8 +131,12 @@ public class EventManager {
     add(event);
   }
 
-  public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
-    ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code);
+  public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code, 
+  // Participant instructor,
+   int totalHours, String courseModules, String methodOfAssessment, SkillLevel targetSkillLevel) {
+    ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code, 
+    // instructor, 
+    totalHours, courseModules, methodOfAssessment, targetSkillLevel);
     add(event);
   }
 

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
@@ -36,7 +37,7 @@ public class EventMenuController {
     String date = EventForms.getDate();
     if (date.equalsIgnoreCase("cancel")) return;
 
-    int capacity = EventForms.getCapacity();
+    int capacity = EventForms.getNumber("Capacity");
     if (capacity == -1) return;
 
     ArrayList<String> options = new ArrayList<>();
@@ -62,7 +63,7 @@ public class EventMenuController {
     switch (type) {
       case "Lecture" -> created = LectureMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
       case "Workshop" -> created = WorkshopMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
-      case "Short Course" -> created = ShortCourseMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
+      case "Short Course" -> created = ShortCourseMenuController.create(eventManager, participantManager, name, description, location, date, capacity, modality, code);
       case "Academic Fair" -> created = AcademicFairMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
     }
 
@@ -112,7 +113,7 @@ public class EventMenuController {
     String date = EventForms.getDate();
     if (date.equalsIgnoreCase("cancel")) return;
     
-    int capacity = EventForms.getCapacity();
+    int capacity = EventForms.getNumber("Capacity");
     if (capacity == -1) return;
 
     ArrayList<String> options = new ArrayList<>();
@@ -126,7 +127,7 @@ public class EventMenuController {
     switch (type) {
       case "Lecture" -> updatedEvent = LectureMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
       case "Workshop" -> updatedEvent = WorkshopMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
-      case "Short Course" -> updatedEvent = ShortCourseMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
+      case "Short Course" -> updatedEvent = ShortCourseMenuController.update(eventManager, participantManager, code, name, description, location, date, capacity, modality);
       case "Academic Fair" -> updatedEvent = AcademicFairMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
     }
 
@@ -299,6 +300,16 @@ public class EventMenuController {
     if(eventManager.get(code).isParticipantRegistered(cpf)){
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Participant with CPF " + cpf + " is already registered in this event!"));
+      return;      
+    }
+
+    if(
+      participantManager.get(cpf).getType().equalsIgnoreCase("Student") && 
+      eventManager.get(code).getType().equalsIgnoreCase("Short Course") &&      
+      !((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)
+      ){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant " + participantManager.get(cpf).getName() + " is not eligible to register in this event!"));
       return;      
     }
 

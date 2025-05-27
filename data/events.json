@@ -1,13 +1,22 @@
 [
   {
-    "eventTypeJson": "Workshop",
+    "eventTypeJson": "Short Course",
+    "totalHours": 40,
+    "courseModules": [
+      "Q",
+      "T"
+    ],
+    "methodOfAssessment": "Project",
+    "targetSkillLevel": "ADVANCED",
     "name": "QuTe",
-    "description": "QT Class",
-    "location": "Lab3",
-    "date": "30/05/2025",
+    "description": "QT Course",
+    "location": "Lab2",
+    "date": "29/05/2025",
     "capacity": 5,
     "modality": "INPERSON",
-    "participantsCpfs": [],
+    "participantsCpfs": [
+      "592.201.489-78"
+    ],
     "code": "QT"
   }
 ]

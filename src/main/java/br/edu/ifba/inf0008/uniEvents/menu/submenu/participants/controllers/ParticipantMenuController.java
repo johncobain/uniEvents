@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
@@ -297,12 +298,6 @@ public class ParticipantMenuController {
   }
   
   public void addToEvent(String cpf){
-    if (participantManager.get(cpf) == null) {
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Participant not found!"));
-      return;
-    }
-
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
@@ -312,6 +307,23 @@ public class ParticipantMenuController {
       System.out.println(Lines.errorLine("Event not found!"));
       return;
     }
+
+    if(eventManager.get(code).isParticipantRegistered(cpf)){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant with CPF " + cpf + " is already registered in this event!"));
+      return;      
+    }
+
+    if(
+      participantManager.get(cpf).getType().equalsIgnoreCase("Student") && 
+      eventManager.get(code).getType().equalsIgnoreCase("Short Course") &&      
+      !((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)
+      ){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant " + participantManager.get(cpf).getName() + " is not eligible to register in this event!"));
+      return;      
+    }
+
     try {
       eventManager.addParticipant(event.getCode(), cpf);
       System.out.println(Lines.clear());
