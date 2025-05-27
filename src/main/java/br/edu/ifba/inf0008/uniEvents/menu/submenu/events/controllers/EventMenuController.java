@@ -9,15 +9,18 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
+import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class EventMenuController {
-  private EventManager eventManager;
-  
-  public void setEventManager(EventManager eventManager) {
+  private final EventManager eventManager;
+  private final ParticipantManager participantManager;
+
+  public EventMenuController(EventManager eventManager, ParticipantManager participantManager) {
     this.eventManager = eventManager;
+    this.participantManager = participantManager;
   }
   
   public void create(String type){
@@ -196,7 +199,7 @@ public class EventMenuController {
 
     System.out.print(ReportsManager.summary(eventManager.get(code), false));
     
-    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Remove Participant", "Clear Participants", "Generate Certificate"));
+    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Add Participant", "Remove Participant", "Clear Participants", "Generate Certificate"));
     switch (type) {
       // case "Lecture" -> options.add("View Slides");
       // case "Workshop" -> options.add("View Materials");
@@ -215,6 +218,7 @@ public class EventMenuController {
           if(remove(code)) return;
         }
         case "List Participants" -> listParticipants(code);
+        case "Add Participant" -> addParticipant(code);
         case "Remove Participant" -> removeParticipant(code);
         case "Clear Participants" -> clearParticipants(code);
         case "Generate Certificate" -> generateCertificate(code);
@@ -279,6 +283,32 @@ public class EventMenuController {
       System.out.println(Lines.straightLine());
       System.out.print(participant.toString());
       System.out.println(Lines.straightLine());
+    }
+  }
+
+  public void addParticipant(String code){
+    String cpf = ParticipantForms.getCpf();
+    if (cpf.equalsIgnoreCase("cancel")) return;
+
+    if(participantManager.get(cpf) == null){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant not found!"));
+      return;
+    }
+
+    if(eventManager.get(code).isParticipantRegistered(cpf)){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant with CPF " + cpf + " is already registered in this event!"));
+      return;      
+    }
+
+    try {
+      eventManager.addParticipant(code, cpf);
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Participant added!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
     }
   }
 

@@ -14,14 +14,11 @@ import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class ParticipantMenuController {
-  private ParticipantManager participantManager;
-  private EventManager eventManager;
+  private final ParticipantManager participantManager;
+  private final EventManager eventManager;
 
-  public void setParticipantManager(ParticipantManager participantManager) {
+  public ParticipantMenuController(ParticipantManager participantManager, EventManager eventManager) {
     this.participantManager = participantManager;
-  }
-
-  public void setEventManager(EventManager eventManager) {
     this.eventManager = eventManager;
   }
 

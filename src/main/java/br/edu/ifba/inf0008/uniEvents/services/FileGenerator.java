@@ -15,10 +15,6 @@ import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 public class FileGenerator {
   public void generateDummyData(EventManager eventManager, ParticipantManager participantManager) {
     //TODO: Implement this method to generate dummy data for events and participants.
-    // This method should generate dummy data for events and participants
-    // and save it to files or databases as needed.
-    // Implementation details will depend on the specific requirements.
-    // if there is any data stored, warn user that it will be overwritten
     System.out.println(Lines.warningLine("WARNING: Any Current Data will be overwritten!"));
     while (true) { 
       System.out.print("Are you sure you want to continue (y/N)? >>");

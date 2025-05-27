@@ -2,15 +2,13 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants;
 
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers.ParticipantMenuController;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ParticipantSubMenu extends Menu{
-  private final ParticipantMenuController participantMenuController = new ParticipantMenuController();
+  private final ParticipantMenuController participantMenuController;
   private final String participantType;
 
-  public ParticipantSubMenu(ParticipantManager participantManager, EventManager eventManager, String participantType) {
+  public ParticipantSubMenu(ParticipantMenuController participantMenuController, String participantType) {
     super(participantType + " Management", Colors.BLUE_BOLD);
     super.addOption("Exit to Participant Menu");
     super.addOption("Create " + participantType);
@@ -19,9 +17,7 @@ public class ParticipantSubMenu extends Menu{
     super.addOption("Clear All " + participantType + "s");
 
     this.participantType = participantType;
-    
-    participantMenuController.setParticipantManager(participantManager);
-    participantMenuController.setEventManager(eventManager);
+    this.participantMenuController = participantMenuController;
   }
 
   @Override

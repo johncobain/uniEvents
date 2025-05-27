@@ -6,9 +6,7 @@ import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ParticipantMenu extends Menu {
-  private final ParticipantMenuController participantMenuController = new ParticipantMenuController();
-  ParticipantManager participantManager;
-  EventManager eventManager;
+  private final ParticipantMenuController participantMenuController;
 
   public ParticipantMenu(ParticipantManager participantManager, EventManager eventManager) {
       super("Participants Management", Colors.BLUE_BOLD);
@@ -20,12 +18,7 @@ public class ParticipantMenu extends Menu {
       super.addOption("List All Participants");
       super.addOption("Clear All Participants");
 
-
-      this.participantManager = participantManager;
-      this.eventManager = eventManager;
-
-      participantMenuController.setParticipantManager(participantManager);
-      participantMenuController.setEventManager(eventManager);
+      this.participantMenuController = new ParticipantMenuController(participantManager, eventManager);
   }
 
   @Override
@@ -39,13 +32,13 @@ public class ParticipantMenu extends Menu {
             return;
           }
           case 1 -> {
-            new ParticipantSubMenu(participantManager, eventManager, "Student").show();
+            new ParticipantSubMenu(participantMenuController, "Student").show();
           }
           case 2 -> {
-            new ParticipantSubMenu(participantManager, eventManager, "Professor").show();
+            new ParticipantSubMenu(participantMenuController, "Professor").show();
           }
           case 3 -> {
-            new ParticipantSubMenu(participantManager, eventManager, "External").show();
+            new ParticipantSubMenu(participantMenuController, "External").show();
           }
           case 4 -> {
             participantMenuController.get("Participant");

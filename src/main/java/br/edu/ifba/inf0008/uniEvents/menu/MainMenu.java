@@ -46,7 +46,7 @@ public class MainMenu extends Menu{
             submenu.show();
           }
           case 2 -> {
-            submenu = new EventsMenu(eventManager);
+            submenu = new EventsMenu(eventManager, participantManager);
             submenu.show();
           }
           case 3 -> {

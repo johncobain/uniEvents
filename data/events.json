@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "eventTypeJson": "Workshop",
+    "name": "QuTe",
+    "description": "QT Class",
+    "location": "Lab3",
+    "date": "30/05/2025",
+    "capacity": 5,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "QT"
+  }
+]

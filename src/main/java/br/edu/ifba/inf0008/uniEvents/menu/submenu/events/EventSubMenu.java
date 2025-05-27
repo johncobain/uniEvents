@@ -2,14 +2,13 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers.EventMenuController;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class EventSubMenu extends Menu{
-  private final EventMenuController eventMenuController = new EventMenuController();
+  private final EventMenuController eventMenuController;
   private final String eventType;
 
-  public EventSubMenu(EventManager eventManager, String eventType) {
+  public EventSubMenu(EventMenuController eventMenuController, String eventType) {
     super(eventType + " Management", Colors.YELLOW_BOLD);
     super.addOption("Exit to Event Menu");
     super.addOption("Create " + eventType);
@@ -17,9 +16,8 @@ public class EventSubMenu extends Menu{
     super.addOption("List All " + eventType + "s");
     super.addOption("Clear All " + eventType + "s");
 
+    this.eventMenuController = eventMenuController;
     this.eventType = eventType;
-    
-    eventMenuController.setEventManager(eventManager);
   }
 
   @Override
