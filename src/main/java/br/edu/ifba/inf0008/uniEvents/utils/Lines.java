@@ -19,32 +19,17 @@ public class Lines {
     int totalLength = 62 - title.length();
     int leftPadding = totalLength/2;
     int rightPadding = totalLength - leftPadding;
-    String finalLine = "|";
-    for(int i =0; i<leftPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + title;
-    for(int i =0; i<rightPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + "|";
-    return finalLine;
+    return "|" + " ".repeat(Math.max(0, leftPadding)) +
+            title + " ".repeat(Math.max(0, rightPadding)) + "|";
   }
 
   public static String titleLine(String title, String color){
     int totalLength = 62 - title.length();
     int leftPadding = totalLength/2;
     int rightPadding = totalLength - leftPadding;
-    String finalLine = "|";
-    for(int i =0; i<leftPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + color + title + Colors.RESET;
-    for(int i =0; i<rightPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + "|";
-    return finalLine;
+    return "|" + " ".repeat(Math.max(0, leftPadding)) +
+            color + title + Colors.RESET +
+            " ".repeat(Math.max(0, rightPadding)) + "|";
   }
 
   public static String multiLineText(String text){
@@ -53,9 +38,7 @@ public class Lines {
     int currentLength = 0;
     for (String word : words) {
       if (currentLength + word.length() + 1 > 62) {
-        for(int i = 62 - currentLength; i > 0; i--){
-          finalLine.append(" ");
-        }
+          finalLine.append(" ".repeat(Math.max(0, 62 - currentLength)));
         finalLine.append("|\n|");
         currentLength = 0;
       } else if (currentLength > 0) {
@@ -65,9 +48,7 @@ public class Lines {
       finalLine.append(word);
       currentLength += word.length();
     }
-    for(int i = 62 - currentLength; i > 0; i--) {
-      finalLine.append(" ");
-    }
+      finalLine.append(" ".repeat(Math.max(0, 62 - currentLength)));
     finalLine.append("|");
     return finalLine.toString();
   }
@@ -76,53 +57,32 @@ public class Lines {
     int totalLength = 62 - text.length();
     int leftPadding = totalLength/2;
     int rightPadding = totalLength - leftPadding;
-    String finalLine = straightLine();
-    finalLine= finalLine + "\n|";
-    for(int i =0; i<leftPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + Colors.RED_BOLD + text + Colors.RESET;
-    for(int i =0; i<rightPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + "|\n";
-    finalLine = finalLine + straightLine();
-    return finalLine;
+    return straightLine() + "\n|" +
+            " ".repeat(Math.max(0, leftPadding)) +
+            Colors.RED_BOLD + text + Colors.RESET +
+            " ".repeat(Math.max(0, rightPadding)) +
+            "|\n" + straightLine();
   }
 
   public static String successLine(String text){
     int totalLength = 62 - text.length();
     int leftPadding = totalLength/2;
     int rightPadding = totalLength - leftPadding;
-    String finalLine = straightLine();
-    finalLine = finalLine + "\n|";
-    for(int i =0; i<leftPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + Colors.GREEN_BOLD + text + Colors.RESET;
-    for(int i =0; i<rightPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + "|\n";
-    finalLine = finalLine + straightLine();
-    return finalLine;
+    return straightLine() + "\n|" +
+          " ".repeat(Math.max(0, leftPadding)) +
+          Colors.GREEN_BOLD + text + Colors.RESET +
+          " ".repeat(Math.max(0, rightPadding)) +
+          "|\n" + straightLine();
   }
 
   public static String warningLine(String text){
     int totalLength = 62 - text.length();
     int leftPadding = totalLength/2;
     int rightPadding = totalLength - leftPadding;
-    String finalLine = straightLine();
-    finalLine = finalLine + "\n|";
-    for(int i =0; i<leftPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + Colors.YELLOW_BOLD + text + Colors.RESET;
-    for(int i =0; i<rightPadding; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + "|\n";
-    finalLine = finalLine + straightLine();
-    return finalLine;
+    return straightLine() + "\n|" +
+            " ".repeat(Math.max(0, leftPadding)) +
+            Colors.YELLOW_BOLD + text + Colors.RESET +
+            " ".repeat(Math.max(0, rightPadding)) +
+            "|\n" + straightLine();
   }
 }
