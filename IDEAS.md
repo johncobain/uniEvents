@@ -16,15 +16,6 @@ participantsMap.forEach((cpf, participant) -> {
 
 - better filtering
 
-```java
-List<Student> students = participantsMap.values().stream()  // 1. Pega um Stream dos valores
-    .filter(p -> p instanceof Student)    // 2. Filtra: mantém apenas quem é Student
-    // OU: .filter(Student.class::isInstance)
-    .map(p -> (Student) p)                // 3. Mapeia/Transforma: faz o cast para Student
-    // OU: .map(Student.class::cast)
-    .collect(Collectors.toList());        // 4. Coleta: junta os resultados em uma nova List
-```
-
 - add `addInterest` to Participant menu (for Student)
 
 - TODO: student must have a required gpa for course

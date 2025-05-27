@@ -134,48 +134,6 @@ If you want a sorted, duplicate-free list of participant names or event titles, 
 
 ---
 
-2. Professor (Professor/Faculty)
-
-   Contexto: Membro do corpo docente da universidade.
-
-   Métodos Específicos:
-
-   addResearchArea(String area)
-
-   getFacultyProfile(): Retorna uma string com departamento e titulação.
-
-   Pode ter um método canTeachCourse(ShortCourse course) para verificar se o professor tem expertise para ministrar um determinado curso.
-
-3. Externo (ExternalParticipant)
-
-   Contexto: Participante que não é aluno nem professor da universidade (ex: profissional do mercado, estudante de outra instituição, comunidade em geral).
-
-   Atributos Específicos:
-
-   organization (String): Empresa, instituição ou afiliação do participante externo (pode ser "N/A" ou "Comunidade").
-
-   reasonForAttending (String): Motivo do interesse no evento (opcional, pode ser coletado na inscrição).
-
-   linkedInProfile (String) (Opcional): Perfil do LinkedIn para networking.
-
-   Métodos Específicos:
-
-   (Não muitos métodos comportamentais específicos, pois são mais definidos por seus dados).
-
-   getAffiliation(): Retorna a organização.
-
-   Como Implementar com Herança:
-
-   Crie a classe base Event e as subclasses Lecture, Workshop, ShortCourse, AcademicFair estendendo Event.
-
-   Crie a classe base Participant e as subclasses Student, Professor, ExternalParticipant estendendo Participant.
-
-   Use construtores nas subclasses para inicializar tanto os campos da superclasse (usando super(...)) quanto os campos específicos da subclasse.
-
-   Sobrescreva métodos da classe base se necessário (ex: toString() para exibir informações específicas).
-
----
-
 Entendido! Vamos focar na organização conceitual e na estrutura lógica do seu menu de relatórios, sem mergulhar no código específico.
 
 Objetivo: Criar um menu claro, intuitivo e que cubra as funcionalidades de geração e visualização de informações e certificados.

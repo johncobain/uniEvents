@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.FileGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -13,7 +12,7 @@ public class ReportsMenu extends Menu {
   private final EventManager eventManager;
   private final ReportsManager reportsManager;
 
-  public ReportsMenu(EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager, FileGenerator fileGenerator) {
+  public ReportsMenu(EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager) {
     super("Reports Management", Colors.RED_BOLD);
     super.addOption("Exit to Main Menu");
     super.addOption("Generate Report by Type");

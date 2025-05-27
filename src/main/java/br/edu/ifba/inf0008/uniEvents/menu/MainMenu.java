@@ -6,7 +6,6 @@ import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
 import br.edu.ifba.inf0008.uniEvents.services.DummyGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.FileGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
@@ -15,9 +14,8 @@ public class MainMenu extends Menu{
   private final EventManager eventManager;
   private final ParticipantManager participantManager;
   private final ReportsManager reportsManager;
-  private final FileGenerator fileGenerator;
   
-  public MainMenu( EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager, FileGenerator fileGenerator) {
+  public MainMenu( EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager) {
     super( "Main Menu", Colors.PURPLE_BOLD);
     super.addOption("Exit UniEvents");
     super.addOption("Participants Management");
@@ -28,7 +26,6 @@ public class MainMenu extends Menu{
     this.eventManager = eventManager;
     this.participantManager = participantManager;
     this.reportsManager = reportsManager;
-    this.fileGenerator = fileGenerator;
   }
   
   @Override
@@ -51,7 +48,7 @@ public class MainMenu extends Menu{
             submenu.show();
           }
           case 3 -> {
-            submenu = new ReportsMenu(eventManager, participantManager, reportsManager, fileGenerator);
+            submenu = new ReportsMenu(eventManager, participantManager, reportsManager);
             submenu.show();
           }
           case 4 -> {

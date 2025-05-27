@@ -12,17 +12,14 @@ import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 public final class ShortCourse extends Event {
   private final String eventTypeJson = "Short Course";
 
-  // private String instructorCpf;
   private int totalHours;
   private List<String> courseModules;
   private String methodOfAssessment;
   private SkillLevel targetSkillLevel;
 
   public ShortCourse(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code, 
-  // Participant instructor, 
   int totalHours, String courseModules, String methodOfAssessment, SkillLevel targetSkillLevel) {
     super(name, description, location, date, capacity, modality, code);
-    // assignInstructor(instructor);
     this.totalHours = totalHours;
     setCourseModules(courseModules);
     this.methodOfAssessment = methodOfAssessment;
@@ -36,35 +33,7 @@ public final class ShortCourse extends Event {
   public Boolean checkEligibility(ParticipantManager participantManager,String cpf){
     return ((Student)participantManager.get(cpf)).getGpa() >= targetSkillLevel.minimumGpa();
   }
-
-  // public String getInstructorCpf() {
-  //   return instructorCpf;
-  // }
-
-  // public void setInstructorCpf(String instructorCpf) {
-  //   this.instructorCpf = instructorCpf;
-  // }
-
-  // public Participant getInstructor(){
-  //   if(instructorCpf != null || getParticipants() == null) return null;
-  //   return getParticipants().get(instructorCpf);
-  // }
-
-  // public void assignInstructor(Participant instructor){
-  //   if(instructor instanceof Professor || instructor instanceof External){
-  //     addParticipant(instructor);
-  //     setInstructorCpf(instructor.getCpf());
-  //   }
-  // }
-
-  // @Override
-  // public void removeParticipant(String cpf) {
-  //   if(cpf.equals(instructorCpf)){
-  //     throw new IllegalArgumentException("Instructor cannot be removed from short course!");
-  //   }
-  //   super.removeParticipant(cpf);
-  // }
-
+  
   public int getTotalHours() {
     return totalHours;
   }

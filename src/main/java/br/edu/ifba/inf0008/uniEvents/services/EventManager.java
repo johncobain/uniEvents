@@ -131,12 +131,8 @@ public class EventManager {
     add(event);
   }
 
-  public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code, 
-  // Participant instructor,
-   int totalHours, String courseModules, String methodOfAssessment, SkillLevel targetSkillLevel) {
-    ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code, 
-    // instructor, 
-    totalHours, courseModules, methodOfAssessment, targetSkillLevel);
+  public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code, int totalHours, String courseModules, String methodOfAssessment, SkillLevel targetSkillLevel) {
+    ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code, totalHours, courseModules, methodOfAssessment, targetSkillLevel);
     add(event);
   }
 
