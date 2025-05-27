@@ -29,10 +29,6 @@ public class External extends Participant {
     super();
   } //Gson
 
-  public String getParticipantTypeJson() {
-    return participantTypeJson;
-  }
-
   public String getOrganization() {
     return organization;
   }
@@ -81,14 +77,11 @@ public class External extends Participant {
   }
 
   public String getFormatedBio(){
-    StringBuilder sb = new StringBuilder();
-    sb.append(Lines.mixedLines()).append("\n");
-    sb.append(Lines.titleLine("Biography", Colors.BLUE_BOLD)).append("\n");
-    sb.append(Lines.mixedLines()).append("\n");
-    sb.append(Lines.multiLineText(bio)).append("\n");
-    sb.append(Lines.mixedLines()).append("\n");
-
-    return sb.toString();
+    return Lines.mixedLines() + "\n" +
+            Lines.titleLine("Biography", Colors.BLUE_BOLD) + "\n" +
+            Lines.mixedLines() + "\n" +
+            Lines.multiLineText(bio) + "\n" +
+            Lines.mixedLines() + "\n";
   }
 
   @Override

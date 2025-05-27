@@ -7,7 +7,7 @@ public enum AcademicStatus {
   ACTIVE("Active"), 
   ON_LEAVE("On Leave"), 
   GRADUATED("Graduated"),
-  DROPED_OUT("Dropped Out");
+  DROPPED_OUT("Dropped Out");
 
   private final String description;
 
@@ -29,8 +29,6 @@ public enum AcademicStatus {
   }
 
   public static ArrayList<AcademicStatus> getAll(){
-    ArrayList<AcademicStatus> academicStatuses = new ArrayList<>();
-    academicStatuses.addAll(Arrays.asList(AcademicStatus.values()));
-    return academicStatuses;
+      return new ArrayList<>(Arrays.asList(AcademicStatus.values()));
   }
 }

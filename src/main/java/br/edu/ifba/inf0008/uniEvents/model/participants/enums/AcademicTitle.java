@@ -40,8 +40,6 @@ public enum AcademicTitle {
   }
   
   public static ArrayList<AcademicTitle> getAll() {
-    ArrayList<AcademicTitle> academicTitles = new ArrayList<>();
-    academicTitles.addAll(java.util.Arrays.asList(AcademicTitle.values()));
-    return academicTitles;
+      return new ArrayList<>(java.util.Arrays.asList(AcademicTitle.values()));
   }
 }

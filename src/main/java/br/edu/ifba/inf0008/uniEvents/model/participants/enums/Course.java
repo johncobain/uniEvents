@@ -42,8 +42,6 @@ public enum Course {
   }
 
   public static ArrayList<Course> getAll(){
-    ArrayList<Course> courses = new ArrayList<>();
-    courses.addAll(Arrays.asList(Course.values()));
-    return courses;
+      return new ArrayList<>(Arrays.asList(Course.values()));
   }
 }

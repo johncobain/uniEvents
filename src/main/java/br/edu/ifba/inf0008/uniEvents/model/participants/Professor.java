@@ -31,9 +31,6 @@ public class Professor extends Participant{
     super();
   } //Gson
 
-  public String getParticipantTypeJson() {
-    return participantTypeJson;
-  }
   public String getEmployeeId() {
     return employeeId;
   }
