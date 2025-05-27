@@ -20,7 +20,6 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
@@ -111,11 +110,6 @@ public class EventRepository {
       System.out.println(Lines.errorLine("Event with code " + code + " not found!"));
     }
     eventsSaved.put(code, event);
-    save();
-  }
-
-  public void addParticipantToEvent(Event event, Participant participant){
-    eventsSaved.get(event.getCode()).addParticipant(participant);
     save();
   }
 
