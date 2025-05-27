@@ -86,9 +86,9 @@ public class EventForms {
     BaseMenu baseMenu;
     ArrayList<String> modalities = new ArrayList<>();
     modalities.add("Cancel");
-    modalities.add(Modality.INPERSON.toString());
-    modalities.add(Modality.ONLINE.toString());
-    modalities.add(Modality.HYBRID.toString());
+    modalities.add(Modality.INPERSON.getDescription());
+    modalities.add(Modality.ONLINE.getDescription());
+    modalities.add(Modality.HYBRID.getDescription());
 
     baseMenu = new BaseMenu("Select event modality", modalities);
     int response = baseMenu.getResponse();
