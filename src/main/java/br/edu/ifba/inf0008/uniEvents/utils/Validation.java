@@ -6,7 +6,7 @@ import java.time.format.ResolverStyle;
 
 public class Validation {
   public static void validateCpf(String cpf){
-    if(cpf == null || cpf.isEmpty() || cpf.isBlank()) {
+    if(cpf == null || cpf.isBlank()) {
       throw new IllegalArgumentException("CPF cannot be empty!");
     }
     if(cpf.matches(".*[a-zA-Z].*")) {
@@ -16,7 +16,7 @@ public class Validation {
       throw new IllegalArgumentException("CPF must be in the format XXX.XXX.XXX-XX or XXXXXXXXXXX!");
     }
 
-    String digits = cpf.replaceAll("[^\\d]", "");
+    String digits = cpf.replaceAll("\\D", "");
     String checkDigits = digits.substring(digits.length() - 2);
     
     if(digits.equals("0000000000000") || digits.equals("11111111111") || 
@@ -54,7 +54,7 @@ public class Validation {
   }
 
   public static void validateEmail(String email){
-    if(email == null || email.isEmpty() || email.isBlank()) {
+    if(email == null || email.isBlank()) {
       throw new IllegalArgumentException("Email cannot be empty!");
     }
 
@@ -65,7 +65,7 @@ public class Validation {
   }
 
   public static void validatePhone(String phone){
-    if(phone == null || phone.isEmpty() || phone.isBlank()) {
+    if(phone == null || phone.isBlank()) {
       throw new IllegalArgumentException("Phone cannot be empty!");
     }
 
@@ -80,7 +80,7 @@ public class Validation {
   }
 
   public static void validateDate(String date){
-    if(date == null || date.isEmpty() || date.isBlank()) {
+    if(date == null || date.isBlank()) {
       throw new IllegalArgumentException("Date cannot be empty!");
     }
 
@@ -110,7 +110,7 @@ public class Validation {
   }
 
   public static void isInteger(String value){
-    if (value == null || value.isEmpty() || value.isBlank()) {
+    if (value == null || value.isBlank()) {
       throw new IllegalArgumentException("Input cannot be empty!");
     }
     try {
@@ -121,7 +121,7 @@ public class Validation {
   }
 
   public static void isDouble(String value){
-    if (value == null || value.isEmpty() || value.isBlank()) {
+    if (value == null || value.isBlank()) {
       throw new IllegalArgumentException("Input cannot be empty!");
     }
     try {
@@ -132,7 +132,7 @@ public class Validation {
   }
 
   public static void isLong(String value){
-    if (value == null || value.isEmpty() || value.isBlank()) {
+    if (value == null || value.isBlank()) {
       throw new IllegalArgumentException("Input cannot be empty!");
     }
     try {
@@ -143,7 +143,7 @@ public class Validation {
   }
 
   public static void validateId(String id) {
-    if (id == null || id.isEmpty() || id.isBlank()) {
+    if (id == null || id.isBlank()) {
       throw new IllegalArgumentException("ID cannot be empty!");
     }
     if (id.matches(".*[a-zA-Z].*")) {

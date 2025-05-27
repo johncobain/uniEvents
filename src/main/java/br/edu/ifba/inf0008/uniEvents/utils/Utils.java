@@ -29,7 +29,7 @@ public class Utils {
     }
 
     public static String formatPhone(String phone) {
-        if(phone.matches("\\d{2}\\ \\d{4,5}-\\d{4}")) {
+        if(phone.matches("\\d{2} \\d{4,5}-\\d{4}")) {
             return phone;
         }
         if(phone.matches("\\d{2} \\d{8,9}")){
