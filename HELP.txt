@@ -11,6 +11,7 @@ Example:
 
 Use case in your project:
 If you want to keep events sorted by their code, name, or date, use a TreeMap<String, Event>.
+
 ---
 
 Entendido! Vamos focar na organização conceitual e na estrutura lógica do seu menu de relatórios, sem mergulhar no código específico.
