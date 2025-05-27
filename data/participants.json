@@ -1,27 +1,6 @@
 [
   {
     "participantTypeJson": "Student",
-    "studentId": "20242020202",
-    "course": "COMPUTER_SCIENCE",
-    "currentSemester": 3,
-    "academicStatus": "ACTIVE",
-    "gpa": 8.0,
-    "campus": "Ifba",
-    "enrollmentDate": "20/02/2020",
-    "interests": [
-      "Math",
-      "Physics",
-      "Programming"
-    ],
-    "name": "John Doe",
-    "cpf": "863.860.423-87",
-    "email": "john@dee.com",
-    "phone": "75 99192-9394",
-    "birthDate": "02/02/2002",
-    "certificates": []
-  },
-  {
-    "participantTypeJson": "Student",
     "studentId": "20211231234",
     "course": "COMPUTER_ENGINEERING",
     "currentSemester": 6,
@@ -34,7 +13,7 @@
       "Programming"
     ],
     "name": "Mary Smith",
-    "cpf": "192.137.810-75",
+    "cpf": "400.231.804-47",
     "email": "mary@smith.com",
     "phone": "71 99394-9192",
     "birthDate": "20/01/2003",
@@ -51,10 +30,50 @@
     "enrollmentDate": "10/02/2019",
     "interests": [],
     "name": "Josh Robert",
-    "cpf": "302.337.800-25",
+    "cpf": "704.524.296-41",
     "email": "ohmyjosh@gmail.com",
     "phone": "71 98185-9394",
     "birthDate": "12/12/2012",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "Student",
+    "studentId": "20210010001",
+    "course": "INFORMATION_SYSTEMS",
+    "currentSemester": 4,
+    "academicStatus": "ACTIVE",
+    "gpa": 8.7,
+    "campus": "IFBA",
+    "enrollmentDate": "01/03/2019",
+    "interests": [
+      "Databases",
+      "Web Development"
+    ],
+    "name": "Ana Paula",
+    "cpf": "592.201.489-78",
+    "email": "ana.paula@email.com",
+    "phone": "71 91234-5678",
+    "birthDate": "15/03/2001",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "Student",
+    "studentId": "20209998877",
+    "course": "COMPUTER_SCIENCE",
+    "currentSemester": 7,
+    "academicStatus": "ACTIVE",
+    "gpa": 7.9,
+    "campus": "UFBA",
+    "enrollmentDate": "10/02/2018",
+    "interests": [
+      "Artificial Intelligence",
+      "Machine Learning"
+    ],
+    "name": "Carlos Silva",
+    "cpf": "161.075.797-10",
+    "email": "carlos.silva@hotmail.com",
+    "phone": "71 99876-5432",
+    "birthDate": "22/07/2000",
     "certificates": []
   },
   {
@@ -69,27 +88,141 @@
       "Criptography"
     ],
     "publications": [
-      "Criptography and Security in Advanced Computing, 2020"
+      "Criptography and Security in Advanced Computing (2016)"
     ],
     "name": "Robert Allan",
-    "cpf": "452.848.964-32",
+    "cpf": "393.910.582-13",
     "email": "robert@ifba.edu.br",
     "phone": "71 99897-9695",
     "birthDate": "02/02/1970",
     "certificates": []
   },
   {
+    "participantTypeJson": "Professor",
+    "employeeId": "98765432100",
+    "department": "INFORMATION_SYSTEMS",
+    "campus": "IFBA",
+    "academicTitle": "PHD",
+    "specialization": "Software Engineering",
+    "researchAreas": [
+      "Software Architecture",
+      "Agile Methods"
+    ],
+    "publications": [
+      "Modern Software Engineering Practices (2018)"
+    ],
+    "name": "Maria Fernanda",
+    "cpf": "987.898.480-04",
+    "email": "maria.fernanda@ifba.edu.br",
+    "phone": "71 91234-5678",
+    "birthDate": "10/05/1980",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "Professor",
+    "employeeId": "22334455667",
+    "department": "INFORMATION_SYSTEMS",
+    "campus": "IFBA",
+    "academicTitle": "MSC",
+    "specialization": "Data Science",
+    "researchAreas": [
+      "Big Data",
+      "Data Mining"
+    ],
+    "publications": [],
+    "name": "Patricia Souza",
+    "cpf": "072.608.242-20",
+    "email": "patricia.souza@ifba.edu.br",
+    "phone": "71 93456-7890",
+    "birthDate": "05/09/1985",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "Professor",
+    "employeeId": "33445566778",
+    "department": "COMPUTER_SCIENCE",
+    "campus": "IFBA",
+    "academicTitle": "PHD",
+    "specialization": "Artificial Intelligence",
+    "researchAreas": [
+      "Machine Learning",
+      "Natural Language Processing"
+    ],
+    "publications": [
+      "AI and Society: Challenges and Opportunities (2021)",
+      "Neural Networks for Natural Language Processing (2022)"
+    ],
+    "name": "Fernando Lima",
+    "cpf": "434.866.551-67",
+    "email": "fernando.lima@ifba.edu.br",
+    "phone": "71 94567-8901",
+    "birthDate": "18/03/1968",
+    "certificates": []
+  },
+  {
     "participantTypeJson": "External",
     "organization": "MultiCom",
     "jobRole": "Developer",
-    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "bio": "Full-stack developer with 10+ years of experience in web and mobile application development. Passionate about building scalable solutions and mentoring junior developers.",
     "isPresenter": true,
-    "expertiseAreas": [],
+    "expertiseAreas": [
+      "Java",
+      "Python",
+      "React"
+    ],
     "name": "Lisa Tyler",
-    "cpf": "627.434.187-02",
+    "cpf": "045.464.455-80",
     "email": "lisa@gmail.com",
     "phone": "71 95454-5454",
     "birthDate": "02/02/1990",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "External",
+    "organization": "TechSolutions",
+    "jobRole": "Project Manager",
+    "bio": "Experienced project manager with a background in software development and agile methodologies.",
+    "isPresenter": true,
+    "expertiseAreas": [
+      "Project Management",
+      "Agile"
+    ],
+    "name": "Bruno Costa",
+    "cpf": "576.154.684-18",
+    "email": "bruno.costa@gmail.com",
+    "phone": "71 91234-1111",
+    "birthDate": "10/11/1988",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "External",
+    "organization": "DataCorp",
+    "jobRole": "Data Analyst",
+    "bio": "Data analyst with expertise in data visualization and statistical analysis.",
+    "isPresenter": true,
+    "expertiseAreas": [
+      "Data Visualization",
+      "Statistics"
+    ],
+    "name": "Sofia Mendes",
+    "cpf": "158.176.709-92",
+    "email": "sofia.mendes@outlook.com",
+    "phone": "71 92345-2222",
+    "birthDate": "25/06/1995",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "External",
+    "organization": "CyberSec",
+    "jobRole": "Security Consultant",
+    "bio": "Cybersecurity consultant with over 15 years of experience in network and application security.",
+    "isPresenter": false,
+    "expertiseAreas": [],
+    "name": "Eduardo Ramos",
+    "cpf": "864.726.822-91",
+    "email": "eduardo.ramos@yahoo.com",
+    "phone": "71 93456-3333",
+    "birthDate": "03/04/1982",
     "certificates": []
   }
 ]

@@ -4,6 +4,7 @@ import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventsMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
+import br.edu.ifba.inf0008.uniEvents.services.DummyGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.FileGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
@@ -54,7 +55,7 @@ public class MainMenu extends Menu{
             submenu.show();
           }
           case 4 -> {
-            fileGenerator.generateDummyData(eventManager, participantManager);
+            DummyGenerator.generateDummyData(eventManager, participantManager);
           }
           default -> throw new AssertionError();
       }
