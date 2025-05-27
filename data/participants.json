@@ -1,0 +1,70 @@
+[
+  {
+    "participantTypeJson": "Professor",
+    "employeeId": "12345678900",
+    "department": "COMPUTER_SCIENCE",
+    "campus": "IFBA",
+    "academicTitle": "MSC",
+    "specialization": "Network",
+    "researchAreas": [
+      "BlockChain"
+    ],
+    "publications": [],
+    "name": "Allan",
+    "cpf": "452.848.964-32",
+    "email": "allan@ifba.edu.br",
+    "phone": "71 99192-9394",
+    "birthDate": "02/02/1970",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "External",
+    "organization": "Fapex",
+    "jobRole": "Developer",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "isPresenter": true,
+    "expertiseAreas": [
+      "JavaScript"
+    ],
+    "name": "Ac",
+    "cpf": "627.434.187-02",
+    "email": "A.C@ifba.edu.br",
+    "phone": "71 95454-5454",
+    "birthDate": "02/02/1990",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "Student",
+    "studentId": "20202020202",
+    "course": "COMPUTER_SCIENCE",
+    "currentSemester": 3,
+    "academicStatus": "ACTIVE",
+    "gpa": 8.0,
+    "campus": "Ifba",
+    "enrollmentDate": "20/02/2020",
+    "interests": [],
+    "name": "John",
+    "cpf": "863.860.423-87",
+    "email": "john@dee.com",
+    "phone": "75 99192-9394",
+    "birthDate": "02/02/2002",
+    "certificates": []
+  },
+  {
+    "participantTypeJson": "Student",
+    "studentId": "11223344556",
+    "course": "COMPUTER_ENGINEERING",
+    "currentSemester": 6,
+    "academicStatus": "ACTIVE",
+    "gpa": 7.0,
+    "campus": "UFBA",
+    "enrollmentDate": "20/08/2020",
+    "interests": [],
+    "name": "Josh",
+    "cpf": "732.403.578-79",
+    "email": "ohmy@josh.com",
+    "phone": "75 9494-9494",
+    "birthDate": "12/12/2012",
+    "certificates": []
+  }
+]
