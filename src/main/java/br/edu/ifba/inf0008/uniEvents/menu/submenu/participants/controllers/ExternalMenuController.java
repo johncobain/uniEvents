@@ -9,7 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ExternalMenuController {
 
-  public Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String affiliation = ParticipantForms.getName("affiliation");  
     if (affiliation.equalsIgnoreCase("cancel")) return false;
     
@@ -28,7 +28,7 @@ public class ExternalMenuController {
     return true;
   }
 
-  public External update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static External update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String organization = ParticipantForms.getName("organization");  
     if (organization.equalsIgnoreCase("cancel")) return null;
     
@@ -46,7 +46,7 @@ public class ExternalMenuController {
     return new External(name, cpf, email, phone, Utils.stringToDate(birthDateString), organization, jobRole, bio, isPresenter);
   }
 
-  public void addExpertiseArea(ParticipantManager participantManager, String cpf){
+  public static void addExpertiseArea(ParticipantManager participantManager, String cpf){
     String expertiseArea = ParticipantForms.getName("expertise area");
     if (expertiseArea.equalsIgnoreCase("cancel")) return;
     try {
@@ -61,7 +61,7 @@ public class ExternalMenuController {
     }
   }
 
-  public void removeExpertiseArea(ParticipantManager participantManager, String cpf){
+  public static void removeExpertiseArea(ParticipantManager participantManager, String cpf){
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((External)participantManager.get(cpf)).getExpertiseAreas());

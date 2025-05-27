@@ -10,7 +10,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class StudentMenuController {
-  public Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String studentId;
     while (true) { 
       studentId = ParticipantForms.getId("student id");
@@ -53,7 +53,7 @@ public class StudentMenuController {
     return true;
   }
   
-  public Student update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Student update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
@@ -83,7 +83,7 @@ public class StudentMenuController {
     return new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Student)participantManager.get(cpf)).getStudentId(), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
   }
 
-  public void addInterest(ParticipantManager participantManager, String cpf){
+  public static void addInterest(ParticipantManager participantManager, String cpf){
     String interest = ParticipantForms.getName("interest");
     if (interest.equalsIgnoreCase("cancel")) return;
     try {
@@ -98,7 +98,7 @@ public class StudentMenuController {
     }
   }
 
-  public void removeInterest(ParticipantManager participantManager, String cpf){
+  public static void removeInterest(ParticipantManager participantManager, String cpf){
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Student)participantManager.get(cpf)).getInterests());

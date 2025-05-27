@@ -17,9 +17,6 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 public class ParticipantMenuController {
   private ParticipantManager participantManager;
   private EventManager eventManager;
-  private final StudentMenuController studentMenuController = new StudentMenuController();
-  private final ProfessorMenuController professorMenuController = new ProfessorMenuController();
-  private final ExternalMenuController externalMenuController = new ExternalMenuController();
 
   public void setParticipantManager(ParticipantManager participantManager) {
     this.participantManager = participantManager;
@@ -56,9 +53,9 @@ public class ParticipantMenuController {
 
     Boolean created = false;
     switch (type) {
-      case "Student" -> created = studentMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
-      case "Professor" -> created = professorMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
-      case "External" -> created = externalMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
+      case "Student" -> created = StudentMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
+      case "Professor" -> created = ProfessorMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
+      case "External" -> created = ExternalMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
     }
 
     if (!created) return;
@@ -104,9 +101,9 @@ public class ParticipantMenuController {
 
     Participant updatedParticipant = null;
     switch (participantManager.get(cpf).getType()) {
-      case "Student" -> updatedParticipant = studentMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
-      case "Professor" -> updatedParticipant = professorMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
-      case "External" -> updatedParticipant = externalMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "Student" -> updatedParticipant = StudentMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "Professor" -> updatedParticipant = ProfessorMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "External" -> updatedParticipant = ExternalMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
     }
 
     if (updatedParticipant == null) return;
@@ -218,23 +215,23 @@ public class ParticipantMenuController {
         switch (type) {
           case "Student" -> {
             switch (option) {
-              case "Add Interest" -> studentMenuController.addInterest(participantManager, cpf);
-              case "Remove Interest" -> studentMenuController.removeInterest(participantManager, cpf);
+              case "Add Interest" -> StudentMenuController.addInterest(participantManager, cpf);
+              case "Remove Interest" -> StudentMenuController.removeInterest(participantManager, cpf);
             }
           }
           case "Professor" -> {
             switch (option) {
-              case "Add Research Area" -> professorMenuController.addResearchArea(participantManager, cpf);
-              case "Remove Research Area" -> professorMenuController.removeResearchArea(participantManager, cpf);
-              case "Add Publication" -> professorMenuController.addPublication(participantManager, cpf);
-              case "Remove Publication" -> professorMenuController.removePublication(participantManager, cpf);
+              case "Add Research Area" -> ProfessorMenuController.addResearchArea(participantManager, cpf);
+              case "Remove Research Area" -> ProfessorMenuController.removeResearchArea(participantManager, cpf);
+              case "Add Publication" -> ProfessorMenuController.addPublication(participantManager, cpf);
+              case "Remove Publication" -> ProfessorMenuController.removePublication(participantManager, cpf);
             }
           }
           case "External" -> {
             switch (option) {
               case "Show Biography" -> System.out.println(((External)participantManager.get(cpf)).getFormatedBio());
-              case "Add Expertise Area" -> externalMenuController.addExpertiseArea(participantManager, cpf);
-              case "Remove Expertise Area" -> externalMenuController.removeExpertiseArea(participantManager, cpf);
+              case "Add Expertise Area" -> ExternalMenuController.addExpertiseArea(participantManager, cpf);
+              case "Remove Expertise Area" -> ExternalMenuController.removeExpertiseArea(participantManager, cpf);
             }
           }
       }}

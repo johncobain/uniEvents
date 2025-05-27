@@ -11,7 +11,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ProfessorMenuController {
 
-  public Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String employeeId;
     while (true) { 
       employeeId = ParticipantForms.getId("employee id");
@@ -46,7 +46,7 @@ public class ProfessorMenuController {
     return true;
   }
   
-  public Professor update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Professor update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for (Course course : Course.getAll())options.add(course.getDescription());
@@ -69,7 +69,7 @@ public class ProfessorMenuController {
     return new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
   }
 
-  public void addResearchArea(ParticipantManager participantManager, String cpf) {
+  public static void addResearchArea(ParticipantManager participantManager, String cpf) {
     String researchArea = ParticipantForms.getName("research area");
     if (researchArea.equalsIgnoreCase("cancel")) return;
     try {
@@ -84,7 +84,7 @@ public class ProfessorMenuController {
     }
   }
 
-  public void removeResearchArea(ParticipantManager participantManager, String cpf) {
+  public static void removeResearchArea(ParticipantManager participantManager, String cpf) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Professor)participantManager.get(cpf)).getResearchAreas());
@@ -102,7 +102,7 @@ public class ProfessorMenuController {
     }
   }
 
-  public void addPublication(ParticipantManager participantManager, String cpf) {
+  public static void addPublication(ParticipantManager participantManager, String cpf) {
     String publication = ParticipantForms.getName("publication");
     if (publication.equalsIgnoreCase("cancel")) return;
 
@@ -121,7 +121,7 @@ public class ProfessorMenuController {
     }
   }
 
-  public void removePublication(ParticipantManager participantManager, String cpf) {
+  public static void removePublication(ParticipantManager participantManager, String cpf) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Professor)participantManager.get(cpf)).getPublications());
