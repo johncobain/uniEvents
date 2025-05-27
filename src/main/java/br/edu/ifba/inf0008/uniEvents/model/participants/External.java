@@ -100,15 +100,15 @@ public class External extends Participant {
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
-    sb.append(Lines.leftText("Organization: " + organization)).append("\n");
-    sb.append(Lines.leftText("Job Role: " + jobRole)).append("\n");
-    sb.append(Lines.leftText("Is Presenter: " + (isPresenter ? "Yes" : "No"))).append("\n");
+    sb.append(Lines.multiLineText("Organization: " + organization)).append("\n");
+    sb.append(Lines.multiLineText("Job Role: " + jobRole)).append("\n");
+    sb.append(Lines.multiLineText("Is Presenter: " + (isPresenter ? "Yes" : "No"))).append("\n");
     if(expertiseAreas.isEmpty()){
-      sb.append(Lines.leftText("Expertise Areas: None")).append("\n");
+      sb.append(Lines.multiLineText("Expertise Areas: None")).append("\n");
     } else {
-      sb.append(Lines.leftText("Expertise Areas: ")).append("\n");
+      sb.append(Lines.multiLineText("Expertise Areas: ")).append("\n");
       for (String area : expertiseAreas) {
-        sb.append(Lines.leftText(String.format("  - %s", area))).append("\n");
+        sb.append(Lines.multiLineText(String.format("  - %s", area))).append("\n");
     }
     }
     sb.append(certificatesSummary());

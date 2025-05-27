@@ -16,9 +16,9 @@ public class Lines {
   }
 
   public static String titleLine(String title){
-    int totalLenght = 62 - title.length();
-    int leftPadding = totalLenght/2;
-    int rightPadding = totalLenght - leftPadding;
+    int totalLength = 62 - title.length();
+    int leftPadding = totalLength/2;
+    int rightPadding = totalLength - leftPadding;
     String finalLine = "|";
     for(int i =0; i<leftPadding; i++){
       finalLine = finalLine + " ";
@@ -32,9 +32,9 @@ public class Lines {
   }
 
   public static String titleLine(String title, String color){
-    int totalLenght = 62 - title.length();
-    int leftPadding = totalLenght/2;
-    int rightPadding = totalLenght - leftPadding;
+    int totalLength = 62 - title.length();
+    int leftPadding = totalLength/2;
+    int rightPadding = totalLength - leftPadding;
     String finalLine = "|";
     for(int i =0; i<leftPadding; i++){
       finalLine = finalLine + " ";
@@ -72,32 +72,10 @@ public class Lines {
     return finalLine.toString();
   }
 
-  public static String leftText(String text){
-    int totalLenght = 62 - text.length();
-    String finalLine = "|";
-    finalLine = finalLine + text;
-    for(int i =0; i<totalLenght; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + "|";
-    return finalLine;
-  }
-
-  public static String rightText(String text){
-    int totalLenght = 62 - text.length();
-    String finalLine = "|";
-    for(int i =0; i<totalLenght; i++){
-      finalLine = finalLine + " ";
-    }
-    finalLine = finalLine + text;
-    finalLine = finalLine + "|";
-    return finalLine;
-  }
-
   public static String errorLine(String text){
-    int totalLenght = 62 - text.length();
-    int leftPadding = totalLenght/2;
-    int rightPadding = totalLenght - leftPadding;
+    int totalLength = 62 - text.length();
+    int leftPadding = totalLength/2;
+    int rightPadding = totalLength - leftPadding;
     String finalLine = straightLine();
     finalLine= finalLine + "\n|";
     for(int i =0; i<leftPadding; i++){
@@ -113,9 +91,9 @@ public class Lines {
   }
 
   public static String successLine(String text){
-    int totalLenght = 62 - text.length();
-    int leftPadding = totalLenght/2;
-    int rightPadding = totalLenght - leftPadding;
+    int totalLength = 62 - text.length();
+    int leftPadding = totalLength/2;
+    int rightPadding = totalLength - leftPadding;
     String finalLine = straightLine();
     finalLine = finalLine + "\n|";
     for(int i =0; i<leftPadding; i++){
@@ -131,9 +109,9 @@ public class Lines {
   }
 
   public static String warningLine(String text){
-    int totalLenght = 62 - text.length();
-    int leftPadding = totalLenght/2;
-    int rightPadding = totalLenght - leftPadding;
+    int totalLength = 62 - text.length();
+    int leftPadding = totalLength/2;
+    int rightPadding = totalLength - leftPadding;
     String finalLine = straightLine();
     finalLine = finalLine + "\n|";
     for(int i =0; i<leftPadding; i++){

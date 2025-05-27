@@ -84,11 +84,11 @@ public abstract class Participant {
   public String certificatesSummary(){
     StringBuilder sb = new StringBuilder();
     if(this.getCertificates().isEmpty()){
-      sb.append(Lines.leftText("Certificates: None")).append("\n");
+      sb.append(Lines.multiLineText("Certificates: None")).append("\n");
     }else{
-      sb.append(Lines.leftText("Certificates:")).append("\n");
+      sb.append(Lines.multiLineText("Certificates:")).append("\n");
       // for (Certificate certificate : this.getCertificates()) {
-        // sb.append(Lines.leftText(String.format("  - %s", certificate.summary()))).append("\n");
+        // sb.append(Lines.multiLineText()(String.format("  - %s", certificate.summary()))).append("\n");
       // }
     }
     return sb.toString();
@@ -97,12 +97,12 @@ public abstract class Participant {
   @Override
   public String toString(){
     StringBuilder sb = new StringBuilder();
-    sb.append(Lines.leftText(String.format("Participant: %s", getType()))).append("\n");
-    sb.append(Lines.leftText(String.format("Name: %s", name))).append("\n");
-    sb.append(Lines.leftText(String.format("CPF: %s", cpf))).append("\n");
-    sb.append(Lines.leftText(String.format("Email: %s", email))).append("\n");
-    sb.append(Lines.leftText(String.format("Phone: %s", phone))).append("\n");
-    sb.append(Lines.leftText(String.format("Birthdate: %s", birthDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Participant: %s", getType()))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Name: %s", name))).append("\n");
+    sb.append(Lines.multiLineText(String.format("CPF: %s", cpf))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Email: %s", email))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Phone: %s", phone))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Birthdate: %s", birthDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
     return sb.toString();
   }
 

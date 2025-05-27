@@ -35,7 +35,7 @@ public abstract class Menu implements IMenu {
       System.out.println(Lines.doubleLine());
 
       for(int i = 0; i < options.size(); i++){
-        System.out.println(Lines.leftText("" + i + " - " + options.get(i)));
+        System.out.println(Lines.multiLineText(i + " - " + options.get(i)));
       }
       System.out.println(Lines.doubleLine());
       System.out.print(">> ");

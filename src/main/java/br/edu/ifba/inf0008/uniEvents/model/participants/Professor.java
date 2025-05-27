@@ -101,25 +101,25 @@ public class Professor extends Participant{
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
-    sb.append(Lines.leftText(String.format("Employee ID: %s", employeeId))).append("\n");
-    sb.append(Lines.leftText(String.format("Department: %s", department.getDescription()))).append("\n");
-    sb.append(Lines.leftText(String.format("Campus: %s", campus))).append("\n");
-    sb.append(Lines.leftText(String.format("Academic Title: %s", academicTitle.getDescription()))).append("\n");
-    sb.append(Lines.leftText(String.format("Specialization: %s", specialization))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Employee ID: %s", employeeId))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Department: %s", department.getDescription()))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Campus: %s", campus))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Academic Title: %s", academicTitle.getDescription()))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Specialization: %s", specialization))).append("\n");
     if(researchAreas.isEmpty()) {
-      sb.append(Lines.leftText("Research Areas: None")).append("\n");
+      sb.append(Lines.multiLineText("Research Areas: None")).append("\n");
     } else {
-      sb.append(Lines.leftText("Research Areas: ")).append("\n");
+      sb.append(Lines.multiLineText("Research Areas: ")).append("\n");
       for (String area : researchAreas) {
-        sb.append(Lines.leftText(String.format("  - %s", area))).append("\n");
+        sb.append(Lines.multiLineText(String.format("  - %s", area))).append("\n");
       }
     }
     if(publications.isEmpty()) {
-      sb.append(Lines.leftText("Publications: None")).append("\n");
+      sb.append(Lines.multiLineText("Publications: None")).append("\n");
     } else {
-      sb.append(Lines.leftText("Publications: ")).append("\n");
+      sb.append(Lines.multiLineText("Publications: ")).append("\n");
       for (String publication : publications) {
-        sb.append(Lines.leftText(String.format("  - %s", publication))).append("\n");
+        sb.append(Lines.multiLineText(String.format("  - %s", publication))).append("\n");
       }
     }
     sb.append(certificatesSummary());

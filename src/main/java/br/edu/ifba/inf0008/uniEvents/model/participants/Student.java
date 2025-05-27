@@ -103,19 +103,19 @@ public class Student extends Participant{
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
-    sb.append(Lines.leftText(String.format("Student ID: %s", studentId))).append("\n");
-    sb.append(Lines.leftText(String.format("Course: %s", course.getDescription()))).append("\n");
-    sb.append(Lines.leftText(String.format("Current Semester: %d", currentSemester))).append("\n");
-    sb.append(Lines.leftText(String.format("Academic Status: %s", academicStatus.getDescription()))).append("\n");
-    sb.append(Lines.leftText(String.format("GPA: %.2f", gpa))).append("\n");
-    sb.append(Lines.leftText(String.format("Campus: %s", campus))).append("\n");
-    sb.append(Lines.leftText(String.format("Enrollment Date: %s", enrollmentDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Student ID: %s", studentId))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Course: %s", course.getDescription()))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Current Semester: %d", currentSemester))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Academic Status: %s", academicStatus.getDescription()))).append("\n");
+    sb.append(Lines.multiLineText(String.format("GPA: %.2f", gpa))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Campus: %s", campus))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Enrollment Date: %s", enrollmentDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
     if(interests.isEmpty()){
-      sb.append(Lines.leftText("Interests: None")).append("\n");
+      sb.append(Lines.multiLineText("Interests: None")).append("\n");
     }else{
-      sb.append(Lines.leftText("Interests:")).append("\n");
+      sb.append(Lines.multiLineText("Interests:")).append("\n");
       for (String interest : interests) {
-        sb.append(Lines.leftText(String.format("  - %s", interest))).append("\n");
+        sb.append(Lines.multiLineText(String.format("  - %s", interest))).append("\n");
       }
     }
     sb.append(certificatesSummary());

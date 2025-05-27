@@ -153,15 +153,15 @@ public abstract class Event {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Lines.leftText(String.format("Event: %s", getType()))).append("\n");
-        sb.append(Lines.leftText(String.format("Title: %s", name))).append("\n");
-        sb.append(Lines.leftText(String.format("Description: %s", description))).append("\n");
-        sb.append(Lines.leftText(String.format("Modality: %s", modality))).append("\n");
-        sb.append(Lines.leftText(String.format("Location: %s", location))).append("\n");
-        sb.append(Lines.leftText(String.format("Date: %s", this.getDate().format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
-        sb.append(Lines.leftText(String.format("Capacity: %d", capacity))).append("\n");
-        sb.append(Lines.leftText(String.format("Code: %s", code))).append("\n");
-        sb.append(Lines.leftText(String.format("Participants: %d", participants.size()))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Event: %s", getType()))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Title: %s", name))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Description: %s", description))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Modality: %s", modality))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Location: %s", location))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Date: %s", this.getDate().format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Capacity: %d", capacity))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Code: %s", code))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Participants: %d", participants.size()))).append("\n");
         return sb.toString();
     }
 

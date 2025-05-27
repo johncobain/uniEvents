@@ -23,7 +23,7 @@ public class ReportsManager {
     report.append(Lines.titleLine("Events List")).append("\n");
     report.append(Lines.doubleLine()).append("\n");
     if(events.isEmpty()){
-      report.append(Lines.leftText("No events found for this report.")).append("\n");
+      report.append(Lines.multiLineText("No events found for this report.")).append("\n");
     } else {
       for (Event event : events) {
         report.append(summary(event, isDetailed));

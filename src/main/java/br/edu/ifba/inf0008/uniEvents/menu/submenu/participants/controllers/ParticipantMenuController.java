@@ -252,7 +252,7 @@ public class ParticipantMenuController {
     System.out.println(Lines.doubleLine());
     LinkedHashMap<String, Event> events = eventManager.getEventsByParticipant(cpf);
     if(events.isEmpty()){
-      System.out.println(Lines.leftText(participantManager.get(cpf).getName() + " has no events!"));
+      System.out.println(Lines.multiLineText(participantManager.get(cpf).getName() + " has no events!"));
     }
     for (Event event : events.values()) {
       System.out.println(Lines.straightLine());

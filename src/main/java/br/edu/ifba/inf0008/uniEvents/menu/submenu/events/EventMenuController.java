@@ -222,11 +222,11 @@ public class EventMenuController {
     System.out.println(Lines.doubleLine());
     for (Participant participant : participants.values()) {
       System.out.println(Lines.straightLine());
-      System.out.println(Lines.leftText(String.format("    Participant: %s", participant.getName())));
-      System.out.println(Lines.leftText(String.format("    CPF: %s", participant.getCpf())));
-      System.out.println(Lines.leftText(String.format("    Email: %s", participant.getEmail())));
-      System.out.println(Lines.leftText(String.format("    Phone: %s", participant.getPhone())));
-      System.out.println(Lines.leftText(String.format("    Birthdate: %s", participant.getBirthDate())));
+      System.out.println(Lines.multiLineText(String.format("    Participant: %s", participant.getName())));
+      System.out.println(Lines.multiLineText(String.format("    CPF: %s", participant.getCpf())));
+      System.out.println(Lines.multiLineText(String.format("    Email: %s", participant.getEmail())));
+      System.out.println(Lines.multiLineText(String.format("    Phone: %s", participant.getPhone())));
+      System.out.println(Lines.multiLineText(String.format("    Birthdate: %s", participant.getBirthDate())));
       System.out.println(Lines.straightLine());
     }
   }
