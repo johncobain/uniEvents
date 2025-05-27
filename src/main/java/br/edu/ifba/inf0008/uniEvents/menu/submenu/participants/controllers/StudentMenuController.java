@@ -91,7 +91,7 @@ public class StudentMenuController {
       student.addInterest(interest);
       participantManager.update(cpf, student);
       System.out.println(Lines.clear());
-      System.out.println(Lines.successLine("Interest added!"));
+      System.out.println(Lines.successLine("Interest added to " + student.getName() + "!"));
     } catch (Exception e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
@@ -109,7 +109,7 @@ public class StudentMenuController {
       student.removeInterest(interest);
       participantManager.update(cpf, student);
       System.out.println(Lines.clear());
-      System.out.println(Lines.successLine("Interest removed!"));
+      System.out.println(Lines.successLine("Interest removed from " + student.getName() + "!"));
     } catch (Exception e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));

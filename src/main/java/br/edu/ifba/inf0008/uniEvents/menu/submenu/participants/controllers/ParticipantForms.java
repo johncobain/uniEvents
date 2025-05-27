@@ -3,7 +3,6 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.Validation;
@@ -22,7 +21,7 @@ public class ParticipantForms {
     return name;
   }
   
-  protected static String getCpf(ParticipantManager participantManager) {
+  public static String getCpf() {
     String cpf;
     while (true) { 
       System.out.print("Enter CPF (XXX.XXX.XXX-XX or XXXXXXXXXXX) (\"cancel\" to exit)>> ");
@@ -206,7 +205,7 @@ public class ParticipantForms {
   protected static String getYN(String text, String defaultValue) {
   String response;
   while (true) {
-    System.out.print(text + "? ");
+    System.out.print(text);
     if(defaultValue.equalsIgnoreCase("y")) {
       System.out.print("(Y/n)(\"cancel\" to exit)>> ");
     } else {
@@ -223,6 +222,8 @@ public class ParticipantForms {
     } else if (!response.equals("y") && !response.equals("n")) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Invalid input! Please enter 'y' or 'n'."));
+    }else{
+      break;
     }
   }
     return response;

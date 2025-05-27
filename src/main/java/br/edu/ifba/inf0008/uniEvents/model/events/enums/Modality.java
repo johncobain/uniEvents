@@ -1,6 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.model.events.enums;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public enum Modality {
   INPERSON("In Person"){
@@ -43,11 +44,7 @@ public enum Modality {
 
   public abstract String getInstructions();
   
-  public static ArrayList<String> getAll() {
-    ArrayList<String> modalities = new ArrayList<>();
-    for (Modality modality : Modality.values()) {
-      modalities.add(modality.toString());
-    }
-    return modalities;
+  public static ArrayList<Modality> getAll() {
+    return new ArrayList<>(Arrays.asList(Modality.values()));
   }
 }

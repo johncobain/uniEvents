@@ -19,7 +19,7 @@ public class ExternalMenuController {
     String bio = ParticipantForms.getName("bio");
     if (bio.equalsIgnoreCase("cancel")) return false;
 
-    String isPresenterString = ParticipantForms.getYN("Can the external be a presenter", "y");
+    String isPresenterString = ParticipantForms.getYN("Can the external be a presenter?", "y");
     if (isPresenterString.equalsIgnoreCase("cancel")) return false;
     Boolean isPresenter = isPresenterString.equalsIgnoreCase("y");
     if (isPresenterString.equalsIgnoreCase("n")) isPresenter = false;

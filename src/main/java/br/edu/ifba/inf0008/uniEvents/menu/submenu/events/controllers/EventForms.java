@@ -3,28 +3,11 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
-import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class EventForms {
-  protected static String getType(){
-    BaseMenu baseMenu;
-    ArrayList<String> eventTypes = new ArrayList<>();
-    {
-      eventTypes.add("Cancel");
-      eventTypes.add("Lecture");
-      eventTypes.add("Workshop");
-      eventTypes.add("Short Course");
-      eventTypes.add("Academic Fair");
-    }
-    baseMenu = new BaseMenu("Select event type", eventTypes);
-    int response = baseMenu.getResponse();
-    if (response == 0) return "cancel";
-    return eventTypes.get(response);
-  }
-
   protected static String getText(String text){
     String response;
     while(true) {
@@ -82,17 +65,13 @@ public class EventForms {
     return capacity;
   }
 
-  protected static int getModality(){
+  protected static String getOption(ArrayList<String> options, String title){
     BaseMenu baseMenu;
-    ArrayList<String> modalities = new ArrayList<>();
-    modalities.add("Cancel");
-    modalities.add(Modality.INPERSON.getDescription());
-    modalities.add(Modality.ONLINE.getDescription());
-    modalities.add(Modality.HYBRID.getDescription());
+    baseMenu = new BaseMenu("Select " + title, options);
 
-    baseMenu = new BaseMenu("Select event modality", modalities);
     int response = baseMenu.getResponse();
-    return response;
+    if (response == 0) return "cancel";
+    return options.get(response);
   }
 
   public static String getCode(){
@@ -109,5 +88,32 @@ public class EventForms {
     }
     System.out.println(Lines.clear());
     return code.toUpperCase();
+  }
+
+  protected static String getYN(String text, String defaultValue) {
+  String response;
+  while (true) {
+    System.out.print(text);
+    if(defaultValue.equalsIgnoreCase("y")) {
+      System.out.print("(Y/n)(\"cancel\" to exit)>> ");
+    } else {
+      System.out.print("(y/N)(\"cancel\" to exit)>> ");
+    }
+    response = Utils.scanner.nextLine().trim().toLowerCase();
+    if (response.equalsIgnoreCase("cancel")) {
+      System.out.println(Lines.clear());
+      return "cancel";
+    }
+    if (response.isEmpty()) {
+      response = defaultValue.toLowerCase();
+      break;
+    } else if (!response.equals("y") && !response.equals("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Invalid input! Please enter 'y' or 'n'."));
+    }else{
+      break;
+    }
+  }
+    return response;
   }
 }

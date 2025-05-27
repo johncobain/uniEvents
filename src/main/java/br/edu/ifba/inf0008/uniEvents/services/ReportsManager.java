@@ -54,7 +54,6 @@ public class ReportsManager {
         report.append(Lines.mixedLines()).append("\n");
       }
     }
-    report.append(Lines.straightLine()).append("\n");
     return report.toString();
   }
 }

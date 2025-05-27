@@ -22,6 +22,7 @@ public class MainMenu extends Menu{
     super.addOption("Participants Management");
     super.addOption("Events Management");
     super.addOption("See Reports");
+    super.addOption("Generate Dummy Data");
 
     this.eventManager = eventManager;
     this.participantManager = participantManager;
@@ -51,6 +52,9 @@ public class MainMenu extends Menu{
           case 3 -> {
             submenu = new ReportsMenu(eventManager, participantManager, reportsManager, fileGenerator);
             submenu.show();
+          }
+          case 4 -> {
+            fileGenerator.generateDummyData(eventManager, participantManager);
           }
           default -> throw new AssertionError();
       }

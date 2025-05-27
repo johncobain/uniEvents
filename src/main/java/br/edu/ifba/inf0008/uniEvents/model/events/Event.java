@@ -156,7 +156,7 @@ public abstract class Event {
         sb.append(Lines.multiLineText(String.format("Event: %s", getType()))).append("\n");
         sb.append(Lines.multiLineText(String.format("Title: %s", name))).append("\n");
         sb.append(Lines.multiLineText(String.format("Description: %s", description))).append("\n");
-        sb.append(Lines.multiLineText(String.format("Modality: %s", modality))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Modality: %s", modality.getDescription()))).append("\n");
         sb.append(Lines.multiLineText(String.format("Location: %s", location))).append("\n");
         sb.append(Lines.multiLineText(String.format("Date: %s", this.getDate().format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
         sb.append(Lines.multiLineText(String.format("Capacity: %d", capacity))).append("\n");

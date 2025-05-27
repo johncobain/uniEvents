@@ -36,9 +36,9 @@ public class EventManager {
     eventRepository.remove(code);
   }
 
-  public void update(Event event, Event updatedEvent) {
-    events.put(event.getCode(), updatedEvent);
-    eventRepository.update(event, event.getCode());
+  public void update(String code, Event updatedEvent) {
+    events.put(code, updatedEvent);
+    eventRepository.update(updatedEvent, code);
   }
 
   public Event get(String code){
@@ -85,6 +85,18 @@ public class EventManager {
 
     get(code).removeParticipantCpf(cpf);
     get(code).removeParticipant(cpf);
+    eventRepository.save();
+  }
+
+  public void clearParticipants(String code) {
+    if (get(code) == null) {
+      throw new IllegalArgumentException("Event not found");
+    }
+
+    for (String cpf : get(code).getParticipants().keySet()) {
+      get(code).removeParticipantCpf(cpf);
+      get(code).removeParticipant(cpf);
+    }
     eventRepository.save();
   }
 
