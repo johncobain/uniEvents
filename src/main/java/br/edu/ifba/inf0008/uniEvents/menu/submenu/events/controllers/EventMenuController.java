@@ -1,7 +1,9 @@
-package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
+package br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
@@ -15,7 +17,7 @@ import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
-
+//TODO: refactor EventMenuController
 public class EventMenuController {
   private EventManager eventManager;
   
@@ -23,7 +25,7 @@ public class EventMenuController {
     this.eventManager = eventManager;
   }
   
-  public void create(){
+  public void create(String type){
     String selectedType = EventForms.getType();
     if (selectedType.equalsIgnoreCase("cancel")) return;
 
@@ -155,7 +157,7 @@ public class EventMenuController {
 
   }
 
-  public void listAll(){
+  public void list(){
     ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
 
     if (events.isEmpty()) {
@@ -171,33 +173,27 @@ public class EventMenuController {
     }
   }
 
-  public void listByType(){
-    String selectedType = EventForms.getType();
-    if (selectedType.equalsIgnoreCase("cancel")) return;
+  public void list(String type){
+    List<Event> events = eventManager.getAll().values()
+      .stream()
+      .filter(e -> e.getType().equalsIgnoreCase(type))
+      .collect(Collectors.toList());
 
-    LinkedHashMap<String, Event> events = eventManager.getAll();
-    ArrayList<Event> filteredEvents = new ArrayList<>();
-    for (Event event : events.values()) {
-      if (event.getType().equals(selectedType)) {
-        filteredEvents.add(event);
-      }
-    }
-    if(filteredEvents.isEmpty()){
+    if(events.isEmpty()){
       System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("No events in " + selectedType + " found!"));
+      System.out.println(Lines.errorLine("No events in " + type + " found!"));
       return;
     }
+
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine(selectedType+" Events", Colors.YELLOW_BOLD));
+    System.out.println(Lines.titleLine(type+" Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
-    for (Event event : filteredEvents) {
-      System.out.println(Lines.straightLine());
-      System.out.print(event.toString());
-      System.out.println(Lines.straightLine());
+    for (Event event : events) {
+      System.out.print(ReportsManager.summary(event, false));
     }
   }
 
-  public void show(){
+  public void get(String type){//TODO: refactor get
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
@@ -231,7 +227,7 @@ public class EventMenuController {
     }
   }
 
-  public void clearAll(){
+  public void clear(){
     try {
       eventManager.clear();
       System.out.println(Lines.clear());
@@ -241,4 +237,22 @@ public class EventMenuController {
       System.out.println(Lines.errorLine(e.getMessage()));
     }
   } 
+
+  public void clear(String type){
+    try{
+      List<Event> eventsOfType = eventManager.getAll().values()
+      .stream()
+      .filter(e -> e.getType().equalsIgnoreCase(type))
+      .collect(Collectors.toList());
+
+      for(Event event : eventsOfType) {
+        eventManager.remove(event.getCode());
+      }
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("All " + type + "s removed!"));
+    }catch(Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
+    }
+  }
 }

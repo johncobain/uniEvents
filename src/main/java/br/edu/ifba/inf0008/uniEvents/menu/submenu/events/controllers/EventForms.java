@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
+package br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers;
 
 import java.util.ArrayList;
 

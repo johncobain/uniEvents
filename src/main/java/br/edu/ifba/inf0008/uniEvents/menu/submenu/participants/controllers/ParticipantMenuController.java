@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventForms;
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
@@ -119,7 +119,7 @@ public class ParticipantMenuController {
   }
   
   public void list(){
-    LinkedHashMap<String, Participant> participants = participantManager.getAll();
+    ArrayList<Participant> participants = new ArrayList<>( participantManager.getAll().values());
 
     if(participants.isEmpty()){
       System.out.println(Lines.clear());
@@ -129,7 +129,7 @@ public class ParticipantMenuController {
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine("All Participants", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
-    for(Participant participant : participants.values()){
+    for(Participant participant : participants){
       System.out.println(Lines.straightLine());
       System.out.print(participant.toString());
       System.out.println(Lines.straightLine());
