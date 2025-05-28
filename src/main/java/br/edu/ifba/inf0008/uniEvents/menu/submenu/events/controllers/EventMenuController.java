@@ -11,7 +11,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
-import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
+import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
@@ -123,25 +123,18 @@ public class EventMenuController {
     String modality = EventForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
     
-    Event updatedEvent = null;
+    Boolean updated = false;
     switch (type) {
-      case "Lecture" -> updatedEvent = LectureMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
-      case "Workshop" -> updatedEvent = WorkshopMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
-      case "Short Course" -> updatedEvent = ShortCourseMenuController.update(eventManager, participantManager, code, name, description, location, date, capacity, modality);
-      case "Academic Fair" -> updatedEvent = AcademicFairMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
+      case "Lecture" -> updated = LectureMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
+      case "Workshop" -> updated = WorkshopMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
+      case "Short Course" -> updated = ShortCourseMenuController.update(eventManager, participantManager, code, name, description, location, date, capacity, modality);
+      case "Academic Fair" -> updated = AcademicFairMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
     }
 
-    if(updatedEvent == null) return;
+    if(!updated) return;
 
-    try {
-      eventManager.update(code, updatedEvent);
-      System.out.println(Lines.clear());
-      System.out.println(Lines.successLine("Event updated!"));
-    } catch (Exception e) {
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Error updating event"));
-    }
-
+    System.out.println(Lines.clear());
+    System.out.println(Lines.successLine("Event updated!"));
   }
 
   public void list(){
@@ -156,7 +149,7 @@ public class EventMenuController {
     System.out.println(Lines.titleLine("All Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     for(Event event : events){
-      System.out.print(ReportsManager.summary(event, false));
+      System.out.print(ReportsGenerator.summary(event, false));
     }
   }
 
@@ -176,7 +169,7 @@ public class EventMenuController {
     System.out.println(Lines.titleLine(type+" Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     for (Event event : events) {
-      System.out.print(ReportsManager.summary(event, false));
+      System.out.print(ReportsGenerator.summary(event, false));
     }
   }
 
@@ -198,7 +191,7 @@ public class EventMenuController {
 
     if(type.equalsIgnoreCase("Event")) type = eventManager.get(code).getType();
 
-    System.out.print(ReportsManager.summary(eventManager.get(code), false));
+    System.out.print(ReportsGenerator.summary(eventManager.get(code), false));
     
     ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Add Participant", "Remove Participant", "Clear Participants", "Generate Certificate"));
     switch (type) {

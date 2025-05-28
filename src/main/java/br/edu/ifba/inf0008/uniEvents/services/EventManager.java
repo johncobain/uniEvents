@@ -1,21 +1,15 @@
 package br.edu.ifba.inf0008.uniEvents.services;
 
-import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
-import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
-import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
-import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
-import br.edu.ifba.inf0008.uniEvents.model.events.enums.SkillLevel;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 
 
-public class EventManager {
+public class EventManager implements IManager<Event>{
   private final EventRepository eventRepository;
   private final ParticipantRepository participantRepository;
 
@@ -27,23 +21,38 @@ public class EventManager {
     events = eventRepository.getAll();
   }
 
+  @Override
   public void add(Event event){
     events.put(event.getCode(), event);
     eventRepository.add(event);
   }    
 
+  @Override
   public void remove(String code){
     events.remove(code);
     eventRepository.remove(code);
   }
 
+  @Override
   public void update(String code, Event updatedEvent) {
     events.put(code, updatedEvent);
     eventRepository.update(updatedEvent, code);
   }
 
+  @Override
   public Event get(String code){
     return events.get(code);
+  }
+
+  @Override
+  public void clear() {
+    events.clear();
+    eventRepository.clear();
+  }
+
+  @Override
+  public LinkedHashMap<String, Event> getAll() {
+    return events;
   }
 
   public void addParticipant(String code, String cpf){
@@ -108,36 +117,7 @@ public class EventManager {
     return participantEvents;
   }
 
-   public void clear() {
-    events.clear();
-    eventRepository.clear();
-  }
-
   public Boolean isCodeAlreadyInUse(String code) {
     return events.get(code) != null;
-  }
-
-  public LinkedHashMap<String, Event> getAll() {
-    return events;
-  }
-
-  public void createLecture(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
-    Lecture event = new Lecture(name, location, description, date, capacity, modality, code);
-    add(event);
-  }
-
-  public void createWorkshop(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
-    Workshop event = new Workshop(name, location, description, date, capacity, modality, code);
-    add(event);
-  }
-
-  public void createShortCourse(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code, int totalHours, String courseModules, String methodOfAssessment, SkillLevel targetSkillLevel) {
-    ShortCourse event = new ShortCourse(name, location, description, date, capacity, modality, code, totalHours, courseModules, methodOfAssessment, targetSkillLevel);
-    add(event);
-  }
-
-  public void createAcademicFair(String name, String location, String description, LocalDate date, int capacity, Modality modality, String code) {
-    AcademicFair event = new AcademicFair(name, location, description, date, capacity, modality, code);
-    add(event);
   }
 }
