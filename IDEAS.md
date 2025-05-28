@@ -1,28 +1,14 @@
 # IDEAS
 
-- use dynamic linking for Participants
+- refactor EVERYTHING
 
-- Short Course must have a Professor as Professor of the event
+- give some behaviour changes depending on modality
+
+- find a way to make the code more readable
 
 - Press Enter to exit views
 
-- better iterator
-
-```java
-participantsMap.forEach((cpf, participant) -> {
-    // Faça algo com cpf e participant
-});
-```
-
-- better filtering
-
-- add `addInterest` to Participant menu (for Student)
-
 - TODO: student must have a required gpa for course
-
-- TODO: maybe another submenu for Participant menu?
-
-- TODO: set new gpa for student
 
 - TODO: advanced workshop must have a required gpa for Student
 

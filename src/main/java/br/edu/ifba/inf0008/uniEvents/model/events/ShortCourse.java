@@ -8,6 +8,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.SkillLevel;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public final class ShortCourse extends Event {
   private final String eventTypeJson = "Short Course";
@@ -75,6 +76,10 @@ public final class ShortCourse extends Event {
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
+    sb.append(Lines.multiLineText(String.format("Total Hours: %d", totalHours))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Course Modules: %s", String.join(" - ", courseModules)))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Method of Assessment: %s", methodOfAssessment))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Target Skill Level: %s", targetSkillLevel.getDescription()))).append("\n");
     return sb.toString();
   }
   
