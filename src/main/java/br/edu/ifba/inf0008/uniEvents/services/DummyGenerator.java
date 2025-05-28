@@ -453,6 +453,8 @@ public class DummyGenerator {
       )
     );
 
+    //TODO: add participant to events and generate certificates
+
     System.out.println(Lines.clear());
     System.out.println(Lines.successLine("Dummy Data saved (" + participantManager.getAll().size() + " participants and " + eventManager.getAll().size() + " events)!"));
       

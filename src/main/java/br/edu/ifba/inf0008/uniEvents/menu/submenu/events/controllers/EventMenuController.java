@@ -204,14 +204,8 @@ public class EventMenuController {
 
     System.out.print(ReportsGenerator.summary(eventManager.get(code), false));
     
-    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Remove Participant", "Clear Participants", "Generate Certificate"));
-    switch (type) {
-      // case "Lecture" -> options.add("View Slides");
-      // case "Workshop" -> options.add("View Materials");
-      // case "Short Course" -> options.add("View Materials");
-      // case "Academic Fair" -> options.add("View Stands");
-      default -> System.out.println();//TODO: add show instructions to modality
-    }
+    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Remove Participant", "Clear Participants", "Generate Certificate"));//TODO: add show instructions to modality
+
     String option;
     while (true) { 
       option = EventForms.getOption(options, "What do you want to do with this " + type + "?");
@@ -226,18 +220,6 @@ public class EventMenuController {
         case "Remove Participant" -> removeParticipant(code);
         case "Clear Participants" -> clearParticipants(code);
         case "Generate Certificate" -> generateCertificate(code);
-        default -> {
-          switch (type) {
-            case "Lecture" -> {
-            }
-            case "Workshop" -> {
-            }
-            case "Short Course" -> {
-            }
-            case "Academic Fair" -> {
-            }
-          }
-        }
       }
     }
   }
