@@ -11,21 +11,6 @@ Example:
 
 Use case in your project:
 If you want to keep events sorted by their code, name, or date, use a TreeMap<String, Event>.
-
-TreeSet
-What is it?
-A TreeSet<E> is a set implementation that stores unique elements in a sorted order (by natural order or a custom Comparator).
-
-Key features:
-
-No duplicates allowed.
-Elements are always sorted.
-Operations like add, remove, contains are O(log n).
-Example:
-
-Use case in your project:
-If you want a sorted, duplicate-free list of participant names or event titles, use a TreeSet<String>.
-
 ---
 
 Entendido! Vamos focar na organização conceitual e na estrutura lógica do seu menu de relatórios, sem mergulhar no código específico.
