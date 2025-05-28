@@ -4,18 +4,15 @@ import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
-import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 
 
 public class EventManager implements IManager<Event>{
   private final EventRepository eventRepository;
-  private final ParticipantRepository participantRepository;
 
   public static LinkedHashMap<String, Event> events;
 
-  public EventManager(EventRepository eventRepository, ParticipantRepository participantRepository) {
+  public EventManager(EventRepository eventRepository) {
     this.eventRepository = eventRepository;
-    this.participantRepository = participantRepository;
     events = eventRepository.getAll();
   }
 

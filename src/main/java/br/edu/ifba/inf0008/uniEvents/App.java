@@ -17,7 +17,7 @@ public class App {
         ParticipantRepository participantRepository = new ParticipantRepository();
         EventRepository eventRepository = new EventRepository(participantRepository);
 
-        EventManager eventManager = new EventManager(eventRepository, participantRepository);
+        EventManager eventManager = new EventManager(eventRepository);
         ParticipantManager participantManager = new ParticipantManager(participantRepository, eventManager);
         ReportsGenerator reportsGenerator = new ReportsGenerator();
         

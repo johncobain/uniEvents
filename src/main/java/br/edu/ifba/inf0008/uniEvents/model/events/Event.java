@@ -102,7 +102,7 @@ public abstract class Event {
     this.participantsCpfs.clear();
   }
 
-  public void populateParticipants(ParticipantRepository participantRepository) {
+  public void populateParticipants(ParticipantRepository participantRepository) {//TODO: don't use participantRepository
     if(this.participantsCpfs != null && participantRepository != null){
       for (String cpf : this.participantsCpfs) {
         Participant participant = participantRepository.get(cpf);
