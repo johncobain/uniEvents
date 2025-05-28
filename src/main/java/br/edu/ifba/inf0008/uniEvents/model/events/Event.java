@@ -118,6 +118,10 @@ public abstract class Event {
   }
 
   public void setParticipants(LinkedHashMap<String, Participant> participants) {
+    this.participantsCpfs.clear();
+    for (Participant participant : participants.values()) {
+      this.participantsCpfs.add(participant.getCpf());
+    }
     this.participants = participants;
   }
 
