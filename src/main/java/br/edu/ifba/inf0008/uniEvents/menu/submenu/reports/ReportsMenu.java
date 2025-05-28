@@ -5,14 +5,14 @@ import br.edu.ifba.inf0008.uniEvents.menu.Menu;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
-import br.edu.ifba.inf0008.uniEvents.services.ReportsManager;
+import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ReportsMenu extends Menu {
   private final EventManager eventManager;
-  private final ReportsManager reportsManager;
+  private final ReportsGenerator reportsGenerator;
 
-  public ReportsMenu(EventManager eventManager, ParticipantManager participantManager, ReportsManager reportsManager) {
+  public ReportsMenu(EventManager eventManager, ParticipantManager participantManager, ReportsGenerator reportsGenerator) {
     super("Reports Management", Colors.RED_BOLD);
     super.addOption("Exit to Main Menu");
     super.addOption("Generate Report by Type");
@@ -22,7 +22,7 @@ public class ReportsMenu extends Menu {
     super.addOption("Generate Summary Report");    
 
     this.eventManager = eventManager;
-    this.reportsManager = reportsManager;
+    this.reportsGenerator = reportsGenerator;
   }
 
   @Override
@@ -52,12 +52,12 @@ public class ReportsMenu extends Menu {
           }
           case 4 -> {
             ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
-            String detailedReport = reportsManager.generateReport(events, "Detailed Report", true);
+            String detailedReport = reportsGenerator.generateReport(events, "Detailed Report", true);
             System.out.println(detailedReport);
           }
           case 5 -> {
             ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
-            String summaryReport = reportsManager.generateReport(events, "Summary Report", false);
+            String summaryReport = reportsGenerator.generateReport(events, "Summary Report", false);
             System.out.println(summaryReport);
           }
           default -> throw new AssertionError();

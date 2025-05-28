@@ -27,7 +27,8 @@ public class DummyGenerator {
       if(response.equals("y") || response.equals("yes")) break;
     }
     
-    participantManager.clear(eventManager);
+    participantManager.clearParticipantsInEvents(eventManager);
+    participantManager.clear();
     
     //Students
     participantManager.createStudent(

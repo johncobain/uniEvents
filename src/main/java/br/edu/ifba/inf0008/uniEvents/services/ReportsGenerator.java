@@ -10,7 +10,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 
-public class ReportsManager {
+public class ReportsGenerator {
   private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
   public String generateReport(ArrayList<Event> events, String reportTitle, Boolean isDetailed) {
