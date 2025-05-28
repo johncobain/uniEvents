@@ -70,10 +70,11 @@ public class ParticipantMenuController {
     }
 
     try {
-        participantManager.remove(cpf, eventManager);
-        System.out.println(Lines.clear());
-        System.out.println(Lines.successLine("Participant removed!"));
-        return true;
+      participantManager.clearParticipantInEvents(cpf, eventManager);
+      participantManager.remove(cpf);
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Participant removed!"));
+      return true;
     } catch (Exception e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
@@ -270,7 +271,8 @@ public class ParticipantMenuController {
 
   public void clear(){
     try {
-      participantManager.clear(eventManager);
+      participantManager.clearParticipantsInEvents(eventManager);
+      participantManager.clear();
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("All participants removed!"));
     } catch (Exception e) {
@@ -287,7 +289,8 @@ public class ParticipantMenuController {
       .collect(Collectors.toList());
 
       for (Participant participant : participantsOfType) {
-        participantManager.remove(participant.getCpf(), eventManager);
+        participantManager.clearParticipantInEvents(participant.getCpf(), eventManager);
+        participantManager.remove(participant.getCpf());
       }
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("All " + type + "s removed!"));
