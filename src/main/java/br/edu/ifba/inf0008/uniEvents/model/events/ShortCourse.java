@@ -5,8 +5,9 @@ import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.SkillLevel;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class ShortCourse extends Event {
@@ -30,7 +31,7 @@ public class ShortCourse extends Event {
     super();
   } //Gson
 
-  public Boolean checkEligibility(ParticipantManager participantManager,String cpf){
+  public Boolean checkEligibility(IManager<Participant> participantManager,String cpf){
     return ((Student)participantManager.get(cpf)).getGpa() >= targetSkillLevel.minimumGpa();
   }
 

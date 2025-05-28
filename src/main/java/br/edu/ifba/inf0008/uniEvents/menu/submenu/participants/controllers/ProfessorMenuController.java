@@ -2,24 +2,30 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers;
 
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicTitle;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ProfessorMenuController {
 
-  public static Boolean create(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String employeeId;
     while (true) { 
       employeeId = ParticipantForms.getId("employee id");
-      if (participantManager.isIdAlreadyInUse(employeeId)) {
-        System.out.println("Employee ID '" + employeeId + "' is already in use! Please try again.");
-        continue;
+      Boolean isUnique = true;
+      for (Participant participant : participantManager.getAll().values()) {
+        if (((Professor) participant).getEmployeeId().equals(employeeId)) {
+          System.out.println(Lines.clear());
+          System.out.println(Lines.errorLine("Employee ID '" + employeeId + "' is already in use! Please try again."));
+          isUnique = false;
+          break;
+        }
       }
-      break;
+      if (isUnique) break;
     }
     if (employeeId.equalsIgnoreCase("cancel")) return false;
 
@@ -42,34 +48,37 @@ public class ProfessorMenuController {
     String specialization = ParticipantForms.getName("specialization");
     if (specialization.equalsIgnoreCase("cancel")) return false;
 
-    participantManager.createProfessor(name, cpf, email, phone, Utils.stringToDate(birthDateString), employeeId, Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
+    Professor professor = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), employeeId, Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
+    participantManager.add(professor);
     return true;
   }
   
-  public static Professor update(ParticipantManager participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Boolean update(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for (Course course : Course.getAll())options.add(course.getDescription());
 
     String department = ParticipantForms.getOption(options, "Department");
-    if (department.equalsIgnoreCase("cancel")) return null;
+    if (department.equalsIgnoreCase("cancel")) return false;
 
     options = new ArrayList<>();
     options.add("Cancel");
     for (AcademicTitle title : AcademicTitle.getAll())options.add(title.getDescription());
     String academicTitle = ParticipantForms.getOption(options, "Academic Title");
-    if (academicTitle.equalsIgnoreCase("cancel")) return null;
+    if (academicTitle.equalsIgnoreCase("cancel")) return false;
 
     String campus = ParticipantForms.getName("Campus");
-    if (campus.equalsIgnoreCase("cancel")) return null;
+    if (campus.equalsIgnoreCase("cancel")) return false;
 
     String specialization = ParticipantForms.getName("specialization");
-    if (specialization.equalsIgnoreCase("cancel")) return null;
+    if (specialization.equalsIgnoreCase("cancel")) return false;
 
-    return new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
+    Professor professor = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
+    participantManager.update(cpf, professor);
+    return true;
   }
 
-  public static void addResearchArea(ParticipantManager participantManager, String cpf) {
+  public static void addResearchArea(IManager<Participant> participantManager, String cpf) {
     String researchArea = ParticipantForms.getName("research area");
     if (researchArea.equalsIgnoreCase("cancel")) return;
     try {
@@ -84,7 +93,7 @@ public class ProfessorMenuController {
     }
   }
 
-  public static void removeResearchArea(ParticipantManager participantManager, String cpf) {
+  public static void removeResearchArea(IManager<Participant> participantManager, String cpf) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Professor)participantManager.get(cpf)).getResearchAreas());
@@ -102,7 +111,7 @@ public class ProfessorMenuController {
     }
   }
 
-  public static void addPublication(ParticipantManager participantManager, String cpf) {
+  public static void addPublication(IManager<Participant> participantManager, String cpf) {
     String publication = ParticipantForms.getName("publication");
     if (publication.equalsIgnoreCase("cancel")) return;
 
@@ -121,7 +130,7 @@ public class ProfessorMenuController {
     }
   }
 
-  public static void removePublication(ParticipantManager participantManager, String cpf) {
+  public static void removePublication(IManager<Participant> participantManager, String cpf) {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Professor)participantManager.get(cpf)).getPublications());

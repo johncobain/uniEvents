@@ -3,8 +3,6 @@ package br.edu.ifba.inf0008.uniEvents.services;
 import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 
@@ -55,47 +53,6 @@ public class EventManager implements IManager<Event>{
     return events;
   }
 
-  public void addParticipant(String code, String cpf){
-    if (get(code) == null) {
-      throw new IllegalArgumentException("Event not found");
-    }
-
-    if (participantRepository.get(cpf) == null) {
-      throw new IllegalArgumentException("Participant not found");
-    }
-
-    if(get(code) instanceof ShortCourse && !(participantRepository.get(cpf) instanceof Student)){
-      throw new IllegalArgumentException("Only students can participate in short courses");
-    }
-
-    if(get(code).isFull()){
-      throw new IllegalArgumentException("Event is full");
-    }
-
-    if(get(code).isParticipantRegistered(cpf)){
-      throw new IllegalArgumentException("Participant is already registered in this event");
-    }
-
-    get(code).addParticipant(participantRepository.get(cpf));
-    eventRepository.save();
-  }
-
-  public void removeParticipant(String code, String cpf){
-    if (get(code) == null) {
-      throw new IllegalArgumentException("Event not found");
-    }
-    if (participantRepository.get(cpf) == null) {
-      throw new IllegalArgumentException("Participant not found");
-    }
-
-    if(!get(code).isParticipantRegistered(cpf)){
-      throw new IllegalArgumentException("Participant is not registered in this event");
-    }
-
-    get(code).removeParticipant(cpf);
-    eventRepository.save();
-  }
-
   public void clearParticipants(String code) {
     if (get(code) == null) {
       throw new IllegalArgumentException("Event not found");
@@ -105,19 +62,5 @@ public class EventManager implements IManager<Event>{
       get(code).removeParticipant(cpf);
     }
     eventRepository.save();
-  }
-
-  public LinkedHashMap<String, Event> getEventsByParticipant(String cpf) {
-    LinkedHashMap<String, Event> participantEvents = new LinkedHashMap<>();
-    for (Event event : events.values()) {
-      if (event.getParticipants().containsKey(cpf)) {
-        participantEvents.put(event.getCode(), event);
-      }
-    }
-    return participantEvents;
-  }
-
-  public Boolean isCodeAlreadyInUse(String code) {
-    return events.get(code) != null;
   }
 }

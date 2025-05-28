@@ -9,16 +9,16 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
+import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class ParticipantMenuController {
-  private final ParticipantManager participantManager;
-  private final EventManager eventManager;
+  private final IManager<Participant> participantManager;
+  private final IManager<Event> eventManager;
 
-  public ParticipantMenuController(ParticipantManager participantManager, EventManager eventManager) {
+  public ParticipantMenuController(ParticipantManager participantManager, IManager<Event> eventManager) {
     this.participantManager = participantManager;
     this.eventManager = eventManager;
   }
@@ -30,7 +30,7 @@ public class ParticipantMenuController {
     String cpf;
     while(true){
       cpf = ParticipantForms.getCpf();
-      if(participantManager.isCpfAlreadyInUse(cpf)){
+      if(participantManager.get(cpf) != null){
         System.out.println(Lines.clear());
         System.out.println(Lines.errorLine("CPF '" + cpf + "' is already in use! Please try again."));
         continue;
@@ -70,7 +70,6 @@ public class ParticipantMenuController {
     }
 
     try {
-      participantManager.clearParticipantInEvents(cpf, eventManager);
       participantManager.remove(cpf);
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Participant removed!"));
@@ -101,23 +100,17 @@ public class ParticipantMenuController {
     String birthDateString = ParticipantForms.getDate("birth date");
     if (birthDateString.equalsIgnoreCase("cancel")) return;
 
-    Participant updatedParticipant = null;
+    Boolean updated = false;
     switch (type) {
-      case "Student" -> updatedParticipant = StudentMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
-      case "Professor" -> updatedParticipant = ProfessorMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
-      case "External" -> updatedParticipant = ExternalMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "Student" -> updated = StudentMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "Professor" -> updated = ProfessorMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "External" -> updated = ExternalMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
     }
 
-    if (updatedParticipant == null) return;
+    if (!updated) return;
 
-    try {
-      participantManager.update(cpf, updatedParticipant);
-      System.out.println(Lines.clear());
-      System.out.println(Lines.successLine(updatedParticipant.getType() + " " + updatedParticipant.getName() + " updated!"));
-    } catch (Exception e) {
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Error updating participant"));
-    }
+    System.out.println(Lines.clear());
+    System.out.println(Lines.successLine(type + " updated!"));
   }
   
   public void list(){
@@ -255,7 +248,8 @@ public class ParticipantMenuController {
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.titleLine("Events with " + participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
-    List<Event> events = eventManager.getEventsByParticipant(cpf).values().stream()
+    List<Event> events = eventManager.getAll().values().stream()
+      .filter(e -> e.getParticipants().containsKey(cpf))
       .sorted((e1, e2) -> e1.getDate().compareTo(e2.getDate()))
       .collect(Collectors.toList());
     if(events.isEmpty()){
@@ -271,7 +265,6 @@ public class ParticipantMenuController {
 
   public void clear(){
     try {
-      participantManager.clearParticipantsInEvents(eventManager);
       participantManager.clear();
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("All participants removed!"));
@@ -289,7 +282,6 @@ public class ParticipantMenuController {
       .collect(Collectors.toList());
 
       for (Participant participant : participantsOfType) {
-        participantManager.clearParticipantInEvents(participant.getCpf(), eventManager);
         participantManager.remove(participant.getCpf());
       }
       System.out.println(Lines.clear());
@@ -328,7 +320,8 @@ public class ParticipantMenuController {
     }
 
     try {
-      eventManager.addParticipant(event.getCode(), cpf);
+      eventManager.get(code).addParticipant(participantManager.get(cpf));
+      eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine(participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName() + " added to event!"));
     } catch (Exception e) {
@@ -347,6 +340,12 @@ public class ParticipantMenuController {
       return;
     }
 
+    if(!eventManager.get(code).isParticipantRegistered(cpf)){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant with CPF " + cpf + " is not registered in this event!"));
+      return;
+    }
+
     String confirmation = ParticipantForms.getYN("Are you sure you want to remove this participant from the event?", "n");
     if (confirmation.equalsIgnoreCase("n")) {
       System.out.println(Lines.clear());
@@ -355,7 +354,8 @@ public class ParticipantMenuController {
     }
     
     try {
-      eventManager.removeParticipant(code, cpf);
+      eventManager.get(code).removeParticipant(cpf);
+      eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine(participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName() + " removed from event!"));
     } catch (Exception e) {

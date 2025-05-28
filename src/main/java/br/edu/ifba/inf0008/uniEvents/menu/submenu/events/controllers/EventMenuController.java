@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
@@ -50,12 +49,16 @@ public class EventMenuController {
     String code;
     while (true) { 
       code = EventForms.getCode();
-      if(eventManager.isCodeAlreadyInUse(code)){
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine("Code '"+code+"' is already in use!"));
-        continue;
+      Boolean isUnique = true;
+      for(Event event : eventManager.getAll().values()){
+        if(event.getCode().equals(code)){
+          System.out.println(Lines.clear());
+          System.out.println(Lines.errorLine("Code '"+code+"' is already in use!"));
+          isUnique = false;
+          break;
+        }
       }
-      break;
+      if(isUnique) break;
     }
     if(code.equalsIgnoreCase("cancel")) return;
 
@@ -134,7 +137,7 @@ public class EventMenuController {
     if(!updated) return;
 
     System.out.println(Lines.clear());
-    System.out.println(Lines.successLine("Event updated!"));
+    System.out.println(Lines.successLine(type + " updated!"));
   }
 
   public void list(){
@@ -193,7 +196,7 @@ public class EventMenuController {
 
     System.out.print(ReportsGenerator.summary(eventManager.get(code), false));
     
-    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Add Participant", "Remove Participant", "Clear Participants", "Generate Certificate"));
+    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Remove Participant", "Clear Participants", "Generate Certificate"));
     switch (type) {
       // case "Lecture" -> options.add("View Slides");
       // case "Workshop" -> options.add("View Materials");
@@ -212,7 +215,6 @@ public class EventMenuController {
           if(remove(code)) return;
         }
         case "List Participants" -> listParticipants(code);
-        case "Add Participant" -> addParticipant(code);
         case "Remove Participant" -> removeParticipant(code);
         case "Clear Participants" -> clearParticipants(code);
         case "Generate Certificate" -> generateCertificate(code);
@@ -280,42 +282,6 @@ public class EventMenuController {
     }
   }
 
-  public void addParticipant(String code){
-    String cpf = ParticipantForms.getCpf();
-    if (cpf.equalsIgnoreCase("cancel")) return;
-
-    if(participantManager.get(cpf) == null){
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Participant not found!"));
-      return;
-    }
-
-    if(eventManager.get(code).isParticipantRegistered(cpf)){
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Participant with CPF " + cpf + " is already registered in this event!"));
-      return;      
-    }
-
-    if(
-      participantManager.get(cpf).getType().equalsIgnoreCase("Student") && 
-      eventManager.get(code).getType().equalsIgnoreCase("Short Course") &&      
-      !((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)
-      ){
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Participant " + participantManager.get(cpf).getName() + " is not eligible to register in this event!"));
-      return;      
-    }
-
-    try {
-      eventManager.addParticipant(code, cpf);
-      System.out.println(Lines.clear());
-      System.out.println(Lines.successLine("Participant added!"));
-    } catch (Exception e) {
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine(e.getMessage()));
-    }
-  }
-
   public void removeParticipant(String code){
     String cpf = ParticipantForms.getCpf();
     if (cpf.equalsIgnoreCase("cancel")) return;
@@ -334,7 +300,8 @@ public class EventMenuController {
     }
 
     try {
-      eventManager.removeParticipant(code, cpf);
+      eventManager.get(code).removeParticipant(cpf);
+      eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Participant removed!"));
     } catch (Exception e) {

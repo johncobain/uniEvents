@@ -17,8 +17,8 @@ public class App {
         ParticipantRepository participantRepository = new ParticipantRepository();
         EventRepository eventRepository = new EventRepository(participantRepository);
 
-        ParticipantManager participantManager = new ParticipantManager(participantRepository);
         EventManager eventManager = new EventManager(eventRepository, participantRepository);
+        ParticipantManager participantManager = new ParticipantManager(participantRepository, eventManager);
         ReportsGenerator reportsGenerator = new ReportsGenerator();
         
         System.out.println(Lines.mixedLines());

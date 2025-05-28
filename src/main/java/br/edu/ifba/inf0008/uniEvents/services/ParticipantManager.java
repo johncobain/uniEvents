@@ -1,25 +1,20 @@
 package br.edu.ifba.inf0008.uniEvents.services;
 
-import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Professor;
-import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
-import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
-import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicTitle;
-import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 
 public class ParticipantManager implements IManager<Participant> {
   private final ParticipantRepository participantRepository;
+  private final IManager<Event> eventManager;
 
   public static LinkedHashMap<String, Participant> participants;
   
-  public ParticipantManager(ParticipantRepository participantRepository) {
+  public ParticipantManager(ParticipantRepository participantRepository, IManager<Event> eventManager) {
     this.participantRepository = participantRepository;
+    this.eventManager = eventManager;
     participants = participantRepository.getAll();
   }
 
@@ -31,6 +26,7 @@ public class ParticipantManager implements IManager<Participant> {
 
   @Override
   public void remove(String cpf) {
+    clearParticipantInEvents(cpf, eventManager);
     participants.remove(cpf);
     participantRepository.remove(cpf);
   }
@@ -51,6 +47,7 @@ public class ParticipantManager implements IManager<Participant> {
 
   @Override
   public void clear() {
+    clearParticipantsInEvents(eventManager);
     participants.clear();
     participantRepository.clear();
   }
@@ -60,46 +57,18 @@ public class ParticipantManager implements IManager<Participant> {
     return participants;
   }
 
-  public void clearParticipantsInEvents(EventManager eventManager) {
+  protected void clearParticipantsInEvents(IManager<Event> eventManager) {
     for (String cpf : participants.keySet()) {
       clearParticipantInEvents(cpf, eventManager);
     }
   }
 
-  public void clearParticipantInEvents(String cpf, EventManager eventManager) {
+  protected void clearParticipantInEvents(String cpf, IManager<Event> eventManager) {
     for (Event event : EventManager.events.values()) {
       if (event.getParticipants().containsKey(cpf)) {
-        eventManager.removeParticipant(event.getCode(), cpf);
+        event.removeParticipant(cpf);
+        eventManager.update(event.getCode(), event);
       }
     }
   }
-
-  public Boolean isCpfAlreadyInUse(String cpf) {
-    return participants.get(cpf) != null;
-  }
-
-  public Boolean isIdAlreadyInUse(String id) {
-    for (Participant participant : participants.values()) {
-      if (participant instanceof Student && ((Student) participant).getStudentId().equals(id)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  public void createStudent(String name, String cpf, String email, String phone, LocalDate birthDate, String studentId, Course course, int currentSemester, AcademicStatus academicStatus, double gpa, String campus, LocalDate enrollmentDate) {
-    Student student = new Student(name, cpf, email, phone, birthDate, studentId, course, currentSemester, academicStatus, gpa, campus, enrollmentDate);
-    add(student);
-  }
-
-  public void createProfessor(String name, String cpf, String email, String phone, LocalDate birthDate, String employeeId, Course department, String campus, AcademicTitle academicTitle, String specialization) {
-    Professor professor = new Professor(name, cpf, email, phone, birthDate, employeeId, department, campus, academicTitle, specialization);
-    add(professor);
-  }
-
-  public void createExternal(String name, String cpf, String email, String phone, LocalDate birthDate, String organization, String jobRole, String bio, Boolean isPresenter) {
-    External external = new External(name, cpf, email, phone, birthDate, organization, jobRole, bio, isPresenter);
-    add(external);
-  }
-
 }

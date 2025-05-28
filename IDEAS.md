@@ -2,7 +2,11 @@
 
 - refactor EVERYTHING
 
-- give some behaviour changes depending on modality
+- TODO: REFACTOR EVENTMANAGER AND EVENTMENUCONTROLLER
+
+- TODO: Maybe add `addToEvent` method in interface or something like that
+
+- give some behaviour changes depending on modality - in-person: ask for capacity and add to it when registering - online: no capacity, no limits - hybrid: ask for capacity and add to it when registering only if the participant is registering for the in-person part
 
 - find a way to make the code more readable
 

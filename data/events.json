@@ -1,22 +1,216 @@
 [
   {
-    "eventTypeJson": "Short Course",
-    "totalHours": 40,
-    "courseModules": [
-      "Q",
-      "T"
+    "eventTypeJson": "Lecture",
+    "mainTopic": "Artificial Intelligence",
+    "subTopics": [
+      "History of AI",
+      "Machine Learning",
+      "Ethics in AI"
     ],
-    "methodOfAssessment": "Project",
-    "targetSkillLevel": "ADVANCED",
-    "name": "QuTe",
-    "description": "QT Course",
-    "location": "Lab2",
-    "date": "29/05/2025",
-    "capacity": 5,
+    "objectives": [
+      "Understand AI basics",
+      "Explore real-world applications",
+      "Discuss ethical implications"
+    ],
+    "language": "English",
+    "hours": 1,
+    "minutes": 30,
+    "name": "Introduction to Artificial Intelligence",
+    "description": "A comprehensive overview of AI concepts, history, and applications.",
+    "location": "Auditorium A",
+    "date": "15/09/2024",
+    "capacity": 0,
+    "modality": "ONLINE",
+    "participantsCpfs": [],
+    "code": "LEC001"
+  },
+  {
+    "eventTypeJson": "Lecture",
+    "mainTopic": "Web Development",
+    "subTopics": [
+      "Frontend Frameworks",
+      "Backend Technologies",
+      "Web Security"
+    ],
+    "objectives": [
+      "Identify modern tools",
+      "Discuss best practices",
+      "Highlight security concerns"
+    ],
+    "language": "Portuguese",
+    "hours": 1,
+    "minutes": 0,
+    "name": "Modern Web Development Trends",
+    "description": "Exploring the latest trends and technologies in web development.",
+    "location": "Room 101",
+    "date": "20/09/2024",
+    "capacity": 80,
+    "modality": "HYBRID",
+    "participantsCpfs": [],
+    "code": "LEC002"
+  },
+  {
+    "eventTypeJson": "Lecture",
+    "mainTopic": "Cloud Computing",
+    "subTopics": [
+      "Cloud Models",
+      "Service Types",
+      "Security in Cloud"
+    ],
+    "objectives": [
+      "Understand cloud basics",
+      "Differentiate service models",
+      "Discuss security challenges"
+    ],
+    "language": "English",
+    "hours": 1,
+    "minutes": 15,
+    "name": "Cloud Computing Essentials",
+    "description": "Introduction to cloud computing concepts, services, and deployment models.",
+    "location": "Room 105",
+    "date": "18/09/2024",
+    "capacity": 60,
     "modality": "INPERSON",
-    "participantsCpfs": [
-      "592.201.489-78"
+    "participantsCpfs": [],
+    "code": "LEC003"
+  },
+  {
+    "eventTypeJson": "Workshop",
+    "totalHours": 40,
+    "activitiesSummary": "Participants will learn Python basics, data analysis with pandas, and data visualization using matplotlib and seaborn.",
+    "name": "Hands-on with Python for Data Science",
+    "description": "Practical workshop on using Python for data analysis and visualization.",
+    "location": "Lab 3",
+    "date": "22/09/2024",
+    "capacity": 30,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "WS001"
+  },
+  {
+    "eventTypeJson": "Workshop",
+    "totalHours": 120,
+    "activitiesSummary": "Participants will explore Scrum, Kanban, and agile tools through hands-on activities to improve team collaboration and project delivery.",
+    "name": "Agile Project Management",
+    "description": "Interactive workshop on agile methodologies and project management tools.",
+    "location": "Room 202",
+    "date": "25/09/2024",
+    "capacity": 25,
+    "modality": "ONLINE",
+    "participantsCpfs": [],
+    "code": "WS002"
+  },
+  {
+    "eventTypeJson": "Workshop",
+    "totalHours": 90,
+    "activitiesSummary": "Participants will set up CI/CD pipelines, explore containerization with Docker, and learn about infrastructure as code using tools like Terraform.",
+    "name": "DevOps Best Practices",
+    "description": "Workshop focused on modern DevOps tools, CI/CD pipelines, and automation.",
+    "location": "Lab 5",
+    "date": "27/09/2024",
+    "capacity": 20,
+    "modality": "HYBRID",
+    "participantsCpfs": [],
+    "code": "WS003"
+  },
+  {
+    "eventTypeJson": "Short Course",
+    "totalHours": 4,
+    "courseModules": [
+      "Network Security Basics",
+      "Malware and Threats",
+      "Best Practices"
     ],
-    "code": "QT"
+    "methodOfAssessment": "Written Exam and Practical Lab",
+    "targetSkillLevel": "BEGINNER",
+    "name": "Introduction to Cybersecurity",
+    "description": "Short course covering the fundamentals of cybersecurity.",
+    "location": "Room 303",
+    "date": "28/09/2024",
+    "capacity": 40,
+    "modality": "HYBRID",
+    "participantsCpfs": [],
+    "code": "SC001"
+  },
+  {
+    "eventTypeJson": "Short Course",
+    "totalHours": 3,
+    "courseModules": [
+      "React Native Basics",
+      "UI Components",
+      "APIs Integration"
+    ],
+    "methodOfAssessment": "Project Submission",
+    "targetSkillLevel": "INTERMEDIATE",
+    "name": "Mobile App Development with React Native",
+    "description": "Learn to build cross-platform mobile apps using React Native.",
+    "location": "Lab 2",
+    "date": "02/10/2024",
+    "capacity": 35,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "SC002"
+  },
+  {
+    "eventTypeJson": "Short Course",
+    "totalHours": 5,
+    "courseModules": [
+      "Generics",
+      "Concurrency",
+      "JVM Internals",
+      "Performance Tuning"
+    ],
+    "methodOfAssessment": "Final Project and Code Review",
+    "targetSkillLevel": "ADVANCED",
+    "name": "Advanced Java Programming",
+    "description": "Deep dive into advanced Java concepts and best practices.",
+    "location": "Room 404",
+    "date": "05/10/2024",
+    "capacity": 25,
+    "modality": "ONLINE",
+    "participantsCpfs": [],
+    "code": "SC003"
+  },
+  {
+    "eventTypeJson": "Academic Fair",
+    "stands": 50,
+    "centralTheme": "Innovation and Technology",
+    "finalDate": "12/10/2024",
+    "name": "Tech Innovation Fair",
+    "description": "Showcase of innovative tech projects by students and professionals.",
+    "location": "Main Hall",
+    "date": "10/10/2024",
+    "capacity": 200,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "AF001"
+  },
+  {
+    "eventTypeJson": "Academic Fair",
+    "stands": 40,
+    "centralTheme": "Data Science and Analytics",
+    "finalDate": "17/10/2024",
+    "name": "Data Science Expo",
+    "description": "Exhibition of data science projects and research.",
+    "location": "Exhibition Center",
+    "date": "15/10/2024",
+    "capacity": 150,
+    "modality": "HYBRID",
+    "participantsCpfs": [],
+    "code": "AF002"
+  },
+  {
+    "eventTypeJson": "Academic Fair",
+    "stands": 30,
+    "centralTheme": "Sustainable Technology",
+    "finalDate": "22/10/2024",
+    "name": "GreenTech Academic Fair",
+    "description": "A fair focused on sustainable technology and green innovations.",
+    "location": "Eco Hall",
+    "date": "20/10/2024",
+    "capacity": 120,
+    "modality": "INPERSON",
+    "participantsCpfs": [],
+    "code": "AF003"
   }
 ]
