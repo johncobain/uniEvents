@@ -23,7 +23,7 @@ The project simulates the management of events in a university, with the followi
   - Courses can only have students as participants
 - [ ] Generate Certificates (text)
 - [ ] Generate Reports by Event Type and Date
-- [ ] Add support for online, in-person and hybrid events
+- [x] Add support for online, in-person and hybrid events
 
 ### Technical Requirements
 
