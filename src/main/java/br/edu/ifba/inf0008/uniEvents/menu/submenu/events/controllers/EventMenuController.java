@@ -35,16 +35,19 @@ public class EventMenuController {
 
     String date = EventForms.getDate();
     if (date.equalsIgnoreCase("cancel")) return;
-
-    int capacity = EventForms.getNumber("Capacity");
-    if (capacity == -1) return;
-
+    
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Modality modality : Modality.getAll())options.add(modality.getDescription());
-
+    
     String modality = EventForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
+
+    int capacity = 0;
+    if(Modality.fromDescription(modality) != Modality.ONLINE){
+      capacity = EventForms.getNumber("Capacity");
+    }
+    if (capacity == -1) return;
     
     String code;
     while (true) { 
@@ -116,15 +119,20 @@ public class EventMenuController {
     String date = EventForms.getDate();
     if (date.equalsIgnoreCase("cancel")) return;
     
-    int capacity = EventForms.getNumber("Capacity");
-    if (capacity == -1) return;
-
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Modality modality : Modality.getAll())options.add(modality.getDescription());
-
+    
     String modality = EventForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
+    
+    int capacity = 0;
+    if(Modality.fromDescription(modality) != Modality.ONLINE){
+      capacity = EventForms.getNumber("Capacity");
+    }
+    if (capacity == -1) return;
+
+    //TODO: if the event has participants and will be updated, keeep the participants
     
     Boolean updated = false;
     switch (type) {
