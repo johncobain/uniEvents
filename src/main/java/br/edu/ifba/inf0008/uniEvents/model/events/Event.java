@@ -16,6 +16,8 @@ public abstract class Event {
   private String location;
   private LocalDate date;
   private int capacity;
+  private int totalParticipants;
+  private int onlineParticipants;
   private Modality modality;
   private final ArrayList<String> participantsCpfs;
   private transient LinkedHashMap<String, Participant> participants;
@@ -31,6 +33,9 @@ public abstract class Event {
     this.code = code;
     this.participantsCpfs = new ArrayList<>();
     this.participants = new LinkedHashMap<>();
+
+    this.totalParticipants = 0;
+    this.onlineParticipants = 0;
   }
 
   protected  Event(){
@@ -94,14 +99,6 @@ public abstract class Event {
     this.code = code;
   }
 
-  public ArrayList<String> getParticipantsCpfs() {
-    return participantsCpfs;
-  }
-
-  public void clearParticipantsCpfs() {
-    this.participantsCpfs.clear();
-  }
-
   public void populateParticipants(ParticipantRepository participantRepository) {//TODO: don't use participantRepository
     if(this.participantsCpfs != null && participantRepository != null){
       for (String cpf : this.participantsCpfs) {
@@ -117,7 +114,9 @@ public abstract class Event {
     return participants;
   }
 
-  public void setParticipants(LinkedHashMap<String, Participant> participants) {
+  public void setParticipants(LinkedHashMap<String, Participant> participants, int totalParticipants, int onlineParticipants) {
+    this.totalParticipants = totalParticipants;
+    this.onlineParticipants = onlineParticipants;
     this.participantsCpfs.clear();
     for (Participant participant : participants.values()) {
       this.participantsCpfs.add(participant.getCpf());
