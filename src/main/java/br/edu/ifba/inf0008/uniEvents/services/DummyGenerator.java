@@ -25,7 +25,7 @@ public class DummyGenerator {
   public static void generateDummyData(IManager<Event> eventManager, IManager<Participant> participantManager) {
     System.out.println(Lines.warningLine("WARNING: Any Current Data will be overwritten!"));
     while (true) { 
-      System.out.print("Are you sure you want to continue (y/N)? >>");
+      System.out.print("Are you sure you want to continue [y/N]? >>");
       String response = Utils.scanner.nextLine().trim().toLowerCase();
       if(response.equals("n") || response.equals("no") || response.isEmpty()){
         System.out.println(Lines.clear());

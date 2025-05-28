@@ -95,9 +95,9 @@ public class EventForms {
   while (true) {
     System.out.print(text);
     if(defaultValue.equalsIgnoreCase("y")) {
-      System.out.print("(Y/n)(\"cancel\" to exit)>> ");
+      System.out.print("[Y/n](\"cancel\" to exit)>> ");
     } else {
-      System.out.print("(y/N)(\"cancel\" to exit)>> ");
+      System.out.print("[y/N](\"cancel\" to exit)>> ");
     }
     response = Utils.scanner.nextLine().trim().toLowerCase();
     if (response.equalsIgnoreCase("cancel")) {
