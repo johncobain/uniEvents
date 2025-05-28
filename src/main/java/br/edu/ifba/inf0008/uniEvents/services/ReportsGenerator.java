@@ -39,7 +39,7 @@ public class ReportsGenerator {
   public static String summary(Event event, Boolean isDetailed){
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
-    report.append(Lines.titleLine("Event", Colors.YELLOW_BOLD)).append("\n");
+    report.append(Lines.titleLine("Event: " + event.getType(), Colors.YELLOW_BOLD)).append("\n");
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.straightLine()).append("\n");
     report.append(event.toString());
@@ -56,4 +56,6 @@ public class ReportsGenerator {
     }
     return report.toString();
   }
+
+  //TODO: create a participantSummary to use in reports and lists
 }

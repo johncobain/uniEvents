@@ -20,13 +20,9 @@
     "location": "Auditorium A",
     "date": "15/09/2024",
     "capacity": 0,
-    "totalCount": 1,
-    "onlineCount": 1,
     "modality": "ONLINE",
-    "participantsCpfs": [],
-    "onlineParticipantsCpfs": [
-      "864.726.822-91"
-    ],
+    "inPersonParticipantsCpfs": [],
+    "onlineParticipantsCpfs": [],
     "code": "LEC001"
   },
   {
@@ -50,10 +46,8 @@
     "location": "Room 101",
     "date": "20/09/2024",
     "capacity": 80,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "HYBRID",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "LEC002"
   },
@@ -78,10 +72,8 @@
     "location": "Room 105",
     "date": "18/09/2024",
     "capacity": 60,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "INPERSON",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "LEC003"
   },
@@ -94,10 +86,8 @@
     "location": "Lab 3",
     "date": "22/09/2024",
     "capacity": 30,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "INPERSON",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS001"
   },
@@ -110,10 +100,8 @@
     "location": "Room 202",
     "date": "25/09/2024",
     "capacity": 25,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "ONLINE",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS002"
   },
@@ -126,10 +114,8 @@
     "location": "Lab 5",
     "date": "27/09/2024",
     "capacity": 20,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "HYBRID",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS003"
   },
@@ -148,15 +134,9 @@
     "location": "Room 303",
     "date": "28/09/2024",
     "capacity": 40,
-    "totalCount": 2,
-    "onlineCount": 1,
     "modality": "HYBRID",
-    "participantsCpfs": [
-      "161.075.797-10"
-    ],
-    "onlineParticipantsCpfs": [
-      "592.201.489-78"
-    ],
+    "inPersonParticipantsCpfs": [],
+    "onlineParticipantsCpfs": [],
     "code": "SC001"
   },
   {
@@ -174,10 +154,8 @@
     "location": "Lab 2",
     "date": "02/10/2024",
     "capacity": 35,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "INPERSON",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "SC002"
   },
@@ -197,10 +175,8 @@
     "location": "Room 404",
     "date": "05/10/2024",
     "capacity": 25,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "ONLINE",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "SC003"
   },
@@ -214,10 +190,8 @@
     "location": "Main Hall",
     "date": "10/10/2024",
     "capacity": 200,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "INPERSON",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF001"
   },
@@ -231,10 +205,8 @@
     "location": "Exhibition Center",
     "date": "15/10/2024",
     "capacity": 150,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "HYBRID",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF002"
   },
@@ -248,10 +220,8 @@
     "location": "Eco Hall",
     "date": "20/10/2024",
     "capacity": 120,
-    "totalCount": 0,
-    "onlineCount": 0,
     "modality": "INPERSON",
-    "participantsCpfs": [],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF003"
   }

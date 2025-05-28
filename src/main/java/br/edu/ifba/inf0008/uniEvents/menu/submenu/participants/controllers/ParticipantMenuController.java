@@ -336,7 +336,7 @@ public class ParticipantMenuController {
       eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine(participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName() + " added to event!"));
-    } catch (Exception e) {
+    } catch (RuntimeException e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }
