@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
+import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.IManager;
@@ -319,8 +320,19 @@ public class ParticipantMenuController {
       return;      
     }
 
+    String modality = eventManager.get(code).getModality().getDescription();
+    if(Modality.fromDescription(modality) == Modality.HYBRID){
+      ArrayList<String> options = new ArrayList<>();
+      options.add("Cancel");
+      options.add(Modality.INPERSON.getDescription());
+      options.add(Modality.ONLINE.getDescription());
+      
+      modality = ParticipantForms.getOption(options, "Modality to register");
+      if (modality.equalsIgnoreCase("cancel")) return;
+    }
+
     try {
-      eventManager.get(code).addParticipant(participantManager.get(cpf));
+      eventManager.get(code).addParticipant(participantManager.get(cpf), Modality.fromDescription(modality));
       eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine(participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName() + " added to event!"));

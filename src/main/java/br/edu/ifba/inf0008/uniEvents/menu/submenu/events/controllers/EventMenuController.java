@@ -210,7 +210,7 @@ public class EventMenuController {
       // case "Workshop" -> options.add("View Materials");
       // case "Short Course" -> options.add("View Materials");
       // case "Academic Fair" -> options.add("View Stands");
-      default -> System.out.println();
+      default -> System.out.println();//TODO: add show instructions to modality
     }
     String option;
     while (true) { 
