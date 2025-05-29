@@ -4,16 +4,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
+import br.edu.ifba.inf0008.uniEvents.exceptions.CanNotBeEmptyException;
+import br.edu.ifba.inf0008.uniEvents.exceptions.InvalidInputException;
+import br.edu.ifba.inf0008.uniEvents.exceptions.NotANumberException;
+import br.edu.ifba.inf0008.uniEvents.exceptions.UniEventsException;
+
 public class Validation {
-  public static void validateCpf(String cpf){
+  public static void validateCpf(String cpf) throws UniEventsException {
     if(cpf == null || cpf.isBlank()) {
-      throw new IllegalArgumentException("CPF cannot be empty!");
+      throw new CanNotBeEmptyException("CPF");
     }
     if(cpf.matches(".*[a-zA-Z].*")) {
-      throw new IllegalArgumentException("CPF cannot have letters!");
+      throw new InvalidInputException("CPF cannot have letters!");
     }
     if(!cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}") && !cpf.matches("\\d{11}")) {
-      throw new IllegalArgumentException("CPF must be in the format XXX.XXX.XXX-XX or XXXXXXXXXXX!");
+      throw new InvalidInputException("CPF must be in the format XXX.XXX.XXX-XX or XXXXXXXXXXX!");
     }
 
     String digits = cpf.replaceAll("\\D", "");
@@ -24,7 +29,7 @@ public class Validation {
     digits.equals("44444444444") || digits.equals("55555555555") || 
     digits.equals("66666666666") || digits.equals("77777777777") || 
     digits.equals("88888888888") || digits.equals("99999999999")) {
-      throw new IllegalArgumentException("Not a valid CPF!");
+      throw new InvalidInputException("Not a valid CPF!");
     }
     int sum = 0 ,weight = 10;
 
@@ -35,7 +40,7 @@ public class Validation {
     int remainder = 11 - (sum % 11);
     if (remainder >= 10) remainder = 0;
     if (remainder != Integer.parseInt(checkDigits.charAt(0) + "")) {
-        throw new IllegalArgumentException("Not a valid CPF!");
+        throw new InvalidInputException("Not a valid CPF!");
     }
 
     sum = 0;
@@ -49,108 +54,97 @@ public class Validation {
         remainder = 0;
     }
     if (remainder != Integer.parseInt(checkDigits.charAt(1) + "")) {
-        throw new IllegalArgumentException("Not a valid CPF!");
+        throw new InvalidInputException("Not a valid CPF!");
     }
   }
 
-  public static void validateEmail(String email){
+  public static void validateEmail(String email) throws UniEventsException {
     if(email == null || email.isBlank()) {
-      throw new IllegalArgumentException("Email cannot be empty!");
+      throw new CanNotBeEmptyException("Email");
     }
 
     if(!email.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {
-      throw new IllegalArgumentException("Not a valid email!");
+      throw new InvalidInputException("Not a valid email!");
     }
 
   }
 
-  public static void validatePhone(String phone){
+  public static void validatePhone(String phone) throws UniEventsException {
     if(phone == null || phone.isBlank()) {
-      throw new IllegalArgumentException("Phone cannot be empty!");
+      throw new CanNotBeEmptyException("Phone");
     }
 
     if(phone.matches(".*[a-zA-Z].*")) {
-      throw new IllegalArgumentException("Phone cannot have letters!");
+      throw new InvalidInputException("Phone cannot have letters!");
     }
     if(!phone.matches("\\d{2} \\d{4,5}-\\d{4}") &&
       !phone.matches("\\d{2} \\d{8,9}") &&
        !phone.matches("\\d{10,11}")) {
-      throw new IllegalArgumentException("Not a valid phone number!");
+      throw new InvalidInputException("Not a valid phone number!");
     }
   }
 
-  public static void validateDate(String date){
+  public static void validateDate(String date) throws UniEventsException {
     if(date == null || date.isBlank()) {
-      throw new IllegalArgumentException("Date cannot be empty!");
+      throw new CanNotBeEmptyException("Date");
     }
 
     if(date.matches(".*[a-zA-Z].*")) {
-      throw new IllegalArgumentException("Date cannot have letters!");
+      throw new InvalidInputException("Date cannot have letters!");
     }
     if(
       !date.matches("\\d{2}/\\d{2}/\\d{4}") && 
       !date.matches("\\d{8}")) {
-      throw new IllegalArgumentException("Not a valid date!");
+      throw new InvalidInputException("Not a valid date!");
     }
 
     if(date.matches("\\d{2}/\\d{2}/\\d{4}")) {
       try {
         LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT));
       } catch (Exception e) {
-        throw new IllegalArgumentException("Not a valid date!");
+        throw new InvalidInputException("Not a valid date!");
       }
     }else{
       try {
         LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(ResolverStyle.STRICT));
       } catch (Exception e) {
-        throw new IllegalArgumentException("Not a valid date!");
+        throw new InvalidInputException("Not a valid date!");
       }
     }
 
   }
 
-  public static void isInteger(String value){
+  public static void isInteger(String value) throws UniEventsException {
     if (value == null || value.isBlank()) {
-      throw new IllegalArgumentException("Input cannot be empty!");
+      throw new CanNotBeEmptyException("Input");
     }
     try {
       Integer.valueOf(value);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("Invalid input, not an integer!");
+      throw new NotANumberException("Invalid input, not an integer!");
     }
   }
 
-  public static void isDouble(String value){
+  public static void isDouble(String value) throws UniEventsException {
     if (value == null || value.isBlank()) {
-      throw new IllegalArgumentException("Input cannot be empty!");
+      throw new CanNotBeEmptyException("Input");
     }
     try {
       Double.valueOf(value);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("Invalid input, not a double!");
+      throw new NotANumberException("Invalid input, not a double!");
     }
   }
 
-  public static void isLong(String value){
-    if (value == null || value.isBlank()) {
-      throw new IllegalArgumentException("Input cannot be empty!");
-    }
-    try {
-      Long.valueOf(value);
-    } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("Invalid input, not a long!");
-    }
-  }
-
-  public static void validateId(String id) {
+  public static void validateId(String id) throws UniEventsException {
     if (id == null || id.isBlank()) {
-      throw new IllegalArgumentException("ID cannot be empty!");
+      throw new CanNotBeEmptyException("ID");
     }
     if (id.matches(".*[a-zA-Z].*")) {
-      throw new IllegalArgumentException("ID cannot have letters!");
+      throw new InvalidInputException("ID cannot have letters!");
     }
     if (!id.matches("\\d{11}")) {
-      throw new IllegalArgumentException("ID must be 11 digits long!");
+      throw new InvalidInputException("ID must be 11 digits long!");
     }
   }
 }
