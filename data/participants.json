@@ -17,7 +17,32 @@
     "email": "mary@smith.com",
     "phone": "71 99394-9192",
     "birthDate": "20/01/2003",
-    "certificates": []
+    "certificates": [
+      {
+        "id": "fe08352a-4be2-4ab6-81e7-7bd96b8edeb8",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "Introduction to Artificial Intelligence",
+        "eventCode": "LEC001",
+        "modality": "ONLINE",
+        "totalHours": 90.0,
+        "eventDate": "15/09/2024",
+        "participantName": "Mary Smith",
+        "participantCpf": "400.231.804-47",
+        "participantEmail": "mary@smith.com"
+      },
+      {
+        "id": "0e13babf-b761-4edd-842a-e8abd119ed0c",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "Mobile App Development with React Native",
+        "eventCode": "SC002",
+        "modality": "INPERSON",
+        "totalHours": 3.0,
+        "eventDate": "02/10/2024",
+        "participantName": "Mary Smith",
+        "participantCpf": "400.231.804-47",
+        "participantEmail": "mary@smith.com"
+      }
+    ]
   },
   {
     "participantTypeJson": "Student",
@@ -34,7 +59,32 @@
     "email": "ohmyjosh@gmail.com",
     "phone": "71 98185-9394",
     "birthDate": "12/12/2012",
-    "certificates": []
+    "certificates": [
+      {
+        "id": "c2bf7551-1dc1-4dec-abf1-2c9cd13429fa",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "DevOps Best Practices",
+        "eventCode": "WS003",
+        "modality": "HYBRID",
+        "totalHours": 90.0,
+        "eventDate": "27/09/2024",
+        "participantName": "Josh Robert",
+        "participantCpf": "704.524.296-41",
+        "participantEmail": "ohmyjosh@gmail.com"
+      },
+      {
+        "id": "c76e6cc6-e568-49d1-8a8e-1d7823843b9a",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "Mobile App Development with React Native",
+        "eventCode": "SC002",
+        "modality": "INPERSON",
+        "totalHours": 3.0,
+        "eventDate": "02/10/2024",
+        "participantName": "Josh Robert",
+        "participantCpf": "704.524.296-41",
+        "participantEmail": "ohmyjosh@gmail.com"
+      }
+    ]
   },
   {
     "participantTypeJson": "Student",
@@ -54,7 +104,20 @@
     "email": "ana.paula@email.com",
     "phone": "71 91234-5678",
     "birthDate": "15/03/2001",
-    "certificates": []
+    "certificates": [
+      {
+        "id": "2759b01b-86e5-4d03-83d3-e2929e60623f",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "Cloud Computing Essentials",
+        "eventCode": "LEC003",
+        "modality": "INPERSON",
+        "totalHours": 75.0,
+        "eventDate": "18/09/2024",
+        "participantName": "Ana Paula",
+        "participantCpf": "592.201.489-78",
+        "participantEmail": "ana.paula@email.com"
+      }
+    ]
   },
   {
     "participantTypeJson": "Student",
@@ -95,7 +158,20 @@
     "email": "robert@ifba.edu.br",
     "phone": "71 99897-9695",
     "birthDate": "02/02/1970",
-    "certificates": []
+    "certificates": [
+      {
+        "id": "89eba2bf-89c6-456a-a982-b7a31888641b",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "Introduction to Artificial Intelligence",
+        "eventCode": "LEC001",
+        "modality": "ONLINE",
+        "totalHours": 90.0,
+        "eventDate": "15/09/2024",
+        "participantName": "Robert Allan",
+        "participantCpf": "393.910.582-13",
+        "participantEmail": "robert@ifba.edu.br"
+      }
+    ]
   },
   {
     "participantTypeJson": "Professor",
@@ -135,7 +211,20 @@
     "email": "patricia.souza@ifba.edu.br",
     "phone": "71 93456-7890",
     "birthDate": "05/09/1985",
-    "certificates": []
+    "certificates": [
+      {
+        "id": "39a896e5-04ee-4fc0-99d5-567c57eff346",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "GreenTech Academic Fair",
+        "eventCode": "AF003",
+        "modality": "INPERSON",
+        "totalHours": 15.0,
+        "eventDate": "20/10/2024",
+        "participantName": "Patricia Souza",
+        "participantCpf": "072.608.242-20",
+        "participantEmail": "patricia.souza@ifba.edu.br"
+      }
+    ]
   },
   {
     "participantTypeJson": "Professor",
@@ -175,7 +264,20 @@
     "email": "lisa@gmail.com",
     "phone": "71 95454-5454",
     "birthDate": "02/02/1990",
-    "certificates": []
+    "certificates": [
+      {
+        "id": "8d27ab90-3976-404d-93bf-5890437a1ec7",
+        "createdAt": "29/05/2025 18:55:19",
+        "eventName": "DevOps Best Practices",
+        "eventCode": "WS003",
+        "modality": "HYBRID",
+        "totalHours": 90.0,
+        "eventDate": "27/09/2024",
+        "participantName": "Lisa Tyler",
+        "participantCpf": "045.464.455-80",
+        "participantEmail": "lisa@gmail.com"
+      }
+    ]
   },
   {
     "participantTypeJson": "External",
@@ -217,7 +319,10 @@
     "jobRole": "Security Consultant",
     "bio": "Cybersecurity consultant with over 15 years of experience in network and application security.",
     "isPresenter": false,
-    "expertiseAreas": [],
+    "expertiseAreas": [
+      "Cybersecurity",
+      "Network Security"
+    ],
     "name": "Eduardo Ramos",
     "cpf": "864.726.822-91",
     "email": "eduardo.ramos@yahoo.com",

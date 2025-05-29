@@ -21,7 +21,11 @@
     "modality": "ONLINE",
     "totalHours": 90.0,
     "inPersonParticipantsCpfs": [],
-    "onlineParticipantsCpfs": [],
+    "onlineParticipantsCpfs": [
+      "400.231.804-47",
+      "393.910.582-13",
+      "045.464.455-80"
+    ],
     "code": "LEC001"
   },
   {
@@ -70,7 +74,10 @@
     "capacity": 60,
     "modality": "INPERSON",
     "totalHours": 75.0,
-    "inPersonParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "704.524.296-41",
+      "592.201.489-78"
+    ],
     "onlineParticipantsCpfs": [],
     "code": "LEC003"
   },
@@ -112,8 +119,13 @@
     "capacity": 20,
     "modality": "HYBRID",
     "totalHours": 90.0,
-    "inPersonParticipantsCpfs": [],
-    "onlineParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "045.464.455-80",
+      "704.524.296-41"
+    ],
+    "onlineParticipantsCpfs": [
+      "592.201.489-78"
+    ],
     "code": "WS003"
   },
   {
@@ -133,7 +145,9 @@
     "modality": "HYBRID",
     "totalHours": 4.0,
     "inPersonParticipantsCpfs": [],
-    "onlineParticipantsCpfs": [],
+    "onlineParticipantsCpfs": [
+      "592.201.489-78"
+    ],
     "code": "SC001"
   },
   {
@@ -152,7 +166,10 @@
     "capacity": 35,
     "modality": "INPERSON",
     "totalHours": 3.0,
-    "inPersonParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "400.231.804-47",
+      "704.524.296-41"
+    ],
     "onlineParticipantsCpfs": [],
     "code": "SC002"
   },
@@ -189,7 +206,10 @@
     "capacity": 200,
     "modality": "INPERSON",
     "totalHours": 20.0,
-    "inPersonParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "045.464.455-80",
+      "864.726.822-91"
+    ],
     "onlineParticipantsCpfs": [],
     "code": "AF001"
   },
@@ -221,7 +241,10 @@
     "capacity": 120,
     "modality": "INPERSON",
     "totalHours": 15.0,
-    "inPersonParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "072.608.242-20",
+      "434.866.551-67"
+    ],
     "onlineParticipantsCpfs": [],
     "code": "AF003"
   }

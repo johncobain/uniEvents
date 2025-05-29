@@ -1,6 +1,5 @@
 package br.edu.ifba.inf0008.uniEvents.services.generators;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
@@ -20,7 +19,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicTitle;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.services.managers.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class DummyGenerator {
   public static void generateDummyData(IManager<Event> eventManager, IManager<Participant> participantManager) {
@@ -41,14 +40,14 @@ public class DummyGenerator {
         "400.231.804-47",
         "mary@smith.com",
         "71 99394-9192",
-        LocalDate.parse("20/01/2003", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("20/01/2003"),
         "20211231234",
         Course.COMPUTER_ENGINEERING,
         6,
         AcademicStatus.ACTIVE,
         7.5,
         "UFBA",
-        LocalDate.parse("20/08/2020", LocalDateAdapter.DATE_FORMATTER)
+        Utils.stringToDate("20/08/2020")
         )
     );
     Student mary = (Student) participantManager.get("400.231.804-47");
@@ -61,14 +60,14 @@ public class DummyGenerator {
         "704.524.296-41",
         "ohmyjosh@gmail.com",
         "71 98185-9394",
-        LocalDate.parse("12/12/2012", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("12/12/2012"),
         "11223344556",
         Course.COMPUTER_ENGINEERING,
         8,
         AcademicStatus.ACTIVE,
         6.5,
         "UFBA",
-        LocalDate.parse("10/02/2019", LocalDateAdapter.DATE_FORMATTER)
+        Utils.stringToDate("10/02/2019")
         )
     );
 
@@ -78,14 +77,14 @@ public class DummyGenerator {
         "592.201.489-78",
         "ana.paula@email.com",
         "71 91234-5678",
-        LocalDate.parse("15/03/2001", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("15/03/2001"),
         "20210010001",
         Course.INFORMATION_SYSTEMS,
         4,
         AcademicStatus.ACTIVE,
         8.7,
         "IFBA",
-        LocalDate.parse("01/03/2019", LocalDateAdapter.DATE_FORMATTER)
+        Utils.stringToDate("01/03/2019")
         )
     );
     Student ana = (Student) participantManager.get("592.201.489-78");
@@ -98,14 +97,14 @@ public class DummyGenerator {
         "161.075.797-10",
         "carlos.silva@hotmail.com",
         "71 99876-5432",
-        LocalDate.parse("22/07/2000", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("22/07/2000"),
         "20209998877",
         Course.COMPUTER_SCIENCE,
         7,
         AcademicStatus.ACTIVE,
         7.9,
         "UFBA",
-        LocalDate.parse("10/02/2018", LocalDateAdapter.DATE_FORMATTER)
+        Utils.stringToDate("10/02/2018")
         )
     );
     Student carlos = (Student) participantManager.get("161.075.797-10");
@@ -119,7 +118,7 @@ public class DummyGenerator {
         "393.910.582-13",
         "robert@ifba.edu.br",
         "71 99897-9695",
-        LocalDate.parse("02/02/1970", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("02/02/1970"),
         "12345678900",
         Course.COMPUTER_SCIENCE,
         "IFBA",
@@ -138,7 +137,7 @@ public class DummyGenerator {
         "987.898.480-04",
         "maria.fernanda@ifba.edu.br",
         "71 91234-5678",
-        LocalDate.parse("10/05/1980", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("10/05/1980"),
         "98765432100",
         Course.INFORMATION_SYSTEMS,
         "IFBA",
@@ -157,7 +156,7 @@ public class DummyGenerator {
         "072.608.242-20",
         "patricia.souza@ifba.edu.br",
         "71 93456-7890",
-        LocalDate.parse("05/09/1985", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("05/09/1985"),
         "22334455667",
         Course.INFORMATION_SYSTEMS,
         "IFBA",
@@ -175,7 +174,7 @@ public class DummyGenerator {
         "434.866.551-67",
         "fernando.lima@ifba.edu.br",
         "71 94567-8901",
-        LocalDate.parse("18/03/1968", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("18/03/1968"),
         "33445566778",
         Course.COMPUTER_SCIENCE,
         "IFBA",
@@ -196,7 +195,7 @@ public class DummyGenerator {
         "045.464.455-80",
         "lisa@gmail.com",
         "71 95454-5454",
-        LocalDate.parse("02/02/1990", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("02/02/1990"),
         "MultiCom",
         "Developer",
         "Full-stack developer with 10+ years of experience in web and mobile application development. Passionate about building scalable solutions and mentoring junior developers.",
@@ -214,7 +213,7 @@ public class DummyGenerator {
         "576.154.684-18",
         "bruno.costa@gmail.com",
         "71 91234-1111",
-        LocalDate.parse("10/11/1988", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("10/11/1988"),
         "TechSolutions",
         "Project Manager",
         "Experienced project manager with a background in software development and agile methodologies.",
@@ -231,7 +230,7 @@ public class DummyGenerator {
         "158.176.709-92",
         "sofia.mendes@outlook.com",
         "71 92345-2222",
-        LocalDate.parse("25/06/1995", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("25/06/1995"),
         "DataCorp",
         "Data Analyst",
         "Data analyst with expertise in data visualization and statistical analysis.",
@@ -248,7 +247,7 @@ public class DummyGenerator {
         "864.726.822-91",
         "eduardo.ramos@yahoo.com",
         "71 93456-3333",
-        LocalDate.parse("03/04/1982", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("03/04/1982"),
         "CyberSec",
         "Security Consultant",
         "Cybersecurity consultant with over 15 years of experience in network and application security.",
@@ -266,7 +265,7 @@ public class DummyGenerator {
         "Introduction to Artificial Intelligence",
         "A comprehensive overview of AI concepts, history, and applications.",
         "Auditorium A",
-        LocalDate.parse("15/09/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("15/09/2024"),
         0,
         Modality.ONLINE,
         90,
@@ -283,7 +282,7 @@ public class DummyGenerator {
         "Modern Web Development Trends",
         "Exploring the latest trends and technologies in web development.",
         "Room 101",
-        LocalDate.parse("20/09/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("20/09/2024"),
         80,
         Modality.HYBRID,
         60,
@@ -300,7 +299,7 @@ public class DummyGenerator {
         "Cloud Computing Essentials",
         "Introduction to cloud computing concepts, services, and deployment models.",
         "Room 105",
-        LocalDate.parse("18/09/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("18/09/2024"),
         60,
         Modality.INPERSON,
         75,
@@ -318,7 +317,7 @@ public class DummyGenerator {
         "Hands-on with Python for Data Science",
         "Practical workshop on using Python for data analysis and visualization.",
         "Lab 3",
-        LocalDate.parse("22/09/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("22/09/2024"),
         30,
         Modality.INPERSON,
         40,
@@ -332,7 +331,7 @@ public class DummyGenerator {
       "Agile Project Management",
       "Interactive workshop on agile methodologies and project management tools.",
       "Room 202",
-      LocalDate.parse("25/09/2024", LocalDateAdapter.DATE_FORMATTER),
+      Utils.stringToDate("25/09/2024"),
       25,
       Modality.ONLINE,
       120,
@@ -346,7 +345,7 @@ public class DummyGenerator {
         "DevOps Best Practices",
         "Workshop focused on modern DevOps tools, CI/CD pipelines, and automation.",
         "Lab 5",
-        LocalDate.parse("27/09/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("27/09/2024"),
         20,
         Modality.HYBRID,
         90,
@@ -361,7 +360,7 @@ public class DummyGenerator {
       "Introduction to Cybersecurity",
       "Short course covering the fundamentals of cybersecurity.",
       "Room 303",
-      LocalDate.parse("28/09/2024", LocalDateAdapter.DATE_FORMATTER),
+      Utils.stringToDate("28/09/2024"),
       40,
       Modality.HYBRID,
       4,
@@ -377,7 +376,7 @@ public class DummyGenerator {
       "Mobile App Development with React Native",
       "Learn to build cross-platform mobile apps using React Native.",
       "Lab 2",
-      LocalDate.parse("02/10/2024", LocalDateAdapter.DATE_FORMATTER),
+      Utils.stringToDate("02/10/2024"),
       35,
       Modality.INPERSON,
       3,
@@ -393,7 +392,7 @@ public class DummyGenerator {
         "Advanced Java Programming",
         "Deep dive into advanced Java concepts and best practices.",
         "Room 404",
-        LocalDate.parse("05/10/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("05/10/2024"),
         25,
         Modality.ONLINE,
         5,
@@ -410,14 +409,14 @@ public class DummyGenerator {
         "Tech Innovation Fair",
         "Showcase of innovative tech projects by students and professionals.",
         "Main Hall",
-        LocalDate.parse("10/10/2024", LocalDateAdapter.DATE_FORMATTER),
+        Utils.stringToDate("10/10/2024"),
         200,
         Modality.INPERSON,
         20,
         "AF001",
         50,
         "Innovation and Technology",
-        LocalDate.parse("12/10/2024", LocalDateAdapter.DATE_FORMATTER)
+        Utils.stringToDate("12/10/2024")
       )
     );
 
@@ -426,14 +425,14 @@ public class DummyGenerator {
       "Data Science Expo",
       "Exhibition of data science projects and research.",
       "Exhibition Center",
-      LocalDate.parse("15/10/2024", LocalDateAdapter.DATE_FORMATTER),
+      Utils.stringToDate("15/10/2024"),
       150,
       Modality.HYBRID,
       22,
       "AF002",
       40,
       "Data Science and Analytics",
-      LocalDate.parse("17/10/2024", LocalDateAdapter.DATE_FORMATTER)
+      Utils.stringToDate("17/10/2024")
       )
     );
 
@@ -442,18 +441,81 @@ public class DummyGenerator {
       "GreenTech Academic Fair",
       "A fair focused on sustainable technology and green innovations.",
       "Eco Hall",
-      LocalDate.parse("20/10/2024", LocalDateAdapter.DATE_FORMATTER),
+      Utils.stringToDate("20/10/2024"),
       120,
       Modality.INPERSON,
       15,
       "AF003",
       30,
       "Sustainable Technology",
-      LocalDate.parse("22/10/2024", LocalDateAdapter.DATE_FORMATTER)
+      Utils.stringToDate("22/10/2024")
       )
     );
 
-    //TODO: add participant to events and generate certificates
+    // Get participants by CPF for clarity
+    Student maryP = (Student) participantManager.get("400.231.804-47");
+    Student joshP = (Student) participantManager.get("704.524.296-41");
+    Student anaP = (Student) participantManager.get("592.201.489-78");
+    Professor robertP = (Professor) participantManager.get("393.910.582-13");
+    Professor patriciaP = (Professor) participantManager.get("072.608.242-20");
+    Professor fernandoP = (Professor) participantManager.get("434.866.551-67");
+    External lisaP = (External) participantManager.get("045.464.455-80");
+    External eduardoP = (External) participantManager.get("864.726.822-91");
+
+    // Get events by code for clarity
+    Lecture aiLecture = (Lecture) eventManager.get("LEC001");
+    Lecture cloudLecture = (Lecture) eventManager.get("LEC003");
+    Workshop devopsWorkshop = (Workshop) eventManager.get("WS003");
+    ShortCourse cyberCourse = (ShortCourse) eventManager.get("SC001");
+    ShortCourse reactCourse = (ShortCourse) eventManager.get("SC002");
+    AcademicFair techFair = (AcademicFair) eventManager.get("AF001");
+    AcademicFair greenFair = (AcademicFair) eventManager.get("AF003");
+
+    // Assign participants to events
+    aiLecture.addParticipant(maryP, Modality.ONLINE);
+    aiLecture.addParticipant(robertP, Modality.ONLINE);
+    aiLecture.addParticipant(lisaP, Modality.ONLINE);
+    aiLecture.generateCertificate(maryP.getCpf());
+    aiLecture.generateCertificate(robertP.getCpf());
+    participantManager.update(maryP.getCpf(), maryP);
+    participantManager.update(robertP.getCpf(), robertP);
+    eventManager.update(aiLecture.getCode(), aiLecture);
+
+    cloudLecture.addParticipant(joshP, Modality.INPERSON);
+    cloudLecture.addParticipant(anaP, Modality.INPERSON);
+    cloudLecture.generateCertificate(anaP.getCpf());
+    participantManager.update(anaP.getCpf(), anaP);
+    eventManager.update(cloudLecture.getCode(), cloudLecture);
+
+    devopsWorkshop.addParticipant(anaP, Modality.ONLINE);
+    devopsWorkshop.addParticipant(lisaP, Modality.INPERSON);
+    devopsWorkshop.addParticipant(joshP, Modality.INPERSON);
+    devopsWorkshop.generateCertificate(lisaP.getCpf());
+    devopsWorkshop.generateCertificate(joshP.getCpf());
+    participantManager.update(lisaP.getCpf(), lisaP);
+    participantManager.update(joshP.getCpf(), joshP);
+    eventManager.update(devopsWorkshop.getCode(), devopsWorkshop);
+
+    cyberCourse.addParticipant(anaP, Modality.ONLINE);
+    eventManager.update(cyberCourse.getCode(), cyberCourse);
+ 
+    reactCourse.addParticipant(maryP, Modality.INPERSON);
+    reactCourse.addParticipant(joshP, Modality.INPERSON);
+    reactCourse.generateCertificate(maryP.getCpf());
+    reactCourse.generateCertificate(joshP.getCpf());
+    participantManager.update(maryP.getCpf(), maryP);
+    participantManager.update(joshP.getCpf(), joshP);
+    eventManager.update(reactCourse.getCode(), reactCourse);
+
+    techFair.addParticipant(lisaP, Modality.INPERSON);
+    techFair.addParticipant(eduardoP, Modality.INPERSON);
+    eventManager.update(techFair.getCode(), techFair);
+
+    greenFair.addParticipant(patriciaP, Modality.INPERSON);
+    greenFair.addParticipant(fernandoP, Modality.INPERSON);
+    greenFair.generateCertificate(patriciaP.getCpf());
+    participantManager.update(patriciaP.getCpf(), patriciaP);
+    eventManager.update(greenFair.getCode(), greenFair);
 
     System.out.println(Lines.clear());
     System.out.println(Lines.successLine("Dummy Data saved (" + participantManager.getAll().size() + " participants and " + eventManager.getAll().size() + " events)!"));
