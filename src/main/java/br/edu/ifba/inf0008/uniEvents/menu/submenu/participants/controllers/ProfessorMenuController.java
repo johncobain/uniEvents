@@ -16,10 +16,10 @@ public class ProfessorMenuController {
 
   public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String employeeId;
-    while (true) { 
-      employeeId = ParticipantForms.getId("employee id");
+    while (true) {
+      employeeId = ParticipantForms.getId("Employee ID");
       Boolean isUnique = true;
-      for (Participant participant : participantManager.getAll().values()) {
+      for (Participant participant : participantManager.getAll().values().stream().filter(p -> p instanceof Professor).toList()) {
         if (((Professor) participant).getEmployeeId().equals(employeeId)) {
           System.out.println(Lines.clear());
           System.out.println(Lines.errorLine("Employee ID '" + employeeId + "' is already in use! Please try again."));
@@ -38,7 +38,7 @@ public class ProfessorMenuController {
     String department = CommonForms.getOption(options, "Select Department");
     if (department.equalsIgnoreCase("cancel")) return false;
 
-    String campus = ParticipantForms.getName("Campus");
+    String campus = CommonForms.getText("Campus");
     if (campus.equalsIgnoreCase("cancel")) return false;
 
     options = new ArrayList<>();
@@ -47,7 +47,7 @@ public class ProfessorMenuController {
     String academicTitle = CommonForms.getOption(options, "Select Academic Title");
     if (academicTitle.equalsIgnoreCase("cancel")) return false;
 
-    String specialization = ParticipantForms.getName("specialization");
+    String specialization = CommonForms.getText("Specialization");
     if (specialization.equalsIgnoreCase("cancel")) return false;
 
     Professor professor = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), employeeId, Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
@@ -69,10 +69,10 @@ public class ProfessorMenuController {
     String academicTitle = CommonForms.getOption(options, "Select Academic Title");
     if (academicTitle.equalsIgnoreCase("cancel")) return false;
 
-    String campus = ParticipantForms.getName("Campus");
+    String campus = CommonForms.getText("Campus");
     if (campus.equalsIgnoreCase("cancel")) return false;
 
-    String specialization = ParticipantForms.getName("specialization");
+    String specialization = CommonForms.getText("Specialization");
     if (specialization.equalsIgnoreCase("cancel")) return false;
 
     Professor professor = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
@@ -81,7 +81,7 @@ public class ProfessorMenuController {
   }
 
   public static void addResearchArea(IManager<Participant> participantManager, String cpf) {
-    String researchArea = ParticipantForms.getName("research area");
+    String researchArea = CommonForms.getText("Research Area");
     if (researchArea.equalsIgnoreCase("cancel")) return;
     try {
       Professor professor = (Professor)participantManager.get(cpf);
@@ -114,10 +114,10 @@ public class ProfessorMenuController {
   }
 
   public static void addPublication(IManager<Participant> participantManager, String cpf) {
-    String publication = ParticipantForms.getName("publication");
+    String publication = CommonForms.getText("Publication");
     if (publication.equalsIgnoreCase("cancel")) return;
 
-    String year = CommonForms.getYear("publication year");
+    String year = CommonForms.getYear("Publication Year");
     if (year.equalsIgnoreCase("cancel")) return;
     publication += " (" + year + ")";
     try {

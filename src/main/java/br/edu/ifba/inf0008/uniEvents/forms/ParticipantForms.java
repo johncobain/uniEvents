@@ -5,19 +5,6 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class ParticipantForms {
-  public static String getName(String type){
-    String name;
-    while(true) {
-      System.out.print("Enter " + type.toLowerCase() + " name (\"cancel\" to exit)>> ");
-      name = Utils.scanner.nextLine();
-      if (!name.isEmpty() || !name.isBlank()) break;
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Name cannot be empty!"));
-    }
-    System.out.println(Lines.clear());
-    return name;
-  }
-  
   public static String getCpf() {
     String cpf;
     while (true) { 
@@ -81,27 +68,6 @@ public class ParticipantForms {
 
     System.out.println(Lines.clear());
     return phone;
-  }
-
-  public static int getSemester(){
-    String semester;
-    while (true) { 
-      System.out.print("Enter semester (\"cancel\" to exit)>> ");
-      semester = Utils.scanner.nextLine();
-      if(semester.equalsIgnoreCase("cancel")) {
-        System.out.println(Lines.clear());
-        return 0;
-      }
-      try {
-        Validation.isInteger(semester);
-        break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
-    System.out.println(Lines.clear());
-    return Integer.parseInt(semester);
   }
 
   public static double getGpa(){

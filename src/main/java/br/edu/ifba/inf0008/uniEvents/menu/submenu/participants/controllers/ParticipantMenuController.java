@@ -29,7 +29,7 @@ public class ParticipantMenuController {
   }
 
   public void create(String type){
-    String name = ParticipantForms.getName(type);
+    String name = CommonForms.getText(type + "'s Name");
     if(name.equalsIgnoreCase("cancel")) return;
 
     String cpf;
@@ -93,7 +93,7 @@ public class ParticipantMenuController {
       return;
     }
 
-    String name = ParticipantForms.getName(type);
+    String name = CommonForms.getText(type + "'s Name");
     if(name.equalsIgnoreCase("cancel")) return;
 
     String email = ParticipantForms.getEmail();

@@ -18,7 +18,7 @@ public class StudentMenuController {
     while (true) { 
       studentId = ParticipantForms.getId("student id");
       Boolean isUnique = true;
-      for (Participant participant : participantManager.getAll().values()) {
+      for (Participant participant : participantManager.getAll().values().stream().filter(p -> p instanceof Student).toList()) {
         if (((Student) participant).getStudentId().equals(studentId)) {
           System.out.println(Lines.clear());
           System.out.println(Lines.errorLine("Student ID '" + studentId + "' is already in use! Please try again."));
@@ -37,8 +37,8 @@ public class StudentMenuController {
     String course = CommonForms.getOption(options, "Select Course");
     if (course.equalsIgnoreCase("cancel")) return false;
 
-    int currentSemester = ParticipantForms.getSemester();
-    if (currentSemester == 0) return false;
+    int currentSemester = CommonForms.getNumber("Current Semester");
+    if (currentSemester == -1) return false;
 
     options = new ArrayList<>();
     options.add("Cancel");
@@ -50,10 +50,10 @@ public class StudentMenuController {
     double gpa = ParticipantForms.getGpa();
     if (gpa == 0) return false;
 
-    String campus = ParticipantForms.getName("campus");
+    String campus = CommonForms.getText("Campus");
     if (campus.equalsIgnoreCase("cancel")) return false;
 
-    String enrollmentDateString = CommonForms.getDate("enrollment date");
+    String enrollmentDateString = CommonForms.getDate("Enrollment Date");
     if (enrollmentDateString.equalsIgnoreCase("cancel")) return false;
 
     Student student = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), studentId, Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
@@ -69,8 +69,8 @@ public class StudentMenuController {
     String course = CommonForms.getOption(options, "Select Course");
     if (course.equalsIgnoreCase("cancel")) return false;
 
-    int currentSemester = ParticipantForms.getSemester();
-    if (currentSemester == 0) return false;
+    int currentSemester = CommonForms.getNumber("Current Semester");
+    if (currentSemester == -1) return false;
 
     options = new ArrayList<>();
     options.add("Cancel");
@@ -82,10 +82,10 @@ public class StudentMenuController {
     double gpa = ParticipantForms.getGpa();
     if (gpa == 0) return false;
 
-    String campus = ParticipantForms.getName("campus");
+    String campus = CommonForms.getText("Campus");
     if (campus.equalsIgnoreCase("cancel")) return false;
 
-    String enrollmentDateString = CommonForms.getDate("enrollment date");
+    String enrollmentDateString = CommonForms.getDate("Enrollment Date");
     if (enrollmentDateString.equalsIgnoreCase("cancel")) return false;
 
     Student student = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Student)participantManager.get(cpf)).getStudentId(), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
@@ -94,7 +94,7 @@ public class StudentMenuController {
   }
 
   public static void addInterest(IManager<Participant> participantManager, String cpf){
-    String interest = ParticipantForms.getName("interest");
+    String interest = CommonForms.getText("Interest");
     if (interest.equalsIgnoreCase("cancel")) return;
     try {
       Student student = (Student)participantManager.get(cpf);

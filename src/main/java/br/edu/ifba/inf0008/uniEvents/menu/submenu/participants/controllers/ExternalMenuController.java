@@ -3,7 +3,6 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers;
 import java.util.ArrayList;
 
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
-import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.IManager;
@@ -13,13 +12,13 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 public class ExternalMenuController {
 
   public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
-    String affiliation = ParticipantForms.getName("affiliation");  
+    String affiliation = CommonForms.getText("Affiliation");  
     if (affiliation.equalsIgnoreCase("cancel")) return false;
-    
-    String job = ParticipantForms.getName("job");
+
+    String job = CommonForms.getText("Job Role");
     if (job.equalsIgnoreCase("cancel")) return false;
 
-    String bio = ParticipantForms.getName("bio");
+    String bio = CommonForms.getText("Bio");
     if (bio.equalsIgnoreCase("cancel")) return false;
 
     String isPresenterString = CommonForms.getYN("Can the external be a presenter?", "y");
@@ -33,13 +32,13 @@ public class ExternalMenuController {
   }
 
   public static Boolean update(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
-    String organization = ParticipantForms.getName("organization");  
+    String organization = CommonForms.getText("Organization");  
     if (organization.equalsIgnoreCase("cancel")) return null;
-    
-    String jobRole = ParticipantForms.getName("jobRole");
+
+    String jobRole = CommonForms.getText("Job Role");
     if (jobRole.equalsIgnoreCase("cancel")) return null;
 
-    String bio = ParticipantForms.getName("bio");
+    String bio = CommonForms.getText("Bio");
     if (bio.equalsIgnoreCase("cancel")) return null;
 
     String isPresenterString = CommonForms.getYN("Can the external be a presenter", "y");
@@ -53,7 +52,7 @@ public class ExternalMenuController {
   }
 
   public static void addExpertiseArea(IManager<Participant> participantManager, String cpf){
-    String expertiseArea = ParticipantForms.getName("expertise area");
+    String expertiseArea = CommonForms.getText("Expertise Area");
     if (expertiseArea.equalsIgnoreCase("cancel")) return;
     try {
       External external = (External) participantManager.get(cpf);

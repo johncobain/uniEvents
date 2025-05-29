@@ -26,16 +26,16 @@ public class EventMenuController {
   }
   
   public void create(String type){
-    String name = EventForms.getText("Name");
+    String name = CommonForms.getText("Event's Name");
     if (name.equalsIgnoreCase("cancel")) return;
 
-    String location = EventForms.getText("Location");
+    String location = CommonForms.getText("Event's Location");
     if (location.equalsIgnoreCase("cancel")) return;
 
-    String description = EventForms.getText("Description");
+    String description = CommonForms.getText("Event's Description");
     if (description.equalsIgnoreCase("cancel")) return;
 
-    String date = CommonForms.getDate("Event date");
+    String date = CommonForms.getDate("Event's Date");
     if (date.equalsIgnoreCase("cancel")) return;
     
     ArrayList<String> options = new ArrayList<>();
@@ -45,12 +45,12 @@ public class EventMenuController {
     String modality = CommonForms.getOption(options, "Select the Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
-    double totalHours = EventForms.getDouble("Total hours");
+    double totalHours = CommonForms.getDouble("Event's Total hours");
     if(totalHours == -1) return;
 
     int capacity = 0;
     if(Modality.fromDescription(modality) != Modality.ONLINE){
-      capacity = EventForms.getNumber("Capacity");
+      capacity = CommonForms.getNumber("Event's Capacity");
     }
     if (capacity == -1) return;
     
@@ -116,16 +116,16 @@ public class EventMenuController {
       return;
     }
 
-    String name = EventForms.getText("Name");
+    String name = CommonForms.getText("Event's Name");
     if (name.equalsIgnoreCase("cancel")) return;
 
-    String location = EventForms.getText("Location");
+    String location = CommonForms.getText("Event's Location");
     if (location.equalsIgnoreCase("cancel")) return;
 
-    String description = EventForms.getText("Description");
+    String description = CommonForms.getText("Event's Description");
     if (description.equalsIgnoreCase("cancel")) return;
 
-    String date = CommonForms.getDate("Event date");
+    String date = CommonForms.getDate("Event's date");
     if (date.equalsIgnoreCase("cancel")) return;
     
     ArrayList<String> options = new ArrayList<>();
@@ -135,12 +135,12 @@ public class EventMenuController {
     String modality = CommonForms.getOption(options, "Select the Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
-    double totalHours = EventForms.getDouble("Total hours");
+    double totalHours = CommonForms.getDouble("Event's total hours");
     if(totalHours == -1) return;
     
     int capacity = 0;
     if(Modality.fromDescription(modality) != Modality.ONLINE){
-      capacity = EventForms.getNumber("Capacity");
+      capacity = CommonForms.getNumber("Event's Capacity");
     }
     if (capacity == -1) return;
 

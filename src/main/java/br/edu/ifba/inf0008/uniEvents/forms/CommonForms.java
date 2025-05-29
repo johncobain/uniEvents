@@ -2,6 +2,7 @@ package br.edu.ifba.inf0008.uniEvents.forms;
 
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.exceptions.InvalidInputException;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
@@ -38,6 +39,19 @@ public class CommonForms {
     int response = baseMenu.getResponse();
     if (response == 0) return "cancel";
     return options.get(response);
+  }
+
+  public static String getText(String text){
+    String response;
+    while(true) {
+      System.out.print("Enter " + text.toLowerCase() + "  (\"cancel\" to exit)>> ");
+      response = Utils.scanner.nextLine();
+      if (!response.isEmpty() || !response.isBlank()) break;
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(text + " cannot be empty!"));
+    }
+    System.out.println(Lines.clear());
+    return response;
   }
 
    public static String getDate(String type) {
@@ -84,5 +98,49 @@ public class CommonForms {
     }
     System.out.println(Lines.clear());
     return year;
+  }
+
+  public static int getNumber(String text){
+    int number;
+    while(true) { 
+      System.out.print("Enter " + text.toLowerCase() + " (\"cancel\" to exit)>> ");
+      String numberStr = Utils.scanner.nextLine();
+      if (numberStr.equals("cancel")) return -1;
+      try {
+        Validation.isInteger(numberStr);
+        number = Integer.parseInt(numberStr);
+        if (number <= 0) {
+          throw new InvalidInputException(text + " must be greater than 0!");
+        }
+        break;
+      } catch (InvalidInputException e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return number;
+  }
+
+  public static double getDouble(String text){
+    double number;
+    while(true) { 
+      System.out.print("Enter " + text.toLowerCase() + " (\"cancel\" to exit)>> ");
+      String numberStr = Utils.scanner.nextLine();
+      if (numberStr.equals("cancel")) return -1;
+      try {
+        Validation.isDouble(numberStr);
+        number = Integer.parseInt(numberStr);
+        if (number <= 0) {
+          throw new InvalidInputException(text + " must be greater than 0!");
+        }
+        break;
+      } catch (InvalidInputException e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return number;
   }
 }
