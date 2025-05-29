@@ -78,7 +78,7 @@ public class External extends Participant {
 
   public String getFormatedBio(){
     return Lines.mixedLines() + "\n" +
-            Lines.titleLine("Biography", Colors.BLUE_BOLD) + "\n" +
+            Lines.centeredMultiLineText("Biography", Colors.BLUE_BOLD) + "\n" +
             Lines.mixedLines() + "\n" +
             Lines.multiLineText(bio) + "\n" +
             Lines.mixedLines() + "\n";

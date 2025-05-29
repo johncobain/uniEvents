@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import br.edu.ifba.inf0008.uniEvents.exeptions.CapacityExceededException;
+import br.edu.ifba.inf0008.uniEvents.exeptions.UniEventsException;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
@@ -163,9 +165,10 @@ public abstract class Event {
     }
   }
 
-  public void addParticipant(Participant participant, Modality modality) throws RuntimeException{
+  public void addParticipant(Participant participant, Modality modality) throws UniEventsException{
     if(modality == Modality.INPERSON){
-      if(this.isFull()) throw new RuntimeException("Event is full!");
+      if(this.isFull()) throw new CapacityExceededException(this.code, this.capacity);
+
       this.inPersonParticipantsCpfs.add(participant.getCpf());
       this.inPersonParticipants.put(participant.getCpf(), participant);
     } else if(modality == Modality.ONLINE){

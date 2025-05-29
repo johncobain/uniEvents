@@ -173,7 +173,7 @@ public class EventMenuController {
       return;
     }
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine("All Events", Colors.YELLOW_BOLD));
+    System.out.println(Lines.centeredMultiLineText("All Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     for(Event event : events){
       System.out.print(ReportsGenerator.eventSummary(event, false));
@@ -193,7 +193,7 @@ public class EventMenuController {
     }
 
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine(type+" Events", Colors.YELLOW_BOLD));
+    System.out.println(Lines.centeredMultiLineText(type+" Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     for (Event event : events) {
       System.out.print(ReportsGenerator.eventSummary(event, false));
@@ -284,7 +284,7 @@ public class EventMenuController {
 
   public void showInstructions(String code){
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine("Instructions of " + eventManager.get(code).getName() + " (" + eventManager.get(code).getCode() + ")", Colors.YELLOW_BOLD));
+    System.out.println(Lines.centeredMultiLineText("Instructions of " + eventManager.get(code).getName() + " (" + eventManager.get(code).getCode() + ")", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     System.out.println(Lines.multiLineText(eventManager.get(code).getInstructions()));
     System.out.println(Lines.doubleLine());
@@ -292,7 +292,7 @@ public class EventMenuController {
 
   public void listParticipants(String code){
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine("Participants of " + eventManager.get(code).getName() + " (" + eventManager.get(code).getCode() + ")", Colors.YELLOW_BOLD));
+    System.out.println(Lines.centeredMultiLineText("Participants of " + eventManager.get(code).getName() + " (" + eventManager.get(code).getCode() + ")", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     List<Participant> participants = eventManager.get(code).getParticipants().values()
       .stream()

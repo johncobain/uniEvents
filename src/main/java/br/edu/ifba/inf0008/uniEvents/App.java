@@ -20,7 +20,7 @@ public class App {
         ParticipantManager participantManager = new ParticipantManager(participantRepository, eventManager);
         
         System.out.println(Lines.mixedLines());
-        System.out.println(Lines.titleLine("Welcome to UniEvents!", Colors.GREEN_BOLD));
+        System.out.println(Lines.centeredMultiLineText("Welcome to UniEvents!", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.straightLine());
         System.out.println(Lines.multiLineText("UniEvents is a system designed to manage events and participants in a university setting. You can create, update, and delete events and participants, as well as generate reports."));
@@ -30,7 +30,7 @@ public class App {
         menu.show();
         
         System.out.println(Lines.mixedLines());
-        System.out.println(Lines.titleLine("Exiting UniEvents...", Colors.GREEN_BOLD));
+        System.out.println(Lines.centeredMultiLineText("Exiting UniEvents...", Colors.GREEN_BOLD));
         System.out.println(Lines.mixedLines());
     }
 }

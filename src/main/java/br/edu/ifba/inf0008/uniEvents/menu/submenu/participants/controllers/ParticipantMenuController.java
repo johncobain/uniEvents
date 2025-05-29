@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.edu.ifba.inf0008.uniEvents.exeptions.UniEventsException;
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
 import br.edu.ifba.inf0008.uniEvents.forms.EventForms;
 import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
@@ -126,7 +127,7 @@ public class ParticipantMenuController {
       return;
     }
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine("All Participants", Colors.BLUE_BOLD));
+    System.out.println(Lines.centeredMultiLineText("All Participants", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     for(Participant participant : participants){
       System.out.print(ReportsGenerator.participantSummary(participant));
@@ -146,7 +147,7 @@ public class ParticipantMenuController {
       return;
     }
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine(type+"s", Colors.BLUE_BOLD));
+    System.out.println(Lines.centeredMultiLineText(type+"s", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     for (Participant participant : participants) {
       System.out.print(ReportsGenerator.participantSummary(participant));
@@ -241,7 +242,7 @@ public class ParticipantMenuController {
       return;
     }
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine("Events with " + participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
+    System.out.println(Lines.centeredMultiLineText("Events with " + participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     List<Event> events = eventManager.getAll().values().stream()
       .filter(e -> e.getParticipants().containsKey(cpf))
@@ -345,7 +346,7 @@ public class ParticipantMenuController {
       eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine(participantManager.get(cpf).getType() + " " + participantManager.get(cpf).getName() + " added to event!"));
-    } catch (RuntimeException e) {
+    } catch (UniEventsException e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }
@@ -393,7 +394,7 @@ public class ParticipantMenuController {
       return;
     }
     System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine("Certificates of " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
+    System.out.println(Lines.centeredMultiLineText("Certificates of " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     for (Certificate certificate : certificates) {
       System.out.print(certificate.toString());

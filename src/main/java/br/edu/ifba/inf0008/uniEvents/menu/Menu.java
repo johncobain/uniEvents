@@ -30,8 +30,8 @@ public abstract class Menu implements IMenu {
   protected int menuResponse(){
     while(true) { 
       System.out.println(Lines.doubleLine());
-      if(color != null) System.out.println(Lines.titleLine(title, color));
-      else System.out.println(Lines.titleLine(title));
+      if(color != null) System.out.println(Lines.centeredMultiLineText(title, color));
+      else System.out.println(Lines.centeredMultiLineText(title));
       System.out.println(Lines.doubleLine());
 
       for(int i = 0; i < options.size(); i++){
