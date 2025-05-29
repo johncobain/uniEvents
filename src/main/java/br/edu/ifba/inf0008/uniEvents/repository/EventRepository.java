@@ -11,7 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
@@ -26,6 +25,7 @@ public class EventRepository {
   private JsonFactory jsonFactory;
   
   public EventRepository(ParticipantRepository participantRepository) {
+    this.participantRepository = participantRepository;
     this.jsonFactory = new JsonFactory();
     this.gson = jsonFactory.getGsonBuilder().create();
     this.eventsSaved = load();
