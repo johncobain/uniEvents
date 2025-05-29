@@ -49,15 +49,4 @@ public class EventManager implements IManager<Event>{
   public LinkedHashMap<String, Event> getAll() {
     return events;
   }
-
-  public void clearParticipants(String code) {
-    if (get(code) == null) {
-      throw new IllegalArgumentException("Event not found");
-    }
-
-    for (String cpf : get(code).getParticipants().keySet()) {
-      get(code).removeParticipant(cpf);
-    }
-    eventRepository.save();
-  }
 }

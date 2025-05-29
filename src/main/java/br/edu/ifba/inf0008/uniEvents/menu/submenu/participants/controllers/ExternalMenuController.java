@@ -71,7 +71,7 @@ public class ExternalMenuController {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((External)participantManager.get(cpf)).getExpertiseAreas());
-    String expertiseArea = CommonForms.getOption(options, "Expertise Area");
+    String expertiseArea = CommonForms.getOption(options, "Select Expertise Area");
     if (expertiseArea.equalsIgnoreCase("cancel")) return;
     try {
       External external = (External) participantManager.get(cpf);

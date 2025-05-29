@@ -41,7 +41,7 @@ public class EventMenuController {
     options.add("Cancel");
     for(Modality modality : Modality.getAll())options.add(modality.getDescription());
     
-    String modality = CommonForms.getOption(options, "Modality");
+    String modality = CommonForms.getOption(options, "Select the Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
     double totalHours = EventForms.getDouble("Total hours");
@@ -131,7 +131,7 @@ public class EventMenuController {
     options.add("Cancel");
     for(Modality modality : Modality.getAll())options.add(modality.getDescription());
     
-    String modality = CommonForms.getOption(options, "Modality");
+    String modality = CommonForms.getOption(options, "Select the Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
     double totalHours = EventForms.getDouble("Total hours");

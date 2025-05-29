@@ -10,19 +10,7 @@
 
 - TODO: student must have a required gpa for course
 
-1. Generate Certificates (text)
-   Relevant code:
-
-   - `src/main/java/br/edu/ifba/inf0008/uniEvents/model/events/Certificate.java` (empty class) -`src/main/java/br/edu/ifba/inf0008/uniEvents/model/participants/Participant.java` (has `ArrayList<Certificate>` certificates, methods to add/get certificates, but no logic for generating certificate text or files)
-   - `src/main/java/br/edu/ifba/inf0008/uniEvents/services/FileGenerator.java` (only a TODO comment)
-     HELP.txt (describes certificate generation as a required action)
-     No code found that generates or saves certificate text files.
-
-   Missing:
-
-   - No implementation for generating certificate text or saving certificates as files.
-
-2. Generate Reports by Event Type and Date
+1. Generate Reports by Event Type and Date
    Relevant code:
 
    - `src/main/java/br/edu/ifba/inf0008/uniEvents/services/ReportsManager.java` (has a generateReport method that builds a report string for a list of events, but no code found for filtering by event type or date)

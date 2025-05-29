@@ -1,7 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.services;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
@@ -11,7 +11,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
 
 public class ReportsGenerator {
-  public String generateReport(ArrayList<Event> events, String reportTitle, Boolean isDetailed) {
+  public static String generateReport(List<Event> events, String reportTitle, Boolean isDetailed) {
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.titleLine(String.format("Report: %s", reportTitle))).append("\n");

@@ -1,28 +1,21 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.reports;
-import java.util.ArrayList;
-
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
+import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.controllers.ReportsMenuController;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
-import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class ReportsMenu extends Menu {
-  private final EventManager eventManager;
-  private final ReportsGenerator reportsGenerator;
+  private final IManager<Event> eventManager;
 
-  public ReportsMenu(EventManager eventManager, ParticipantManager participantManager, ReportsGenerator reportsGenerator) {
+  public ReportsMenu(IManager<Event> eventManager) {
     super("Reports Management", Colors.RED_BOLD);
     super.addOption("Exit to Main Menu");
+    super.addOption("Generate Full Report");
     super.addOption("Generate Report by Type");
     super.addOption("Generate Report by Date");
-    super.addOption("Generate Report by Location");
-    super.addOption("Generate Detailed Report");
-    super.addOption("Generate Summary Report");    
 
     this.eventManager = eventManager;
-    this.reportsGenerator = reportsGenerator;
   }
 
   @Override
@@ -36,32 +29,16 @@ public class ReportsMenu extends Menu {
               return;
           }
           case 1 -> {
-            // submenu = new GenerateReportByTypeMenu();
-            // submenu.show();
-            System.out.println("Generate Report by Type Menu");
+            ReportsMenuController.fullReport(eventManager);
           }
           case 2 -> {
-            // submenu = new GenerateReportByDateMenu();
-            // submenu.show();
-            System.out.println("Generate Report by Date Menu");
+            ReportsMenuController.reportByType(eventManager);
           }
           case 3 -> {
-            // submenu = new GenerateReportByLocationMenu();
-            // submenu.show();
-            System.out.println("Generate Report by Location Menu");
-          }
-          case 4 -> {
-            ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
-            String detailedReport = reportsGenerator.generateReport(events, "Detailed Report", true);
-            System.out.println(detailedReport);
-          }
-          case 5 -> {
-            ArrayList<Event> events = new ArrayList<>(eventManager.getAll().values());
-            String summaryReport = reportsGenerator.generateReport(events, "Summary Report", false);
-            System.out.println(summaryReport);
+            ReportsMenuController.reportByDate(eventManager);
           }
           default -> throw new AssertionError();
       }
     }
-  }  
+  }
 }

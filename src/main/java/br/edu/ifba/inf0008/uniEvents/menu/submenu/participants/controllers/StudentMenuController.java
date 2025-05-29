@@ -34,7 +34,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
 
-    String course = CommonForms.getOption(options, "Course");
+    String course = CommonForms.getOption(options, "Select Course");
     if (course.equalsIgnoreCase("cancel")) return false;
 
     int currentSemester = ParticipantForms.getSemester();
@@ -43,8 +43,8 @@ public class StudentMenuController {
     options = new ArrayList<>();
     options.add("Cancel");
     for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
-    
-    String status = CommonForms.getOption(options, "Academic Status");
+
+    String status = CommonForms.getOption(options, "Select Academic Status");
     if (status.equalsIgnoreCase("cancel")) return false;
 
     double gpa = ParticipantForms.getGpa();
@@ -66,7 +66,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
 
-    String course = CommonForms.getOption(options, "Course");
+    String course = CommonForms.getOption(options, "Select Course");
     if (course.equalsIgnoreCase("cancel")) return false;
 
     int currentSemester = ParticipantForms.getSemester();
@@ -76,7 +76,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
 
-    String status = CommonForms.getOption(options, "Academic Status");
+    String status = CommonForms.getOption(options, "Select Academic Status");
     if (status.equalsIgnoreCase("cancel")) return false;
 
     double gpa = ParticipantForms.getGpa();
@@ -112,7 +112,7 @@ public class StudentMenuController {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Student)participantManager.get(cpf)).getInterests());
-    String interest = CommonForms.getOption(options, "Interest");
+    String interest = CommonForms.getOption(options, "Select Interest");
     if (interest.equalsIgnoreCase("cancel")) return;
     try {
       Student student = (Student)participantManager.get(cpf);

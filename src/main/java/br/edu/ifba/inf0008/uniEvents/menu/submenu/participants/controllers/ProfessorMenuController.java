@@ -35,7 +35,7 @@ public class ProfessorMenuController {
     options.add("Cancel");
     for (Course course : Course.getAll()) options.add(course.getDescription());
 
-    String department = CommonForms.getOption(options, "Department");
+    String department = CommonForms.getOption(options, "Select Department");
     if (department.equalsIgnoreCase("cancel")) return false;
 
     String campus = ParticipantForms.getName("Campus");
@@ -44,7 +44,7 @@ public class ProfessorMenuController {
     options = new ArrayList<>();
     options.add("Cancel");
     for (AcademicTitle title : AcademicTitle.getAll()) options.add(title.getDescription());
-    String academicTitle = CommonForms.getOption(options, "Academic Title");
+    String academicTitle = CommonForms.getOption(options, "Select Academic Title");
     if (academicTitle.equalsIgnoreCase("cancel")) return false;
 
     String specialization = ParticipantForms.getName("specialization");
@@ -60,13 +60,13 @@ public class ProfessorMenuController {
     options.add("Cancel");
     for (Course course : Course.getAll())options.add(course.getDescription());
 
-    String department = CommonForms.getOption(options, "Department");
+    String department = CommonForms.getOption(options, "Select Department");
     if (department.equalsIgnoreCase("cancel")) return false;
 
     options = new ArrayList<>();
     options.add("Cancel");
     for (AcademicTitle title : AcademicTitle.getAll())options.add(title.getDescription());
-    String academicTitle = CommonForms.getOption(options, "Academic Title");
+    String academicTitle = CommonForms.getOption(options, "Select Academic Title");
     if (academicTitle.equalsIgnoreCase("cancel")) return false;
 
     String campus = ParticipantForms.getName("Campus");
@@ -99,7 +99,7 @@ public class ProfessorMenuController {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Professor)participantManager.get(cpf)).getResearchAreas());
-    String researchArea = CommonForms.getOption(options, "Research Area");
+    String researchArea = CommonForms.getOption(options, "Select Research Area");
     if (researchArea.equalsIgnoreCase("cancel")) return;
     try {
       Professor professor = (Professor)participantManager.get(cpf);
@@ -136,7 +136,7 @@ public class ProfessorMenuController {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Professor)participantManager.get(cpf)).getPublications());
-    String publication = CommonForms.getOption(options, "Publication");
+    String publication = CommonForms.getOption(options, "Select Publication");
     if (publication.equalsIgnoreCase("cancel")) return;
     try {
       Professor professor = (Professor)participantManager.get(cpf);

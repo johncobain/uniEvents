@@ -14,7 +14,6 @@ import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.IManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
@@ -23,7 +22,7 @@ public class ParticipantMenuController {
   private final IManager<Participant> participantManager;
   private final IManager<Event> eventManager;
 
-  public ParticipantMenuController(ParticipantManager participantManager, IManager<Event> eventManager) {
+  public ParticipantMenuController(IManager<Participant> participantManager, IManager<Event> eventManager) {
     this.participantManager = participantManager;
     this.eventManager = eventManager;
   }
@@ -337,7 +336,7 @@ public class ParticipantMenuController {
       options.add(Modality.INPERSON.getDescription());
       options.add(Modality.ONLINE.getDescription());
       
-      modality = CommonForms.getOption(options, "Modality to register");
+      modality = CommonForms.getOption(options, "Select Modality to register");
       if (modality.equalsIgnoreCase("cancel")) return;
     }
 

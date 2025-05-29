@@ -6,7 +6,6 @@ import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 import br.edu.ifba.inf0008.uniEvents.services.EventManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
-import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
@@ -19,7 +18,6 @@ public class App {
 
         EventManager eventManager = new EventManager(eventRepository);
         ParticipantManager participantManager = new ParticipantManager(participantRepository, eventManager);
-        ReportsGenerator reportsGenerator = new ReportsGenerator();
         
         System.out.println(Lines.mixedLines());
         System.out.println(Lines.titleLine("Welcome to UniEvents!", Colors.GREEN_BOLD));
@@ -28,7 +26,7 @@ public class App {
         System.out.println(Lines.multiLineText("UniEvents is a system designed to manage events and participants in a university setting. You can create, update, and delete events and participants, as well as generate reports."));
         System.out.println(Lines.straightLine());
 
-        IMenu menu = new MainMenu(eventManager, participantManager, reportsGenerator);
+        IMenu menu = new MainMenu(eventManager, participantManager);
         menu.show();
         
         System.out.println(Lines.mixedLines());

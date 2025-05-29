@@ -25,7 +25,7 @@ public class ShortCourseMenuController {
     options.add("Cancel");
     for(SkillLevel skillLevel : SkillLevel.getAll())options.add(skillLevel.getDescription());
 
-    String skillLevel = CommonForms.getOption(options, "Target skill level");
+    String skillLevel = CommonForms.getOption(options, "Select Target Skill Level");
     if(skillLevel.equalsIgnoreCase("cancel")) return null;    
     
     ShortCourse shortCourse = new ShortCourse(name, location, description, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), totalHours, code, courseModules, methodOfAssessment, SkillLevel.fromDescription(skillLevel));

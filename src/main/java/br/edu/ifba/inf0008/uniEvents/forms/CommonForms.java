@@ -33,7 +33,7 @@ public class CommonForms {
 
   public static String getOption(ArrayList<String> options, String title){
     BaseMenu baseMenu;
-    baseMenu = new BaseMenu("Select " + title, options);
+    baseMenu = new BaseMenu(title, options);
 
     int response = baseMenu.getResponse();
     if (response == 0) return "cancel";
