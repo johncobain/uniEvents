@@ -395,9 +395,7 @@ public class ParticipantMenuController {
     System.out.println(Lines.titleLine("Certificates of " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     for (Certificate certificate : certificates) {
-      System.out.println(Lines.straightLine());
       System.out.print(certificate.toString());
-      System.out.println(Lines.straightLine());
     }
   }
 }

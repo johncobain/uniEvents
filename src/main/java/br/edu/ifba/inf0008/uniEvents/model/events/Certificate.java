@@ -49,8 +49,7 @@ public class Certificate {
     sb.append(Lines.doubleLine()).append("\n");
     sb.append(Lines.titleLine("CERTIFICATE", Colors.GREEN_BOLD)).append("\n");
     sb.append(Lines.doubleLine()).append("\n");
-    sb.append(Lines.multiLineText("Generated " + LocalDateTime.now().format(LocalDateAdapter.DATE_TIME_FORMATTER))).append("\n");
-    sb.append(Lines.multiLineText("Certificate ID: " + id)).append("\n");
+    sb.append(Lines.titleLine("Generated " + LocalDateTime.now().format(LocalDateAdapter.DATE_TIME_FORMATTER))).append("\n");
     sb.append(Lines.multiLineText("")).append("\n");
     sb.append(Lines.multiLineText("Event: " + eventName)).append("\n");
     sb.append(Lines.multiLineText("Code: " + eventCode)).append("\n");
@@ -58,10 +57,12 @@ public class Certificate {
     sb.append(Lines.multiLineText("Total Hours: " + totalHours)).append("\n");
     sb.append(Lines.multiLineText("Date: " + eventDate.format(LocalDateAdapter.DATE_FORMATTER))).append("\n");
     sb.append(Lines.multiLineText("")).append("\n");
-
+    
     sb.append(Lines.multiLineText("Participant: " + participantName)).append("\n");
     sb.append(Lines.multiLineText("CPF: " + participantCpf)).append("\n");
     sb.append(Lines.multiLineText("Email: " + participantEmail)).append("\n");
+    sb.append(Lines.multiLineText("")).append( "\n");
+    sb.append(Lines.titleLine("Certificate ID: " + id)).append("\n");
     sb.append(Lines.doubleLine()).append("\n");
     return sb.toString();
   }
