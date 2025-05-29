@@ -12,6 +12,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
@@ -126,9 +127,7 @@ public class ParticipantMenuController {
     System.out.println(Lines.titleLine("All Participants", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     for(Participant participant : participants){
-      System.out.println(Lines.straightLine());
-      System.out.print(participant.toString());
-      System.out.println(Lines.straightLine());
+      System.out.print(ReportsGenerator.participantSummary(participant));
     }
 
   }
@@ -148,9 +147,7 @@ public class ParticipantMenuController {
     System.out.println(Lines.titleLine(type+"s", Colors.BLUE_BOLD));
     System.out.println(Lines.doubleLine());
     for (Participant participant : participants) {
-      System.out.println(Lines.straightLine());
-      System.out.print(participant.toString());
-      System.out.println(Lines.straightLine());
+      System.out.print(ReportsGenerator.participantSummary(participant));
     }
   }
 
@@ -172,12 +169,7 @@ public class ParticipantMenuController {
     
     if(type.equalsIgnoreCase("Participant")) type = participantManager.get(cpf).getType();
     
-    System.out.println(Lines.doubleLine());
-    System.out.println(Lines.titleLine(type, Colors.BLUE_BOLD));
-    System.out.println(Lines.doubleLine());
-    System.out.println(Lines.straightLine());
-    System.out.print(participantManager.get(cpf).toString());
-    System.out.println(Lines.straightLine());
+    System.out.print(ReportsGenerator.participantSummary(participantManager.get(cpf)));
 
     ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "Add To Event", "Remove From Event", "Show Events", "Show Certificates"));
     switch (type) {
@@ -265,6 +257,12 @@ public class ParticipantMenuController {
   }
 
   public void clear(){
+    String confirmation = ParticipantForms.getYN("Are you sure you want to remove all participants?", "n");
+    if (confirmation.equalsIgnoreCase("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.warningLine("Participants not removed!"));
+      return;
+    }
     try {
       participantManager.clear();
       System.out.println(Lines.clear());
@@ -276,6 +274,12 @@ public class ParticipantMenuController {
   }
 
   public void clear(String type){
+    String confirmation = ParticipantForms.getYN("Are you sure you want to remove all " + type + "s?", "n");
+    if (confirmation.equalsIgnoreCase("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.warningLine(type + "s not removed!"));
+      return;
+    }
     try {
       List<Participant> participantsOfType = participantManager.getAll().values()
       .stream()
@@ -297,8 +301,7 @@ public class ParticipantMenuController {
     String code = EventForms.getCode();
     if (code.equalsIgnoreCase("cancel")) return;
 
-    Event event = eventManager.get(code);
-    if (event == null) {
+    if (eventManager.get(code) == null) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Event not found!"));
       return;
@@ -310,11 +313,14 @@ public class ParticipantMenuController {
       return;      
     }
 
-    if(
-      participantManager.get(cpf).getType().equalsIgnoreCase("Student") && 
-      eventManager.get(code).getType().equalsIgnoreCase("Short Course") &&      
-      !((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)
-      ){
+    if(!participantManager.get(cpf).getType().equalsIgnoreCase("Student") && 
+      eventManager.get(code).getType().equalsIgnoreCase("Short Course")){
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine("Only Students can register in Short Courses!"));
+        return;
+      }
+
+    if(!((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)){
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine("Participant " + participantManager.get(cpf).getName() + " is not eligible to register in this event!"));
       return;      

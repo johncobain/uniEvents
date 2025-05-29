@@ -136,17 +136,21 @@ public abstract class Event {
   }
 
   public void setParticipants(LinkedHashMap<String, Participant> participants, LinkedHashMap<String, Participant> onlineParticipants) {
-    this.inPersonParticipantsCpfs.clear();
-    for (Participant participant : participants.values()) {
-      this.inPersonParticipantsCpfs.add(participant.getCpf());
+    if(this.modality != Modality.ONLINE){
+      this.inPersonParticipantsCpfs.clear();
+      for (Participant participant : participants.values()) {
+        this.inPersonParticipantsCpfs.add(participant.getCpf());
+      }
+      this.inPersonParticipants = participants;
     }
-    this.inPersonParticipants = participants;
 
-    this.onlineParticipantsCpfs.clear();
-    for (Participant participant : onlineParticipants.values()) {
-      this.onlineParticipantsCpfs.add(participant.getCpf());
+    if(this.modality != Modality.INPERSON){
+      this.onlineParticipantsCpfs.clear();
+      for (Participant participant : onlineParticipants.values()) {
+        this.onlineParticipantsCpfs.add(participant.getCpf());
+      }
+      this.onlineParticipants = onlineParticipants;
     }
-    this.onlineParticipants = onlineParticipants;
   }
 
   public void addParticipant(Participant participant, Modality modality) throws RuntimeException{
@@ -186,6 +190,11 @@ public abstract class Event {
   public boolean isParticipantRegistered(String cpf) {
     return inPersonParticipants.containsKey(cpf) || onlineParticipants.containsKey(cpf);
   }  
+
+  public void generateCertificate(String cpf) throws Exception{
+    Certificate certificate = new Certificate(this.getName(), this.getCode());
+    this.getParticipants().get(cpf).addCertificate(certificate);
+  }
 
   public abstract String getType();
 

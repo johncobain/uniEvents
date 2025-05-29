@@ -49,13 +49,13 @@ public class ReportsGenerator {
       report.append(Lines.titleLine("Participants in (" + event.getCode() + ")", Colors.BLUE_BOLD)).append("\n");
       report.append(Lines.doubleLine()).append("\n");
       for(Participant participant : event.getParticipants().values()){
-        report.append(participantSummaary(participant));
+        report.append(participantSummary(participant));
       }
     }
     return report.toString();
   }
 
-  public static String participantSummaary(Participant participant){
+  public static String participantSummary(Participant participant){
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.titleLine("Participant: " + participant.getType(), Colors.BLUE_BOLD)).append("\n");

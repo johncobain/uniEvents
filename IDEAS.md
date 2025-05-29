@@ -1,10 +1,6 @@
 # IDEAS
 
-- TODO: refactor EVERYTHING
-
-- TODO: REFACTOR EVENTMANAGER AND EVENTMENUCONTROLLER
-
-- TODO: Maybe add `addToEvent` method in interface or something like that
+- TODO: create a `Forms` in utils
 
 - TODO: Custom Errors
 

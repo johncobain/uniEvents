@@ -2,14 +2,15 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events;
 
 import br.edu.ifba.inf0008.uniEvents.menu.Menu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers.EventMenuController;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
+import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class EventsMenu extends Menu {
   private final EventMenuController eventMenuController;
 
-  public EventsMenu(EventManager eventManager, ParticipantManager participantManager) {
+  public EventsMenu(IManager<Event> eventManager, IManager<Participant> participantManager) {
       super("Events Management", Colors.YELLOW_BOLD);
       super.addOption("Exit to Main Menu");
       super.addOption("Workshop Management");

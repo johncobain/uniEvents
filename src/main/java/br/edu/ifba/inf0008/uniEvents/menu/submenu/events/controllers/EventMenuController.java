@@ -15,11 +15,11 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class EventMenuController {
   private final IManager<Event> eventManager;
-  // private final IManager<Participant> participantManager;
+  private final IManager<Participant> participantManager;
 
   public EventMenuController(IManager<Event> eventManager, IManager<Participant> participantManager) {
     this.eventManager = eventManager;
-    // this.participantManager = participantManager;
+    this.participantManager = participantManager;
   }
   
   public void create(String type){
@@ -135,8 +135,6 @@ public class EventMenuController {
     }
     if (capacity == -1) return;
 
-    //TODO: if the event has participants and will be updated, keeep the participants
-    
     Event updatedEvent = null;
     switch (type) {
       case "Lecture" -> updatedEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
@@ -150,6 +148,8 @@ public class EventMenuController {
       System.out.println(Lines.errorLine("Event not updated!"));
       return;
     }
+
+    updatedEvent.setParticipants(eventManager.get(code).getInPersonParticipants(), eventManager.get(code).getOnlineParticipants());
 
     eventManager.update(code, updatedEvent);
     System.out.println(Lines.clear());
@@ -234,6 +234,12 @@ public class EventMenuController {
   }
 
   public void clear(){
+    String confirmation = EventForms.getYN("Are you sure you want to remove all events?", "n");
+    if (confirmation.equalsIgnoreCase("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.warningLine("Events not removed!"));
+      return;
+    }
     try {
       eventManager.clear();
       System.out.println(Lines.clear());
@@ -245,6 +251,12 @@ public class EventMenuController {
   } 
 
   public void clear(String type){
+    String confirmation = EventForms.getYN("Are you sure you want to remove all " + type + " events?", "n");
+    if (confirmation.equalsIgnoreCase("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.warningLine(type + "s not removed!"));
+      return;
+    }
     try{
       List<Event> eventsOfType = eventManager.getAll().values()
       .stream()
@@ -336,6 +348,23 @@ public class EventMenuController {
   }
 
   public void generateCertificate(String code){
-    //TODO: implement generateCertificate
+    String cpf = ParticipantForms.getCpf();
+    if (cpf.equalsIgnoreCase("cancel")) return;
+
+    if(eventManager.get(code).isParticipantRegistered(cpf) == false){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant is not registered in this event!"));
+      return;      
+    }
+
+    try {
+      eventManager.get(code).generateCertificate(cpf);
+      participantManager.update(cpf, participantManager.get(cpf));
+      System.out.println(Lines.clear());
+      System.out.println(Lines.successLine("Certificate generated!"));
+    } catch (Exception e) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine(e.getMessage()));
+    }
   }
 }

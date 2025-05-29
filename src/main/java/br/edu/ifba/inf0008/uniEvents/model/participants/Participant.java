@@ -87,9 +87,9 @@ public abstract class Participant {
       sb.append(Lines.multiLineText("Certificates: None")).append("\n");
     }else{
       sb.append(Lines.multiLineText("Certificates:")).append("\n");
-      // for (Certificate certificate : this.getCertificates()) {
-        // sb.append(Lines.multiLineText()(String.format("  - %s", certificate.summary()))).append("\n");
-      // }
+      for (Certificate certificate : this.getCertificates()) {
+        sb.append(Lines.multiLineText((String.format("  - %s", certificate.summary())))).append("\n");
+      }
     }
     return sb.toString();
   }

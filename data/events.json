@@ -136,7 +136,9 @@
     "capacity": 40,
     "modality": "HYBRID",
     "inPersonParticipantsCpfs": [],
-    "onlineParticipantsCpfs": [],
+    "onlineParticipantsCpfs": [
+      "161.075.797-10"
+    ],
     "code": "SC001"
   },
   {
@@ -221,10 +223,7 @@
     "date": "20/10/2024",
     "capacity": 120,
     "modality": "INPERSON",
-    "inPersonParticipantsCpfs": [
-      "161.075.797-10",
-      "592.201.489-78"
-    ],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF003"
   }
