@@ -42,7 +42,8 @@
 
    - Or even a fluent `ReportBuilder` so you write:
 
-   ```java ReportBuilder.of(title)
+   ```java
+   ReportBuilder.of(title)
      .section("Event: "+e.getType(), YELLOW)
      .text(e.toString())
      .if(detailed, b -> b.section("Participants", BLUE).forEach(pList, p->b.text(p.toString())))

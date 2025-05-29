@@ -111,7 +111,7 @@ public abstract class Event {
     this.code = code;
   }
 
-  public void populateParticipants(ParticipantRepository participantRepository) {//TODO: don't use participantRepository
+  public void populateParticipants(ParticipantRepository participantRepository) {
     if(this.inPersonParticipantsCpfs != null && participantRepository != null){
       for (String cpf : this.inPersonParticipantsCpfs) {
         Participant participant = participantRepository.get(cpf);
