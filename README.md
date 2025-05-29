@@ -116,6 +116,8 @@ The project simulates the management of events in a university, with the followi
 
 Using **openjdk version "21.0.7" 2025-04-15**
 
+There is a **Generate Dummy Data** option in the main menu, which generates some test data for the system, including events, participants and certificates. This is useful for testing and demonstration purposes.
+
 The system requires a **valid CPF** to register a participant, if you want to generate one, you can use one of this websites:
 
 - [CPF Generator](https://www.cpfgenerator.net/).
