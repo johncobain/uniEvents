@@ -11,8 +11,8 @@ import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.services.IManager;
-import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.generators.ReportsGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.managers.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 

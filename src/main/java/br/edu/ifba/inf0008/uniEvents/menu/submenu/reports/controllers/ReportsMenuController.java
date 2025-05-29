@@ -6,8 +6,8 @@ import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.services.IManager;
-import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.generators.ReportsGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.managers.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 

@@ -4,8 +4,8 @@ import br.edu.ifba.inf0008.uniEvents.menu.MainMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.repository.EventRepository;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.managers.EventManager;
+import br.edu.ifba.inf0008.uniEvents.services.managers.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 

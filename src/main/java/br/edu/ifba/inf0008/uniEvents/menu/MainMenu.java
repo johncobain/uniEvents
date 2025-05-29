@@ -3,9 +3,9 @@ package br.edu.ifba.inf0008.uniEvents.menu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventsMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
-import br.edu.ifba.inf0008.uniEvents.services.DummyGenerator;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.generators.DummyGenerator;
+import br.edu.ifba.inf0008.uniEvents.services.managers.EventManager;
+import br.edu.ifba.inf0008.uniEvents.services.managers.ParticipantManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 
 public class MainMenu extends Menu{

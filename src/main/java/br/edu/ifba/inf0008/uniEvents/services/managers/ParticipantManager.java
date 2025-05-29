@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.services;
+package br.edu.ifba.inf0008.uniEvents.services.managers;
 
 import java.util.LinkedHashMap;
 

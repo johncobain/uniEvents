@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.services;
+package br.edu.ifba.inf0008.uniEvents.services.generators;
 
 import java.time.LocalDateTime;
 import java.util.List;

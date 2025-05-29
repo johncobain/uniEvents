@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.services;
+package br.edu.ifba.inf0008.uniEvents.services.generators;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -18,6 +18,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicTitle;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
+import br.edu.ifba.inf0008.uniEvents.services.managers.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
