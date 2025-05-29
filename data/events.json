@@ -221,7 +221,10 @@
     "date": "20/10/2024",
     "capacity": 120,
     "modality": "INPERSON",
-    "inPersonParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "161.075.797-10",
+      "592.201.489-78"
+    ],
     "onlineParticipantsCpfs": [],
     "code": "AF003"
   }

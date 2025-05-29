@@ -97,7 +97,6 @@ public abstract class Participant {
   @Override
   public String toString(){
     StringBuilder sb = new StringBuilder();
-    sb.append(Lines.multiLineText(String.format("Participant: %s", getType()))).append("\n");
     sb.append(Lines.multiLineText(String.format("Name: %s", name))).append("\n");
     sb.append(Lines.multiLineText(String.format("CPF: %s", cpf))).append("\n");
     sb.append(Lines.multiLineText(String.format("Email: %s", email))).append("\n");

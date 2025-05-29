@@ -127,6 +127,14 @@ public abstract class Event {
     return totalParticipants;
   }
 
+  public LinkedHashMap<String, Participant> getInPersonParticipants() {
+    return inPersonParticipants;
+  }
+
+  public LinkedHashMap<String, Participant> getOnlineParticipants() {
+    return onlineParticipants;
+  }
+
   public void setParticipants(LinkedHashMap<String, Participant> participants, LinkedHashMap<String, Participant> onlineParticipants) {
     this.inPersonParticipantsCpfs.clear();
     for (Participant participant : participants.values()) {
@@ -160,9 +168,21 @@ public abstract class Event {
     this.onlineParticipants.remove(cpf);
   }
 
+  public void clearParticipants(){
+    this.inPersonParticipantsCpfs.clear();
+    this.inPersonParticipants.clear();
+    this.onlineParticipantsCpfs.clear();
+    this.onlineParticipants.clear();
+  }
+
   public boolean isFull() {
     return this.inPersonParticipants.size() >= capacity;
   }
+
+  public String getInstructions(){
+    return this.modality.getInstructions();
+  }
+
   public boolean isParticipantRegistered(String cpf) {
     return inPersonParticipants.containsKey(cpf) || onlineParticipants.containsKey(cpf);
   }  
