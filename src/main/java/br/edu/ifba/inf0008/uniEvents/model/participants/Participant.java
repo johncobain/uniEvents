@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import br.edu.ifba.inf0008.uniEvents.exceptions.UniEventsException;
 import br.edu.ifba.inf0008.uniEvents.model.events.Certificate;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public abstract class Participant {
   private String name;
@@ -102,7 +102,7 @@ public abstract class Participant {
     sb.append(Lines.multiLineText(String.format("CPF: %s", cpf))).append("\n");
     sb.append(Lines.multiLineText(String.format("Email: %s", email))).append("\n");
     sb.append(Lines.multiLineText(String.format("Phone: %s", phone))).append("\n");
-    sb.append(Lines.multiLineText(String.format("Birthdate: %s", birthDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Birthdate: %s", Utils.dateToString(birthDate)))).append("\n");
     return sb.toString();
   }
 

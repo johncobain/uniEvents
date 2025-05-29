@@ -7,7 +7,7 @@ import java.util.List;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class Student extends Participant{
   private final String participantTypeJson = "Student";
@@ -109,7 +109,7 @@ public class Student extends Participant{
     sb.append(Lines.multiLineText(String.format("Academic Status: %s", academicStatus.getDescription()))).append("\n");
     sb.append(Lines.multiLineText(String.format("GPA: %.2f", gpa))).append("\n");
     sb.append(Lines.multiLineText(String.format("Campus: %s", campus))).append("\n");
-    sb.append(Lines.multiLineText(String.format("Enrollment Date: %s", enrollmentDate.format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
+    sb.append(Lines.multiLineText(String.format("Enrollment Date: %s", Utils.dateToString(enrollmentDate)))).append("\n");
     if(interests.isEmpty()){
       sb.append(Lines.multiLineText("Interests: None")).append("\n");
     }else{

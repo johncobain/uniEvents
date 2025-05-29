@@ -14,7 +14,6 @@ import com.google.gson.JsonSerializer;
 
 public class LocalDateAdapter implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
   public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-  public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
   @Override
   public JsonElement serialize(LocalDate localDate, Type typeOfSrc, JsonSerializationContext context){

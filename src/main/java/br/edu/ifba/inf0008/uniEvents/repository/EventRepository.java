@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateTimeAdapter;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
 
 public class EventRepository {
@@ -34,6 +36,7 @@ public class EventRepository {
     this.participantRepository = participantRepository;
     GsonBuilder gsonBuilder = new GsonBuilder();
     gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
+    gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
     gsonBuilder.setPrettyPrinting();
 
     RuntimeTypeAdapterFactory<Event> eventAdapterFactory = RuntimeTypeAdapterFactory

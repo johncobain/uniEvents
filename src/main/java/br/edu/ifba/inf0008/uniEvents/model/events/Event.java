@@ -11,7 +11,7 @@ import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public abstract class Event {
   private String name;
@@ -232,7 +232,7 @@ public abstract class Event {
         sb.append(Lines.multiLineText(String.format("Modality: %s", modality.getDescription()))).append("\n");
         sb.append(Lines.multiLineText(String.format("Total Hours: %.2f", totalHours))).append("\n");
         sb.append(Lines.multiLineText(String.format("Location: %s", location))).append("\n");
-        sb.append(Lines.multiLineText(String.format("Date: %s", this.getDate().format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Date: %s", Utils.dateToString(this.getDate())))).append("\n");
         if(this.modality == Modality.INPERSON || this.modality == Modality.HYBRID){
           sb.append(Lines.multiLineText(String.format("Capacity: %d", capacity))).append("\n");
           sb.append(Lines.multiLineText(String.format("In-Person Participants: %d", this.inPersonParticipants.size()))).append("\n");

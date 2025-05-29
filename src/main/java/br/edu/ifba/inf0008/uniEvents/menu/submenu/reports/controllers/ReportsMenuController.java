@@ -9,7 +9,6 @@ import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.services.generators.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.managers.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
 public class ReportsMenuController {
   public static void fullReport(IManager<Event> eventManager){
@@ -59,7 +58,7 @@ public class ReportsMenuController {
       .toList();
 
     String detailed = CommonForms.getYN("Do you want a detailed report?", "n");
-    System.out.println(ReportsGenerator.generateReport(events, "Report by Date: " + Utils.stringToDate(date).format(LocalDateAdapter.DATE_FORMATTER), detailed.equalsIgnoreCase("y")));
+    System.out.println(ReportsGenerator.generateReport(events, "Report by Date: " + Utils.dateToString(Utils.stringToDate(date)), detailed.equalsIgnoreCase("y")));
   }
   
 }

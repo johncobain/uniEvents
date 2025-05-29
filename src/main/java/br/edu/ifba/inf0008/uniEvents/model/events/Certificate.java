@@ -8,21 +8,23 @@ import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class Certificate {
   private final String id;
-  public String eventName;
-  public String eventCode;
-  public Modality modality;
-  public double totalHours;
-  public LocalDate eventDate;
-  public String participantName;
-  public String participantCpf;
-  public String participantEmail;
+  private LocalDateTime createdAt;
+  private String eventName;
+  private String eventCode;
+  private Modality modality;
+  private double totalHours;
+  private LocalDate eventDate;
+  private String participantName;
+  private String participantCpf;
+  private String participantEmail;
   
   public Certificate(Event event, Participant participant){
     this.id = UUID.randomUUID().toString();
+    this.createdAt = LocalDateTime.now();
     this.eventName = event.getName();
     this.eventCode = event.getCode();
     this.modality = event.getModality();
@@ -34,6 +36,7 @@ public class Certificate {
   }
   public Certificate(){
     this.id = UUID.randomUUID().toString();
+    this.createdAt = LocalDateTime.now();
   }//GSON
 
   public String getId(){
@@ -49,15 +52,15 @@ public class Certificate {
     sb.append(Lines.doubleLine()).append("\n");
     sb.append(Lines.centeredMultiLineText("CERTIFICATE", Colors.GREEN_BOLD)).append("\n");
     sb.append(Lines.doubleLine()).append("\n");
-    sb.append(Lines.centeredMultiLineText("Generated " + LocalDateTime.now().format(LocalDateAdapter.DATE_TIME_FORMATTER))).append("\n");
+    sb.append(Lines.centeredMultiLineText("Created at " + Utils.dateToString(createdAt))).append("\n");
     sb.append(Lines.multiLineText("")).append("\n");
     sb.append(Lines.multiLineText("Event: " + eventName)).append("\n");
     sb.append(Lines.multiLineText("Code: " + eventCode)).append("\n");
     sb.append(Lines.multiLineText("Modality: " + modality.getDescription())).append("\n");
     sb.append(Lines.multiLineText("Total Hours: " + totalHours)).append("\n");
-    sb.append(Lines.multiLineText("Date: " + eventDate.format(LocalDateAdapter.DATE_FORMATTER))).append("\n");
+    sb.append(Lines.multiLineText("Date: " + Utils.dateToString(eventDate))).append("\n");
     sb.append(Lines.multiLineText("")).append("\n");
-    
+
     sb.append(Lines.multiLineText("Participant: " + participantName)).append("\n");
     sb.append(Lines.multiLineText("CPF: " + participantCpf)).append("\n");
     sb.append(Lines.multiLineText("Email: " + participantEmail)).append("\n");

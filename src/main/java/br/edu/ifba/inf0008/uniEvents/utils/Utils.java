@@ -1,7 +1,11 @@
 package br.edu.ifba.inf0008.uniEvents.utils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
+
+import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
+import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateTimeAdapter;
 
 public class Utils {
     public static final Scanner scanner = new Scanner(System.in);
@@ -19,6 +23,14 @@ public class Utils {
             int year = Integer.parseInt(dateString.substring(4));
             return LocalDate.of(year, month, day);
         }
+    }
+
+    public static String dateToString(LocalDate date) {
+        return date.format(LocalDateAdapter.DATE_FORMATTER);
+    }
+
+    public static String dateToString(LocalDateTime date) {
+        return date.format(LocalDateTimeAdapter.DATE_TIME_FORMATTER);
     }
 
     public static String formatCpf(String cpf) {
