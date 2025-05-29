@@ -3,6 +3,7 @@ package br.edu.ifba.inf0008.uniEvents.services;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
@@ -18,21 +19,16 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicTitle;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.Course;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
 
 public class DummyGenerator {
   public static void generateDummyData(IManager<Event> eventManager, IManager<Participant> participantManager) {
     System.out.println(Lines.warningLine("WARNING: Any Current Data will be overwritten!"));
-    while (true) { 
-      System.out.print("Are you sure you want to continue [y/N]? >>");
-      String response = Utils.scanner.nextLine().trim().toLowerCase();
-      if(response.equals("n") || response.equals("no") || response.isEmpty()){
-        System.out.println(Lines.clear());
-        System.out.println(Lines.warningLine("Dummy Data not saved!"));
-        return;
-      }
-      if(response.equals("y") || response.equals("yes")) break;
+    String confirmation = CommonForms.getYN("Are you sure you want to continue?", "n");
+    if (confirmation.equalsIgnoreCase("n")) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.warningLine("Dummy Data not saved!"));
+      return;
     }
     
     participantManager.clear();

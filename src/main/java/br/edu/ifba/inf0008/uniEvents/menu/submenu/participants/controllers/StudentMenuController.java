@@ -2,6 +2,8 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers;
 
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
+import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.model.participants.enums.AcademicStatus;
@@ -32,7 +34,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
 
-    String course = ParticipantForms.getOption(options, "Course");
+    String course = CommonForms.getOption(options, "Course");
     if (course.equalsIgnoreCase("cancel")) return false;
 
     int currentSemester = ParticipantForms.getSemester();
@@ -42,7 +44,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
     
-    String status = ParticipantForms.getOption(options, "Academic Status");
+    String status = CommonForms.getOption(options, "Academic Status");
     if (status.equalsIgnoreCase("cancel")) return false;
 
     double gpa = ParticipantForms.getGpa();
@@ -51,7 +53,7 @@ public class StudentMenuController {
     String campus = ParticipantForms.getName("campus");
     if (campus.equalsIgnoreCase("cancel")) return false;
 
-    String enrollmentDateString = ParticipantForms.getDate("enrollment date");
+    String enrollmentDateString = CommonForms.getDate("enrollment date");
     if (enrollmentDateString.equalsIgnoreCase("cancel")) return false;
 
     Student student = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), studentId, Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
@@ -64,7 +66,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
 
-    String course = ParticipantForms.getOption(options, "Course");
+    String course = CommonForms.getOption(options, "Course");
     if (course.equalsIgnoreCase("cancel")) return false;
 
     int currentSemester = ParticipantForms.getSemester();
@@ -74,7 +76,7 @@ public class StudentMenuController {
     options.add("Cancel");
     for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
 
-    String status = ParticipantForms.getOption(options, "Academic Status");
+    String status = CommonForms.getOption(options, "Academic Status");
     if (status.equalsIgnoreCase("cancel")) return false;
 
     double gpa = ParticipantForms.getGpa();
@@ -83,7 +85,7 @@ public class StudentMenuController {
     String campus = ParticipantForms.getName("campus");
     if (campus.equalsIgnoreCase("cancel")) return false;
 
-    String enrollmentDateString = ParticipantForms.getDate("enrollment date");
+    String enrollmentDateString = CommonForms.getDate("enrollment date");
     if (enrollmentDateString.equalsIgnoreCase("cancel")) return false;
 
     Student student = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Student)participantManager.get(cpf)).getStudentId(), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
@@ -110,7 +112,7 @@ public class StudentMenuController {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((Student)participantManager.get(cpf)).getInterests());
-    String interest = ParticipantForms.getOption(options, "Interest");
+    String interest = CommonForms.getOption(options, "Interest");
     if (interest.equalsIgnoreCase("cancel")) return;
     try {
       Student student = (Student)participantManager.get(cpf);

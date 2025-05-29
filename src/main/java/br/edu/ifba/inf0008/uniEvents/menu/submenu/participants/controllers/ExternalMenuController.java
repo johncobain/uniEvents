@@ -2,6 +2,8 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers;
 
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
+import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.participants.External;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.services.IManager;
@@ -20,7 +22,7 @@ public class ExternalMenuController {
     String bio = ParticipantForms.getName("bio");
     if (bio.equalsIgnoreCase("cancel")) return false;
 
-    String isPresenterString = ParticipantForms.getYN("Can the external be a presenter?", "y");
+    String isPresenterString = CommonForms.getYN("Can the external be a presenter?", "y");
     if (isPresenterString.equalsIgnoreCase("cancel")) return false;
     Boolean isPresenter = isPresenterString.equalsIgnoreCase("y");
     if (isPresenterString.equalsIgnoreCase("n")) isPresenter = false;
@@ -40,7 +42,7 @@ public class ExternalMenuController {
     String bio = ParticipantForms.getName("bio");
     if (bio.equalsIgnoreCase("cancel")) return null;
 
-    String isPresenterString = ParticipantForms.getYN("Can the external be a presenter", "y");
+    String isPresenterString = CommonForms.getYN("Can the external be a presenter", "y");
     if (isPresenterString.equalsIgnoreCase("cancel")) return null;
     Boolean isPresenter = isPresenterString.equalsIgnoreCase("y");
     if (isPresenterString.equalsIgnoreCase("n")) isPresenter = false;
@@ -69,7 +71,7 @@ public class ExternalMenuController {
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     options.addAll(((External)participantManager.get(cpf)).getExpertiseAreas());
-    String expertiseArea = ParticipantForms.getOption(options, "Expertise Area");
+    String expertiseArea = CommonForms.getOption(options, "Expertise Area");
     if (expertiseArea.equalsIgnoreCase("cancel")) return;
     try {
       External external = (External) participantManager.get(cpf);

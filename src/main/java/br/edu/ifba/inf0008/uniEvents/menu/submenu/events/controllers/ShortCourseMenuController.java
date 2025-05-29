@@ -3,6 +3,8 @@ package br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
+import br.edu.ifba.inf0008.uniEvents.forms.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
@@ -23,7 +25,7 @@ public class ShortCourseMenuController {
     options.add("Cancel");
     for(SkillLevel skillLevel : SkillLevel.getAll())options.add(skillLevel.getDescription());
 
-    String skillLevel = EventForms.getOption(options, "Target skill level");
+    String skillLevel = CommonForms.getOption(options, "Target skill level");
     if(skillLevel.equalsIgnoreCase("cancel")) return null;    
     
     ShortCourse shortCourse = new ShortCourse(name, location, description, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), totalHours, code, courseModules, methodOfAssessment, SkillLevel.fromDescription(skillLevel));

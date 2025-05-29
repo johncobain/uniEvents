@@ -1,14 +1,11 @@
-package br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers;
+package br.edu.ifba.inf0008.uniEvents.forms;
 
-import java.util.ArrayList;
-
-import br.edu.ifba.inf0008.uniEvents.menu.submenu.BaseMenu;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 import br.edu.ifba.inf0008.uniEvents.utils.Validation;
 
 public class ParticipantForms {
-  protected static String getName(String type){
+  public static String getName(String type){
     String name;
     while(true) {
       System.out.print("Enter " + type.toLowerCase() + " name (\"cancel\" to exit)>> ");
@@ -43,7 +40,7 @@ public class ParticipantForms {
     return cpf;
   }
 
-  protected static String getEmail(){
+  public static String getEmail(){
     String email;
     while (true) { 
       System.out.print("Enter email (\"cancel\" to exit)>> ");
@@ -63,7 +60,7 @@ public class ParticipantForms {
     System.out.println(Lines.clear());
     return email;
   }
-  protected static String getPhone(){
+  public static String getPhone(){
     String phone;
     while (true) { 
       System.out.print("Enter phone (\"cancel\" to exit)>> ");
@@ -85,61 +82,8 @@ public class ParticipantForms {
     System.out.println(Lines.clear());
     return phone;
   }
-  protected static String getDate(String type) {
-    String dateString;
-    while(true){
-      System.out.print("Enter " + type.toLowerCase() + " (dd/MM/yyyy or ddMMyyyy) (\"cancel\" to exit)>> ");
-      dateString = Utils.scanner.nextLine();
-      if(dateString.equalsIgnoreCase("cancel")){
-        System.out.println(Lines.clear());
-        return "cancel";
-      }
-      try {
-        Validation.validateDate(dateString);
-        break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
 
-    System.out.println(Lines.clear());
-    return dateString;
-  }
-
-  public static String getYear(String type) {
-    String year;
-    while (true) { 
-      System.out.print("Enter " + type.toLowerCase() + " (\"cancel\" to exit)>> ");
-      year = Utils.scanner.nextLine();
-      if(year.equalsIgnoreCase("cancel")) {
-        System.out.println(Lines.clear());
-        return "cancel";
-      }
-      try {
-        Validation.isInteger(year);
-        if (year.length() != 4) {
-          throw new Exception("Year must be 4 digits long!");
-        }
-        break;
-      } catch (Exception e) {
-        System.out.println(Lines.clear());
-        System.out.println(Lines.errorLine(e.getMessage()));
-      }
-    }
-    System.out.println(Lines.clear());
-    return year;
-  }
-
-  protected static String getOption(ArrayList<String> options, String title) {
-    BaseMenu baseMenu;
-    baseMenu = new BaseMenu("Select " + title, options);
-    int response = baseMenu.getResponse();
-    if (response == 0) return "cancel";
-    return options.get(response);
-  }
-
-  protected static int getSemester(){
+  public static int getSemester(){
     String semester;
     while (true) { 
       System.out.print("Enter semester (\"cancel\" to exit)>> ");
@@ -160,7 +104,7 @@ public class ParticipantForms {
     return Integer.parseInt(semester);
   }
 
-  protected static double getGpa(){
+  public static double getGpa(){
     String gpa;
     while (true) { 
       System.out.print("Enter GPA (\"cancel\" to exit)>> ");
@@ -181,7 +125,7 @@ public class ParticipantForms {
     return Double.parseDouble(gpa);
   }
 
-  protected static String getId(String text) {
+  public static String getId(String text) {
     String id;
     while (true) { 
       System.out.print("Enter " + text.toLowerCase() + "(11 digits) (\"cancel\" to exit)>> ");
@@ -200,32 +144,5 @@ public class ParticipantForms {
     }
     System.out.println(Lines.clear());
     return id;
-  }
-
-  protected static String getYN(String text, String defaultValue) {
-  String response;
-  while (true) {
-    System.out.print(text);
-    if(defaultValue.equalsIgnoreCase("y")) {
-      System.out.print("[Y/n](\"cancel\" to exit)>> ");
-    } else {
-      System.out.print("[y/N](\"cancel\" to exit)>> ");
-    }
-    response = Utils.scanner.nextLine().trim().toLowerCase();
-    if (response.equalsIgnoreCase("cancel")) {
-      System.out.println(Lines.clear());
-      return "cancel";
-    }
-    if (response.isEmpty()) {
-      response = defaultValue.toLowerCase();
-      break;
-    } else if (!response.equals("y") && !response.equals("n")) {
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Invalid input! Please enter 'y' or 'n'."));
-    }else{
-      break;
-    }
-  }
-    return response;
   }
 }

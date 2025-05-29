@@ -1,5 +1,6 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers;
 
+import br.edu.ifba.inf0008.uniEvents.forms.EventForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;

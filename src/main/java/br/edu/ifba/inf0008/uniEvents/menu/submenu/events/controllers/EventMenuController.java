@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers.ParticipantForms;
+import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
+import br.edu.ifba.inf0008.uniEvents.forms.EventForms;
+import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
@@ -32,14 +34,14 @@ public class EventMenuController {
     String description = EventForms.getText("Description");
     if (description.equalsIgnoreCase("cancel")) return;
 
-    String date = EventForms.getDate();
+    String date = CommonForms.getDate("Event date");
     if (date.equalsIgnoreCase("cancel")) return;
     
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Modality modality : Modality.getAll())options.add(modality.getDescription());
     
-    String modality = EventForms.getOption(options, "Modality");
+    String modality = CommonForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
     double totalHours = EventForms.getDouble("Total hours");
@@ -86,7 +88,7 @@ public class EventMenuController {
   }
 
   public Boolean remove(String code){
-    String confirmation = EventForms.getYN("Are you sure you want to remove this event?", "n");
+    String confirmation = CommonForms.getYN("Are you sure you want to remove this event?", "n");
     if (confirmation.equalsIgnoreCase("n")) {
       System.out.println(Lines.clear());
       System.out.println(Lines.warningLine("Event not removed!"));
@@ -122,14 +124,14 @@ public class EventMenuController {
     String description = EventForms.getText("Description");
     if (description.equalsIgnoreCase("cancel")) return;
 
-    String date = EventForms.getDate();
+    String date = CommonForms.getDate("Event date");
     if (date.equalsIgnoreCase("cancel")) return;
     
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Modality modality : Modality.getAll())options.add(modality.getDescription());
     
-    String modality = EventForms.getOption(options, "Modality");
+    String modality = CommonForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
     double totalHours = EventForms.getDouble("Total hours");
@@ -222,7 +224,7 @@ public class EventMenuController {
 
     String option;
     while (true) { 
-      option = EventForms.getOption(options, "What do you want to do with this " + type + "?");
+      option = CommonForms.getOption(options, "What do you want to do with this " + type + "?");
       if (option.equalsIgnoreCase("cancel")) return;
       
       switch (option) {
@@ -240,7 +242,7 @@ public class EventMenuController {
   }
 
   public void clear(){
-    String confirmation = EventForms.getYN("Are you sure you want to remove all events?", "n");
+    String confirmation = CommonForms.getYN("Are you sure you want to remove all events?", "n");
     if (confirmation.equalsIgnoreCase("n")) {
       System.out.println(Lines.clear());
       System.out.println(Lines.warningLine("Events not removed!"));
@@ -257,7 +259,7 @@ public class EventMenuController {
   } 
 
   public void clear(String type){
-    String confirmation = EventForms.getYN("Are you sure you want to remove all " + type + " events?", "n");
+    String confirmation = CommonForms.getYN("Are you sure you want to remove all " + type + " events?", "n");
     if (confirmation.equalsIgnoreCase("n")) {
       System.out.println(Lines.clear());
       System.out.println(Lines.warningLine(type + "s not removed!"));
@@ -317,7 +319,7 @@ public class EventMenuController {
       return;      
     }
 
-    String confirmation = EventForms.getYN("Are you sure you want to remove this participant?", "n");
+    String confirmation = CommonForms.getYN("Are you sure you want to remove this participant?", "n");
     if (confirmation.equalsIgnoreCase("n")) {
       System.out.println(Lines.clear());
       System.out.println(Lines.warningLine("Participant not removed!"));
@@ -336,7 +338,7 @@ public class EventMenuController {
   }
 
   public void clearParticipants(String code){
-    String confirmation = EventForms.getYN("Are you sure you want to remove all participants?", "n");
+    String confirmation = CommonForms.getYN("Are you sure you want to remove all participants?", "n");
     if (confirmation.equalsIgnoreCase("n")) {
       System.out.println(Lines.clear());
       System.out.println(Lines.warningLine("Participants not removed!"));
