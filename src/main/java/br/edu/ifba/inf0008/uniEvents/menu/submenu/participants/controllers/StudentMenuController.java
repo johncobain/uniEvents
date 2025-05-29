@@ -15,8 +15,8 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 public class StudentMenuController {
   public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String studentId;
-    while (true) { 
-      studentId = ParticipantForms.getId("student id");
+    while (true) {
+      studentId = ParticipantForms.getId("Student ID");
       Boolean isUnique = true;
       for (Participant participant : participantManager.getAll().values().stream().filter(p -> p instanceof Student).toList()) {
         if (((Student) participant).getStudentId().equals(studentId)) {

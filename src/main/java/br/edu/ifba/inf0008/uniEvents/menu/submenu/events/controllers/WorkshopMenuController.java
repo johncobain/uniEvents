@@ -9,7 +9,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class WorkshopMenuController {
   public static Workshop getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, double totalHours, String code) {
-    String activitiesSummary = CommonForms.getText("Event Activities summary");
+    String activitiesSummary = CommonForms.getText("Event's Activities summary");
     if(activitiesSummary.equalsIgnoreCase("cancel")) return null;
 
     Workshop workshop = new Workshop(name, description, location, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), totalHours, code, activitiesSummary);

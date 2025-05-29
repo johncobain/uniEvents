@@ -13,11 +13,11 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ShortCourseMenuController {
   public static ShortCourse getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, double totalHours, String code) {
-    String courseModulesStr = CommonForms.getText("Event Course modules[';' separated]");
+    String courseModulesStr = CommonForms.getText("Event's Course modules[';' separated]");
     if(courseModulesStr.equalsIgnoreCase("cancel")) return null;
     List<String> courseModules = new ArrayList<>(List.of(courseModulesStr.split(";")));
 
-    String methodOfAssessment = CommonForms.getText("Event Method of assessment");
+    String methodOfAssessment = CommonForms.getText("Event's Method of assessment");
     if(methodOfAssessment.equalsIgnoreCase("cancel")) return null;
 
     ArrayList<String> options = new ArrayList<>();
