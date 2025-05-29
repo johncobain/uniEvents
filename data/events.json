@@ -84,7 +84,9 @@
     "capacity": 30,
     "modality": "INPERSON",
     "totalHours": 40.0,
-    "inPersonParticipantsCpfs": [],
+    "inPersonParticipantsCpfs": [
+      "864.726.822-91"
+    ],
     "onlineParticipantsCpfs": [],
     "code": "WS001"
   },

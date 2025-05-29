@@ -202,7 +202,7 @@ public abstract class Event {
   }  
 
   public void generateCertificate(String cpf) throws Exception{
-    Certificate certificate = new Certificate(this.getName(), this.getCode(), this.getDate(), this.getModality(), this.getTotalHours());
+    Certificate certificate = new Certificate(this, this.getParticipants().get(cpf));
     this.getParticipants().get(cpf).addCertificate(certificate);
   }
 

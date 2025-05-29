@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.controllers.EventForms;
+import br.edu.ifba.inf0008.uniEvents.model.events.Certificate;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
@@ -313,17 +314,18 @@ public class ParticipantMenuController {
       return;      
     }
 
-    if(!participantManager.get(cpf).getType().equalsIgnoreCase("Student") && 
-      eventManager.get(code).getType().equalsIgnoreCase("Short Course")){
+    if(eventManager.get(code).getType().equalsIgnoreCase("Short Course")){
+      if(!participantManager.get(cpf).getType().equalsIgnoreCase("Student")){
         System.out.println(Lines.clear());
         System.out.println(Lines.errorLine("Only Students can register in Short Courses!"));
         return;
       }
-
-    if(!((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)){
-      System.out.println(Lines.clear());
-      System.out.println(Lines.errorLine("Participant " + participantManager.get(cpf).getName() + " is not eligible to register in this event!"));
-      return;      
+      
+      if(!((ShortCourse)eventManager.get(code)).checkEligibility(participantManager, cpf)){
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine("Participant " + participantManager.get(cpf).getName() + " is not eligible to register in this event!"));
+        return;      
+      }
     }
 
     String modality = eventManager.get(code).getModality().getDescription();
@@ -383,6 +385,19 @@ public class ParticipantMenuController {
   }
 
   public void showCertificates(String cpf){
-    //TODO: implement showCertificates
+    List<Certificate> certificates = participantManager.get(cpf).getCertificates();
+    if (certificates.isEmpty()) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant has no certificates!"));
+      return;
+    }
+    System.out.println(Lines.doubleLine());
+    System.out.println(Lines.titleLine("Certificates of " + participantManager.get(cpf).getName(), Colors.BLUE_BOLD));
+    System.out.println(Lines.doubleLine());
+    for (Certificate certificate : certificates) {
+      System.out.println(Lines.straightLine());
+      System.out.print(certificate.toString());
+      System.out.println(Lines.straightLine());
+    }
   }
 }
