@@ -204,7 +204,17 @@ public abstract class Event {
 
   public boolean isParticipantRegistered(String cpf) {
     return inPersonParticipants.containsKey(cpf) || onlineParticipants.containsKey(cpf);
-  }  
+  } 
+
+  public void updateParticipant(String cpf, Participant participant) throws UniEventsException {
+    if(!this.inPersonParticipantsCpfs.contains(cpf) && !this.onlineParticipantsCpfs.contains(cpf)) throw new NotFoundException("Participant", cpf);
+
+    if(this.inPersonParticipantsCpfs.contains(cpf)){
+      this.inPersonParticipants.put(cpf, participant);
+    } else {
+      this.onlineParticipants.put(cpf, participant);
+    }
+  }
 
   public void generateCertificate(String cpf) throws UniEventsException{
     Certificate certificate = new Certificate(this, this.getParticipants().get(cpf));

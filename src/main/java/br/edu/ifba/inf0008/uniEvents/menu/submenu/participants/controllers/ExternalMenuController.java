@@ -11,44 +11,23 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ExternalMenuController {
 
-  public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static External getForm(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String affiliation = CommonForms.getText("Affiliation");  
-    if (affiliation.equalsIgnoreCase("cancel")) return false;
+    if (affiliation.equalsIgnoreCase("cancel")) return null;
 
     String job = CommonForms.getText("Job Role");
-    if (job.equalsIgnoreCase("cancel")) return false;
-
-    String bio = CommonForms.getText("Bio");
-    if (bio.equalsIgnoreCase("cancel")) return false;
-
-    String isPresenterString = CommonForms.getYN("Can the external be a presenter?", "y");
-    if (isPresenterString.equalsIgnoreCase("cancel")) return false;
-    Boolean isPresenter = isPresenterString.equalsIgnoreCase("y");
-    if (isPresenterString.equalsIgnoreCase("n")) isPresenter = false;
-    
-    External external = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString), affiliation, job, bio, isPresenter);
-    participantManager.add(external);
-    return true;
-  }
-
-  public static Boolean update(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
-    String organization = CommonForms.getText("Organization");  
-    if (organization.equalsIgnoreCase("cancel")) return null;
-
-    String jobRole = CommonForms.getText("Job Role");
-    if (jobRole.equalsIgnoreCase("cancel")) return null;
+    if (job.equalsIgnoreCase("cancel")) return null;
 
     String bio = CommonForms.getText("Bio");
     if (bio.equalsIgnoreCase("cancel")) return null;
 
-    String isPresenterString = CommonForms.getYN("Can the external be a presenter", "y");
+    String isPresenterString = CommonForms.getYN("Can the external be a presenter?", "y");
     if (isPresenterString.equalsIgnoreCase("cancel")) return null;
     Boolean isPresenter = isPresenterString.equalsIgnoreCase("y");
     if (isPresenterString.equalsIgnoreCase("n")) isPresenter = false;
-
-    External external = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString), organization, jobRole, bio, isPresenter);
-    participantManager.update(cpf, external);
-    return true;
+    
+    External external = new External(name, cpf, email, phone, Utils.stringToDate(birthDateString), affiliation, job, bio, isPresenter);
+    return external;
   }
 
   public static void addExpertiseArea(IManager<Participant> participantManager, String cpf){

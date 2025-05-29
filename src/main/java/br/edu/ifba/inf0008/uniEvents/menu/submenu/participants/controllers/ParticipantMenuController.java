@@ -53,15 +53,19 @@ public class ParticipantMenuController {
     String birthDateString = CommonForms.getDate("birth date");
     if (birthDateString.equalsIgnoreCase("cancel")) return;
 
-    Boolean created = false;
+    Participant createdParticipant = null;
     switch (type) {
-      case "Student" -> created = StudentMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
-      case "Professor" -> created = ProfessorMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
-      case "External" -> created = ExternalMenuController.create(participantManager, name, cpf, email, phone, birthDateString);
+      case "Student" -> createdParticipant = StudentMenuController.getForm(participantManager, name, cpf, email, phone, birthDateString);
+      case "Professor" -> createdParticipant = ProfessorMenuController.getForm(participantManager, name, cpf, email, phone, birthDateString);
+      case "External" -> createdParticipant = ExternalMenuController.getForm(participantManager, name, cpf, email, phone, birthDateString);
+    }
+    if (createdParticipant == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant not created!"));
+      return;
     }
 
-    if (!created) return;
-
+    participantManager.add(createdParticipant);
     System.out.println(Lines.clear());
     System.out.println(Lines.successLine(type + " '" + name + "' created!"));
   }
@@ -105,15 +109,25 @@ public class ParticipantMenuController {
     String birthDateString = CommonForms.getDate("birth date");
     if (birthDateString.equalsIgnoreCase("cancel")) return;
 
-    Boolean updated = false;
+    final Participant updatedParticipant;
     switch (type) {
-      case "Student" -> updated = StudentMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
-      case "Professor" -> updated = ProfessorMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
-      case "External" -> updated = ExternalMenuController.update(participantManager, name, cpf, email, phone, birthDateString);
+      case "Student" -> updatedParticipant = StudentMenuController.getForm(participantManager, name, cpf, email, phone, birthDateString);
+      case "Professor" -> updatedParticipant = ProfessorMenuController.getForm(participantManager, name, cpf, email, phone, birthDateString);
+      case "External" -> updatedParticipant = ExternalMenuController.getForm(participantManager, name, cpf, email, phone, birthDateString);
+      default -> updatedParticipant = null;
     }
 
-    if (!updated) return;
-
+    if (updatedParticipant == null){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Participant not updated!"));
+      return;
+    }
+    
+    participantManager.update(cpf, updatedParticipant);
+    eventManager.getAll().values()
+      .stream()
+      .filter(e -> e.isParticipantRegistered(cpf))
+      .forEach(e -> e.updateParticipant(cpf, updatedParticipant));
     System.out.println(Lines.clear());
     System.out.println(Lines.successLine(type + " updated!"));
   }

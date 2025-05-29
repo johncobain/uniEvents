@@ -84,9 +84,7 @@
     "capacity": 30,
     "modality": "INPERSON",
     "totalHours": 40.0,
-    "inPersonParticipantsCpfs": [
-      "864.726.822-91"
-    ],
+    "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS001"
   },
@@ -226,19 +224,5 @@
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF003"
-  },
-  {
-    "eventTypeJson": "Workshop",
-    "activitiesSummary": "adsfadsfasdf",
-    "name": "teste",
-    "description": "teste",
-    "location": "teste",
-    "date": "20/02/2002",
-    "capacity": 40,
-    "modality": "INPERSON",
-    "totalHours": 40.0,
-    "inPersonParticipantsCpfs": [],
-    "onlineParticipantsCpfs": [],
-    "code": "WWW"
   }
 ]

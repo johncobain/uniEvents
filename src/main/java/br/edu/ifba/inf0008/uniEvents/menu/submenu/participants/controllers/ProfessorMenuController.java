@@ -14,8 +14,9 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ProfessorMenuController {
 
-  public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Professor getForm(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String employeeId;
+    if(participantManager.get(cpf) == null){
     while (true) {
       employeeId = ParticipantForms.getId("Employee ID");
       Boolean isUnique = true;
@@ -29,55 +30,32 @@ public class ProfessorMenuController {
       }
       if (isUnique) break;
     }
-    if (employeeId.equalsIgnoreCase("cancel")) return false;
+    if (employeeId.equalsIgnoreCase("cancel")) return null;
+    }else{
+      employeeId = ((Professor)participantManager.get(cpf)).getEmployeeId();
+    }
 
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for (Course course : Course.getAll()) options.add(course.getDescription());
 
     String department = CommonForms.getOption(options, "Select Department");
-    if (department.equalsIgnoreCase("cancel")) return false;
+    if (department.equalsIgnoreCase("cancel")) return null;
 
     String campus = CommonForms.getText("Campus");
-    if (campus.equalsIgnoreCase("cancel")) return false;
+    if (campus.equalsIgnoreCase("cancel")) return null;
 
     options = new ArrayList<>();
     options.add("Cancel");
     for (AcademicTitle title : AcademicTitle.getAll()) options.add(title.getDescription());
     String academicTitle = CommonForms.getOption(options, "Select Academic Title");
-    if (academicTitle.equalsIgnoreCase("cancel")) return false;
+    if (academicTitle.equalsIgnoreCase("cancel")) return null;
 
     String specialization = CommonForms.getText("Specialization");
-    if (specialization.equalsIgnoreCase("cancel")) return false;
+    if (specialization.equalsIgnoreCase("cancel")) return null;
 
     Professor professor = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), employeeId, Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
-    participantManager.add(professor);
-    return true;
-  }
-  
-  public static Boolean update(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
-    ArrayList<String> options = new ArrayList<>();
-    options.add("Cancel");
-    for (Course course : Course.getAll())options.add(course.getDescription());
-
-    String department = CommonForms.getOption(options, "Select Department");
-    if (department.equalsIgnoreCase("cancel")) return false;
-
-    options = new ArrayList<>();
-    options.add("Cancel");
-    for (AcademicTitle title : AcademicTitle.getAll())options.add(title.getDescription());
-    String academicTitle = CommonForms.getOption(options, "Select Academic Title");
-    if (academicTitle.equalsIgnoreCase("cancel")) return false;
-
-    String campus = CommonForms.getText("Campus");
-    if (campus.equalsIgnoreCase("cancel")) return false;
-
-    String specialization = CommonForms.getText("Specialization");
-    if (specialization.equalsIgnoreCase("cancel")) return false;
-
-    Professor professor = new Professor(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Professor) participantManager.get(cpf)).getEmployeeId(), Course.fromDescription(department), campus, AcademicTitle.fromDescription(academicTitle), specialization);
-    participantManager.update(cpf, professor);
-    return true;
+    return professor;
   }
 
   public static void addResearchArea(IManager<Participant> participantManager, String cpf) {

@@ -223,18 +223,6 @@
     "email": "eduardo.ramos@yahoo.com",
     "phone": "71 93456-3333",
     "birthDate": "03/04/1982",
-    "certificates": [
-      {
-        "id": "8db81a19-4fa8-4122-8c09-0d77483d1409",
-        "eventName": "Hands-on with Python for Data Science",
-        "eventCode": "WS001",
-        "modality": "INPERSON",
-        "totalHours": 40.0,
-        "eventDate": "22/09/2024",
-        "participantName": "Eduardo Ramos",
-        "participantCpf": "864.726.822-91",
-        "participantEmail": "eduardo.ramos@yahoo.com"
-      }
-    ]
+    "certificates": []
   }
 ]

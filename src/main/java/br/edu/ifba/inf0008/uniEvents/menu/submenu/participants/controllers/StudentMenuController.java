@@ -13,86 +13,57 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class StudentMenuController {
-  public static Boolean create(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
+  public static Student getForm(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
     String studentId;
-    while (true) {
-      studentId = ParticipantForms.getId("Student ID");
-      Boolean isUnique = true;
-      for (Participant participant : participantManager.getAll().values().stream().filter(p -> p instanceof Student).toList()) {
-        if (((Student) participant).getStudentId().equals(studentId)) {
-          System.out.println(Lines.clear());
-          System.out.println(Lines.errorLine("Student ID '" + studentId + "' is already in use! Please try again."));
-          isUnique = false;
-          break;
+    if(participantManager.get(cpf) == null){
+      while (true) {
+        studentId = ParticipantForms.getId("Student ID");
+        Boolean isUnique = true;
+        for (Participant participant : participantManager.getAll().values().stream().filter(p -> p instanceof Student).toList()) {
+          if (((Student) participant).getStudentId().equals(studentId)) {
+            System.out.println(Lines.clear());
+            System.out.println(Lines.errorLine("Student ID '" + studentId + "' is already in use! Please try again."));
+            isUnique = false;
+            break;
+          }
         }
+        if (isUnique) break;
       }
-      if (isUnique) break;
+      if (studentId.equalsIgnoreCase("cancel")) return null;
+    }else{
+      studentId = ((Student)participantManager.get(cpf)).getStudentId();
     }
-    if (studentId.equalsIgnoreCase("cancel")) return false;
 
     ArrayList<String> options = new ArrayList<>();
     options.add("Cancel");
     for(Course course : Course.getAll())options.add(course.getDescription());
 
     String course = CommonForms.getOption(options, "Select Course");
-    if (course.equalsIgnoreCase("cancel")) return false;
+    if (course.equalsIgnoreCase("cancel")) return null;
 
     int currentSemester = CommonForms.getNumber("Current Semester");
-    if (currentSemester == -1) return false;
+    if (currentSemester == -1) return null;
 
     options = new ArrayList<>();
     options.add("Cancel");
     for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
 
     String status = CommonForms.getOption(options, "Select Academic Status");
-    if (status.equalsIgnoreCase("cancel")) return false;
+    if (status.equalsIgnoreCase("cancel")) return null;
 
     double gpa = ParticipantForms.getGpa();
-    if (gpa == 0) return false;
+    if (gpa == 0) return null;
 
     String campus = CommonForms.getText("Campus");
-    if (campus.equalsIgnoreCase("cancel")) return false;
+    if (campus.equalsIgnoreCase("cancel")) return null;
 
     String enrollmentDateString = CommonForms.getDate("Enrollment Date");
-    if (enrollmentDateString.equalsIgnoreCase("cancel")) return false;
+    if (enrollmentDateString.equalsIgnoreCase("cancel")) return null;
 
     Student student = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), studentId, Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
-    participantManager.add(student);
-    return true;
+    return student;
   }
   
-  public static Boolean update(IManager<Participant> participantManager, String name, String cpf, String email, String phone, String birthDateString) {
-    ArrayList<String> options = new ArrayList<>();
-    options.add("Cancel");
-    for(Course course : Course.getAll())options.add(course.getDescription());
-
-    String course = CommonForms.getOption(options, "Select Course");
-    if (course.equalsIgnoreCase("cancel")) return false;
-
-    int currentSemester = CommonForms.getNumber("Current Semester");
-    if (currentSemester == -1) return false;
-
-    options = new ArrayList<>();
-    options.add("Cancel");
-    for(AcademicStatus status : AcademicStatus.getAll())options.add(status.getDescription());
-
-    String status = CommonForms.getOption(options, "Select Academic Status");
-    if (status.equalsIgnoreCase("cancel")) return false;
-
-    double gpa = ParticipantForms.getGpa();
-    if (gpa == 0) return false;
-
-    String campus = CommonForms.getText("Campus");
-    if (campus.equalsIgnoreCase("cancel")) return false;
-
-    String enrollmentDateString = CommonForms.getDate("Enrollment Date");
-    if (enrollmentDateString.equalsIgnoreCase("cancel")) return false;
-
-    Student student = new Student(name, cpf, email, phone, Utils.stringToDate(birthDateString), ((Student)participantManager.get(cpf)).getStudentId(), Course.fromDescription(course), currentSemester, AcademicStatus.fromDescription(status), gpa, campus, Utils.stringToDate(enrollmentDateString));
-    participantManager.update(cpf, student);
-    return true;
-  }
-
   public static void addInterest(IManager<Participant> participantManager, String cpf){
     String interest = CommonForms.getText("Interest");
     if (interest.equalsIgnoreCase("cancel")) return;
