@@ -26,7 +26,7 @@ public class ReportsGenerator {
       report.append(Lines.multiLineText("No events found for this report.")).append("\n");
     } else {
       for (Event event : events) {
-        report.append(summary(event, isDetailed));
+        report.append(eventSummary(event, isDetailed));
       }
     }
     report.append(Lines.doubleLine()).append("\n");
@@ -36,7 +36,7 @@ public class ReportsGenerator {
     return report.toString();
   }
 
-  public static String summary(Event event, Boolean isDetailed){
+  public static String eventSummary(Event event, Boolean isDetailed){
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.titleLine("Event: " + event.getType(), Colors.YELLOW_BOLD)).append("\n");
@@ -46,16 +46,23 @@ public class ReportsGenerator {
     report.append(Lines.straightLine()).append("\n");
     if(isDetailed && !event.getParticipants().isEmpty()){
       report.append(Lines.doubleLine()).append("\n");
-      report.append(Lines.titleLine("Participants", Colors.BLUE_BOLD)).append("\n");
+      report.append(Lines.titleLine("Participants in (" + event.getCode() + ")", Colors.BLUE_BOLD)).append("\n");
       report.append(Lines.doubleLine()).append("\n");
       for(Participant participant : event.getParticipants().values()){
-        report.append(Lines.mixedLines()).append("\n");
-        report.append(participant.toString());
-        report.append(Lines.mixedLines()).append("\n");
+        report.append(participantSummaary(participant));
       }
     }
     return report.toString();
   }
 
-  //TODO: create a participantSummary to use in reports and lists
+  public static String participantSummaary(Participant participant){
+    StringBuilder report = new StringBuilder();
+    report.append(Lines.doubleLine()).append("\n");
+    report.append(Lines.titleLine("Participant: " + participant.getType(), Colors.BLUE_BOLD)).append("\n");
+    report.append(Lines.doubleLine()).append("\n");
+    report.append(Lines.straightLine()).append("\n");
+    report.append(participant.toString());
+    report.append(Lines.straightLine()).append("\n");
+    return report.toString();
+  }
 }
