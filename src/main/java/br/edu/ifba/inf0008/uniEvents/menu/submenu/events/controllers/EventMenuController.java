@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.edu.ifba.inf0008.uniEvents.exceptions.UniEventsException;
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
 import br.edu.ifba.inf0008.uniEvents.forms.EventForms;
 import br.edu.ifba.inf0008.uniEvents.forms.ParticipantForms;
@@ -331,7 +332,7 @@ public class EventMenuController {
       eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Participant removed!"));
-    } catch (Exception e) {
+    } catch (UniEventsException e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }
@@ -370,7 +371,7 @@ public class EventMenuController {
       participantManager.update(cpf, participantManager.get(cpf));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("Certificate generated!"));
-    } catch (Exception e) {
+    } catch (UniEventsException e) {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }

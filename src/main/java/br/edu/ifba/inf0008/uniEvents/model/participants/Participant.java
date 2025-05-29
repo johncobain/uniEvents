@@ -3,6 +3,7 @@ package br.edu.ifba.inf0008.uniEvents.model.participants;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import br.edu.ifba.inf0008.uniEvents.exceptions.UniEventsException;
 import br.edu.ifba.inf0008.uniEvents.model.events.Certificate;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
@@ -74,8 +75,8 @@ public abstract class Participant {
     this.certificates = certificates;
   }
 
-  public void addCertificate(Certificate certificate) throws Exception {
-    if(certificates.contains(certificate)) throw new Exception("Certificate already exists!");
+  public void addCertificate(Certificate certificate) throws UniEventsException {
+    if(certificates.contains(certificate)) throw new UniEventsException("Certificate already exists!");
     this.certificates.add(certificate);
   }
 

@@ -1,6 +1,7 @@
 package br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.controllers;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
@@ -54,6 +55,7 @@ public class ReportsMenuController {
             default -> false;
         };
       })
+      .sorted(Comparator.comparing(Event::getDate))
       .toList();
 
     String detailed = CommonForms.getYN("Do you want a detailed report?", "n");

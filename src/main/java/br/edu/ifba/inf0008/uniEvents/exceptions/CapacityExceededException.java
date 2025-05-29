@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.exeptions;
+package br.edu.ifba.inf0008.uniEvents.exceptions;
 
 public class CapacityExceededException extends UniEventsException{
   public CapacityExceededException(String eventCode, int capacity) {

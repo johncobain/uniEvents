@@ -42,15 +42,14 @@ public class ParticipantMenu extends Menu {
             new ParticipantSubMenu(participantMenuController, "External").show();
           }
           case 4 -> {
-            participantMenuController.get("Participant");
+              participantMenuController.get("Participant");
           }
           case 5 -> {
-            participantMenuController.list();
+              participantMenuController.list();
           }
           case 6 -> {
-            participantMenuController.clear();
+              participantMenuController.clear();
           }
-          default -> throw new AssertionError();
       }
     }
   }

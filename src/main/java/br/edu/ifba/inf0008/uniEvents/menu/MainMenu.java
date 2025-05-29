@@ -1,6 +1,5 @@
 package br.edu.ifba.inf0008.uniEvents.menu;
 
-import br.edu.ifba.inf0008.uniEvents.menu.menuInterface.IMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.events.EventsMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.ParticipantMenu;
 import br.edu.ifba.inf0008.uniEvents.menu.submenu.reports.ReportsMenu;
@@ -28,7 +27,6 @@ public class MainMenu extends Menu{
   @Override
   public void show() {
     int response;
-    IMenu submenu;
     while(true){
       response = super.menuResponse();
 
@@ -37,21 +35,17 @@ public class MainMenu extends Menu{
               return;
           }
           case 1 -> {
-            submenu = new ParticipantMenu(participantManager, eventManager);
-            submenu.show();
+            new ParticipantMenu(participantManager, eventManager).show();
           }
           case 2 -> {
-            submenu = new EventsMenu(eventManager, participantManager);
-            submenu.show();
+            new EventsMenu(eventManager, participantManager).show();
           }
           case 3 -> {
-            submenu = new ReportsMenu(eventManager);
-            submenu.show();
+            new ReportsMenu(eventManager).show();
           }
           case 4 -> {
             DummyGenerator.generateDummyData(eventManager, participantManager);
           }
-          default -> throw new AssertionError();
       }
     }
   }

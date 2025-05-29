@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import br.edu.ifba.inf0008.uniEvents.exeptions.CapacityExceededException;
-import br.edu.ifba.inf0008.uniEvents.exeptions.UniEventsException;
+import br.edu.ifba.inf0008.uniEvents.exceptions.CapacityExceededException;
+import br.edu.ifba.inf0008.uniEvents.exceptions.NotFoundException;
+import br.edu.ifba.inf0008.uniEvents.exceptions.UniEventsException;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
 import br.edu.ifba.inf0008.uniEvents.repository.ParticipantRepository;
@@ -176,8 +177,9 @@ public abstract class Event {
       this.onlineParticipants.put(participant.getCpf(), participant);
     }
   }
-  public void removeParticipant(String cpf) {
-    if(!this.inPersonParticipantsCpfs.contains(cpf) && !this.onlineParticipantsCpfs.contains(cpf)) return;
+  public void removeParticipant(String cpf) throws UniEventsException {
+    if(!this.inPersonParticipantsCpfs.contains(cpf) && !this.onlineParticipantsCpfs.contains(cpf)) throw new NotFoundException("Participant", cpf);
+
     this.inPersonParticipantsCpfs.remove(cpf);
     this.inPersonParticipants.remove(cpf);
 
@@ -204,7 +206,7 @@ public abstract class Event {
     return inPersonParticipants.containsKey(cpf) || onlineParticipants.containsKey(cpf);
   }  
 
-  public void generateCertificate(String cpf) throws Exception{
+  public void generateCertificate(String cpf) throws UniEventsException{
     Certificate certificate = new Certificate(this, this.getParticipants().get(cpf));
     this.getParticipants().get(cpf).addCertificate(certificate);
   }

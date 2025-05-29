@@ -1,4 +1,4 @@
-package br.edu.ifba.inf0008.uniEvents.exeptions;
+package br.edu.ifba.inf0008.uniEvents.exceptions;
 
 public class UniEventsException extends RuntimeException{
   public UniEventsException(String message) {
