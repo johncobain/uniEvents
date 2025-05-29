@@ -22,13 +22,10 @@
 
    - Then each subclass only provides the options list and a lambda to handle each choice.
 
-4. Extract Common Date/Time Logic
-   -You parse dates everywhere with LocalDate.parse(str, LocalDateAdapter.DATE_FORMATTER). Wrap that in a DateUtil.parse(str) that handles “cancel” tokens and invalid input uniformly.
-
-5. Custom Exceptions & Validation
+4. Custom Exceptions & Validation
 
    - Replace catch(Exception e){ println errorLine(e.getMessage()); } with domain-specific exceptions (e.g. CapacityExceededException) so you can fail fast from any service layer.
    - Put input-validation (e.g. “capacity must be ≥0”) into your model constructors or builders—not only in the UI layer.
 
-6. Write Focused Unit Tests
+5. Write Focused Unit Tests
    - Move all business logic (e.g. Event.addParticipant, Participant.clearCertificates) out of menu controllers into services, so you can cover them with JUnit—menu I/O tests can be minimal “smoke” tests.
