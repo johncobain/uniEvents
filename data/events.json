@@ -13,14 +13,13 @@
       "Discuss ethical implications"
     ],
     "language": "English",
-    "hours": 1,
-    "minutes": 30,
     "name": "Introduction to Artificial Intelligence",
     "description": "A comprehensive overview of AI concepts, history, and applications.",
     "location": "Auditorium A",
     "date": "15/09/2024",
     "capacity": 0,
     "modality": "ONLINE",
+    "totalHours": 90.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "LEC001"
@@ -39,14 +38,13 @@
       "Highlight security concerns"
     ],
     "language": "Portuguese",
-    "hours": 1,
-    "minutes": 0,
     "name": "Modern Web Development Trends",
     "description": "Exploring the latest trends and technologies in web development.",
     "location": "Room 101",
     "date": "20/09/2024",
     "capacity": 80,
     "modality": "HYBRID",
+    "totalHours": 60.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "LEC002"
@@ -65,21 +63,19 @@
       "Discuss security challenges"
     ],
     "language": "English",
-    "hours": 1,
-    "minutes": 15,
     "name": "Cloud Computing Essentials",
     "description": "Introduction to cloud computing concepts, services, and deployment models.",
     "location": "Room 105",
     "date": "18/09/2024",
     "capacity": 60,
     "modality": "INPERSON",
+    "totalHours": 75.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "LEC003"
   },
   {
     "eventTypeJson": "Workshop",
-    "totalHours": 40,
     "activitiesSummary": "Participants will learn Python basics, data analysis with pandas, and data visualization using matplotlib and seaborn.",
     "name": "Hands-on with Python for Data Science",
     "description": "Practical workshop on using Python for data analysis and visualization.",
@@ -87,13 +83,13 @@
     "date": "22/09/2024",
     "capacity": 30,
     "modality": "INPERSON",
+    "totalHours": 40.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS001"
   },
   {
     "eventTypeJson": "Workshop",
-    "totalHours": 120,
     "activitiesSummary": "Participants will explore Scrum, Kanban, and agile tools through hands-on activities to improve team collaboration and project delivery.",
     "name": "Agile Project Management",
     "description": "Interactive workshop on agile methodologies and project management tools.",
@@ -101,13 +97,13 @@
     "date": "25/09/2024",
     "capacity": 25,
     "modality": "ONLINE",
+    "totalHours": 120.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS002"
   },
   {
     "eventTypeJson": "Workshop",
-    "totalHours": 90,
     "activitiesSummary": "Participants will set up CI/CD pipelines, explore containerization with Docker, and learn about infrastructure as code using tools like Terraform.",
     "name": "DevOps Best Practices",
     "description": "Workshop focused on modern DevOps tools, CI/CD pipelines, and automation.",
@@ -115,13 +111,13 @@
     "date": "27/09/2024",
     "capacity": 20,
     "modality": "HYBRID",
+    "totalHours": 90.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "WS003"
   },
   {
     "eventTypeJson": "Short Course",
-    "totalHours": 4,
     "courseModules": [
       "Network Security Basics",
       "Malware and Threats",
@@ -135,15 +131,13 @@
     "date": "28/09/2024",
     "capacity": 40,
     "modality": "HYBRID",
+    "totalHours": 4.0,
     "inPersonParticipantsCpfs": [],
-    "onlineParticipantsCpfs": [
-      "161.075.797-10"
-    ],
+    "onlineParticipantsCpfs": [],
     "code": "SC001"
   },
   {
     "eventTypeJson": "Short Course",
-    "totalHours": 3,
     "courseModules": [
       "React Native Basics",
       "UI Components",
@@ -157,13 +151,13 @@
     "date": "02/10/2024",
     "capacity": 35,
     "modality": "INPERSON",
+    "totalHours": 3.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "SC002"
   },
   {
     "eventTypeJson": "Short Course",
-    "totalHours": 5,
     "courseModules": [
       "Generics",
       "Concurrency",
@@ -178,6 +172,7 @@
     "date": "05/10/2024",
     "capacity": 25,
     "modality": "ONLINE",
+    "totalHours": 5.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "SC003"
@@ -193,6 +188,7 @@
     "date": "10/10/2024",
     "capacity": 200,
     "modality": "INPERSON",
+    "totalHours": 20.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF001"
@@ -208,6 +204,7 @@
     "date": "15/10/2024",
     "capacity": 150,
     "modality": "HYBRID",
+    "totalHours": 22.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF002"
@@ -223,8 +220,23 @@
     "date": "20/10/2024",
     "capacity": 120,
     "modality": "INPERSON",
+    "totalHours": 15.0,
     "inPersonParticipantsCpfs": [],
     "onlineParticipantsCpfs": [],
     "code": "AF003"
+  },
+  {
+    "eventTypeJson": "Workshop",
+    "activitiesSummary": "adsfadsfasdf",
+    "name": "teste",
+    "description": "teste",
+    "location": "teste",
+    "date": "20/02/2002",
+    "capacity": 40,
+    "modality": "INPERSON",
+    "totalHours": 40.0,
+    "inPersonParticipantsCpfs": [],
+    "onlineParticipantsCpfs": [],
+    "code": "WWW"
   }
 ]

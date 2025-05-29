@@ -272,12 +272,12 @@ public class DummyGenerator {
         LocalDate.parse("15/09/2024", LocalDateAdapter.DATE_FORMATTER),
         0,
         Modality.ONLINE,
+        90,
         "LEC001",
         "Artificial Intelligence",
         Arrays.asList("History of AI", "Machine Learning", "Ethics in AI"),
         Arrays.asList("Understand AI basics", "Explore real-world applications", "Discuss ethical implications"),
-        "English",
-        90
+        "English"
       )
     );
 
@@ -289,12 +289,12 @@ public class DummyGenerator {
         LocalDate.parse("20/09/2024", LocalDateAdapter.DATE_FORMATTER),
         80,
         Modality.HYBRID,
+        60,
         "LEC002",
         "Web Development",
         Arrays.asList("Frontend Frameworks", "Backend Technologies", "Web Security"),
         Arrays.asList("Identify modern tools", "Discuss best practices", "Highlight security concerns"),
-        "Portuguese",
-        60
+        "Portuguese"
       )
     );
 
@@ -306,12 +306,12 @@ public class DummyGenerator {
         LocalDate.parse("18/09/2024", LocalDateAdapter.DATE_FORMATTER),
         60,
         Modality.INPERSON,
+        75,
         "LEC003",
         "Cloud Computing",
         Arrays.asList("Cloud Models", "Service Types", "Security in Cloud"),
         Arrays.asList("Understand cloud basics", "Differentiate service models", "Discuss security challenges"),
-        "English",
-        75
+        "English"
       )
     );
 
@@ -324,8 +324,8 @@ public class DummyGenerator {
         LocalDate.parse("22/09/2024", LocalDateAdapter.DATE_FORMATTER),
         30,
         Modality.INPERSON,
-        "WS001",
         40,
+        "WS001",
         "Participants will learn Python basics, data analysis with pandas, and data visualization using matplotlib and seaborn."
       )
     );
@@ -338,8 +338,8 @@ public class DummyGenerator {
       LocalDate.parse("25/09/2024", LocalDateAdapter.DATE_FORMATTER),
       25,
       Modality.ONLINE,
-      "WS002",
       120,
+      "WS002",
       "Participants will explore Scrum, Kanban, and agile tools through hands-on activities to improve team collaboration and project delivery."
       )
     );
@@ -352,8 +352,8 @@ public class DummyGenerator {
         LocalDate.parse("27/09/2024", LocalDateAdapter.DATE_FORMATTER),
         20,
         Modality.HYBRID,
-        "WS003",
         90,
+        "WS003",
         "Participants will set up CI/CD pipelines, explore containerization with Docker, and learn about infrastructure as code using tools like Terraform."
       )
     );
@@ -367,8 +367,8 @@ public class DummyGenerator {
       LocalDate.parse("28/09/2024", LocalDateAdapter.DATE_FORMATTER),
       40,
       Modality.HYBRID,
-      "SC001",
       4,
+      "SC001",
       Arrays.asList("Network Security Basics", "Malware and Threats", "Best Practices"),
       "Written Exam and Practical Lab",
       SkillLevel.BEGINNER
@@ -383,8 +383,8 @@ public class DummyGenerator {
       LocalDate.parse("02/10/2024", LocalDateAdapter.DATE_FORMATTER),
       35,
       Modality.INPERSON,
-      "SC002",
       3,
+      "SC002",
       Arrays.asList("React Native Basics", "UI Components", "APIs Integration"),
       "Project Submission",
       SkillLevel.INTERMEDIATE
@@ -399,8 +399,8 @@ public class DummyGenerator {
         LocalDate.parse("05/10/2024", LocalDateAdapter.DATE_FORMATTER),
         25,
         Modality.ONLINE,
-        "SC003",
         5,
+        "SC003",
         Arrays.asList("Generics", "Concurrency", "JVM Internals", "Performance Tuning"),
         "Final Project and Code Review",
         SkillLevel.ADVANCED
@@ -416,6 +416,7 @@ public class DummyGenerator {
         LocalDate.parse("10/10/2024", LocalDateAdapter.DATE_FORMATTER),
         200,
         Modality.INPERSON,
+        20,
         "AF001",
         50,
         "Innovation and Technology",
@@ -431,6 +432,7 @@ public class DummyGenerator {
       LocalDate.parse("15/10/2024", LocalDateAdapter.DATE_FORMATTER),
       150,
       Modality.HYBRID,
+      22,
       "AF002",
       40,
       "Data Science and Analytics",
@@ -446,6 +448,7 @@ public class DummyGenerator {
       LocalDate.parse("20/10/2024", LocalDateAdapter.DATE_FORMATTER),
       120,
       Modality.INPERSON,
+      15,
       "AF003",
       30,
       "Sustainable Technology",

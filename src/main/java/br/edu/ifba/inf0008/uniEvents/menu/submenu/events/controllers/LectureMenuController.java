@@ -10,7 +10,7 @@ import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class LectureMenuController {
-  public static Lecture getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, String code) {
+  public static Lecture getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, double totalHours, String code) {
     String maintTopic = EventForms.getText("Main topic");
     if(maintTopic.equalsIgnoreCase("cancel")) return null;
 
@@ -24,11 +24,8 @@ public class LectureMenuController {
     
     String language = EventForms.getText("Language");
     if(language.equalsIgnoreCase("cancel")) return null;
-
-    int duration = EventForms.getNumber("Duration in minutes");
-    if (duration == -1) return null;
     
-    Lecture lecture = new Lecture(name, description, location, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), code, maintTopic, subTopics, objectives, language, duration);
+    Lecture lecture = new Lecture(name, description, location, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), totalHours, code, maintTopic, subTopics, objectives, language);
     return lecture;
   }
 }

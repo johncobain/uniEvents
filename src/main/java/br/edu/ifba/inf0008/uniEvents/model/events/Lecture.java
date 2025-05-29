@@ -13,18 +13,13 @@ public class Lecture extends Event{
   private List<String> subTopics;
   private List<String> objectives;
   private String language;
-  private int hours;
-  private int minutes;
 
-  public Lecture(String name, String description, String local, LocalDate date, int capacity, Modality modality, String code, String mainTopic, List<String> subTopics, List<String> objectives, String language, int durationMinutes) {
-    super(name, description, local, date,capacity, modality, code);
+  public Lecture(String name, String description, String local, LocalDate date, int capacity, Modality modality, double totalHours, String code, String mainTopic, List<String> subTopics, List<String> objectives, String language) {
+    super(name, description, local, date,capacity, modality, totalHours, code);
     this.mainTopic = mainTopic;
     this.subTopics = subTopics;
     this.objectives = objectives;
     this.language = language;
-
-    this.hours = durationMinutes / 60;
-    this.minutes = durationMinutes % 60;
   }
 
   public Lecture() {
@@ -44,7 +39,6 @@ public class Lecture extends Event{
     sb.append(Lines.multiLineText(String.format("Sub Topics: %s", String.join(" - ", subTopics)))).append("\n");
     sb.append(Lines.multiLineText(String.format("Objectives: %s", String.join(" - ", objectives)))).append("\n");
     sb.append(Lines.multiLineText(String.format("Language: %s", language))).append("\n");
-    sb.append(Lines.multiLineText(String.format("Duration: %02d:%02d", hours, minutes))).append("\n");
     return sb.toString();
   }
   

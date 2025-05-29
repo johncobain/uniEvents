@@ -7,7 +7,7 @@ import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class AcademicFairMenuController {
-  public static AcademicFair getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, String code) {
+  public static AcademicFair getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, double totalHours, String code) {
     int stands = EventForms.getNumber("Stands Number");
     if (stands == -1) return null;
 
@@ -17,7 +17,7 @@ public class AcademicFairMenuController {
     String finalDate = EventForms.getText("Final Date");
     if(finalDate.equalsIgnoreCase("cancel")) return null;
     
-    AcademicFair academicFair = new AcademicFair(name, description, location, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), code, stands, centralTheme, Utils.stringToDate(finalDate));
+    AcademicFair academicFair = new AcademicFair(name, description, location, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), totalHours, code, stands, centralTheme, Utils.stringToDate(finalDate));
     return academicFair;
   }
 }

@@ -42,6 +42,9 @@ public class EventMenuController {
     String modality = EventForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
 
+    double totalHours = EventForms.getDouble("Total hours");
+    if(totalHours == -1) return;
+
     int capacity = 0;
     if(Modality.fromDescription(modality) != Modality.ONLINE){
       capacity = EventForms.getNumber("Capacity");
@@ -66,10 +69,10 @@ public class EventMenuController {
 
     Event createdEvent = null;
     switch (type) {
-      case "Lecture" -> createdEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
-      case "Workshop" -> createdEvent = WorkshopMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
-      case "Short Course" -> createdEvent = ShortCourseMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
-      case "Academic Fair" -> createdEvent = AcademicFairMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Lecture" -> createdEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
+      case "Workshop" -> createdEvent = WorkshopMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
+      case "Short Course" -> createdEvent = ShortCourseMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
+      case "Academic Fair" -> createdEvent = AcademicFairMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
     }
 
     if(createdEvent == null){
@@ -128,6 +131,9 @@ public class EventMenuController {
     
     String modality = EventForms.getOption(options, "Modality");
     if (modality.equalsIgnoreCase("cancel")) return;
+
+    double totalHours = EventForms.getDouble("Total hours");
+    if(totalHours == -1) return;
     
     int capacity = 0;
     if(Modality.fromDescription(modality) != Modality.ONLINE){
@@ -137,10 +143,10 @@ public class EventMenuController {
 
     Event updatedEvent = null;
     switch (type) {
-      case "Lecture" -> updatedEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
-      case "Workshop" -> updatedEvent = WorkshopMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
-      case "Short Course" -> updatedEvent = ShortCourseMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
-      case "Academic Fair" -> updatedEvent = AcademicFairMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Lecture" -> updatedEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
+      case "Workshop" -> updatedEvent = WorkshopMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
+      case "Short Course" -> updatedEvent = ShortCourseMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
+      case "Academic Fair" -> updatedEvent = AcademicFairMenuController.getForm(eventManager, name, description, location, date, capacity, modality, totalHours, code);
     }
 
     if(updatedEvent == null) {

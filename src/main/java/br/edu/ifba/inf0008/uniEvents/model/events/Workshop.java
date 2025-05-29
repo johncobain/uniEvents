@@ -8,13 +8,11 @@ import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 public class Workshop extends Event {
   private final String eventTypeJson = "Workshop";
 
-  private int totalHours;
   private String activitiesSummary;
   
 
-  public Workshop(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code, int totalHours, String activitiesSummary) {
-    super(name, description, location, date, capacity, modality, code);
-    this.totalHours = totalHours;
+  public Workshop(String name, String description, String location, LocalDate date, int capacity, Modality modality, double totalHours, String code, String activitiesSummary) {
+    super(name, description, location, date, capacity, modality, totalHours, code);
     this.activitiesSummary = activitiesSummary;
   }
 
@@ -31,7 +29,6 @@ public class Workshop extends Event {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(super.toString());
-    sb.append(Lines.multiLineText(String.format("Total Hours: %d", totalHours))).append("\n");
     sb.append(Lines.multiLineText(String.format("Activities Summary: %s", activitiesSummary))).append("\n");
     return sb.toString();
   }

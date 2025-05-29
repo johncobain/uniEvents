@@ -65,6 +65,28 @@ public class EventForms {
     return number;
   }
 
+  protected static double getDouble(String text){
+    double number;
+    while(true) { 
+      System.out.print("Enter event " + text.toLowerCase() + " (\"cancel\" to exit)>> ");
+      String numberStr = Utils.scanner.nextLine();
+      if (numberStr.equals("cancel")) return -1;
+      try {
+        Validation.isDouble(numberStr);
+        number = Integer.parseInt(numberStr);
+        if (number <= 0) {
+          throw new Exception(text + " must be greater than 0!");
+        }
+        break;
+      } catch (Exception e) {
+        System.out.println(Lines.clear());
+        System.out.println(Lines.errorLine(e.getMessage()));
+      }
+    }
+    System.out.println(Lines.clear());
+    return number;
+  }
+
   protected static String getOption(ArrayList<String> options, String title){
     BaseMenu baseMenu;
     baseMenu = new BaseMenu("Select " + title, options);

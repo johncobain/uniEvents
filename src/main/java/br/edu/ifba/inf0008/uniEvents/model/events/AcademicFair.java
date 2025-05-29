@@ -11,8 +11,8 @@ public class AcademicFair extends Event {
   private String centralTheme;
   private LocalDate finalDate;
 
-  public AcademicFair(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code, int stands, String centralTheme, LocalDate finalDate) {
-    super( name, description, location, date, capacity, modality, code);
+  public AcademicFair(String name, String description, String location, LocalDate date, int capacity, Modality modality, double totalHours, String code, int stands, String centralTheme, LocalDate finalDate) {
+    super( name, description, location, date, capacity, modality, totalHours, code);
     this.stands = stands;
     this.centralTheme = centralTheme;
     this.finalDate = finalDate;

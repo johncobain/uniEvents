@@ -11,10 +11,7 @@ import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class ShortCourseMenuController {
-  public static ShortCourse getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, String code) {
-    int totalHours = EventForms.getNumber("Total hours");
-    if (totalHours == -1) return null;
-
+  public static ShortCourse getForm(IManager<Event> eventManager, String name, String description, String location, String date, int capacity, String modality, double totalHours, String code) {
     String courseModulesStr = EventForms.getText("Course modules[';' separated]");
     if(courseModulesStr.equalsIgnoreCase("cancel")) return null;
     List<String> courseModules = new ArrayList<>(List.of(courseModulesStr.split(";")));
@@ -29,7 +26,7 @@ public class ShortCourseMenuController {
     String skillLevel = EventForms.getOption(options, "Target skill level");
     if(skillLevel.equalsIgnoreCase("cancel")) return null;    
     
-    ShortCourse shortCourse = new ShortCourse(name, location, description, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), code, totalHours, courseModules, methodOfAssessment, SkillLevel.fromDescription(skillLevel));
+    ShortCourse shortCourse = new ShortCourse(name, location, description, Utils.stringToDate(date), capacity, Modality.fromDescription(modality), totalHours, code, courseModules, methodOfAssessment, SkillLevel.fromDescription(skillLevel));
     return shortCourse;
   }
 }

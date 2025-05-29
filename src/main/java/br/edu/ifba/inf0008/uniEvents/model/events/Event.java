@@ -17,19 +17,21 @@ public abstract class Event {
   private LocalDate date;
   private int capacity;
   private Modality modality;
+  private double totalHours;
   private final ArrayList<String> inPersonParticipantsCpfs;
   private final ArrayList<String> onlineParticipantsCpfs;
   private transient LinkedHashMap<String, Participant> inPersonParticipants;
   private transient LinkedHashMap<String, Participant> onlineParticipants;
   private String code;
   
-  protected Event(String name, String description, String location, LocalDate date, int capacity, Modality modality, String code) {
+  protected Event(String name, String description, String location, LocalDate date, int capacity, Modality modality, double totalHours, String code) {
     this.name = name;
     this.description = description;
     this.location = location;
     this.date = date;
     this.capacity = capacity;
     this.modality = modality;
+    this.totalHours = totalHours;
     this.code = code;
 
     this.inPersonParticipantsCpfs = new ArrayList<>();
@@ -91,6 +93,14 @@ public abstract class Event {
 
   public void setModality(Modality modality) {
     this.modality = modality;
+  }
+
+  public double getTotalHours() {
+    return totalHours;
+  }
+
+  public void setTotalHours(int totalHours) {
+    this.totalHours = totalHours;
   }
 
   public String getCode() {
@@ -192,7 +202,7 @@ public abstract class Event {
   }  
 
   public void generateCertificate(String cpf) throws Exception{
-    Certificate certificate = new Certificate(this.getName(), this.getCode());
+    Certificate certificate = new Certificate(this.getName(), this.getCode(), this.getDate(), this.getModality(), this.getTotalHours());
     this.getParticipants().get(cpf).addCertificate(certificate);
   }
 
@@ -205,6 +215,7 @@ public abstract class Event {
         sb.append(Lines.multiLineText(String.format("Title: %s", name))).append("\n");
         sb.append(Lines.multiLineText(String.format("Description: %s", description))).append("\n");
         sb.append(Lines.multiLineText(String.format("Modality: %s", modality.getDescription()))).append("\n");
+        sb.append(Lines.multiLineText(String.format("Total Hours: %.2f", totalHours))).append("\n");
         sb.append(Lines.multiLineText(String.format("Location: %s", location))).append("\n");
         sb.append(Lines.multiLineText(String.format("Date: %s", this.getDate().format(LocalDateAdapter.DATE_FORMATTER)))).append("\n");
         if(this.modality == Modality.INPERSON || this.modality == Modality.HYBRID){
