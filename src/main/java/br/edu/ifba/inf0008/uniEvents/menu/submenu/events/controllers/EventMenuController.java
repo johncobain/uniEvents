@@ -8,19 +8,18 @@ import br.edu.ifba.inf0008.uniEvents.menu.submenu.participants.controllers.Parti
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.events.enums.Modality;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.services.EventManager;
-import br.edu.ifba.inf0008.uniEvents.services.ParticipantManager;
+import br.edu.ifba.inf0008.uniEvents.services.IManager;
 import br.edu.ifba.inf0008.uniEvents.services.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 
 public class EventMenuController {
-  private final EventManager eventManager;
-  private final ParticipantManager participantManager;
+  private final IManager<Event> eventManager;
+  // private final IManager<Participant> participantManager;
 
-  public EventMenuController(EventManager eventManager, ParticipantManager participantManager) {
+  public EventMenuController(IManager<Event> eventManager, IManager<Participant> participantManager) {
     this.eventManager = eventManager;
-    this.participantManager = participantManager;
+    // this.participantManager = participantManager;
   }
   
   public void create(String type){
@@ -65,16 +64,20 @@ public class EventMenuController {
     }
     if(code.equalsIgnoreCase("cancel")) return;
 
-    Boolean created = false;
+    Event createdEvent = null;
     switch (type) {
-      case "Lecture" -> created = LectureMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
-      case "Workshop" -> created = WorkshopMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
-      case "Short Course" -> created = ShortCourseMenuController.create(eventManager, participantManager, name, description, location, date, capacity, modality, code);
-      case "Academic Fair" -> created = AcademicFairMenuController.create(eventManager, name, description, location, date, capacity, modality, code);
+      case "Lecture" -> createdEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Workshop" -> createdEvent = WorkshopMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Short Course" -> createdEvent = ShortCourseMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Academic Fair" -> createdEvent = AcademicFairMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
     }
 
-    if(!created)return;
-
+    if(createdEvent == null){
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Event not created!"));
+      return;
+    }
+    eventManager.add(createdEvent);
     System.out.println(Lines.clear());
     System.out.println(Lines.successLine("Event created!"));
   }
@@ -134,16 +137,21 @@ public class EventMenuController {
 
     //TODO: if the event has participants and will be updated, keeep the participants
     
-    Boolean updated = false;
+    Event updatedEvent = null;
     switch (type) {
-      case "Lecture" -> updated = LectureMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
-      case "Workshop" -> updated = WorkshopMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
-      case "Short Course" -> updated = ShortCourseMenuController.update(eventManager, participantManager, code, name, description, location, date, capacity, modality);
-      case "Academic Fair" -> updated = AcademicFairMenuController.update(eventManager, code, name, description, location, date, capacity, modality);
+      case "Lecture" -> updatedEvent = LectureMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Workshop" -> updatedEvent = WorkshopMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Short Course" -> updatedEvent = ShortCourseMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
+      case "Academic Fair" -> updatedEvent = AcademicFairMenuController.getForm(eventManager, name, description, location, date, capacity, modality, code);
     }
 
-    if(!updated) return;
+    if(updatedEvent == null) {
+      System.out.println(Lines.clear());
+      System.out.println(Lines.errorLine("Event not updated!"));
+      return;
+    }
 
+    eventManager.update(code, updatedEvent);
     System.out.println(Lines.clear());
     System.out.println(Lines.successLine(type + " updated!"));
   }
@@ -160,7 +168,7 @@ public class EventMenuController {
     System.out.println(Lines.titleLine("All Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     for(Event event : events){
-      System.out.print(ReportsGenerator.summary(event, false));
+      System.out.print(ReportsGenerator.eventSummary(event, false));
     }
   }
 
@@ -180,7 +188,7 @@ public class EventMenuController {
     System.out.println(Lines.titleLine(type+" Events", Colors.YELLOW_BOLD));
     System.out.println(Lines.doubleLine());
     for (Event event : events) {
-      System.out.print(ReportsGenerator.summary(event, false));
+      System.out.print(ReportsGenerator.eventSummary(event, false));
     }
   }
 
@@ -202,9 +210,9 @@ public class EventMenuController {
 
     if(type.equalsIgnoreCase("Event")) type = eventManager.get(code).getType();
 
-    System.out.print(ReportsGenerator.summary(eventManager.get(code), false));
+    System.out.print(ReportsGenerator.eventSummary(eventManager.get(code), false));
     
-    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "List Participants", "Remove Participant", "Clear Participants", "Generate Certificate"));//TODO: add show instructions to modality
+    ArrayList<String> options = new ArrayList<>(List.of("Go Back", "Update", "Remove", "Show Instructions", "List Participants", "Remove Participant", "Clear Participants", "Generate Certificate"));
 
     String option;
     while (true) { 
@@ -216,6 +224,7 @@ public class EventMenuController {
         case "Remove" -> {
           if(remove(code)) return;
         }
+        case "Show Instructions" -> showInstructions(code);
         case "List Participants" -> listParticipants(code);
         case "Remove Participant" -> removeParticipant(code);
         case "Clear Participants" -> clearParticipants(code);
@@ -251,6 +260,14 @@ public class EventMenuController {
       System.out.println(Lines.clear());
       System.out.println(Lines.errorLine(e.getMessage()));
     }
+  }
+
+  public void showInstructions(String code){
+    System.out.println(Lines.doubleLine());
+    System.out.println(Lines.titleLine("Instructions of " + eventManager.get(code).getName() + " (" + eventManager.get(code).getCode() + ")", Colors.YELLOW_BOLD));
+    System.out.println(Lines.doubleLine());
+    System.out.println(Lines.multiLineText(eventManager.get(code).getInstructions()));
+    System.out.println(Lines.doubleLine());
   }
 
   public void listParticipants(String code){
@@ -308,7 +325,8 @@ public class EventMenuController {
       return;
     }
     try {
-      eventManager.clearParticipants(code);
+      eventManager.get(code).clearParticipants();
+      eventManager.update(code, eventManager.get(code));
       System.out.println(Lines.clear());
       System.out.println(Lines.successLine("All participants removed!"));
     } catch (Exception e) {
