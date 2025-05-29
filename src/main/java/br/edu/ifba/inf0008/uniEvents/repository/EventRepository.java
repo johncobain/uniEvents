@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,39 +14,20 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import br.edu.ifba.inf0008.uniEvents.model.events.AcademicFair;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
-import br.edu.ifba.inf0008.uniEvents.model.events.Lecture;
-import br.edu.ifba.inf0008.uniEvents.model.events.ShortCourse;
-import br.edu.ifba.inf0008.uniEvents.model.events.Workshop;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateAdapter;
-import br.edu.ifba.inf0008.uniEvents.utils.json.LocalDateTimeAdapter;
-import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
+import br.edu.ifba.inf0008.uniEvents.utils.json.JsonFactory;
 
 public class EventRepository {
   private static final String EVENTS_FILE = "data/events.json";
   private ParticipantRepository participantRepository;
   private LinkedHashMap<String, Event> eventsSaved;
   private Gson gson;
+  private JsonFactory jsonFactory;
   
   public EventRepository(ParticipantRepository participantRepository) {
-    this.participantRepository = participantRepository;
-    GsonBuilder gsonBuilder = new GsonBuilder();
-    gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateAdapter());
-    gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
-    gsonBuilder.setPrettyPrinting();
-
-    RuntimeTypeAdapterFactory<Event> eventAdapterFactory = RuntimeTypeAdapterFactory
-    .of(Event.class, "eventTypeJson")
-    .registerSubtype(Lecture.class, "Lecture")
-    .registerSubtype(Workshop.class, "Workshop")
-    .registerSubtype(ShortCourse.class, "Short Course")
-    .registerSubtype(AcademicFair.class, "Academic Fair");
-
-    gsonBuilder.registerTypeAdapterFactory(eventAdapterFactory);
-
-    this.gson = gsonBuilder.create();
+    this.jsonFactory = new JsonFactory();
+    this.gson = jsonFactory.getGsonBuilder().create();
     this.eventsSaved = load();
 
     try {
