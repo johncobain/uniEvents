@@ -17,7 +17,7 @@ import br.edu.ifba.inf0008.uniEvents.model.participants.Student;
 import br.edu.ifba.inf0008.uniEvents.utils.json.gsonextras.RuntimeTypeAdapterFactory;
 
 public class JsonFactory {
-  private GsonBuilder gsonBuilder;
+  private final GsonBuilder gsonBuilder;
 
   public JsonFactory(){
     gsonBuilder = new GsonBuilder();
