@@ -12,7 +12,7 @@ import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
 public class Certificate {
   private final String id;
-  private LocalDateTime createdAt;
+  private final LocalDateTime createdAt;
   private String eventName;
   private String eventCode;
   private Modality modality;
