@@ -54,8 +54,8 @@ public class Lines {
     for (String word : words) {
       if (currentLength + word.length() + (currentLength == 0 ? 0 : 1) > maxWidth) {
         int padding = maxWidth - currentLength;
-        int leftPadding = padding / 2;
-        int rightPadding = padding - leftPadding;
+        int leftPadding = Math.max(0, padding / 2);
+        int rightPadding = Math.max(0, padding - leftPadding);
         result.append("|")
             .append(" ".repeat(leftPadding))
             .append(line)
@@ -75,8 +75,15 @@ public class Lines {
     }
     if (currentLength > 0) {
       int padding = maxWidth - currentLength;
-      int leftPadding = padding / 2;
-      int rightPadding = padding - leftPadding;
+      int leftPadding;
+      int rightPadding;
+      if (padding < 0) {
+          leftPadding = 0;
+          rightPadding = 0;
+      } else {
+          leftPadding = padding / 2;
+          rightPadding = padding - leftPadding;
+      }
       result.append("|")
           .append(" ".repeat(leftPadding))
           .append(line)
@@ -96,8 +103,8 @@ public class Lines {
     for (String word : words) {
       if (currentLength + word.length() + (currentLength == 0 ? 0 : 1) > maxWidth) {
         int padding = maxWidth - currentLength;
-        int leftPadding = padding / 2;
-        int rightPadding = padding - leftPadding;
+        int leftPadding = Math.max(0, padding / 2);
+        int rightPadding = Math.max(0, padding - leftPadding);
         result.append("|")
             .append(" ".repeat(leftPadding))
             .append(color)
@@ -119,8 +126,15 @@ public class Lines {
     }
     if (currentLength > 0) {
       int padding = maxWidth - currentLength;
-      int leftPadding = padding / 2;
-      int rightPadding = padding - leftPadding;
+      int leftPadding;
+      int rightPadding;
+      if (padding < 0) {
+          leftPadding = 0;
+          rightPadding = 0;
+      } else {
+          leftPadding = padding / 2;
+          rightPadding = padding - leftPadding;
+      }
       result.append("|")
           .append(" ".repeat(leftPadding))
           .append(color)

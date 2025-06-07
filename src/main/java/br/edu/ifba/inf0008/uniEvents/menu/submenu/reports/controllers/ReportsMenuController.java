@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.forms.CommonForms;
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
+import br.edu.ifba.inf0008.uniEvents.services.generators.FileGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.generators.ReportsGenerator;
 import br.edu.ifba.inf0008.uniEvents.services.managers.IManager;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
@@ -15,7 +16,12 @@ public class ReportsMenuController {
     List<Event> events = eventManager.getAll().values().stream().toList();
     
     String detailed = CommonForms.getYN("Do you want a detailed report?", "n");
-    System.out.println(ReportsGenerator.generateReport(events, "Full Report", detailed.equalsIgnoreCase("y")));
+    String report = ReportsGenerator.generateReport(events, "Full Report", detailed.equalsIgnoreCase("y"));
+    System.out.println(report);
+    if(CommonForms.getYN("Do you want to save this report to a file?", "n").equalsIgnoreCase("y")){
+      FileGenerator fileGenerator = new FileGenerator();
+      fileGenerator.saveTextToFile(report, "full_report");
+    }
   }
   public static void reportByType(IManager<Event> eventManager){
     ArrayList<String> options = new ArrayList<>();
@@ -32,7 +38,13 @@ public class ReportsMenuController {
       .toList();
 
     String detailed = CommonForms.getYN("Do you want a detailed report?", "n");
-    System.out.println(ReportsGenerator.generateReport(events, "Report by Type: " + type, detailed.equalsIgnoreCase("y")));
+    String report = ReportsGenerator.generateReport(events, "Report by Type: " + type, detailed.equalsIgnoreCase("y"));
+    System.out.println(report);
+
+    if(CommonForms.getYN("Do you want to save this report to a file?", "n").equalsIgnoreCase("y")){
+      FileGenerator fileGenerator = new FileGenerator();
+      fileGenerator.saveTextToFile(report, "report_by_type_" + type);
+    }
   }
   public static void reportByDate(IManager<Event> eventManager){
     String date = CommonForms.getDate("Enter the date for the report");
@@ -58,7 +70,11 @@ public class ReportsMenuController {
       .toList();
 
     String detailed = CommonForms.getYN("Do you want a detailed report?", "n");
-    System.out.println(ReportsGenerator.generateReport(events, "Report by Date: " + Utils.dateToString(Utils.stringToDate(date)), detailed.equalsIgnoreCase("y")));
+    String report = ReportsGenerator.generateReport(events, "Report by Date: " + Utils.dateToString(Utils.stringToDate(date)), detailed.equalsIgnoreCase("y"));
+    System.out.println(report);
+    if(CommonForms.getYN("Do you want to save this report to a file?", "n").equalsIgnoreCase("y")){
+      FileGenerator fileGenerator = new FileGenerator();
+      fileGenerator.saveTextToFile(report, "report_by_date_" + Utils.dateToString(Utils.stringToDate(date)).replace("/", "_"));
+    }
   }
-  
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.edu.ifba.inf0008.uniEvents.model.events.Event;
 import br.edu.ifba.inf0008.uniEvents.model.participants.Participant;
-import br.edu.ifba.inf0008.uniEvents.utils.Colors;
 import br.edu.ifba.inf0008.uniEvents.utils.Lines;
 import br.edu.ifba.inf0008.uniEvents.utils.Utils;
 
@@ -37,14 +36,14 @@ public class ReportsGenerator {
   public static String eventSummary(Event event, Boolean isDetailed){
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
-    report.append(Lines.centeredMultiLineText("Event: " + event.getType(), Colors.YELLOW_BOLD)).append("\n");
+    report.append(Lines.centeredMultiLineText("Event: " + event.getType())).append("\n");
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.straightLine()).append("\n");
     report.append(event.toString());
     report.append(Lines.straightLine()).append("\n");
     if(isDetailed && !event.getParticipants().isEmpty()){
       report.append(Lines.mixedLines()).append("\n");
-      report.append(Lines.centeredMultiLineText("Participants in (" + event.getCode() + ")", Colors.BLUE_BOLD)).append("\n");
+      report.append(Lines.centeredMultiLineText("Participants in (" + event.getCode() + ")")).append("\n");
       report.append(Lines.mixedLines()).append("\n");
       for(Participant participant : event.getParticipants().values()){
         report.append(participantSummary(participant));
@@ -57,7 +56,7 @@ public class ReportsGenerator {
   public static String participantSummary(Participant participant){
     StringBuilder report = new StringBuilder();
     report.append(Lines.doubleLine()).append("\n");
-    report.append(Lines.centeredMultiLineText("Participant: " + participant.getType(), Colors.BLUE_BOLD)).append("\n");
+    report.append(Lines.centeredMultiLineText("Participant: " + participant.getType())).append("\n");
     report.append(Lines.doubleLine()).append("\n");
     report.append(Lines.straightLine()).append("\n");
     report.append(participant.toString());
